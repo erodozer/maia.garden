@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://characters/maia/maia_1.png" type="Texture" id=1]
+[ext_resource path="res://characters/maia/maia_3.png" type="Texture" id=2]
+[ext_resource path="res://characters/maia/maia_4.png" type="Texture" id=3]
+[ext_resource path="res://characters/maia/maia_2.png" type="Texture" id=4]
+[ext_resource path="res://characters/maia/Maia.gd" type="Script" id=5]
+[ext_resource path="res://characters/maia/bubble.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 10.0773
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 15.1271
+
+[node name="Maia" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 5 )
+
+[node name="Highlight" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16, 0, 0 )
+width = 2.0
+default_color = Color( 0.803922, 0.376471, 0.576471, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Stand" type="AnimatedSprite" parent="Sprite"]
+frames = SubResource( 1 )
+playing = true
+
+[node name="Walking" type="AnimatedSprite" parent="Sprite"]
+visible = false
+frames = SubResource( 2 )
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.148895, 0.511157 )
+shape = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Interact" type="Area2D" parent="."]
+input_pickable = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
+shape = SubResource( 4 )
+
+[node name="Bubble" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -16 )
+texture = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="body_entered" from="Interact" to="." method="_on_Interact_body_entered"]
+[connection signal="body_exited" from="Interact" to="." method="_on_Interact_body_exited"]
