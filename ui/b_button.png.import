@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tiles.png-7f934bf4a55b6a6a238a04d01bd38617.stex"
+path="res://.import/b_button.png-95db49fc7830f2e2386b1b97ae937915.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/tiles.png"
-dest_files=[ "res://.import/tiles.png-7f934bf4a55b6a6a238a04d01bd38617.stex" ]
+source_file="res://ui/b_button.png"
+dest_files=[ "res://.import/b_button.png-95db49fc7830f2e2386b1b97ae937915.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

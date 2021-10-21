@@ -49,15 +49,20 @@ func interact():
 	tween.interpolate_property(gui, "rect_position", Vector2(-200, 0), Vector2(0, 0), .2)
 	tween.start()
 	yield(tween, "tween_all_completed")
-	set_process_input(true)
 	inbox.grab_focus()
 	inbox.grab_click_focus()
+	inbox.unselect_all()
+	set_process_input(true)
 	yield(self, "done")
 	set_process_input(false)
 	tween.interpolate_property(gui, "rect_position", Vector2(0, 0), Vector2(-200, 3), .2)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	inbox.unselect_all()
+	tween.stop_all()
+	
+func hint():
+	return "Check Mail"
 	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -82,7 +87,7 @@ func _on_ItemList_item_activated(index):
 	open_letter = mail[index]
 	var text = letter.get_node("RichTextLabel")
 	text.bbcode_text = "%s\n----\n%s" % [open_letter.message, open_letter.outro]
-	
+	text.scroll_to_line(0)
 	tween.stop_all()
 	tween.interpolate_property(letter, "rect_position", Vector2(25, 170), Vector2(25, 30), .2)
 	tween.start()
@@ -96,7 +101,7 @@ func _on_ItemList_item_activated(index):
 	yield(tween, "tween_all_completed")
 	inbox.grab_focus()
 	inbox.grab_click_focus()
-
+	
 func _on_Mailbox_gui_input(event: InputEvent):
 	if Input.is_mouse_button_pressed(BUTTON_RIGHT):
 		close()

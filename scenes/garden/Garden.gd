@@ -15,8 +15,3 @@ func _on_Maia_perform_action(interactable):
 		var plant = PlantScene.instance()
 		plants.add_child(plant)
 		plant.global_position = interactable
-	elif interactable is Node and interactable.is_in_group("npc"):
-		player.set_physics_process(false)
-		yield(interactable.interact(), "completed")
-		player.set_physics_process(true)
-	

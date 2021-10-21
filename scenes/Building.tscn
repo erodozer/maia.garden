@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/b_button.png" type="Texture" id=1]
+[ext_resource path="res://characters/maia/Maia.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/UITheme.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/Building.gd" type="Script" id=5]
+
+[node name="Map" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Background" type="Sprite" parent="."]
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitControl" type="HBoxContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -34.0
+margin_top = -14.0
+margin_right = -1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/ExitControl"]
+margin_right = 10.0
+margin_bottom = 14.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ExitControl"]
+margin_left = 14.0
+margin_right = 33.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 0, 14 )
+text = "Exit"
+
+[node name="Maia" parent="." instance=ExtResource( 2 )]
+scale = Vector2( 2, 2 )
+sidescrolling_mode = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
