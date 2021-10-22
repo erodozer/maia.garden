@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://characters/maia/Maia_Standing.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://characters/maia/Maia_Walking.tres" type="SpriteFrames" id=2]
@@ -13,7 +13,7 @@
 [ext_resource path="res://characters/maia/fish_1.png" type="Texture" id=13]
 [ext_resource path="res://characters/maia/fish_2.png" type="Texture" id=14]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ) ],
 "loop": true,
@@ -21,16 +21,13 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 10.0773
 
-[sub_resource type="RayShape2D" id=5]
-length = 16.0
+[sub_resource type="CircleShape2D" id=4]
+radius = 12.6064
 
-[sub_resource type="CircleShape2D" id=6]
-radius = 5.0
-
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id=5]
 
 [node name="Maia" type="KinematicBody2D" groups=[
 "player",
@@ -57,18 +54,19 @@ playing = true
 [node name="Walking" type="AnimatedSprite" parent="Sprite"]
 visible = false
 frames = ExtResource( 2 )
+frame = 2
 playing = true
 
 [node name="Fishing" type="AnimatedSprite" parent="Sprite"]
 visible = false
 position = Vector2( -9, 1 )
-frames = SubResource( 1 )
-frame = 1
+frames = SubResource( 6 )
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.148895, 0.511157 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Interact" type="Area2D" parent="."]
 input_pickable = false
@@ -76,15 +74,11 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
-rotation = -1.5708
-shape = SubResource( 5 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Interact"]
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="Bubble" type="Sprite" parent="."]
 visible = false
-position = Vector2( 0, -14 )
+position = Vector2( 0, -16 )
 texture = ExtResource( 6 )
 script = ExtResource( 7 )
 
@@ -106,7 +100,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -72.0
 margin_bottom = 20.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

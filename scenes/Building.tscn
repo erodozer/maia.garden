@@ -54,3 +54,6 @@ sidescrolling_mode = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[connection signal="interact_end" from="Maia" to="." method="_on_Maia_interact_end"]
+[connection signal="interact_start" from="Maia" to="." method="_on_Maia_interact_start"]

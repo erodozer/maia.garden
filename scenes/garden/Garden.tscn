@@ -1,12 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/garden/Garden.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/garden/mailbox/Mailbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://characters/maia/Maia.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/garden/Lake.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/garden/pond/Lake.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/garden/Garden.gd" type="Script" id=5]
 [ext_resource path="res://scenes/garden/Door.gd" type="Script" id=6]
-[ext_resource path="res://scenes/garden/ExploreMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/garden/explore/ExploreMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/garden/soil/Soil.tscn" type="PackedScene" id=8]
+[ext_resource path="res://characters/maia/Seeds.gd" type="Script" id=9]
+[ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=10]
+[ext_resource path="res://ui/UITheme.tres" type="Theme" id=11]
+[ext_resource path="res://ui/seeds/clover.png" type="Texture" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -28,14 +33,8 @@ cell_y_sort = true
 format = 1
 tile_data = PoolIntArray( -393221, 21, 0, -393220, 12, 0, -393219, 12, 0, -393218, 12, 0, -393217, 12, 0, -458752, 12, 0, -458751, 12, 0, -458750, 12, 0, -458749, 12, 0, -458748, 22, 0, -327685, 16, 0, -327684, 18, 0, -327683, 18, 0, -327682, 18, 0, -327681, 18, 0, -393216, 18, 0, -393215, 18, 0, -393214, 18, 0, -393213, 18, 0, -393212, 17, 0, -262149, 16, 0, -262148, 18, 0, -262147, 18, 0, -262146, 9, 0, -327678, 18, 0, -327677, 18, 0, -327676, 17, 0, -196613, 16, 0, -196612, 18, 0, -196611, 18, 0, -262142, 18, 0, -262141, 18, 0, -262140, 17, 0, -131077, 16, 0, -131076, 18, 0, -131075, 18, 0, -196606, 18, 0, -196605, 18, 0, -196604, 17, 0, -196602, 19, 0, -65541, 16, 0, -65540, 18, 0, -65539, 18, 0, -131070, 18, 0, -131069, 18, 0, -131068, 17, 0, -131065, 19, 0, -5, 16, 0, -4, 18, 0, -3, 18, 0, -1, 24, 0, -65536, 24, 0, -65534, 18, 0, -65533, 18, 0, -65532, 17, 0, -65531, 19, 0, -65529, 19, 0, 65528, 1, 0, 65530, 19, 0, 65531, 13, 0, 65532, 15, 0, 65533, 12, 0, 65534, 15, 0, 65535, 24, 0, 0, 24, 0, 1, 15, 0, 2, 12, 0, 3, 15, 0, 4, 14, 0, 6, 19, 0, 131065, 19, 0, 131069, 19, 0, 131071, 24, 0, 65536, 24, 0, 196602, 19, 0, 196604, 19, 0, 196607, 24, 0, 131072, 24, 0, 262137, 19, 0, 262139, 19, 0, 262143, 24, 0, 196608, 24, 0, 196609, 24, 0, 196610, 24, 0, 196611, 24, 0, 327678, 19, 0, 327679, 24, 0, 262144, 24, 0, 393208, 19, 0, 393210, 5, 0, 393211, 5, 0, 393212, 5, 0, 393213, 5, 0, 393214, 5, 0, 393215, 24, 0, 327680, 24, 0, 458746, 5, 0, 458747, 5, 0, 458748, 5, 0, 458749, 5, 0, 458750, 5, 0, 458751, 24, 0, 393216, 24, 0, 393222, 19, 0, 524282, 5, 0, 524283, 5, 0, 524284, 5, 0, 524285, 5, 0, 524286, 5, 0, 524287, 24, 0, 458752, 24, 0, 589823, 24, 0, 524288, 24, 0, 524292, 19, 0, 655350, 19, 0, 655358, 19, 0, 655359, 24, 0, 589824, 24, 0, 720894, 1, 0, 720895, 24, 0, 655360, 24, 0, 786431, 24, 0, 720896, 24, 0, 720902, 19, 0, 851967, 24, 0, 786432, 24, 0 )
 
-[node name="Soil" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 16, 16 )
-show_collision = true
-collision_layer = 2
-collision_mask = 0
-format = 1
-tile_data = PoolIntArray( 131076, 8, 196609, 131077, 8, 3, 131078, 8, 3, 131079, 8, 3, 131080, 8, 0, 196612, 8, 1, 196613, 8, 65538, 196614, 8, 65538, 196615, 8, 65538, 196616, 8, 131075, 262148, 8, 1, 262149, 8, 65538, 262150, 8, 65538, 262151, 8, 65538, 262152, 8, 131075, 327684, 8, 131072, 327685, 8, 131073, 327686, 8, 131073, 327687, 8, 131073, 327688, 8, 196611 )
+[node name="Soil" parent="." instance=ExtResource( 8 )]
+position = Vector2( 48, 24 )
 
 [node name="Lake" parent="." instance=ExtResource( 4 )]
 margin_left = -112.0
@@ -74,4 +73,48 @@ shape = SubResource( 1 )
 [node name="Explore" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, 192 )
 
-[connection signal="perform_action" from="Maia" to="." method="_on_Maia_perform_action"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Seeds" type="PanelContainer" parent="CanvasLayer" groups=[
+"seed_tool",
+]]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -24.0
+margin_top = -24.0
+margin_right = -2.0
+margin_bottom = -2.0
+theme = ExtResource( 11 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActiveSeed" type="TextureRect" parent="CanvasLayer/Seeds"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 18, 18 )
+texture = ExtResource( 12 )
+stretch_mode = 4
+
+[node name="Count" type="Label" parent="CanvasLayer/Seeds/ActiveSeed"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0.87451, 0.964706, 0.960784, 1 )
+custom_colors/font_color_shadow = Color( 0.223529, 0.278431, 0.470588, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "5"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="interact_end" from="Maia" to="CanvasLayer/Seeds" method="_on_Maia_interact_end"]
+[connection signal="interact_start" from="Maia" to="CanvasLayer/Seeds" method="_on_Maia_interact_start"]

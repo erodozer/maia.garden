@@ -5,6 +5,9 @@
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=4]
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 9.69083, 9.07753 )
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 112, 16, 16 )
@@ -33,15 +36,16 @@ expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 anti_aliasing = false
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 5.99036, 6.03976 )
-
 [node name="Mailbox" type="StaticBody2D" groups=[
 "npc",
 ]]
 collision_layer = 5
 collision_mask = 0
 script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.198425, 1.98425 )
+shape = SubResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
 pause_mode = 2
@@ -155,10 +159,6 @@ bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.198425, 1.98425 )
-shape = SubResource( 4 )
 
 [connection signal="gui_input" from="CanvasLayer/Mailbox" to="." method="_on_Mailbox_gui_input"]
 [connection signal="item_activated" from="CanvasLayer/Mailbox/Inbox/Container/MarginContainer/ScrollContainer/ItemList" to="." method="_on_ItemList_item_activated"]

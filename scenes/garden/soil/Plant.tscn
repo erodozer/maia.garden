@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/garden/soil/plants.png" type="Texture" id=1]
+[ext_resource path="res://scenes/garden/soil/Plant.gd" type="Script" id=2]
+[ext_resource path="res://scenes/garden/soil/mature_clover.tres" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[node name="Plant" type="StaticBody2D" groups=[
+"npc",
+]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, 8 )
+shape = SubResource( 2 )
+
+[node name="Watered" type="Sprite" parent="."]
+visible = false
+texture = SubResource( 3 )
+centered = false
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+centered = false

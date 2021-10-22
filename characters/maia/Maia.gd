@@ -26,13 +26,11 @@ onready var sprite_container = get_node("Sprite")
 onready var walk_sprite = get_node("Sprite/Walking")
 onready var stand_sprite = get_node("Sprite/Stand")
 onready var fish_sprite = get_node("Sprite/Fishing")
-onready var highlight = get_node("Highlight")
+onready var interact_collider = get_node("Interact")
 onready var bubble = get_node("Bubble")
 
-var selected_cell
 var interactable_npc
 
-signal perform_action(cell)
 signal can_interact(npc)
 signal interact_start
 signal interact_end
@@ -53,7 +51,9 @@ func change_outfit(outfit):
 	walk_sprite.frames = Styles[outfit].walk
 	
 func perform_action():
-	assert(interactable_npc != null)
+	if not interactable_npc:
+		return
+		
 	emit_signal("interact_start")
 	set_physics_process(false)
 	if interactable_npc.has_method("interact"):
@@ -67,10 +67,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		walk_sprite.visible = false
 		stand_sprite.visible = true
-		if selected_cell:
-			emit_signal("perform_action", selected_cell)
-		elif interactable_npc:
-			perform_action()
+		perform_action()
 		return
 	
 	var direction = Vector2.ZERO
@@ -93,35 +90,11 @@ func _physics_process(delta):
 		move_and_collide(direction * MOVEMENT_SPEED)
 		walk_sprite.visible = true
 		stand_sprite.visible = false
+		interact_collider.rotation = direction.angle()
 	else:
 		walk_sprite.visible = false
 		stand_sprite.visible = true
 		return
-		
-	var space_rid = get_world_2d().space
-	var space_state = Physics2DServer.space_get_direct_state(space_rid)
-	
-	var selected = space_state.intersect_point(
-		global_position + (direction * 8) + Vector2(0, 4),
-		1, [],
-		2
-	)
-	
-	if len(selected) <= 0:
-		selected_cell = null
-		highlight.visible = false
-		return
-		
-	# tilemap collision
-	selected = selected[0]
-	var tilemap = selected.collider as TileMap
-	if not tilemap:
-		return
-		
-	var cell = tilemap.map_to_world(Vector2(selected.metadata.x, selected.metadata.y))
-	highlight.global_position = cell
-	highlight.visible = true
-	selected_cell = cell
 
 func _on_Interact_body_entered(body):
 	interactable_npc = body

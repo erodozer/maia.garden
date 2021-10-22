@@ -29,27 +29,40 @@ const FISHING = [
 	}
 ]
 
-const FLOWERS = [
-	{
+const FLOWERS = {
+	"clover": {
+		"id": "clover",
 		"name": "Clover",
 		"cost": 5,
 		"sell": 10,
-		"grow": 2
+		"mature": 2,
 	},
-	{
+	"daisy": {
+		"id": "daisy",
+		"name": "Daisy",
+		"cost": 10,
+		"sell": 30,
+		"mature": 3,
+	},
+	"tulip": {
+		"id": "tulip",
 		"name": "Tulip",
 		"cost": 15,
-		"sell": 50,
-		"grow": 6
-	}
-]
+		"sell": 60,
+		"mature": 6,
+	},
+}
 
 var day = 0
 var konpeto = 100 setget update_balance
 var inventory = []
 var seeds = {
-	"Clover": 5
+	"clover": 5,
+	"daisy": 5,
+	"tulip": 5,
 }
+var garden = {}
+
 var outfit = "default" setget set_outfit
 var unlocked_outfits = {
 	"default": true,
@@ -66,6 +79,18 @@ var stamina = 100
 signal new_record(fish)
 signal balance_changed(amount)
 signal change_outfit(outfit)
+signal seed_balance_changed(plant, amount)
+
+func advance_day():
+	day += 1
+	for p in garden.values():
+		# only mature watered flowers
+		if p.watered:
+			p.age += 1
+		
+		p.watered = false
+	stamina = 100
+	
 
 func set_outfit(v):
 	outfit = v
@@ -108,3 +133,21 @@ func buy_seeds(flower):
 	seeds[flower.name] = amount + 1
 	konpeto -= flower.cost
 	emit_signal("balance_changed", konpeto)
+
+func plant(id, cell):
+	if seeds[id] <= 0:
+		return null
+		
+	if cell in garden:
+		return null
+
+	var plant = {
+		"ref": FLOWERS[id],
+		"age": 0,
+		"watered": false,
+		"cell": cell,
+	}
+	garden[cell] = plant
+	seeds[id] -= 1
+	emit_signal("seed_balance_changed", id, seeds[id])
+	return plant
