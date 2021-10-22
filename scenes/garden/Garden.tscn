@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/garden/Garden.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/garden/mailbox/Mailbox.tscn" type="PackedScene" id=2]
@@ -6,12 +6,9 @@
 [ext_resource path="res://scenes/garden/Lake.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/garden/Garden.gd" type="Script" id=5]
 [ext_resource path="res://scenes/garden/Door.gd" type="Script" id=6]
-[ext_resource path="res://scenes/garden/FlowerShop.gd" type="Script" id=7]
+[ext_resource path="res://scenes/garden/ExploreMenu.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 16.4924
 
 [node name="Garden" type="Node2D"]
 script = ExtResource( 5 )
@@ -74,16 +71,7 @@ script = ExtResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House"]
 shape = SubResource( 1 )
 
-[node name="FlowerShop" type="StaticBody2D" parent="." groups=[
-"npc",
-]]
-position = Vector2( 0, 168 )
-collision_layer = 4
-collision_mask = 0
-script = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FlowerShop"]
-position = Vector2( 0, 20 )
-shape = SubResource( 2 )
+[node name="Explore" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, 192 )
 
 [connection signal="perform_action" from="Maia" to="." method="_on_Maia_perform_action"]

@@ -13,3 +13,9 @@ func _on_Maia_can_interact(npc):
 		tween.start()
 		yield(tween, "tween_all_completed")
 		visible = false
+
+func _on_Maia_interact_start():
+	visible = false
+
+func _on_Maia_interact_end():
+	visible = true

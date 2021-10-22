@@ -2,30 +2,66 @@ extends KinematicBody2D
 
 const MOVEMENT_SPEED = 1
 
+const Styles = {
+	"default": {
+		"stand": preload("res://characters/maia/Maia_Standing.tres"),
+		"walk": preload("res://characters/maia/Maia_Walking.tres")
+	},
+	"hat": {
+		"stand": preload("res://characters/maia/Maia_Hat_Standing.tres"),
+		"walk": preload("res://characters/maia/Maia_Hat_Walking.tres")
+	},
+	"tiny": {
+		"stand": preload("res://characters/maia/Tiny_Maia_Standing.tres"),
+		"walk": preload("res://characters/maia/Tiny_Maia_Walking.tres")
+	},
+}
+
 export var sidescrolling_mode = false
+export var fishing = false setget toggle_fishing
+
+onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 
 onready var sprite_container = get_node("Sprite")
 onready var walk_sprite = get_node("Sprite/Walking")
 onready var stand_sprite = get_node("Sprite/Stand")
+onready var fish_sprite = get_node("Sprite/Fishing")
 onready var highlight = get_node("Highlight")
+onready var bubble = get_node("Bubble")
 
 var selected_cell
 var interactable_npc
 
 signal perform_action(cell)
 signal can_interact(npc)
+signal interact_start
+signal interact_end
 
 func _ready():
 	set_physics_process(true)
+	if game_state:
+		change_outfit(game_state.outfit)
+		game_state.connect("change_outfit", self, "change_outfit")
+	
+func toggle_fishing(v):
+	fishing = v
+	if fish_sprite:
+		fish_sprite.visible = v
+		
+func change_outfit(outfit):
+	stand_sprite.frames = Styles[outfit].stand
+	walk_sprite.frames = Styles[outfit].walk
 	
 func perform_action():
 	assert(interactable_npc != null)
-	
+	emit_signal("interact_start")
 	set_physics_process(false)
-	var state = interactable_npc.interact()
-	if state and state is GDScriptFunctionState:
-		yield(state, "completed")
+	if interactable_npc.has_method("interact"):
+		var state = interactable_npc.interact()
+		if state and state is GDScriptFunctionState:
+			yield(state, "completed")
 	set_physics_process(true)
+	emit_signal("interact_end")
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):

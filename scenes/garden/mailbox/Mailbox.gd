@@ -12,6 +12,48 @@ var open_letter = null
 
 const mail = [
 	{
+		"date": "11/16/21",
+		"sender": "FuLavu",
+		"message": """Dear maia,
+
+Happy birthday to you!
+Please keep being amazing.
+I wish you the best in everything you'll do. 
+""",
+		"outro": "FuLavu"
+	},
+	{
+		"date": "11/16/21",
+		"sender": "Rakknir",
+		"message": """It's already that time again.
+This is the second of your birthdays we get to celebrate together, I'm really happy that we got to and I hope we get to celebrate many many more together.
+Happy birthday Maia hope you have an amazing day.
+""",
+		"outro": "Rakknir\nPs. Could you refill the mods water bowl? it's been empty for the past few months"
+	},
+	{
+		"date": "11/16/21",
+		"sender": "Artermia",
+		"message": """Happy Birthday Maia! Only 186 candles to blow out~ I hope you got some cake and you're having an amazing birthday!""",
+		"outro": "Love, Artermia"
+	},
+	{
+		"date": "11/16/21",
+		"sender": "Oliver",
+		"message": """Happy birthday Maia! 
+You've survived another revolution around our sun and that's pretty neato if you ask me. I hope you have an incredible day and an even better one next year""",
+		"outro": "Oliver"
+	},
+	{
+		"date": "11/16/21",
+		"sender": "Vogon",
+		"message": """A sweet Happy Birfday to the sweetest little fairy!
+Thanks for a whole year of streams and then a whole year of birthdays!
+The Garden wishes you the absolute best on your special day!
+""",
+		"outro": "Vogon out",
+	},
+	{
 		"date": "10/19/21",
 		"sender": "Chie",
 		"message": """Daily Fortune Telling
@@ -30,15 +72,6 @@ If you see this in the final version I forgot to remove it
 """,
 		"outro": "Ero",
 	},
-	{
-		"date": "10/19/21",
-		"sender": "Vogon",
-		"message": """A sweet Happy Birfday to the sweetest little fairy!
-Thanks for a whole year of streams and then a whole year of birthdays!
-The Garden wishes you the absolute best on your special day!
-""",
-		"outro": "Vogon out",
-	}
 ]
 
 func _ready():
@@ -102,7 +135,7 @@ func _on_ItemList_item_activated(index):
 	inbox.grab_focus()
 	inbox.grab_click_focus()
 	
-func _on_Mailbox_gui_input(event: InputEvent):
+func _on_Mailbox_gui_input(_event: InputEvent):
 	if Input.is_mouse_button_pressed(BUTTON_RIGHT):
 		close()
 		gui.accept_event()

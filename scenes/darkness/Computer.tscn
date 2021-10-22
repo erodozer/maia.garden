@@ -1,0 +1,162 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/house/Computer.gd" type="Script" id=1]
+[ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/UITheme.tres" type="Theme" id=3]
+[ext_resource path="res://characters/maia/microphone.png" type="Texture" id=4]
+[ext_resource path="res://characters/maia/maia_1.png" type="Texture" id=5]
+[ext_resource path="res://ui/karaoke/Karaoke.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/house/Choices.gd" type="Script" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 1.9344
+
+[node name="Computer" type="StaticBody2D" groups=[
+"npc",
+]]
+position = Vector2( 14, 40 )
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Choices" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+theme = ExtResource( 3 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game" type="Panel" parent="CanvasLayer/Choices"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -91.0
+margin_top = -40.0
+margin_right = -11.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Choices/Game"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 4
+custom_constants/margin_left = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Choices/Game/MarginContainer"]
+margin_left = 4.0
+margin_right = 76.0
+margin_bottom = 80.0
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Choices/Game/MarginContainer/VBoxContainer"]
+margin_right = 72.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "Chat + Game"
+align = 1
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Choices/Game/MarginContainer/VBoxContainer"]
+margin_top = 15.0
+margin_right = 72.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 32 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="Label2" type="Label" parent="CanvasLayer/Choices/Game/MarginContainer/VBoxContainer"]
+margin_top = 49.0
+margin_right = 72.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 0
+text = "A Stable Source of Konpeto"
+align = 1
+autowrap = true
+
+[node name="Karaoke" type="Panel" parent="CanvasLayer/Choices"]
+margin_left = 12.0
+margin_top = -40.0
+margin_right = 92.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Choices/Karaoke"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 4
+custom_constants/margin_left = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Choices/Karaoke/MarginContainer"]
+margin_left = 4.0
+margin_right = 76.0
+margin_bottom = 80.0
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Choices/Karaoke/MarginContainer/VBoxContainer"]
+margin_right = 72.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "Karaoke"
+align = 1
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Choices/Karaoke/MarginContainer/VBoxContainer"]
+margin_top = 15.0
+margin_right = 72.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 32 )
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="Label2" type="Label" parent="CanvasLayer/Choices/Karaoke/MarginContainer/VBoxContainer"]
+margin_top = 49.0
+margin_right = 72.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 0
+text = "Earnings based on skill"
+align = 1
+autowrap = true
+
+[node name="Karaoke" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
