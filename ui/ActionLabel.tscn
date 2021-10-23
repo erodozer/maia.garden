@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://characters/maia/ActionLabel.gd" type="Script" id=1]
+[ext_resource path="res://ui/a_button.png" type="Texture" id=2]
+[ext_resource path="res://ui/UITheme.tres" type="Theme" id=3]
+
+[node name="ActionLabel" type="HBoxContainer"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -14.0
+margin_right = 55.0
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 10.0
+margin_bottom = 14.0
+texture = ExtResource( 2 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="."]
+margin_left = 14.0
+margin_right = 55.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 0, 14 )
+custom_colors/font_color_shadow = Color( 0.188235, 0.172549, 0.180392, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "Interact"

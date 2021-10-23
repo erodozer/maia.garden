@@ -134,8 +134,3 @@ func _on_ItemList_item_activated(index):
 	yield(tween, "tween_all_completed")
 	inbox.grab_focus()
 	inbox.grab_click_focus()
-	
-func _on_Mailbox_gui_input(_event: InputEvent):
-	if Input.is_mouse_button_pressed(BUTTON_RIGHT):
-		close()
-		gui.accept_event()

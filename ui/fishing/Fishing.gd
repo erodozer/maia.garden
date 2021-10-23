@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+const godash = preload("res://addons/godash/godash.gd")
+const Fish = preload("res://content/content.gd").FISHING
+
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 onready var player = get_tree().get_nodes_in_group("player").front()
 
@@ -30,8 +33,22 @@ signal end(caught)
 func _ready():
 	set_process(false)
 	timer.stop()
+	
+func get_fish(type):
+	var selection = []
+	for f in Fish:
+		if f.type == type:
+			selection.append(f)
+	if len(selection) <= 0:
+		return null
+	
+	# TODO change to weighted selection based on fish rarity
+	var fish = godash.rand_choice(selection)
+	return fish
 
-func open(fish):
+func open(type):
+	var fish = get_fish(type)
+	
 	var size = randf()
 	health.max_value = lerp(fish.health * 0.9, fish.health * 1.2, size) 
 	health.value = health.max_value * 0.8
@@ -58,13 +75,14 @@ func open(fish):
 		return
 	
 	fish = {
-		"name": fish.name,
+		"type": "fish",
+		"ref": fish,
 		"size": lerp(fish.size[0], fish.size[1], size),
 	}
 	var isRecord = game_state.catch_fish(fish)
 	
 	catch_record.visible = isRecord
-	catch_dialog.bbcode_text = "[center]%s\n%.02fin[/center]" % [fish.name, fish.size]
+	catch_dialog.bbcode_text = "[center]%s\n%.02fin[/center]" % [fish.ref.name, fish.size]
 	yield(get_tree(), "idle_frame")
 	tween.interpolate_property(catch_anchor, "rect_position:y", 200, 125, .3)
 	tween.start()

@@ -23,11 +23,9 @@ func _ready():
 			p.plant = game_state.garden[c]
 		plots.append(p)
 		
-		if maia:
-			maia.connect("can_interact", self, "update_highlight")
-		p.connect("area_entered", self, "cell_entered", [p])
-		p.connect("area_exited", self, "cell_exited", [p])
-
+	if maia:
+		maia.connect("can_interact", self, "update_highlight")
+			
 func update_highlight(cell):
 	if cell in plots:
 		highlight.global_position = cell.global_position

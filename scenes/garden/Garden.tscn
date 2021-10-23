@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/garden/Garden.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/garden/mailbox/Mailbox.tscn" type="PackedScene" id=2]
@@ -11,9 +11,13 @@
 [ext_resource path="res://characters/maia/Seeds.gd" type="Script" id=9]
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=10]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=11]
-[ext_resource path="res://ui/seeds/clover.png" type="Texture" id=12]
+[ext_resource path="res://content/flower/clover/seed.png" type="Texture" id=12]
+[ext_resource path="res://ui/Konpeto.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ui/ActionLabel.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="Garden" type="Node2D"]
 script = ExtResource( 5 )
@@ -74,6 +78,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, 192 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="Seeds" type="PanelContainer" parent="CanvasLayer" groups=[
 "seed_tool",
@@ -116,5 +121,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Konpeto" parent="CanvasLayer" instance=ExtResource( 13 )]
+custom_styles/panel = SubResource( 2 )
+
+[node name="ActionLabel" parent="CanvasLayer" instance=ExtResource( 14 )]
+
+[connection signal="can_interact" from="Maia" to="CanvasLayer/ActionLabel" method="_on_Maia_can_interact"]
 [connection signal="interact_end" from="Maia" to="CanvasLayer/Seeds" method="_on_Maia_interact_end"]
+[connection signal="interact_end" from="Maia" to="CanvasLayer/ActionLabel" method="_on_Maia_interact_end"]
 [connection signal="interact_start" from="Maia" to="CanvasLayer/Seeds" method="_on_Maia_interact_start"]
+[connection signal="interact_start" from="Maia" to="CanvasLayer/ActionLabel" method="_on_Maia_interact_start"]

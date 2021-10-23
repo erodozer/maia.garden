@@ -1,23 +1,5 @@
 extends Node2D
 
-const PLANT_TEXTURE = {
-	"Clover": {
-		"seed": preload("res://scenes/garden/soil/seed.tres"),
-		"young": preload("res://scenes/garden/soil/young_clover.tres"),
-		"mature": preload("res://scenes/garden/soil/mature_clover.tres"),
-	},
-	"Daisy": {
-		"seed": preload("res://scenes/garden/soil/seed.tres"),
-		"young": preload("res://scenes/garden/soil/young_daisy.tres"),
-		"mature": preload("res://scenes/garden/soil/mature_daisy.tres"),
-	},
-	"Tulip": {
-		"seed": preload("res://scenes/garden/soil/seed.tres"),
-		"young": preload("res://scenes/garden/soil/young_tulip.tres"),
-		"mature": preload("res://scenes/garden/soil/mature_tulip.tres"),
-	},
-}
-
 onready var seed_tool = get_tree().get_nodes_in_group("seed_tool").front()
 
 onready var sprite = get_node("Sprite")
@@ -39,13 +21,12 @@ func set_plant(p):
 		sprite.visible = false
 		return
 	
-	var tex = PLANT_TEXTURE[plant.ref.name]
 	if plant.age == 0:
-		sprite.texture = tex.seed
+		sprite.texture = preload("res://scenes/garden/soil/seed.tres")
 	elif plant.age >= plant.ref.mature:
-		sprite.texture = tex.mature
+		sprite.texture = load("res://content/flowers/%d/mature.tres")
 	else:
-		sprite.texture = tex.young
+		sprite.texture = load("res://content/flowers/%d/young.tres")
 	
 	sprite.visible = true	
 	water_sprite.visible = plant.watered

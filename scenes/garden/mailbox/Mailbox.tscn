@@ -5,14 +5,14 @@
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=4]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9.69083, 9.07753 )
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 112, 16, 16 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.956863, 0.8, 0.631373, 1 )
 border_width_left = 2
 border_width_top = 12
@@ -25,7 +25,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.811765, 0.776471, 0.721569, 1 )
 border_width_left = 1
 border_width_top = 2
@@ -45,13 +45,13 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.198425, 1.98425 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
 pause_mode = 2
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = SubResource( 1 )
+texture = SubResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -74,7 +74,7 @@ margin_top = -70.0
 margin_right = 98.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 96, 140 )
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="Label" type="Label" parent="CanvasLayer/Mailbox/Inbox"]
 margin_left = 2.73291
@@ -132,7 +132,7 @@ margin_top = 94.8491
 margin_right = 75.0
 margin_bottom = 184.849
 rect_min_size = Vector2( 150, 90 )
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

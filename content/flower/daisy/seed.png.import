@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/daisy.png-ae11fe4888216313a97a372a581465a8.stex"
+path="res://.import/seed.png-70d36ffef9d1da02165eb858a1f086ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/seeds/daisy.png"
-dest_files=[ "res://.import/daisy.png-ae11fe4888216313a97a372a581465a8.stex" ]
+source_file="res://content/flower/daisy/seed.png"
+dest_files=[ "res://.import/seed.png-70d36ffef9d1da02165eb858a1f086ba.stex" ]
 
 [params]
 

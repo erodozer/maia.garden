@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://scenes/garden/soil/plants.png" type="Texture" id=1]
+[ext_resource path="res://content/flower/plants.png" type="Texture" id=1]
 [ext_resource path="res://scenes/garden/soil/Plant.gd" type="Script" id=2]
-[ext_resource path="res://scenes/garden/soil/mature_clover.tres" type="Texture" id=3]
+[ext_resource path="res://content/flower/clover/mature.tres" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 16, 0, 16, 16 )
 
@@ -20,11 +20,11 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 8, 8 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Watered" type="Sprite" parent="."]
 visible = false
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 centered = false
 
 [node name="Sprite" type="Sprite" parent="."]

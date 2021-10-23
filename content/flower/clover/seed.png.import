@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/plants.png-bddf21bfae4cba86b8744eaafbbd32a5.stex"
+path="res://.import/seed.png-2b85b9a54e2057c5950ce1b7373fa229.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/garden/soil/plants.png"
-dest_files=[ "res://.import/plants.png-bddf21bfae4cba86b8744eaafbbd32a5.stex" ]
+source_file="res://content/flower/clover/seed.png"
+dest_files=[ "res://.import/seed.png-2b85b9a54e2057c5950ce1b7373fa229.stex" ]
 
 [params]
 

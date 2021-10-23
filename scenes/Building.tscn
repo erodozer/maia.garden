@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/b_button.png" type="Texture" id=1]
 [ext_resource path="res://characters/maia/Maia.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=3]
+[ext_resource path="res://ui/ActionLabel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Building.gd" type="Script" id=5]
 
 [node name="Map" type="Node2D"]
@@ -48,6 +49,8 @@ margin_bottom = 14.0
 rect_min_size = Vector2( 0, 14 )
 text = "Exit"
 
+[node name="ActionLabel" parent="CanvasLayer/Control" instance=ExtResource( 4 )]
+
 [node name="Maia" parent="." instance=ExtResource( 2 )]
 scale = Vector2( 2, 2 )
 sidescrolling_mode = true
@@ -55,5 +58,8 @@ sidescrolling_mode = true
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
+[connection signal="can_interact" from="Maia" to="CanvasLayer/Control/ActionLabel" method="_on_Maia_can_interact"]
 [connection signal="interact_end" from="Maia" to="." method="_on_Maia_interact_end"]
+[connection signal="interact_end" from="Maia" to="CanvasLayer/Control/ActionLabel" method="_on_Maia_interact_end"]
 [connection signal="interact_start" from="Maia" to="." method="_on_Maia_interact_start"]
+[connection signal="interact_start" from="Maia" to="CanvasLayer/Control/ActionLabel" method="_on_Maia_interact_start"]

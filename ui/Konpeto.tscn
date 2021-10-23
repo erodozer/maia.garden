@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://characters/maia/konpeto.png" type="Texture" id=1]
+[ext_resource path="res://ui/Konpeto.gd" type="Script" id=2]
+[ext_resource path="res://ui/small_font.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="Konpeto" type="PanelContainer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -72.0
+margin_bottom = 20.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 72.0
+margin_bottom = 20.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_top = 3.0
+margin_right = 56.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 48, 0 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.87451, 0.964706, 0.960784, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "100"
+align = 2
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+margin_left = 56.0
+margin_right = 72.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 16, 16 )
+size_flags_vertical = 7
+texture = ExtResource( 1 )
+stretch_mode = 4
