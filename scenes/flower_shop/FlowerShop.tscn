@@ -26,11 +26,11 @@ script = ExtResource( 4 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds" index="0"]
-position = Vector2( 100.649, 3.17839 )
+position = Vector2( 104, 3 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Bounds" index="1"]
-position = Vector2( -105.417, 5.03245 )
+position = Vector2( -105, 5 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Bounds" index="2"]
@@ -45,5 +45,6 @@ shape = SubResource( 4 )
 position = Vector2( 74.6921, 48.4704 )
 
 [node name="Clover" parent="." index="6" instance=ExtResource( 1 )]
+position = Vector2( -58.1515, 48.2056 )
 
 [connection signal="exit" from="." to="SceneController" method="_on_Map_exit"]

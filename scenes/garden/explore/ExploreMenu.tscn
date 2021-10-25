@@ -83,7 +83,7 @@ margin_top = 2.0
 margin_right = 144.0
 margin_bottom = 80.0
 size_flags_horizontal = 3
-items = [ "Flower Shop", null, false, "Lake", null, false, "???", null, false, "[Locked]", null, true, "[Locked]", null, true, "[Locked]", null, true ]
+items = [ "Flower Shop", null, false, "Lake", null, false, "Cafe", null, false, "???", null, false, "[Locked]", null, true, "[Locked]", null, true ]
 auto_height = true
 same_column_width = true
 

@@ -51,14 +51,13 @@ playing = true
 [node name="Walking" type="AnimatedSprite" parent="Sprite"]
 visible = false
 frames = ExtResource( 2 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="Fishing" type="AnimatedSprite" parent="Sprite"]
 visible = false
 position = Vector2( -9, 1 )
 frames = SubResource( 1 )
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

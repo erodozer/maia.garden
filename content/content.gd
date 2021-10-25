@@ -30,32 +30,40 @@ const FISHING = [
 	}
 ]
 
-const CAFE = {
-	"tea": {
+const CAFE = [
+	{
+		"id": "tea",
 		"type": "cafe",
 		"name": "Tea",
 		"cost": 5,
 		"stamina": 5,
+		"description": "A smooth tea offers a small pick me up",
 	},
-	"coffee": {
+	{
+		"id": "coffee",
 		"type": "cafe",
 		"name": "Coffee",
 		"cost": 10,
-		"stamina": 10
+		"stamina": 10,
+		"description": "Strong and bitter",
 	},
-	"latte": {
+	{
+		"id": "latte",
 		"type": "cafe",
-		"name": "Coffee",
+		"name": "Latte",
 		"cost": 20,
 		"stamina": 15,
+		"description": "Perfectly sweet and light"
 	},
-	"matcha": {
+	{
+		"id": "matcha",
 		"type": "cafe",
 		"name": "Matcha",
 		"cost": 15,
 		"stamina": 10,
+		"description": "A relaxing tea seeped in tradition"
 	},
-}
+]
 
 const FLOWERS = {
 	"clover": {
@@ -66,6 +74,7 @@ const FLOWERS = {
 		"sell": 10,
 		"mature": 2,
 		"starting": 5,
+		"description": "A beautiful, simple ground cover (2 days)",
 	},
 	"daisy": {
 		"type": "flower",
@@ -75,6 +84,7 @@ const FLOWERS = {
 		"sell": 30,
 		"mature": 3,
 		"starting": 5,
+		"description": "White flowers that brighten any garden (3 days)",
 	},
 	"tulip": {
 		"type": "flower",
@@ -84,5 +94,6 @@ const FLOWERS = {
 		"sell": 60,
 		"mature": 6,
 		"starting": 3,
+		"description": "Your favorite pink flowers (6 days)",
 	},
 }

@@ -8,8 +8,10 @@ signal end
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 
 onready var items = get_node("Control/PanelContainer/MarginContainer/ScrollContainer/Items")
-onready var panel = get_node("Control/PanelContainer")
+onready var panel = get_node("Control")
 onready var tween = get_node("Tween")
+onready var description = get_node("Control/Description/MarginContainer/Label")
+onready var scroll = get_node("Control/PanelContainer/MarginContainer/ScrollContainer")
 	
 var group
 
@@ -39,30 +41,38 @@ func open(item_list, exchange_mode):
 		items.add_child(b)
 		b.exchange = exchange_mode
 		b.item = i
-		b.button.group = group
-		b.button.set_meta("item", i)
-		b.button.set_meta("value", i.sell if exchange_mode else -i.cost)
-		b.button.grab_focus()
+		b.group = group
+		b.connect("focus_entered", self, "update_description", [i])
+		b.connect("toggled", self, "do_exchange", [i, i.sell if exchange_mode else -i.cost])
 		
 	group.get_buttons()[0].pressed = true
-	tween.interpolate_property(panel, "rect_position:y", -64, 4, .3)
+	group.get_buttons()[0].grab_focus()
+		
+	tween.interpolate_property(panel, "rect_position:y", -120, 0, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	set_process_input(true)
 	yield(self, "end")
 	set_process_input(false)
-	tween.interpolate_property(panel, "rect_position:y", 4, -64, .3)
+	tween.interpolate_property(panel, "rect_position:y", 0, -120, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	
+	group.connect("changed", self, "update_label")
+	
 	for c in items.get_children():
 		c.queue_free()
+
+func update_description(item):
+	description.text = item.description
+	
+func do_exchange(_pressed, item, value):
+	if not _pressed:
+		return
+	
+	exchange(item, value)
 	
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		var button = group.get_pressed_button()
-		exchange(button.get_meta("item"), button.get_meta("value"))
-	
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("end")
 	

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/yuuki.png-8334d9a01d52b434615c01d33b8eec1b.stex"
+path="res://.import/icon.png-170614cbc7b5a8c113f1b4558a0af23c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/cafe/yuuki.png"
-dest_files=[ "res://.import/yuuki.png-8334d9a01d52b434615c01d33b8eec1b.stex" ]
+source_file="res://content/cafe/latte/icon.png"
+dest_files=[ "res://.import/icon.png-170614cbc7b5a8c113f1b4558a0af23c.stex" ]
 
 [params]
 

@@ -14,14 +14,28 @@ config/name="MaiaGarden"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
+
 [display]
 
+window/integer_resolution_handler/base_width=200
+window/integer_resolution_handler/base_height=150
 window/size/width=200
 window/size/height=150
 window/size/test_width=800
 window/size/test_height=600
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/integer_resolution_handler/plugin.cfg" )
+
+[global]
+
+window=false
 
 [input]
 

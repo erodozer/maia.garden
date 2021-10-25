@@ -40,6 +40,8 @@ func _on_ItemList_item_activated(index):
 		1:
 			pass
 		2:
+			emit_signal("end", "res://scenes/cafe/Cafe.tscn")
+		3:
 			emit_signal("end", "res://scenes/darkness/Darkness.tscn")
 		_:
 			pass

@@ -30,35 +30,52 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
-[node name="ItemButton" type="VBoxContainer"]
+[node name="ToolButton" type="ToolButton"]
 margin_right = 32.0
-margin_bottom = 29.0
-rect_min_size = Vector2( 32, 28 )
-custom_constants/separation = -4
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+toggle_mode = true
+shortcut_in_tooltip = false
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
+[node name="ItemButton" type="VBoxContainer" parent="."]
+margin_right = 32.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 32, 28 )
+custom_constants/separation = -4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="MarginContainer" parent="ItemButton"]
 margin_left = 6.0
 margin_right = 26.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 6
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
-toggle_mode = true
-shortcut_in_tooltip = false
+
+[node name="Pressed" type="Panel" parent="ItemButton/Icon"]
+margin_right = 20.0
+margin_bottom = 20.0
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Unpressed" type="Panel" parent="ItemButton/Icon"]
+margin_right = 20.0
+margin_bottom = 20.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ItemButton/Icon"]
+margin_right = 20.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 16, 16 )
 texture = ExtResource( 2 )
 stretch_mode = 4
@@ -66,7 +83,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemButton"]
 margin_top = 16.0
 margin_right = 32.0
 margin_bottom = 29.0
@@ -74,7 +91,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cost" type="Label" parent="HBoxContainer"]
+[node name="Cost" type="Label" parent="ItemButton/HBoxContainer"]
 margin_right = 32.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
@@ -85,3 +102,6 @@ custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 0
 text = "100 KP"
 align = 1
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
