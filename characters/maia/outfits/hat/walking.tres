@@ -1,0 +1,13 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=2]
+
+[ext_resource path="res://characters/maia/outfits/hat/maia_hat_2.png" type="Texture" id=1]
+[ext_resource path="res://characters/maia/outfits/hat/maia_hat_3.png" type="Texture" id=2]
+[ext_resource path="res://characters/maia/outfits/hat/maia_hat_4.png" type="Texture" id=3]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]

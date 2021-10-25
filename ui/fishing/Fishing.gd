@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node
 
 const godash = preload("res://addons/godash/godash.gd")
 const Fish = preload("res://content/content.gd").FISHING
@@ -6,15 +6,14 @@ const Fish = preload("res://content/content.gd").FISHING
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 onready var player = get_tree().get_nodes_in_group("player").front()
 
-onready var container = get_node("Control")
-onready var joystick = get_node("Control/Joystick")
-onready var joystick_direction = get_node("Control/Joystick/direction")
-onready var health = get_node("Control/Health")
+onready var joystick = get_node("Joystick")
+onready var joystick_direction = get_node("Joystick/direction")
+onready var health = get_node("Health")
 onready var timer = get_node("Timer")
-onready var catch_anchor = get_node("Control/Catch")
-onready var catch_panel = get_node("Control/Catch/PanelContainer")
-onready var catch_dialog = get_node("Control/Catch/PanelContainer/VBoxContainer/RichTextLabel")
-onready var catch_record = get_node("Control/Catch/PanelContainer/VBoxContainer/Label")
+onready var catch_anchor = get_node("Catch")
+onready var catch_panel = get_node("Catch/PanelContainer")
+onready var catch_dialog = get_node("Catch/PanelContainer/VBoxContainer/RichTextLabel")
+onready var catch_record = get_node("Catch/PanelContainer/VBoxContainer/Label")
 onready var tween = get_node("Tween")
 
 const REEL_RATE = 20
@@ -67,12 +66,14 @@ func open(type):
 	health.visible = false
 	if player:
 		player.fishing = false
-	
-	if not caught:
-		return
 		
 	if not game_state:
 		return
+	
+	if not caught:
+		return
+	
+	game_state.stamina -= int(lerp(3, 7, size))
 	
 	fish = {
 		"type": "fish",
@@ -91,7 +92,6 @@ func open(type):
 	tween.interpolate_property(catch_anchor, "rect_position:y", 125, 200, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")
-	
 	
 func set_direction(v):
 	match v:

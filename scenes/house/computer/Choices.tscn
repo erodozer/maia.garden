@@ -1,0 +1,205 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/house/computer/Choices.gd" type="Script" id=1]
+[ext_resource path="res://characters/maia/outfits/default/maia_1.png" type="Texture" id=2]
+[ext_resource path="res://ui/karaoke/microphone.png" type="Texture" id=3]
+[ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ui/UITheme.tres" type="Theme" id=5]
+[ext_resource path="res://ui/stamina/icon.png" type="Texture" id=6]
+
+[node name="Choices" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+theme = ExtResource( 5 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -75.0
+margin_right = 100.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 200, 150 )
+custom_constants/separation = 8
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 6.0
+margin_right = 96.0
+margin_bottom = 150.0
+alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Game"]
+margin_top = 26.0
+margin_right = 90.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 90, 80 )
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Game/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 4
+custom_constants/margin_left = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Game/Panel/MarginContainer"]
+margin_left = 4.0
+margin_right = 86.0
+margin_bottom = 80.0
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
+margin_right = 82.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "Chat + Game"
+align = 1
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
+margin_top = 15.0
+margin_right = 82.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 32 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="Label2" type="Label" parent="HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
+margin_top = 49.0
+margin_right = 82.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 0
+text = "A Stable Source of Konpeto"
+align = 1
+autowrap = true
+
+[node name="Cost" type="HBoxContainer" parent="HBoxContainer/Game"]
+margin_top = 110.0
+margin_right = 90.0
+margin_bottom = 124.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/Game/Cost"]
+margin_left = 30.0
+margin_right = 42.0
+margin_bottom = 13.0
+text = "25"
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer/Game/Cost"]
+margin_left = 46.0
+margin_right = 60.0
+margin_bottom = 14.0
+texture = ExtResource( 6 )
+
+[node name="Karaoke" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 104.0
+margin_right = 194.0
+margin_bottom = 150.0
+alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Karaoke"]
+margin_top = 26.0
+margin_right = 90.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 90, 80 )
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Karaoke/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 4
+custom_constants/margin_left = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Karaoke/Panel/MarginContainer"]
+margin_left = 4.0
+margin_right = 86.0
+margin_bottom = 80.0
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
+margin_right = 82.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "Karaoke"
+align = 1
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
+margin_top = 15.0
+margin_right = 82.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 32 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="Label2" type="Label" parent="HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
+margin_top = 49.0
+margin_right = 82.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 0
+text = "Earnings based on skill"
+align = 1
+autowrap = true
+
+[node name="Cost" type="HBoxContainer" parent="HBoxContainer/Karaoke"]
+margin_top = 110.0
+margin_right = 90.0
+margin_bottom = 124.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/Karaoke/Cost"]
+margin_left = 29.0
+margin_right = 42.0
+margin_bottom = 13.0
+text = "40"
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer/Karaoke/Cost"]
+margin_left = 46.0
+margin_right = 60.0
+margin_bottom = 14.0
+texture = ExtResource( 6 )

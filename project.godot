@@ -12,7 +12,7 @@ config_version=4
 
 config/name="MaiaGarden"
 run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://characters/maia/outfits/default/maia_1.png"
 
 [autoload]
 

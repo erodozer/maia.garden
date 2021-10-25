@@ -49,8 +49,8 @@ func interact():
 		
 	if plant.age >= plant.ref.mature:
 		seed_tool.harvest(plant)
-		self.plant = null
+		set_plant(null)
 		return
 	if not plant.watered:
-		plant.watered = true
+		seed_tool.water(plant)
 		set_plant(plant)

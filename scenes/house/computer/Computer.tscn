@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/house/computer/Computer.gd" type="Script" id=1]
+[ext_resource path="res://scenes/house/computer/Choices.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/dialogue/Dialogue.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/karaoke/Karaoke.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 1.9344
+
+[node name="Computer" type="StaticBody2D" groups=[
+"npc",
+]]
+position = Vector2( 14, 40 )
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Choices" parent="CanvasLayer" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Karaoke" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
+
+[node name="Dialogue" parent="CanvasLayer" instance=ExtResource( 3 )]

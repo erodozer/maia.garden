@@ -2,21 +2,6 @@ extends KinematicBody2D
 
 const MOVEMENT_SPEED = 1
 
-const Styles = {
-	"default": {
-		"stand": preload("res://characters/maia/Maia_Standing.tres"),
-		"walk": preload("res://characters/maia/Maia_Walking.tres")
-	},
-	"hat": {
-		"stand": preload("res://characters/maia/Maia_Hat_Standing.tres"),
-		"walk": preload("res://characters/maia/Maia_Hat_Walking.tres")
-	},
-	"tiny": {
-		"stand": preload("res://characters/maia/Tiny_Maia_Standing.tres"),
-		"walk": preload("res://characters/maia/Tiny_Maia_Walking.tres")
-	},
-}
-
 export var sidescrolling_mode = false
 export var fishing = false setget toggle_fishing
 
@@ -47,8 +32,8 @@ func toggle_fishing(v):
 		fish_sprite.visible = v
 		
 func change_outfit(outfit):
-	stand_sprite.frames = Styles[outfit].stand
-	walk_sprite.frames = Styles[outfit].walk
+	stand_sprite.frames = load("res://characters/maia/outfits/%s/standing.tres" % outfit)
+	walk_sprite.frames = load("res://characters/maia/outfits/%s/walking.tres" % outfit)
 	
 func perform_action():
 	if not interactable_npc:
@@ -63,7 +48,7 @@ func perform_action():
 	set_physics_process(true)
 	emit_signal("interact_end")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		walk_sprite.visible = false
 		stand_sprite.visible = true

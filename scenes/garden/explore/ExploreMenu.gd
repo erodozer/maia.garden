@@ -1,8 +1,10 @@
 extends StaticBody2D
 
 onready var scene_manager = get_tree().get_nodes_in_group("scene_manager").front()
-onready var anim = get_node("CanvasLayer/AnimationPlayer")
-onready var menu = get_node("CanvasLayer/Control/Anchor/PanelContainer/MarginContainer/ItemList")
+onready var game_state = get_tree().get_nodes_in_group("game_state").front()
+onready var tween = get_node("CanvasLayer/Tween")
+onready var container = get_node("CanvasLayer/Menu")
+onready var menu = get_node("CanvasLayer/Menu/MarginContainer/ItemList")
 
 signal end(scene)
 
@@ -10,15 +12,49 @@ func _ready():
 	set_process_input(false)
 
 func interact():
-	anim.play("show")
-	yield(anim, "animation_finished")
+	if game_state.flag("introduce.chie"):
+		menu.add_item("Shrine", null, true)
+		menu.set_item_metadata(0, "shrine")
+	else:
+		menu.add_item("???", null, false)
+	
+	if game_state.flag("introduce.clover"):
+		menu.add_item("Flower Shop", null, true)
+		menu.set_item_metadata(1, "flower_shop")
+	else:
+		menu.add_item("???", null, false)
+	
+	if game_state.flag("introduce.yuuki"):
+		menu.add_item("Cafe", null, true)
+		menu.set_item_metadata(2, "cafe")
+	else:
+		menu.add_item("???", null, false)
+	
+	if game_state.flag("introduce.tazzle"):
+		menu.add_item("Riverside Campsite", null, true)
+		menu.set_item_metadata(3, "river")
+	else:
+		menu.add_item("???", null, false)
+	
+	if game_state.flag("introduce.proller"):
+		menu.add_item("Darkness", null, true)
+		menu.set_item_metadata(4, "darkness")
+	else:
+		menu.add_item("???", null, false)
+		
+	tween.interpolate_property(container, "rect_position:y", -150, 75 - container.rect_size.y / 2, .3)
+	tween.start()
+	yield(tween, "tween_all_completed")
 	menu.grab_focus()
 	menu.grab_click_focus()
 	set_process_input(true)
 	var goto_scene = yield(self, "end")
 	set_process_input(false)
-	anim.play_backwards("show")
-	yield(anim, "animation_finished")
+	tween.interpolate_property(container, "rect_position:y", 75 - container.rect_size.y / 2, -150, .3)
+	tween.start()
+	yield(tween, "tween_all_completed")
+		
+	menu.clear()
 	
 	if not scene_manager:
 		return
@@ -34,14 +70,4 @@ func _input(event):
 		emit_signal("end")
 
 func _on_ItemList_item_activated(index):
-	match index:
-		0:
-			emit_signal("end", "res://scenes/flower_shop/FlowerShop.tscn")
-		1:
-			pass
-		2:
-			emit_signal("end", "res://scenes/cafe/Cafe.tscn")
-		3:
-			emit_signal("end", "res://scenes/darkness/Darkness.tscn")
-		_:
-			pass
+	emit_signal("end", menu.get_item_metadata(index))
