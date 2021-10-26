@@ -125,6 +125,17 @@ const FLOWERS = {
 		"starting": 3,
 		"description": "Grows Pink Tulips (6 days)",
 	},
+	"catgrass": {
+		"type": "flower",
+		"id": "catgrass",
+		"name": "Catgrass",
+		"cost": 5,
+		"sell": 12,
+		"mature": 2,
+		"starting": 0,
+		"description": "Grows catgrass (2 days)",
+		"unlock": "request.yuuki_1.completed"
+	},
 }
 
 const MAIL = [

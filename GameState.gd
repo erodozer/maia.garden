@@ -22,9 +22,9 @@ var flags = {
 	"outfit.tiny": false,
 	# introductions
 	"introduce.chie": true,
-	"introduce.clover": false,
-	"introduce.yuuki": false,
-	"introduce.proller": false,
+	"introduce.clover": true,
+	"introduce.yuuki": true,
+	"introduce.proller": true,
 	"introduce.tazzle": false,
 	"maia_birthday": false,
 }
@@ -36,6 +36,8 @@ var stamina = 100 setget update_stamina
 
 var total_spent_stamina = 0
 var total_konpeto_earned = 0
+var total_fish_caught = 0
+var total_flowers_planted = 0
 
 signal new_record(fish)
 signal balance_changed(amount)
@@ -98,6 +100,12 @@ func advance_day():
 	if total_spent_stamina > 250:
 		toggle_flag("introduce.yuuki")
 		
+	if total_flowers_planted > 5:
+		toggle_flag("introduce.clover")
+	
+	if total_fish_caught > 8:
+		toggle_flag("introduce.tazzle")
+		
 	if day >= PROLLER_DAY:
 		toggle_flag("introduce.proller")
 		
@@ -119,7 +127,7 @@ func update_balance(amount):
 	emit_signal("balance_changed", amount)
 	
 func update_stamina(amount):
-	var diff = amount - konpeto
+	var diff = amount - stamina
 	if diff < 0:
 		total_spent_stamina += abs(diff)
 	stamina = amount
@@ -140,6 +148,7 @@ func catch_fish(fish):
 		if inverse_lerp(fish.ref.size[0], fish.ref.size[1], size) > .8 \
 		else fish.ref.id
 	inventory[key] += 1
+	total_fish_caught += 1
 	emit_signal("inventory_changed", key, inventory[key])
 	return new_record
 
@@ -159,5 +168,6 @@ func plant(flower, cell):
 	}
 	garden[cell] = plant
 	inventory[key] -= 1
+	total_flowers_planted += 1
 	emit_signal("inventory_changed", key, inventory[key])
 	return plant

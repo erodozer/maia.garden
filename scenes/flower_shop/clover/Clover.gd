@@ -19,7 +19,24 @@ func interact():
 	]), "completed")
 	
 	if choice == 1:
-		yield(shop.open(Flowers.values(), false), "completed")
+		var select = []
+		for f in Flowers.values():
+			if not ("unlock" in f) or game_state.flag(f.unlock):
+				select.append(f)
+		
+		yield(shop.open(select, false), "completed")
+		return
+	
+	if game_state.flag("request.yuuki_1.start") and not game_state.flag("request.yuuki_1.talked_to_clover"):
+		yield(dialogue.open([
+			"Oh Yuuki asked you to stop by?",
+			"Sadly I don't have any catgrass",
+			"However, I do have some seeds",
+			"You can grow it in your garden",
+			"The quality will be just as good",
+		]), "completed")
+		game_state.inventory["seed:catgrass"] += 5
+		game_state.toggle_flag("request.yuuki_1.talked_to_clover")
 
 func _on_Shop_exchange(item, value):
 	if not game_state:
