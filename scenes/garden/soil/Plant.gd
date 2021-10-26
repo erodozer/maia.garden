@@ -24,9 +24,9 @@ func set_plant(p):
 	if plant.age == 0:
 		sprite.texture = preload("res://scenes/garden/soil/seed.tres")
 	elif plant.age >= plant.ref.mature:
-		sprite.texture = load("res://content/flowers/%d/mature.tres")
+		sprite.texture = load("res://content/flower/%s/mature.tres" % p.ref.id)
 	else:
-		sprite.texture = load("res://content/flowers/%d/young.tres")
+		sprite.texture = load("res://content/flower/%s/young.tres" % p.ref.id)
 	
 	sprite.visible = true	
 	water_sprite.visible = plant.watered

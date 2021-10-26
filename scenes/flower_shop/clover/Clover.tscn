@@ -29,9 +29,5 @@ shape = SubResource( 1 )
 [node name="Dialogue" parent="CanvasLayer" instance=ExtResource( 3 )]
 
 [node name="Shop" parent="CanvasLayer" instance=ExtResource( 4 )]
-margin_left = -251.152
-margin_top = -221.794
-margin_right = -61.1515
-margin_bottom = -140.794
 
 [connection signal="exchange" from="CanvasLayer/Shop" to="." method="_on_Shop_exchange"]

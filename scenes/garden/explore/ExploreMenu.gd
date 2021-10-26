@@ -16,31 +16,31 @@ func interact():
 		menu.add_item("Shrine", null, true)
 		menu.set_item_metadata(0, "shrine")
 	else:
-		menu.add_item("???", null, false)
+		menu.add_item("???", null, true)
 	
 	if game_state.flag("introduce.clover"):
 		menu.add_item("Flower Shop", null, true)
 		menu.set_item_metadata(1, "flower_shop")
 	else:
-		menu.add_item("???", null, false)
+		menu.add_item("???", null, true)
 	
 	if game_state.flag("introduce.yuuki"):
 		menu.add_item("Cafe", null, true)
 		menu.set_item_metadata(2, "cafe")
 	else:
-		menu.add_item("???", null, false)
+		menu.add_item("???", null, true)
 	
 	if game_state.flag("introduce.tazzle"):
 		menu.add_item("Riverside Campsite", null, true)
 		menu.set_item_metadata(3, "river")
 	else:
-		menu.add_item("???", null, false)
+		menu.add_item("???", null, true)
 	
 	if game_state.flag("introduce.proller"):
 		menu.add_item("Darkness", null, true)
 		menu.set_item_metadata(4, "darkness")
 	else:
-		menu.add_item("???", null, false)
+		menu.add_item("???", null, true)
 		
 	tween.interpolate_property(container, "rect_position:y", -150, 75 - container.rect_size.y / 2, .3)
 	tween.start()
@@ -70,4 +70,6 @@ func _input(event):
 		emit_signal("end")
 
 func _on_ItemList_item_activated(index):
-	emit_signal("end", menu.get_item_metadata(index))
+	var goto_scene = menu.get_item_metadata(index)
+	if goto_scene:
+		emit_signal("end", menu.get_item_metadata(index))

@@ -35,9 +35,10 @@ func get_matching_items(requirement):
 
 func open(list, title):
 	# build the hint
-	var text = "[center]%s[/center]\n" % title
+	var text = "[center]%s[/center]" % title
 	for i in list:
 		text += "\n[b]%s[/b]" % i.hint
+	text += "\n"
 	requirements.bbcode_text = text
 	requirements.visible = true
 	requirements.rect_position.y = -999

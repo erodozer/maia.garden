@@ -34,10 +34,26 @@ func interact():
 			"However, I do have some seeds",
 			"You can grow it in your garden",
 			"The quality will be just as good",
+			"[Received 5 Catgrass seeds]",
+			"Feel free to buy more if you need"
 		]), "completed")
 		game_state.inventory["seed:catgrass"] += 5
+		game_state.toggle_flag("unlocked_catgrass")
 		game_state.toggle_flag("request.yuuki_1.talked_to_clover")
-
+		
+	if game_state.flag("request.yuuki_1.completed"):
+		if not game_state.flag("unlocked_vegetables"):
+			yield(dialogue.open([
+				"I recently got a seed shipment",
+				"But they're for vegetables...",
+				"I don't know what to do with them",
+				"I'm not running a farmers market",
+				"Unfortunately they're paid for",
+				"Would you mind buying them off of me?",
+				"[You can now buy vegetables]"
+			]), "completed")
+			game_state.toggle("unlocked_vegetables")
+			
 func _on_Shop_exchange(item, value):
 	if not game_state:
 		return

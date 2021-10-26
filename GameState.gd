@@ -24,7 +24,7 @@ var flags = {
 	"introduce.chie": true,
 	"introduce.clover": true,
 	"introduce.yuuki": true,
-	"introduce.proller": true,
+	"introduce.proller": false,
 	"introduce.tazzle": false,
 	"maia_birthday": false,
 }

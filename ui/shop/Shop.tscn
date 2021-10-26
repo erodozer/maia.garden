@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/shop/Shop.gd" type="Script" id=1]
 [ext_resource path="res://ui/konpeto/Konpeto.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=3]
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ui/stamina/Stamina.tscn" type="PackedScene" id=5]
 
 [node name="Shop" type="VBoxContainer"]
 anchor_left = 0.5
@@ -21,12 +22,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Konpeto" parent="." instance=ExtResource( 2 )]
-anchor_left = 0.0
-anchor_right = 0.0
-margin_left = 0.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 190.0
 margin_bottom = 16.0
+custom_constants/separation = -2
+alignment = 2
+
+[node name="Stamina" parent="HBoxContainer" instance=ExtResource( 5 )]
+margin_left = 112.0
+margin_right = 152.0
+
+[node name="Konpeto" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 150.0
+margin_right = 190.0
 
 [node name="PanelContainer" type="Panel" parent="."]
 margin_left = 5.0

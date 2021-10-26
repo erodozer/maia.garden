@@ -134,7 +134,29 @@ const FLOWERS = {
 		"mature": 2,
 		"starting": 0,
 		"description": "Grows catgrass (2 days)",
-		"unlock": "request.yuuki_1.completed"
+		"unlock": "unlocked_catgrass"
+	},
+	"pumpkin": {
+		"type": "flower",
+		"id": "pumpkin",
+		"name": "Pumpkin",
+		"cost": 25,
+		"sell": 150,
+		"mature": 10,
+		"starting": 0,
+		"description": "Grows pumpkin (10 days)",
+		"unlock": "unlocked_vegetables"
+	},
+	"tomato": {
+		"type": "flower",
+		"id": "tomato",
+		"name": "Tomato",
+		"cost": 15,
+		"sell": 75,
+		"mature": 5,
+		"starting": 0,
+		"description": "Grows tomato (5 days)",
+		"unlock": "unlocked_vegetables"
 	},
 }
 
@@ -185,6 +207,19 @@ Thanks for a whole year of streams and then a whole year of birthdays!
 The Garden wishes you the absolute best on your special day!
 """,
 		"outro": "Vogon out",
+	},
+	{
+		"id": "tazzle_introduction",
+		"sendAt": "introduce.tazzle",
+		"sender": "Tazzle",
+		"message": """
+The winds have been whispering about a little fairy who's picked up fishing lately.
+If you're up for a different challenge, I've set up camp near a nice river in the forest.  You can catch completely different fish here than you can in your pond.
+I'll also gladly buy any fish you don't want.
+
+Hope to see you soon~
+""",
+		"outro": "Tazzle"
 	},
 	{
 		"id": "yuuki_introduction",

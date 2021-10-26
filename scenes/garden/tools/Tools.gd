@@ -12,9 +12,9 @@ var current_seed = 0 setget set_current_seed,get_current_seed
 var planting_stamina_cost = 5
 var watering_stamina_cost = 2
 
-func _ready():
-	set_current_seed(current_seed)
+var seeds = []
 
+func _ready():
 	if not game_state:
 		return
 		
@@ -23,21 +23,25 @@ func _ready():
 		watering_stamina_cost = 1
 	
 	game_state.connect("inventory_changed", self, "update_count")
+	
+	for f in Flowers.values():
+		if not ("unlock" in f) or game_state.flag(f.unlock):
+			seeds.append(f)
+	set_current_seed(current_seed)
 
 func set_current_seed(idx):
-	current_seed = idx
-	var active = Flowers[self.current_seed]
-	icon.texture = load("res://content/flower/%s/tool.tres" % [active.id])
+	current_seed = seeds[idx]
+	icon.texture = load("res://content/flower/%s/tool.tres" % [current_seed.id])
 	if game_state:
-		update_count("seed:%s" % active.id, game_state.inventory["seed:%s" % active.id])
+		update_count("seed:%s" % current_seed.id, game_state.inventory["seed:%s" % current_seed.id])
 
 func get_current_seed():
 	if not game_state:
-		return "clover"
-	return Flowers.keys()[current_seed]
+		return Flowers["clover"]
+	return current_seed
 			
 func update_count(item, amount):
-	if item == "seed:%s" % self.current_seed:
+	if item == "seed:%s" % self.current_seed.id:
 		count.text = "%d" % amount
 
 func plant(cell):
@@ -45,7 +49,7 @@ func plant(cell):
 		return null
 	if game_state.stamina < planting_stamina_cost:
 		return null
-	var flower = Flowers[self.current_seed]
+	var flower = self.current_seed
 	var plant = game_state.plant(flower, cell)
 	if plant:
 		game_state.stamina -= planting_stamina_cost  # planting costs some stamina
@@ -70,11 +74,11 @@ func water(plant):
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_focus_next") and game_state:
-		self.current_seed = wrapi(current_seed + 1, 0, len(Flowers))
+		self.current_seed = wrapi(seeds.find(current_seed) + 1, 0, len(seeds))
 		return
 		
 	if Input.is_action_just_pressed("ui_focus_prev") and game_state:
-		self.current_seed = wrapi(current_seed - 1, 0, len(Flowers))
+		self.current_seed = wrapi(seeds.find(current_seed) - 1, 0, len(seeds))
 		return
 		
 func _on_Maia_interact_start():
