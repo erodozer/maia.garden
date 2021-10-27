@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 const button = preload("./ItemButton.tscn")
 
@@ -63,6 +63,7 @@ func open(item_list):
 	group.get_buttons()[0].pressed = true
 	group.get_buttons()[0].grab_focus()
 		
+	visible = true
 	tween.interpolate_property(self, "rect_position:y", -120, 0, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")
@@ -72,6 +73,7 @@ func open(item_list):
 	tween.interpolate_property(self, "rect_position:y", 0, -120, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")
+	visible = false
 	
 	group.connect("changed", self, "update_label")
 	

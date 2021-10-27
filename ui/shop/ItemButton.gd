@@ -10,11 +10,8 @@ onready var cost = get_node("ItemButton/HBoxContainer/Cost")
 
 func set_item(i):
 	item = i
-	sprite.texture = load("res://content/%s/%s/icon.tres" % [
-		item.type,
-		item.id,
-	])
-	cost.text = "%d KP" % [i.sell if exchange else i.cost]
+	sprite.texture = i.icon
+	cost.text = "%d KP" % [i.price]
 
 func _on_focus_entered():
 	pressed_bg.visible = true

@@ -3,7 +3,6 @@ extends ScrollContainer
 const ItemRecord = preload("./FishRecord.tscn")
 
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-onready var Content = get_tree().get_nodes_in_group("content").front()
 
 onready var pond_list = get_node("Content/Pond")
 onready var river_list = get_node("Content/River")

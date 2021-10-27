@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scenes/flower_shop/clover/Clover.tscn" type="PackedScene" id=1]
+[ext_resource path="res://characters/clover/Clover.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/flower_shop/background.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Building.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/flower_shop/scene.gd" type="Script" id=4]
@@ -41,10 +41,11 @@ shape = SubResource( 3 )
 position = Vector2( -28.0758, 69.6597 )
 shape = SubResource( 4 )
 
-[node name="Maia" parent="." index="4"]
-position = Vector2( 74.6921, 48.4704 )
+[node name="Clover" parent="." index="4" instance=ExtResource( 1 )]
+position = Vector2( -61, 48 )
+scale = Vector2( 2, 2 )
 
-[node name="Clover" parent="." index="6" instance=ExtResource( 1 )]
-position = Vector2( -58.1515, 48.2056 )
+[node name="Maia" parent="." index="5"]
+position = Vector2( 74.6921, 48.4704 )
 
 [connection signal="exit" from="." to="SceneController" method="_on_Map_exit"]

@@ -1,8 +1,5 @@
 extends "../request.gd"
 
-# state variables
-var talked_to_clover = false
-
 func get_owner():
 	return "yuuki"
 
@@ -17,9 +14,6 @@ func get_requirements():
 			"amount": 5
 		}
 	]
-
-func prompt():
-	return "Yuuki is in need of supplies for the Catfe"
 	
 func can_accept():
 	return true
@@ -43,7 +37,7 @@ func complete():
 	]), "completed")
 
 func can_talk_to_clover():
-	return not game_state.flag("%s:talked_to_clover" % key())
+	return not game_state.flag("unlocked_catgrass" % key())
 
 func talk_to_clover():
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
@@ -64,5 +58,3 @@ func talk_to_clover():
 		"amount": 5
 	})
 	game_state.toggle_flag("unlocked_catgrass")  # allow purchasing catgrass
-	
-	return true

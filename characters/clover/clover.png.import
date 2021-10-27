@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/clover.png-460f0927e0c0a086260bf210176a0217.stex"
+path="res://.import/clover.png-432a520535447131a6f786b2d49c3e1e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/flower_shop/clover/clover.png"
-dest_files=[ "res://.import/clover.png-460f0927e0c0a086260bf210176a0217.stex" ]
+source_file="res://characters/clover/clover.png"
+dest_files=[ "res://.import/clover.png-432a520535447131a6f786b2d49c3e1e.stex" ]
 
 [params]
 

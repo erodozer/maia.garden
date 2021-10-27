@@ -1,7 +1,5 @@
 extends Node
 
-var Content = preload("res://content/content.gd")
-
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 onready var requests_ui = get_tree().get_nodes_in_group("requests").front()
 
@@ -21,6 +19,13 @@ func key():
 	return "request:%s" % get_id()
 	
 func prompt():
+	match get_owner():
+		"clover":
+			return "Clover is in need of supplies for the Flower Shop"
+		"yuuki":
+			return "Yuuki is in need of supplies for the Catfe"
+		"proller":
+			return "Proller wants to add the following to their collection"
 	return ""
 
 func is_completed():

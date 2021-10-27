@@ -101,8 +101,10 @@ const godash = preload("res://addons/godash/godash.gd")
 var Items = []
 
 func _ready():
-	for item in godash.load_dir("res://content/", "item.tres", true).values():
+	for item in godash.load_dir("res://content", "item.tres", true).values():
 		Items.append(item)
+		
+	add_to_group("content")
 
 func get_item_reference(id):
 	for i in Items:

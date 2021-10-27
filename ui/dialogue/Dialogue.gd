@@ -43,6 +43,8 @@ func open(lines, choices = []):
 			b.group = group
 			b.text = c
 			b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			b.focus_mode = Control.FOCUS_ALL
+			b.pressed = false
 			b.connect("focus_entered", b, "set", ["pressed", true])
 			choice_buttons.add_child(b)
 		var first_choice = group.get_buttons().front()

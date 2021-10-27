@@ -15,7 +15,7 @@ func get_id():
 func can_talk():
 	var say = false
 	for request in game_state.requests:
-		if request.accepted:
+		if request.is_accepted():
 			if request.get_owner() == get_id():
 				say = true
 				break

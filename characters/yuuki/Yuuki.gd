@@ -1,11 +1,10 @@
 extends "res://characters/npc/npc.gd"
 
 const godash = preload("res://addons/godash/godash.gd")
-const Content = preload("res://content/content.gd")
 
 const sprites = [
-	preload("./yuuki_old.tres"),
-	preload("./yuuki.tres"),
+	preload("res://characters/yuuki/yuuki_old.tres"),
+	preload("res://characters/yuuki/yuuki_old.tres"),
 ]
 
 onready var dialogue = get_tree().get_nodes_in_group("dialogue").front()
@@ -32,10 +31,10 @@ func interact():
 		return
 	
 	var Cafe = []
-	for i in Content.ITEMS:
+	for i in Content.Items:
 		if i.type == "cafe":
-			if "unlock" in i and not game_state.flag(i.unlock):
+			if i.unlock and not game_state.flag(i.unlock):
 				continue
 			Cafe.append(i)
 		
-	yield(shop.open(Cafe, false), "completed")
+	yield(shop.open(Cafe), "completed")

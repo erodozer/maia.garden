@@ -12,5 +12,5 @@ name = "Tulip"
 price = 10
 starting = 3
 flower = ExtResource( 3 )
-description = "Grow cute white Daisy's (3 days)"
+description = "Grow pink Tulips (3 days)"
 unlock = ""

@@ -23,9 +23,6 @@ func get_requirements():
 			"amount": 4,
 		}
 	]
-
-func prompt():
-	return "Proller wants to add the following to their collection"
 	
 func can_accept():
 	return true

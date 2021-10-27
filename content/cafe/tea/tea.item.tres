@@ -10,5 +10,5 @@ icon = ExtResource( 2 )
 name = "Tea"
 price = 5
 stamina = 5
-description = "Strong and bitter"
+description = "An iced tea"
 unlock = ""

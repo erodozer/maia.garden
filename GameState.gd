@@ -74,8 +74,6 @@ var total_konpeto_earned = 0
 var total_fish_caught = 0
 var total_flowers_planted = 0
 
-onready var Content = get_tree().get_nodes_in_group("content").front()
-
 signal new_record(fish)
 signal balance_changed(amount)
 signal stamina_changed(amount)

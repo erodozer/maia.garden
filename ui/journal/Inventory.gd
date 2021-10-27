@@ -1,6 +1,5 @@
 extends ScrollContainer
 
-const Content = preload("res://content/content.gd")
 const ItemRecord = preload("./ItemRecord.tscn")
 
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()

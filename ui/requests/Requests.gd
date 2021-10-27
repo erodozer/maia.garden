@@ -1,6 +1,5 @@
 extends Control
 
-const Content = preload("res://content/content.gd")
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 
 onready var tween = get_node("Tween")
@@ -12,26 +11,6 @@ signal end(submit)
 
 func _ready():
 	set_process_input(false)
-
-func get_matching_items(requirement):
-	var select = []
-	if "type" in requirement:
-		for i in Content.ITEMS:
-			if i.type != requirement.type:
-				continue
-
-			if requirement.type == "fish":
-				if "location" in requirement and i.location != requirement.location:
-					continue
-				
-				if "big" in requirement and requirement.big:
-					select.append("%s:big" % i.id)
-					continue
-			
-			select.append(i.id)
-	elif "id" in requirement:
-		select = [requirement.id]
-	return select
 
 func open(request):
 	# build the hint

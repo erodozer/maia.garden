@@ -3,8 +3,6 @@ extends Control
 const godash = preload("res://addons/godash/godash.gd")
 
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-onready var Content = get_tree().get_nodes_in_group("content").front()
-onready var player = get_tree().get_nodes_in_group("player").front()
 
 onready var joystick = get_node("Joystick")
 onready var joystick_direction = get_node("Joystick/direction")
@@ -48,6 +46,8 @@ func get_fish(type):
 	return fish
 
 func open(type):
+	var player = get_tree().get_nodes_in_group("player").front()
+	
 	visible = true
 	if player:
 		player.fishing = true

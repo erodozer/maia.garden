@@ -1,7 +1,5 @@
 extends Control
 
-const Content = preload("res://content/content.gd")
-
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 
 onready var icon = get_node("ActiveSeed")

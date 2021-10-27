@@ -17,6 +17,7 @@ config/icon="res://characters/maia/outfits/default/maia_1.png"
 [autoload]
 
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
+Content="*res://content.gd"
 
 [display]
 
