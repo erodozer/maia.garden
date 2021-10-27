@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://content/flower/pumpkin/mature.tres" type="Texture" id=1]
+[ext_resource path="res://content/flower.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+id = "pumpkin"
+icon = ExtResource( 1 )
+name = "Pumpkin"
+price = 150
+mature = 10
+description = "A fall delight"

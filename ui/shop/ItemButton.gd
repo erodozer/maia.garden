@@ -10,10 +10,9 @@ onready var cost = get_node("ItemButton/HBoxContainer/Cost")
 
 func set_item(i):
 	item = i
-	sprite.texture = load("res://content/%s/%s/item.%s.tres" % [
+	sprite.texture = load("res://content/%s/%s/icon.tres" % [
 		item.type,
 		item.id,
-		"sell" if exchange else "buy",
 	])
 	cost.text = "%d KP" % [i.sell if exchange else i.cost]
 

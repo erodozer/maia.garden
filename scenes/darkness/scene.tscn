@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/darkness/background.png" type="Texture" id=1]
-[ext_resource path="res://scenes/darkness/proller/Proller.tscn" type="PackedScene" id=2]
+[ext_resource path="res://characters/proller/proller.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Building.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/darkness/scene.gd" type="Script" id=4]
 
@@ -40,6 +40,8 @@ position = Vector2( -63.9248, 52.1245 )
 shape = SubResource( 4 )
 
 [node name="Proller" parent="." index="3" instance=ExtResource( 2 )]
+position = Vector2( -8, 35 )
+scale = Vector2( 2, 2 )
 
 [node name="Maia" parent="." index="4"]
-position = Vector2( 75.7516, 48.4704 )
+position = Vector2( 76.752, 47 )

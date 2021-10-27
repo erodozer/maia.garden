@@ -1,15 +1,15 @@
-extends Node
+extends Control
 
 const godash = preload("res://addons/godash/godash.gd")
-const Fish = preload("res://content/content.gd").FISHING
 
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
+onready var Content = get_tree().get_nodes_in_group("content").front()
 onready var player = get_tree().get_nodes_in_group("player").front()
 
 onready var joystick = get_node("Joystick")
 onready var joystick_direction = get_node("Joystick/direction")
 onready var health = get_node("Health")
-onready var timer = get_node("Timer")
+onready var timer = get_node("DirectionTimer")
 onready var catch_anchor = get_node("Catch")
 onready var catch_panel = get_node("Catch/PanelContainer")
 onready var catch_dialog = get_node("Catch/PanelContainer/VBoxContainer/RichTextLabel")
@@ -18,6 +18,7 @@ onready var tween = get_node("Tween")
 
 const REEL_RATE = 20
 
+var hooked = false
 var direction = 0 setget set_direction
 
 const direction_to_input = {
@@ -28,6 +29,7 @@ const direction_to_input = {
 }
 
 signal end(caught)
+signal hook(success)
 
 func _ready():
 	set_process(false)
@@ -35,8 +37,8 @@ func _ready():
 	
 func get_fish(type):
 	var selection = []
-	for f in Fish:
-		if f.type == type:
+	for f in Content.Items:
+		if f.type == "fish" and f.location == type:
 			selection.append(f)
 	if len(selection) <= 0:
 		return null
@@ -46,6 +48,24 @@ func get_fish(type):
 	return fish
 
 func open(type):
+	visible = true
+	if player:
+		player.fishing = true
+	
+	# first wait to hook the fish
+	while not hooked:
+		yield(get_tree().create_timer(randf() * 5.0 + 0.5), "timeout")
+		Input.start_joy_vibration(0, 0.3, 0.7)
+		player.bubble.visible = true
+		set_process_input(true)
+		var wait = get_tree().create_timer(randf() * 3.0 + 0.5)
+		wait.connect("timeout", self, "emit_signal", ["hook", false])
+		hooked = yield(self, "hook")
+		wait.disconnect("timeout", self, "emit_signal")
+		set_process_input(false)
+		Input.stop_joy_vibration(0)
+		player.bubble.visible = false
+	
 	var fish = get_fish(type)
 	
 	var size = randf()
@@ -54,8 +74,6 @@ func open(type):
 	pick_direction()
 	joystick.visible = true
 	health.visible = true
-	if player:
-		player.fishing = true
 	Input.start_joy_vibration(0, 0.1, 0.4)
 	set_process(true)
 	var caught = yield(self, "end")
@@ -78,7 +96,7 @@ func open(type):
 	fish = {
 		"type": "fish",
 		"ref": fish,
-		"size": lerp(fish.size[0], fish.size[1], size),
+		"size": lerp(fish.min_size, fish.max_size, size),
 	}
 	var isRecord = game_state.catch_fish(fish)
 	
@@ -92,6 +110,7 @@ func open(type):
 	tween.interpolate_property(catch_anchor, "rect_position:y", 125, 200, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")
+	visible = false
 	
 func set_direction(v):
 	match v:
@@ -138,3 +157,8 @@ func _process(delta):
 	
 func _on_Timer_timeout():
 	pick_direction()
+
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		emit_signal("hook", true)
+		

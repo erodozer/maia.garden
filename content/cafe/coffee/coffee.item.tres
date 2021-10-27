@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://content/cafe.gd" type="Script" id=1]
+[ext_resource path="res://content/cafe/coffee/icon.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "coffee"
+icon = ExtResource( 2 )
+name = "Coffee"
+price = 10
+stamina = 10
+description = "Strong and bitter"
+unlock = ""

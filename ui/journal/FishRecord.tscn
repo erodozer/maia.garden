@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=1]
+
+[node name="FishRow" type="HBoxContainer"]
+margin_right = 172.0
+margin_bottom = 13.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 141.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Guppy"
+
+[node name="Size" type="Label" parent="."]
+margin_left = 145.0
+margin_right = 172.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 1 )
+text = "02.91in"

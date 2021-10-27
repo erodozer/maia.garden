@@ -13,12 +13,12 @@ extents = Vector2( 9.69083, 9.07753 )
 atlas = ExtResource( 1 )
 region = Rect2( 64, 112, 16, 16 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 resource_name = "float"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -26,10 +26,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 5, -7 ), Vector2( 5, -9 ), Vector2( 5, -7 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -3 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.956863, 0.8, 0.631373, 1 )
 border_width_left = 2
 border_width_top = 12
@@ -72,12 +72,12 @@ texture = SubResource( 2 )
 
 [node name="Bubble" type="Sprite" parent="."]
 visible = false
-position = Vector2( 5, -7.36731 )
+position = Vector2( 5, -7 )
 texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bubble"]
 autoplay = "float"
-anims/float = SubResource( 3 )
+anims/float = SubResource( 4 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -100,7 +100,7 @@ margin_top = -70.0
 margin_right = 98.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 96, 140 )
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 6 )
 
 [node name="Label" type="Label" parent="CanvasLayer/Mailbox/Inbox"]
 margin_left = 2.73291
@@ -108,6 +108,7 @@ margin_top = -1.68179
 margin_right = 42.7329
 margin_bottom = 11.3182
 custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.87451, 0.964706, 0.960784, 1 )
 text = "Inbox"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -116,6 +117,9 @@ __meta__ = {
 [node name="Container" type="Control" parent="CanvasLayer/Mailbox/Inbox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Mailbox/Inbox/Container"]
 anchor_right = 1.0
@@ -179,6 +183,7 @@ margin_right = 150.0
 margin_bottom = 90.0
 focus_mode = 2
 custom_colors/default_color = Color( 0.352941, 0.32549, 0.32549, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false

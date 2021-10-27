@@ -26,6 +26,12 @@ func _ready():
 		change_outfit(game_state.outfit)
 		game_state.connect("change_outfit", self, "change_outfit")
 	
+func pause():
+	set_physics_process(false)
+
+func resume():
+	set_physics_process(true)
+	
 func toggle_fishing(v):
 	fishing = v
 	if fish_sprite:
@@ -40,12 +46,12 @@ func perform_action():
 		return
 		
 	emit_signal("interact_start")
-	set_physics_process(false)
+	pause()
 	if interactable_npc.has_method("interact"):
 		var state = interactable_npc.interact()
 		if state and state is GDScriptFunctionState:
 			yield(state, "completed")
-	set_physics_process(true)
+	resume()
 	emit_signal("interact_end")
 
 func _physics_process(_delta):

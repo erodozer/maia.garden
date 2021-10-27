@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://content/tool/seed_clover/seed.png" type="Texture" id=1]
+[ext_resource path="res://content/garden_tool.gd" type="Script" id=2]
+[ext_resource path="res://content/flower/clover/clover.item.tres" type="Resource" id=3]
+
+[resource]
+script = ExtResource( 2 )
+id = "seed_clover"
+icon = ExtResource( 1 )
+name = "Clover"
+price = 5
+starting = 5
+flower = ExtResource( 3 )
+description = "Grows a patch of clovers (2 days)"
+unlock = ""

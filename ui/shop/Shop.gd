@@ -22,27 +22,43 @@ func exchange(item, value):
 		return
 		
 	# purchase an item
-	if game_state.konpeto + value < 0:
-		return
-		
+	if value < 0:
+		if game_state.konpeto + value < 0:
+			return
+			
+		if item.type == "cafe":
+			# cafe items restore stamina instead of going into the inventory
+			game_state.stamina += item.stamina
+		else:
+			game_state.insert_item({
+				"id": item.id,
+				"ref": item,
+				"amount": 1,
+			})
 	# sell an item from inventory
-	if value > 0 and game_state.inventory[item.id] <= 0:
-		return
+	else:
+		var sold = game_state.insert_item({
+			"id": item.id,
+			"ref": item,
+			"amount": -1,
+		})
+		
+		if not sold:
+			return
 	
 	game_state.konpeto += value
+	
 	emit_signal("exchange", item, value)
 	
-func open(item_list, exchange_mode):
+func open(item_list):
 	group = ButtonGroup.new()
 	
 	for i in item_list:
 		var b = button.instance()
 		items.add_child(b)
-		b.exchange = exchange_mode
 		b.item = i
 		b.group = group
 		b.connect("focus_entered", self, "update_description", [i])
-		b.connect("toggled", self, "do_exchange", [i, i.sell if exchange_mode else -i.cost])
 		
 	group.get_buttons()[0].pressed = true
 	group.get_buttons()[0].grab_focus()
@@ -65,12 +81,11 @@ func open(item_list, exchange_mode):
 func update_description(item):
 	description.text = item.description
 	
-func do_exchange(_pressed, item, value):
-	if not _pressed:
-		return
-	
-	exchange(item, value)
-	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("end")
+	if event.is_action_pressed("ui_accept"):
+		var btn = group.get_pressed_button()
+		var item = btn.item
+		var exchange_mode = btn.exchange
+		exchange(item, item.price)

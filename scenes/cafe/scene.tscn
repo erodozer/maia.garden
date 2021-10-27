@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/cafe/scene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/cafe/background.png" type="Texture" id=2]
-[ext_resource path="res://scenes/cafe/yuuki/Yuuki.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/yuuki/Yuuki.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Building.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -39,7 +39,8 @@ position = Vector2( -4, 84 )
 shape = SubResource( 3 )
 
 [node name="Yuuki" parent="." index="4" instance=ExtResource( 3 )]
-position = Vector2( -62, 48 )
+position = Vector2( -70, 48 )
+scale = Vector2( 2, 2 )
 
 [node name="Maia" parent="." index="5"]
 position = Vector2( 75, 48 )

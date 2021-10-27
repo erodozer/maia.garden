@@ -64,3 +64,45 @@ static func rand_chance(collection: Dictionary, rand = null):
 			return keys[idx]
 		prev_value = value
 	return null
+
+static func extend(d1: Dictionary, d2: Dictionary) -> Dictionary:
+	"""
+	Creates a new dictionary that is the combination of 2 dictionaries
+	Similar to object.assign in javascript
+	"""
+	var out = {}
+	for k in d1.keys():
+		out[k] = d1[k]
+	for k in d2.keys():
+		out[k] = d2[k]
+	return out
+
+static func load_dir(resource_dir, ext = '.tres', recurse = false) -> Dictionary:
+	"""
+	Load resource assets from a directory.
+	Needed for various factories, such as for Items and Enemies
+	"""
+	if ext is String:
+		ext = [ext]
+	var item_dir = Directory.new()
+	var _items = {}
+	if item_dir.open(resource_dir) == OK:
+		item_dir.list_dir_begin(true)
+		var file_name = item_dir.get_next()
+		
+		while (file_name != ""):
+			if item_dir.current_is_dir() and recurse:
+				var _sub_items = load_dir(resource_dir + "/" + file_name, ext, recurse)
+				_items = extend(_items, _sub_items)
+			else:
+				for e in ext:
+					if file_name.ends_with(e):
+						var item = load(resource_dir + "/" + file_name)
+						if item:
+							_items[file_name] = item
+							break
+			file_name = item_dir.get_next()
+		item_dir.list_dir_end()
+	else:
+		printerr("can't load items: %s" % [resource_dir])
+	return _items

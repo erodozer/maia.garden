@@ -1,7 +1,13 @@
 extends Node
 
 const godash = preload("res://addons/godash/godash.gd")
-const Content = preload("res://content/content.gd")
+
+const REQUESTS = [
+	preload("res://content/request/catgrass.gd"),
+	preload("res://content/request/vegetables.gd"),
+	preload("res://content/request/proller_collection_1.gd"),
+	preload("res://content/request/proller_collection_2.gd"),
+]
 
 const MAIAS_BIRTHDAY = 1637038800
 const PROLLER_DAY = 1635048000
@@ -9,10 +15,39 @@ const PROLLER_DAY = 1635048000
 var day = 1634616000 # day as unix timestamp, so we can leverage OS Date features
 var konpeto = 100 setget update_balance
 
-var inventory = {}
+class Inventory:
+	signal changed(item, record)
+	
+	var data = []
+	
+	func insert_item(entry):
+		var item = get_item(entry.id)
+		var amount = entry.amount
+		if item:
+			amount += item.amount
+		
+		if amount < 0:
+			return false
+		
+		if not item:
+			item = entry
+			data.append(entry)
+		
+		item.amount = amount
+		emit_signal("changed", item.id, item)
+		return true
+	
+	func get_item(id):
+		for i in data:
+			if i.id == id:
+				return i
+		return null
+
+var inventory = Inventory.new()
 var garden = {}
 var fishing_records = {}
 var inbox = {}
+var requests = []
 
 var outfit = "default" setget set_outfit
 
@@ -39,25 +74,32 @@ var total_konpeto_earned = 0
 var total_fish_caught = 0
 var total_flowers_planted = 0
 
+onready var Content = get_tree().get_nodes_in_group("content").front()
+
 signal new_record(fish)
 signal balance_changed(amount)
 signal stamina_changed(amount)
 signal change_outfit(outfit)
-signal inventory_changed(item, amount)
 
 func _ready():
-	for f in Content.FLOWERS.values():
-		inventory[f.id] = 0
-		inventory["seed:%s" % f.id] = f.starting
+	for f in Content.Items:
+		if f.type == "tool" and f.starting > 0:
+			inventory.insert_item({
+				"id": f.id,
+				"ref": f,
+				"amount": f.starting
+			})
+		if f.type == "fish":
+			fishing_records[f.id] = {
+				"id": f.id,
+				"size": 0,
+			}
 	
-	for f in Content.FISHING:
-		inventory[f.id] = 0
-		inventory["%s:big" % f.id] = 0
-		fishing_records[f.id] = {
-			"id": f.id,
-			"size": 0
-		}
-		
+	for r in REQUESTS:
+		var request = r.new()
+		add_child(request)
+		requests.append(request)
+	
 	deliver_mail()
 
 func flag(f):
@@ -132,34 +174,47 @@ func update_stamina(amount):
 		total_spent_stamina += abs(diff)
 	stamina = amount
 	emit_signal("stamina_changed", amount)
-	
+		
 func catch_fish(fish):
 	var size = fish.size
-	var prev = 0
+	var prev = fishing_records[fish.ref.id].size
 	var new_record = false
-	if fish.ref.name in fishing_records:
-		prev = fishing_records[fish.ref.name]
+	
 	if size > prev:
-		fishing_records[fish.ref.name] = size
+		fishing_records[fish.ref.id].size = size
 		new_record = true
 		emit_signal("new_record", fish)
 	
 	var key = "%s:big" % fish.ref.id \
-		if inverse_lerp(fish.ref.size[0], fish.ref.size[1], size) > .8 \
+		if inverse_lerp(fish.ref.min_size, fish.ref.max_size, size) > .8 \
 		else fish.ref.id
-	inventory[key] += 1
+		
+	inventory.insert_item({
+		"id": key,
+		"ref": fish.ref,
+		"amount": 1
+	})
+	
 	total_fish_caught += 1
-	emit_signal("inventory_changed", key, inventory[key])
 	return new_record
 
-func plant(flower, cell):
-	var key = "seed:%s" % flower.id
-	if inventory[key] <= 0:
-		return null
-		
+func plant(seed_tool, cell):
+	# do not allow planting where there is already a plant
 	if cell in garden:
 		return null
 
+	var flower = seed_tool.ref.flower
+	if not flower:
+		return null
+
+	var planted = inventory.insert_item({
+		"id": seed_tool.id,
+		"amount": -1
+	})
+	
+	if not planted:
+		return null
+	
 	var plant = {
 		"ref": flower,
 		"age": 0,
@@ -167,7 +222,6 @@ func plant(flower, cell):
 		"cell": cell,
 	}
 	garden[cell] = plant
-	inventory[key] -= 1
 	total_flowers_planted += 1
-	emit_signal("inventory_changed", key, inventory[key])
+	
 	return plant

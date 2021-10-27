@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://characters/proller/proller.png" type="Texture" id=1]
+[ext_resource path="res://characters/npc/NPC.tscn" type="PackedScene" id=2]
+[ext_resource path="res://characters/proller/Proller.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15, 16 )
+
+[node name="Proller" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 1 )
+flip_h = true
+
+[node name="Talk" parent="." index="2"]
+position = Vector2( 0, -14 )

@@ -4,7 +4,7 @@ onready var scene_manager = get_tree().get_nodes_in_group("scene_manager").front
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 onready var tween = get_node("CanvasLayer/Tween")
 onready var container = get_node("CanvasLayer/Menu")
-onready var menu = get_node("CanvasLayer/Menu/MarginContainer/ItemList")
+onready var menu = get_node("CanvasLayer/Menu/ItemList")
 
 signal end(scene)
 

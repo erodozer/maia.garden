@@ -4,7 +4,7 @@ const Content = preload("res://content/content.gd")
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 
 onready var tween = get_node("Tween")
-onready var requirements = get_node("VBoxContainer/Panel/MarginContainer/Requirements")
+onready var requirements = get_node("VBoxContainer/Panel/Requirements")
 onready var submit_button = get_node("VBoxContainer/Buttons/Submit")
 onready var buttons = get_node("VBoxContainer/Buttons")
 
@@ -16,27 +16,27 @@ func _ready():
 func get_matching_items(requirement):
 	var select = []
 	if "type" in requirement:
-		if requirement.type == "fish":
-			for f in Content.FISHING:
-				if not requirement.category or (requirement.category and f.type == requirement.category):
-					if not ("big" in requirement) or ("big" in requirement and not requirement.big):
-						select.append(f.id)
-					if not ("big" in requirement) or ("big" in requirement and requirement.big):
-						select.append("%s:big" % f.id)
-		elif requirement.type == "flower":
-			for f in Content.FLOWERS:
-				if not ("category" in requirement):
-					select.append(f.id)
-				elif requirement.category == "seed":
-					select.append("seed:%s" % f.id)
+		for i in Content.ITEMS:
+			if i.type != requirement.type:
+				continue
+
+			if requirement.type == "fish":
+				if "location" in requirement and i.location != requirement.location:
+					continue
+				
+				if "big" in requirement and requirement.big:
+					select.append("%s:big" % i.id)
+					continue
+			
+			select.append(i.id)
 	elif "id" in requirement:
 		select = [requirement.id]
 	return select
 
-func open(list, title):
+func open(request):
 	# build the hint
-	var text = "[center]%s[/center]" % title
-	for i in list:
+	var text = "[center]%s[/center]" % request.prompt()
+	for i in request.get_requirements():
 		text += "\n[b]%s[/b]" % i.hint
 	text += "\n"
 	requirements.bbcode_text = text
@@ -44,17 +44,7 @@ func open(list, title):
 	requirements.rect_position.y = -999
 	
 	# test the requirements
-	var has_items = true
-	for requirement in list:
-		var select = get_matching_items(requirement)
-		
-		var sum = 0
-		for i in select:
-			sum += game_state.inventory[i]
-		if sum < requirement.amount:
-			has_items = false
-			break
-			
+	var has_items = request.requirements_met()
 	buttons.visible = has_items
 	submit_button.pressed = has_items
 	if has_items:
@@ -72,24 +62,7 @@ func open(list, title):
 	yield(tween, "tween_all_completed")
 	requirements.visible = false
 	
-	if not submit:
-		return false
-		
-	# remove items from inventory
-	for requirement in list:
-		var select = get_matching_items(requirement)
-		
-		var claim = requirement.amount
-		for s in select:
-			var held = game_state.inventory[s]
-			if held > 0:
-				game_state.inventory[s] = max(0, held - claim)
-				claim -= held
-			if claim <= 0:
-				break
-		assert(claim <= 0)
-		
-	return true
+	return submit
 		
 func _input(event):
 	if event.is_action_pressed("ui_accept"):

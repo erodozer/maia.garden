@@ -1,13 +1,13 @@
 extends Control
 
-const Flowers = preload("res://content/content.gd").FLOWERS
+const Content = preload("res://content/content.gd")
 
 onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 
 onready var icon = get_node("ActiveSeed")
 onready var count = get_node("ActiveSeed/Count")
 
-var current_seed = 0 setget set_current_seed,get_current_seed
+var current_seed = null setget set_current_seed
 
 var planting_stamina_cost = 5
 var watering_stamina_cost = 2
@@ -22,37 +22,40 @@ func _ready():
 		planting_stamina_cost = 3
 		watering_stamina_cost = 1
 	
-	game_state.connect("inventory_changed", self, "update_count")
+	game_state.inventory.connect("changed", self, "update_count")
 	
-	for f in Flowers.values():
-		if not ("unlock" in f) or game_state.flag(f.unlock):
+	for f in game_state.inventory.data:
+		if f.ref.type == "tool":
 			seeds.append(f)
-	set_current_seed(current_seed)
+	set_current_seed(seeds[0])
 
-func set_current_seed(idx):
-	current_seed = seeds[idx]
-	icon.texture = load("res://content/flower/%s/tool.tres" % [current_seed.id])
-	if game_state:
-		update_count("seed:%s" % current_seed.id, game_state.inventory["seed:%s" % current_seed.id])
+func set_current_seed(item):
+	if null:
+		return
+		
+	current_seed = item
+	icon.texture = current_seed.ref.icon
+	
+	update_count(current_seed.id, {
+		"id": current_seed.id,
+		"amount": current_seed.amount,
+	})
 
-func get_current_seed():
-	if not game_state:
-		return Flowers["clover"]
-	return current_seed
-			
-func update_count(item, amount):
-	if item == "seed:%s" % self.current_seed.id:
-		count.text = "%d" % amount
+func update_count(_id, item):
+	count.text = "%d" % item.amount
 
 func plant(cell):
 	if not game_state:
 		return null
+		
 	if game_state.stamina < planting_stamina_cost:
 		return null
-	var flower = self.current_seed
-	var plant = game_state.plant(flower, cell)
+	
+	var plant = game_state.plant(current_seed, cell)
+	
 	if plant:
 		game_state.stamina -= planting_stamina_cost  # planting costs some stamina
+	
 	return plant
 	
 func harvest(plant):
@@ -60,7 +63,11 @@ func harvest(plant):
 		return
 		
 	# reaping costs no stamina
-	game_state.inventory[plant.ref.id] += 1
+	game_state.inventory.insert_item({
+		"id": plant.ref.id,
+		"ref": plant.ref,
+		"amount": 1,
+	})
 	
 func water(plant):
 	if not game_state:
@@ -74,15 +81,15 @@ func water(plant):
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_focus_next") and game_state:
-		self.current_seed = wrapi(seeds.find(current_seed) + 1, 0, len(seeds))
+		self.current_seed = seeds[wrapi(seeds.find(current_seed) + 1, 0, len(seeds))]
 		return
 		
 	if Input.is_action_just_pressed("ui_focus_prev") and game_state:
-		self.current_seed = wrapi(seeds.find(current_seed) - 1, 0, len(seeds))
+		self.current_seed = seeds[wrapi(seeds.find(current_seed) - 1, 0, len(seeds))]
 		return
 		
-func _on_Maia_interact_start():
+func pause():
 	set_process(false)
 
-func _on_Maia_interact_end():
+func resume():
 	set_process(true)

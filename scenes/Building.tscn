@@ -47,6 +47,8 @@ margin_left = 14.0
 margin_right = 33.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 0, 14 )
+custom_colors/font_color = Color( 0.87451, 0.964706, 0.960784, 1 )
+custom_colors/font_color_shadow = Color( 0.188235, 0.172549, 0.180392, 1 )
 text = "Exit"
 
 [node name="ActionLabel" parent="CanvasLayer/Control" instance=ExtResource( 4 )]
