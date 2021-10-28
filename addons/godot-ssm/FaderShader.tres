@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform vec4 clear_color: hint_color = vec4(0,0,0,1);
+uniform float transition: hint_range(0, 1);
+
+float val(vec3 color) {
+	return max(max(color.r, color.g), color.b);
+}
+
+void fragment() {
+	vec4 sample = texture(TEXTURE, UV.xy);
+	if (val(sample.rgb) < transition) {
+		COLOR = vec4(0,0,0,0);
+	} else {
+		COLOR = clear_color;
+	}
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/clear_color = Color( 0.188235, 0.172549, 0.180392, 1 )
+shader_param/transition = 0.0

@@ -1,6 +1,5 @@
 extends Node
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 onready var talk_indicator = get_node("Talk")
 
 func _ready():
@@ -14,7 +13,7 @@ func get_id():
 
 func can_talk():
 	var say = false
-	for request in game_state.requests:
+	for request in GameState.requests:
 		if request.is_accepted():
 			if request.get_owner() == get_id():
 				say = true
@@ -32,7 +31,7 @@ func can_talk():
 	return say
 
 func check_requests():
-	for request in game_state.requests:
+	for request in GameState.requests:
 		if request.is_accepted() and not request.is_completed():
 			if request.get_owner() == get_id():
 				yield(request.show_requirements(), "completed")

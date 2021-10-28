@@ -1,7 +1,5 @@
 extends Control
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-
 onready var views = get_node("Window/View")
 onready var tab_group = ButtonGroup.new()
 onready var tween = get_node("Tween")
@@ -19,6 +17,8 @@ func _ready():
 			continue
 			
 		var button = t as BaseButton
+		if not button:  # calendar panel will cast to null
+			continue
 		button.group = tab_group
 		button.connect("toggled", self, "_on_tab_toggled", [button.name])
 		
@@ -65,6 +65,9 @@ func open():
 			v.build()
 			
 	tab_group.get_buttons()[0].pressed = true
+	
+	var cal = OS.get_datetime_from_unix_time(GameState.calendar.day)
+	get_node("Window/Tabs/Calendar/HBoxContainer/Date").text = "%d/%d" % [cal.month, cal.day]
 	
 	# show 
 	tween.interpolate_property(self, "rect_position:y", -150, 0, .3)

@@ -2,12 +2,10 @@ extends Control
 
 const godash = preload("res://addons/godash/godash.gd")
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-
 onready var joystick = get_node("Joystick")
 onready var joystick_direction = get_node("Joystick/direction")
 onready var health = get_node("Health")
-onready var timer = get_node("DirectionTimer")
+onready var timer = get_node("Timer")
 onready var catch_anchor = get_node("Catch")
 onready var catch_panel = get_node("Catch/PanelContainer")
 onready var catch_dialog = get_node("Catch/PanelContainer/VBoxContainer/RichTextLabel")
@@ -34,15 +32,15 @@ func _ready():
 	timer.stop()
 	
 func get_fish(type):
-	var selection = []
+	var selection = {}
 	for f in Content.Items:
 		if f.type == "fish" and f.location == type:
-			selection.append(f)
+			selection[f] = f.rarity
 	if len(selection) <= 0:
 		return null
 	
-	# TODO change to weighted selection based on fish rarity
-	var fish = godash.rand_choice(selection)
+	# pick fish based on rarity weight
+	var fish = godash.rand_chance(selection)
 	return fish
 
 func open(type):
@@ -84,21 +82,17 @@ func open(type):
 	health.visible = false
 	if player:
 		player.fishing = false
-		
-	if not game_state:
-		return
 	
 	if not caught:
 		return
 	
-	game_state.stamina -= int(lerp(3, 7, size))
+	GameState.stamina -= int(lerp(3, 7, size))
 	
 	fish = {
-		"type": "fish",
 		"ref": fish,
 		"size": lerp(fish.min_size, fish.max_size, size),
 	}
-	var isRecord = game_state.catch_fish(fish)
+	var isRecord = GameState.fishing.catch(fish)
 	
 	catch_record.visible = isRecord
 	catch_dialog.bbcode_text = "[center]%s\n%.02fin[/center]" % [fish.ref.name, fish.size]

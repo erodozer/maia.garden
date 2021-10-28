@@ -1,6 +1,5 @@
 extends Node
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 onready var requests_ui = get_tree().get_nodes_in_group("requests").front()
 
 var accepted setget ,is_accepted
@@ -30,17 +29,17 @@ func prompt():
 
 func is_completed():
 	var flag = "%s:completed" % key()
-	return game_state.flag(flag)
+	return GameState.flag(flag)
 
 func is_accepted():
 	var flag = "%s:started" % key()
-	return game_state.flag(flag)
+	return GameState.flag(flag)
 
 func can_accept():
 	return true
 	
 func accept():
-	game_state.toggle_flag("%s:started" % key())
+	GameState.toggle_flag("%s:started" % key())
 	
 func complete():
 	for requirement in get_requirements():
@@ -48,10 +47,10 @@ func complete():
 		
 		var claim = requirement.amount
 		for s in select:
-			var record = game_state.inventory.get_item(s)
+			var record = GameState.inventory.get_item(s)
 			if record and record.amount > 0:
 				var amount = min(record.amount, claim)
-				game_state.inventory.insert_item({
+				GameState.inventory.insert_item({
 					"id": record.id,
 					"ref": record.ref,
 					"amount": -amount
@@ -61,7 +60,11 @@ func complete():
 				break
 		assert(claim == 0)
 		
-	game_state.toggle_flag("%s:completed" % key())
+	GameState.toggle_flag("%s:completed" % key())
+	GameState.emit_signal("state", "request.completed", {
+		"request": self,
+		"timestamp": OS.get_unix_time(),
+	})
 
 func show_requirements():
 	var submitted = yield(requests_ui.open(self), "completed")
@@ -96,7 +99,7 @@ func requirements_met():
 		
 		var sum = 0
 		for i in select:
-			var item = game_state.inventory.get_item(i)
+			var item = GameState.inventory.get_item(i)
 			if item:
 				sum += item.amount
 		if sum < requirement.amount:

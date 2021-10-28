@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/journal/StatusRecord.gd" type="Script" id=2]
+
+[node name="Status" type="HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 13.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 151.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Konpeto Earned"
+
+[node name="Count" type="Label" parent="."]
+margin_left = 155.0
+margin_right = 160.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 2

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "tazzle_introduction"
+sendAt = "introduce.tazzle"
+sender = "Tazzle"
+message = "The winds have been whispering about a little fairy who's picked up fishing lately.
+If you're up for a different challenge, I've set up camp near a nice river in the forest.  You can catch completely different fish here than you can in your pond.
+I'll also gladly buy any fish you don't want.
+
+Hope to see you soon~"
+outro = ""

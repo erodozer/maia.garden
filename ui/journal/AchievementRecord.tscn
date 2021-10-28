@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/journal/achievement.png" type="Texture" id=1]
+[ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=2]
+
+[node name="Achievement" type="HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 23.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 135.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+custom_constants/separation = -4
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 135.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Sweet Treats"
+
+[node name="Description" type="Label" parent="VBoxContainer"]
+margin_top = 10.0
+margin_right = 135.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Tried one of every cafe item"
+
+[node name="Count" type="Label" parent="."]
+margin_left = 139.0
+margin_top = 4.0
+margin_right = 160.0
+margin_bottom = 18.0
+text = "0/8"
+align = 2
+
+[node name="Complete" type="TextureRect" parent="."]
+visible = false
+margin_left = 152.0
+margin_right = 164.0
+margin_bottom = 22.0
+texture = ExtResource( 1 )
+stretch_mode = 4

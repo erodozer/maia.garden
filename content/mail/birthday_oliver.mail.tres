@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_oliver"
+sendAt = "1637038800"
+sender = "Oliver"
+message = "Happy birthday Maia! 
+You've survived another revolution around our sun and that's pretty neato if you ask me. I hope you have an incredible day and an even better one next year"
+outro = ""

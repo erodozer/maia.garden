@@ -2,15 +2,10 @@ extends ScrollContainer
 
 const ItemRecord = preload("./ItemRecord.tscn")
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-
 onready var grid = get_node("GridContainer")
 
-func build():
-	if not game_state:
-		return
-		
-	for i in game_state.inventory.data:
+func build():		
+	for i in GameState.inventory.data:
 		if i.amount <= 0:
 			continue
 		var record = ItemRecord.instance()

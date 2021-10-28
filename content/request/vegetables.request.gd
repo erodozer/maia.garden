@@ -22,7 +22,7 @@ func get_requirements():
 	
 func can_accept():
 	# must complete yuuki's first quest before this unlocks
-	return game_state.flag("request:catgrass:completed")
+	return GameState.flag("request:catgrass:completed")
 
 func accept():
 	.accept()
@@ -40,13 +40,13 @@ func accept():
 		
 	]), "completed")
 	var item = Content.get_item_reference("seed_pumpkin")
-	game_state.inventory.insert_item({
+	GameState.inventory.insert_item({
 		"id": item.id,
 		"ref": item,
 		"amount": 5
 	})
 	item = Content.get_item_reference("seed_tomato")
-	game_state.inventory.insert_item({
+	GameState.inventory.insert_item({
 		"id": item.id,
 		"ref": item,
 		"amount": 5
@@ -61,4 +61,4 @@ func complete():
 		"Thank you Maia!",
 		"[You can now buy vegetables]"
 	]), "completed")
-	game_state.toggle("unlocked_vegetables")
+	GameState.toggle("unlocked_vegetables")

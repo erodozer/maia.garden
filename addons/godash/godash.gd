@@ -36,18 +36,10 @@ static func rand_chance(collection: Dictionary, rand = null):
 	"""
 	Select a random key from a dictionary based on percentage chances
 	defined for each key.
-	
-	Can return null if chance does not fulfill any of the values
-	
-	the sum of weights must equal 1.0
 	"""
 	
 	var keys = []
 	var values = []
-	
-	if rand == null:
-		rand = RandomNumberGenerator.new()
-		rand.randomize()
 	
 	var total_weight = 0
 	for key in collection.keys():
@@ -56,14 +48,14 @@ static func rand_chance(collection: Dictionary, rand = null):
 		keys.append(key)
 		values.append(total_weight)
 		
-	var chance = rand.randf()
-	var prev_value = 0
+	var chance = (randf() if not rand else rand.randf()) * total_weight
+	
+	var total = 0
 	for idx in range(len(values)):
-		var value = values[idx]
-		if chance >= prev_value and chance <= value:
+		total += values[idx]
+		if total >= chance:
 			return keys[idx]
-		prev_value = value
-	return null
+	return keys[-1]
 
 static func extend(d1: Dictionary, d2: Dictionary) -> Dictionary:
 	"""

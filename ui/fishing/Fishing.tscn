@@ -104,6 +104,8 @@ custom_colors/font_color_shadow = Color( 0.337255, 0.25098, 0.392157, 1 )
 text = "New Record"
 align = 1
 
-[node name="DirectionTimer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

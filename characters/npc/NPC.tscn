@@ -30,7 +30,6 @@ script = ExtResource( 2 )
 [node name="Talk" type="Sprite" parent="."]
 position = Vector2( 0, -5 )
 texture = ExtResource( 1 )
-offset = Vector2( 0, -1.03461 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Talk"]
 autoplay = "float"

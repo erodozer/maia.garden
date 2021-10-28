@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tazzle.png-e657fb2c8cbb78ae03f5a38215502a21.stex"
+path="res://.import/chie.png-e80651ad419ac1d70c3a7e4dab3c377a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/river/tazzle/tazzle.png"
-dest_files=[ "res://.import/tazzle.png-e657fb2c8cbb78ae03f5a38215502a21.stex" ]
+source_file="res://characters/chie/chie.png"
+dest_files=[ "res://.import/chie.png-e80651ad419ac1d70c3a7e4dab3c377a.stex" ]
 
 [params]
 

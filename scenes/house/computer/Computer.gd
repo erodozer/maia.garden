@@ -1,7 +1,5 @@
 extends StaticBody2D
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-
 onready var choices = get_node("CanvasLayer/Choices")
 onready var karaoke = get_node("CanvasLayer/Karaoke")
 onready var dialogue = get_node("CanvasLayer/Dialogue")
@@ -12,20 +10,16 @@ func hint():
 	return "Stream"
 
 func interact():
-	# do not stream if already have streamed
-	if not game_state:
-		return
-		
-	if game_state.has_streamed:
+	# do not stream if already have streamed		
+	if GameState.has_streamed:
 		yield(dialogue.open([
-			"I've already streamed today"
+			"I've already streamed today",
 		]), "completed")
 		return
 	
-	if game_state.stamina < 25:
+	if GameState.stamina < 25:
 		yield(dialogue.open([
 			"I don't have the energy...",
-			"Streaming requires at least 25 stamina",
 		]), "completed")
 		return
 	
@@ -34,16 +28,19 @@ func interact():
 	if idx == -1:
 		return
 	if idx == 0:
-		if game_state:
-			game_state.konpeto += int(lerp(50, 80, randf()))
-			game_state.stamina -= 25
-			game_state.has_streamed = true
+		GameState.konpeto += int(lerp(50, 80, randf()))
+		GameState.stamina -= 25
+		GameState.has_streamed = true
+		GameState.emit_signal("stat", "streamed", {
+			"type": "chat"
+		})
 		return
 	
 	# start karaoke
 	var earnings = yield(karaoke.play(), "completed")
-	if game_state:
-		game_state.konpeto += earnings
-		game_state.stamina -= 40
-		game_state.has_streamed = true
-	
+	GameState.konpeto += earnings
+	GameState.stamina -= 40
+	GameState.has_streamed = true
+	GameState.emit_signal("stat", "streamed", {
+		"type": "karaoke"
+	})

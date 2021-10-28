@@ -1,7 +1,5 @@
 extends Control
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-
 onready var tween = get_node("Tween")
 onready var requirements = get_node("VBoxContainer/Panel/Requirements")
 onready var submit_button = get_node("VBoxContainer/Buttons/Submit")

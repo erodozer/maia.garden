@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "yuuki_introduction"
+sendAt = "introduce.yuuki"
+sender = "Yuuki"
+message = "Hi Maia!
+I hear you've been working hard around your garden lately.  Well lucky for you I've opened up a new Cafe in the forest.
+
+If you ever need a boost of energy or a place to relax you should come visit!"
+outro = ""

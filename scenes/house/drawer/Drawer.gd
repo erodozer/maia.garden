@@ -1,7 +1,5 @@
 extends StaticBody2D
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-
 const Outfits = [
 	"default",
 	"hat",
@@ -18,7 +16,7 @@ func interact():
 	
 	for outfit in Outfits:
 		var unlock_key = "outfit.%s" % outfit
-		if unlock_key in game_state.flags and game_state.flags[unlock_key]:
+		if unlock_key in GameState.flags and GameState.flags[unlock_key]:
 			outfits.add_item(
 				outfit.capitalize(),
 				load("res://characters/maia/outfits/%s/icon.tres" % outfit)
@@ -36,14 +34,13 @@ func interact():
 	outfits.grab_focus()
 	outfits.grab_click_focus()
 	var selected = yield(outfits, "item_activated")
-	if game_state:
-		match selected:
-			0:
-				game_state.outfit = "default"
-			1:
-				game_state.outfit = "hat"
-			2:
-				game_state.outfit = "tiny"
+	match selected:
+		0:
+			GameState.outfit = "default"
+		1:
+			GameState.outfit = "hat"
+		2:
+			GameState.outfit = "tiny"
 	tween.interpolate_property(ui, "rect_position:y", 75, 200, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")

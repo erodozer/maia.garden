@@ -37,7 +37,7 @@ func complete():
 	]), "completed")
 
 func can_talk_to_clover():
-	return not game_state.flag("unlocked_catgrass" % key())
+	return not GameState.flag("unlocked_catgrass" % key())
 
 func talk_to_clover():
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
@@ -52,9 +52,9 @@ func talk_to_clover():
 	]), "completed")
 	
 	var catgrass = Content.get_item_reference("seed_catgrass")
-	game_state.inventory.insert_item({
+	GameState.inventory.insert_item({
 		"id": catgrass.id,
 		"ref": catgrass,
 		"amount": 5
 	})
-	game_state.toggle_flag("unlocked_catgrass")  # allow purchasing catgrass
+	GameState.toggle_flag("unlocked_catgrass")  # allow purchasing catgrass

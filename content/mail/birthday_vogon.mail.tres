@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_vogon"
+sendAt = "1637038800"
+sender = "Vogon"
+message = "A sweet Happy Birfday to the sweetest little fairy!
+Thanks for a whole year of streams and then a whole year of birthdays!
+The Garden wishes you the absolute best on your special day!"
+outro = "Vogon out"

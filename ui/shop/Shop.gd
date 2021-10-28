@@ -5,8 +5,6 @@ const button = preload("./ItemButton.tscn")
 signal exchange(item, value)
 signal end
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-
 onready var items = get_node("PanelContainer/MarginContainer/ScrollContainer/Items")
 onready var tween = get_node("Tween")
 onready var description = get_node("Description/MarginContainer/Label")
@@ -18,35 +16,24 @@ func _ready():
 	set_process_input(false)
 	
 func exchange(item, value):
-	if not game_state:
-		return
-		
 	# purchase an item
-	if value < 0:
-		if game_state.konpeto + value < 0:
-			return
-			
-		if item.type == "cafe":
-			# cafe items restore stamina instead of going into the inventory
-			game_state.stamina += item.stamina
-		else:
-			game_state.insert_item({
-				"id": item.id,
-				"ref": item,
-				"amount": 1,
-			})
-	# sell an item from inventory
+	if GameState.konpeto - value < 0:
+		return
+	
+	GameState.konpeto -= value
+	GameState.emit_signal("stat", "shop.purchase", {
+		"item": item,
+	})
+		
+	if item.type == "cafe":
+		# cafe items restore stamina instead of going into the inventory
+		GameState.stamina += item.stamina
 	else:
-		var sold = game_state.insert_item({
+		GameState.inventory.insert_item({
 			"id": item.id,
 			"ref": item,
-			"amount": -1,
+			"amount": 1,
 		})
-		
-		if not sold:
-			return
-	
-	game_state.konpeto += value
 	
 	emit_signal("exchange", item, value)
 	

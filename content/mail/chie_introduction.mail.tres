@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "chie_introduction"
+sendAt = "introduce.chie"
+sender = "Chie"
+message = "Daily Fortune Telling
+---
+Good Luck!
+
+The spirits are in your favor today, your radiant flowers are sure to yield lots of konpeto.
+
+If you'd like to receive another fortune for tomorrow, come over to the shrine!"
+outro = ""

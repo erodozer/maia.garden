@@ -2,8 +2,6 @@ extends Node2D
 
 const Mail = []
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-
 onready var tween = get_node("Tween") as Tween
 onready var gui = get_node("CanvasLayer/Mailbox") as Control
 onready var inbox = get_node("CanvasLayer/Mailbox/Inbox/Container/MarginContainer/ScrollContainer/ItemList") as ItemList
@@ -19,23 +17,17 @@ var open_letter = null
 func _ready():
 	set_process_input(false)
 	
-	if not game_state:
-		return
-		
 	show_bubble()
 		
 func show_bubble():
 	var new_messages = false
-	for m in game_state.inbox.values():
+	for m in GameState.mail.inbox.values():
 		if m.unread:
 			new_messages = true
 	bubble.visible = new_messages
 
 func interact():
-	if not game_state:
-		return
-		
-	for m in game_state.inbox.values():
+	for m in GameState.mail.inbox.values():
 		var date = OS.get_datetime_from_unix_time(m.delivered)
 		var idx = inbox.get_item_count()
 		inbox.add_item(
@@ -96,7 +88,7 @@ func _on_ItemList_item_activated(index):
 		]
 	)
 	var text = letter.get_node("RichTextLabel")
-	text.bbcode_text = "%s\n----\n%s" % [open_letter.ref.message, open_letter.ref.outro]
+	text.bbcode_text = "%s\n----\n%s" % [open_letter.ref.message, open_letter.ref.outro if open_letter.ref.outro else open_letter.ref.sender]
 	text.scroll_to_line(0)
 	tween.stop_all()
 	tween.interpolate_property(letter, "rect_position", Vector2(25, 170), Vector2(25, 30), .2)

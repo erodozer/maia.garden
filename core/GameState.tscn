@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://core/GameState.gd" type="Script" id=1]
+[ext_resource path="res://core/maildaemon.gd" type="Script" id=2]
+[ext_resource path="res://core/fishing.gd" type="Script" id=3]
+[ext_resource path="res://core/calendar.gd" type="Script" id=4]
+[ext_resource path="res://core/inventory.gd" type="Script" id=5]
+[ext_resource path="res://core/garden.gd" type="Script" id=6]
+
+[node name="GameState" type="Node" groups=[
+"game_state",
+]]
+script = ExtResource( 1 )
+
+[node name="Calendar" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Garden" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="Mail" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="Fishing" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="Achievements" type="Node" parent="."]
+
+[node name="Stats" type="Node" parent="."]
+
+[node name="Requests" type="Node" parent="."]
+
+[connection signal="stat" from="." to="Calendar" method="_on_stat"]
+[connection signal="advance" from="Calendar" to="Garden" method="_on_calendar_advance"]
+[connection signal="advance" from="Calendar" to="Mail" method="_on_calendar_advance"]

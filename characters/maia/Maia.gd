@@ -5,8 +5,6 @@ const MOVEMENT_SPEED = 1
 export var sidescrolling_mode = false
 export var fishing = false setget toggle_fishing
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
-
 onready var sprite_container = get_node("Sprite")
 onready var walk_sprite = get_node("Sprite/Walking")
 onready var stand_sprite = get_node("Sprite/Stand")
@@ -22,9 +20,8 @@ signal interact_end
 
 func _ready():
 	set_physics_process(true)
-	if game_state:
-		change_outfit(game_state.outfit)
-		game_state.connect("change_outfit", self, "change_outfit")
+	change_outfit(GameState.outfit)
+	GameState.connect("change_outfit", self, "change_outfit")
 	
 func pause():
 	set_physics_process(false)

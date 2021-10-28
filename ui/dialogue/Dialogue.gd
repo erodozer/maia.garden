@@ -34,8 +34,8 @@ func open(lines, choices = []):
 		yield(tween, "tween_all_completed")
 		yield(self, "next")
 		
-	var selected = -1
-	if len(choices) > 0:
+	var selected = null if len(choices) == 0 else choices.front()
+	if len(choices) > 1:
 		var group = ButtonGroup.new()
 		for c in choices:
 			var b = Button.new()
@@ -51,7 +51,7 @@ func open(lines, choices = []):
 		first_choice.pressed = true
 		first_choice.grab_focus()
 		yield(self, "next")
-		selected = group.get_buttons().find(group.get_pressed_button())
+		selected = choices[group.get_buttons().find(group.get_pressed_button())]
 		
 		for c in choice_buttons.get_children():
 			c.queue_free()

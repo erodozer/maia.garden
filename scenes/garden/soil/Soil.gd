@@ -2,7 +2,6 @@ extends Node2D
 
 const Plant = preload("./Plant.tscn")
 
-onready var game_state = get_tree().get_nodes_in_group("game_state").front()
 onready var maia = get_tree().get_nodes_in_group("player").front()
 
 onready var soil = get_node("TileMap")
@@ -19,8 +18,8 @@ func _ready():
 		p.cell = c
 		p.global_position = xy
 		plants.add_child(p)
-		if c in game_state.garden:
-			p.plant = game_state.garden[c]
+		if c in GameState.garden.plots:
+			p.plant = GameState.garden.plots[c]
 		plots.append(p)
 		
 	if maia:

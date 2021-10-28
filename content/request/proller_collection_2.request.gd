@@ -27,7 +27,7 @@ func prompt():
 	return "Proller wants to add the following to their collection"
 	
 func can_accept():
-	return game_state.flag("request:proller_collection_1:complete")
+	return GameState.flag("request:proller_collection_1:complete")
 
 func accept():
 	.accept()

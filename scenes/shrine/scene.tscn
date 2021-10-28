@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/Building.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/shrine/background.png" type="Texture" id=2]
-[ext_resource path="res://scenes/shrine/chie/Chie.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/chie/Chie.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 138.353, 10 )
@@ -39,3 +39,4 @@ position = Vector2( 68, 45 )
 
 [node name="Chie" parent="." index="5" instance=ExtResource( 3 )]
 position = Vector2( -61, 34 )
+scale = Vector2( 2, 2 )

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_rakknir"
+sendAt = "1637038800"
+sender = "Rakknir"
+message = "It's already that time again.
+This is the second of your birthdays we get to celebrate together, I'm really happy that we got to and I hope we get to celebrate many many more together.
+
+Happy birthday Maia hope you have an amazing day."
+outro = "Rakknir\\nPs. Could you refill the mods water bowl? it's been empty for the past few months"
