@@ -1,7 +1,5 @@
 extends Node
 
-onready var requests_ui = get_tree().get_nodes_in_group("requests").front()
-
 var accepted setget ,is_accepted
 var completed setget ,is_completed
 
@@ -67,6 +65,7 @@ func complete():
 	})
 
 func show_requirements():
+	var requests_ui = get_tree().get_nodes_in_group("requests").front()
 	var submitted = yield(requests_ui.open(self), "completed")
 	
 	if submitted:

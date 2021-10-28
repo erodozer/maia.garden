@@ -11,12 +11,23 @@ float val(vec3 color) {
 	return max(max(color.r, color.g), color.b);
 }
 
+float lum(vec4 color) {
+	return dot(color.rgb, vec3(0.2126,0.7152,0.0722));
+}
+
 void fragment() {
-	vec4 sample = texture(TEXTURE, UV.xy);
-	if (val(sample.rgb) < transition) {
-		COLOR = vec4(0,0,0,0);
-	} else {
+	// vec4 sample = texture(TEXTURE, UV.xy);
+	//if (val(sample.rgb) < transition) {
+	//	COLOR = vec4(0,0,0,0);
+	//} else {
+	//	COLOR = clear_color;
+	//}
+	
+	vec4 sample = texture(SCREEN_TEXTURE, SCREEN_UV.xy);
+	if (lum(sample) <= transition) {
 		COLOR = clear_color;
+	} else {
+		COLOR = sample;
 	}
 }"
 

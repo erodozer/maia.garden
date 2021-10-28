@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/cafe/scene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/cafe/background.png" type="Texture" id=2]
 [ext_resource path="res://characters/yuuki/Yuuki.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Building.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/shop/Shop.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 81 )
@@ -37,6 +38,9 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Bounds" index="3"]
 position = Vector2( -4, 84 )
 shape = SubResource( 3 )
+
+[node name="Shop" parent="CanvasLayer" index="3" instance=ExtResource( 5 )]
+visible = false
 
 [node name="Yuuki" parent="." index="4" instance=ExtResource( 3 )]
 position = Vector2( -70, 48 )

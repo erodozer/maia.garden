@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/garden/Garden.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/garden/mailbox/Mailbox.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/garden/soil/Soil.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/garden/tools/Tools.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/journal/journal.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/garden/HUD.gd" type="Script" id=11]
 [ext_resource path="res://ui/konpeto/Konpeto.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ui/actions/ActionLabel.tscn" type="PackedScene" id=14]
 [ext_resource path="res://ui/stamina/Stamina.tscn" type="PackedScene" id=15]
@@ -76,9 +77,18 @@ position = Vector2( 0, 192 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="ActionLabel" parent="CanvasLayer" instance=ExtResource( 14 )]
+[node name="HUD" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="ActionLabel" parent="CanvasLayer/HUD" instance=ExtResource( 14 )]
+margin_right = 56.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -89,16 +99,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Konpeto" parent="CanvasLayer/VBoxContainer" instance=ExtResource( 13 )]
+[node name="Konpeto" parent="CanvasLayer/HUD/VBoxContainer" instance=ExtResource( 13 )]
 margin_right = 64.0
 custom_styles/panel = SubResource( 2 )
 
-[node name="Stamina" parent="CanvasLayer/VBoxContainer" instance=ExtResource( 15 )]
+[node name="Stamina" parent="CanvasLayer/HUD/VBoxContainer" instance=ExtResource( 15 )]
 margin_top = 13.0
 margin_right = 64.0
 margin_bottom = 29.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -109,7 +119,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/HBoxContainer"]
 margin_left = 170.0
 margin_right = 200.0
 margin_bottom = 30.0
@@ -118,18 +128,20 @@ custom_constants/margin_top = 2
 custom_constants/margin_left = 2
 custom_constants/margin_bottom = 2
 
-[node name="Seeds" parent="CanvasLayer/HBoxContainer/MarginContainer" instance=ExtResource( 9 )]
+[node name="Seeds" parent="CanvasLayer/HUD/HBoxContainer/MarginContainer" instance=ExtResource( 9 )]
 
 [node name="Journal" parent="CanvasLayer" instance=ExtResource( 10 )]
 
-[connection signal="can_interact" from="Maia" to="CanvasLayer/ActionLabel" method="_on_Maia_can_interact"]
+[connection signal="can_interact" from="Maia" to="CanvasLayer/HUD/ActionLabel" method="_on_Maia_can_interact"]
 [connection signal="interact_end" from="Maia" to="." method="_on_Maia_interact_end"]
-[connection signal="interact_end" from="Maia" to="CanvasLayer/ActionLabel" method="_on_Maia_interact_end"]
-[connection signal="interact_end" from="Maia" to="CanvasLayer/HBoxContainer/MarginContainer/Seeds" method="resume"]
+[connection signal="interact_end" from="Maia" to="CanvasLayer/HUD/ActionLabel" method="_on_Maia_interact_end"]
+[connection signal="interact_end" from="Maia" to="CanvasLayer/HUD/HBoxContainer/MarginContainer/Seeds" method="resume"]
+[connection signal="interact_end" from="Maia" to="CanvasLayer/HUD" method="_on_Maia_interact_end"]
 [connection signal="interact_start" from="Maia" to="." method="_on_Maia_interact_start"]
-[connection signal="interact_start" from="Maia" to="CanvasLayer/ActionLabel" method="_on_Maia_interact_start"]
-[connection signal="interact_start" from="Maia" to="CanvasLayer/HBoxContainer/MarginContainer/Seeds" method="pause"]
+[connection signal="interact_start" from="Maia" to="CanvasLayer/HUD/ActionLabel" method="_on_Maia_interact_start"]
+[connection signal="interact_start" from="Maia" to="CanvasLayer/HUD/HBoxContainer/MarginContainer/Seeds" method="pause"]
+[connection signal="interact_start" from="Maia" to="CanvasLayer/HUD" method="_on_Maia_interact_start"]
 [connection signal="end" from="CanvasLayer/Journal" to="Maia" method="resume"]
-[connection signal="end" from="CanvasLayer/Journal" to="CanvasLayer/HBoxContainer/MarginContainer/Seeds" method="resume"]
+[connection signal="end" from="CanvasLayer/Journal" to="CanvasLayer/HUD/HBoxContainer/MarginContainer/Seeds" method="resume"]
 [connection signal="opened" from="CanvasLayer/Journal" to="Maia" method="pause"]
-[connection signal="opened" from="CanvasLayer/Journal" to="CanvasLayer/HBoxContainer/MarginContainer/Seeds" method="pause"]
+[connection signal="opened" from="CanvasLayer/Journal" to="CanvasLayer/HUD/HBoxContainer/MarginContainer/Seeds" method="pause"]

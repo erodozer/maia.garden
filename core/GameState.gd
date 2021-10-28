@@ -11,8 +11,8 @@ onready var calendar = get_node("Calendar")
 onready var fishing = get_node("Fishing")
 
 var requests = []
-var achievements = []
-var stats = []
+var achievements = {}
+var stats = {}
 
 var outfit = "default" setget set_outfit
 
@@ -55,13 +55,13 @@ func _ready():
 		var achievement = a.new()
 		connect("stat", achievement, "handle_stat")
 		get_node("Achievements").add_child(achievement)
-		achievements.append(achievement)
+		achievements[achievement.id] = achievement
 	
 	for a in godash.load_dir("res://content/stats", "stat.gd", true).values():
 		var stat = a.new()
 		connect("stat", stat, "_on_stat")
 		get_node("Stats").add_child(stat)
-		stats.append(stat)
+		stats[stat.id] = stat
 	
 	mail.deliver_mail(calendar.day)
 
@@ -70,6 +70,9 @@ func flag(f):
 
 func toggle_flag(f):
 	flags[f] = true
+	emit_signal("stat", "flag", {
+		"id": f
+	})
 
 func set_outfit(v):
 	outfit = v

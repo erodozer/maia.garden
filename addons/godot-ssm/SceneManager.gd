@@ -49,7 +49,7 @@ func change_scene(next_scene, params=[]):
 	get_tree().paused = true
 	is_active = true
 	
-	anim.play_backwards("Fade")
+	anim.play("Fade")
 	yield(anim, "animation_finished")
 	
 	var scene = current_scene
@@ -81,7 +81,7 @@ func change_scene(next_scene, params=[]):
 			yield(state, "completed")
 	emit_signal("setup")
 	
-	anim.play("Fade")
+	anim.play_backwards("Fade")
 	yield(anim, "animation_finished")
 	
 	get_tree().paused = false

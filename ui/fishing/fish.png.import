@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ssubi.png-91b8ffa881a5690c3cedb59a2d286138.stex"
+path="res://.import/fish.png-a79b326aabe59b206ffcced4bf46dfc2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/house/ssubi/ssubi.png"
-dest_files=[ "res://.import/ssubi.png-91b8ffa881a5690c3cedb59a2d286138.stex" ]
+source_file="res://ui/fishing/fish.png"
+dest_files=[ "res://.import/fish.png-a79b326aabe59b206ffcced4bf46dfc2.stex" ]
 
 [params]
 

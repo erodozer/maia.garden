@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/journal/journal.gd" type="Script" id=2]
@@ -8,8 +8,6 @@
 [ext_resource path="res://ui/journal/Fishing.gd" type="Script" id=6]
 [ext_resource path="res://ui/journal/achievement.png" type="Texture" id=7]
 [ext_resource path="res://ui/journal/calendar.png" type="Texture" id=8]
-[ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=9]
-[ext_resource path="res://ui/journal/StatusRecord.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ui/journal/Achievements.gd" type="Script" id=11]
 
 [sub_resource type="StyleBoxFlat" id=3]
@@ -257,6 +255,7 @@ margin_bottom = 95.0
 size_flags_vertical = 3
 
 [node name="Achievements" type="ScrollContainer" parent="Window/View"]
+visible = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 176.0
@@ -267,7 +266,7 @@ script = ExtResource( 11 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/View/Achievements"]
 margin_right = 160.0
-margin_bottom = 125.0
+margin_bottom = 93.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -285,123 +284,24 @@ margin_bottom = 17.0
 [node name="Records" type="VBoxContainer" parent="Window/View/Achievements/VBoxContainer"]
 margin_top = 17.0
 margin_right = 160.0
-margin_bottom = 95.0
+margin_bottom = 17.0
 custom_constants/separation = 0
 
-[node name="TotalKonpeto" parent="Window/View/Achievements/VBoxContainer/Records" instance=ExtResource( 10 )]
-record = "total_konpeto_earned"
-
-[node name="TotalFlowers" type="HBoxContainer" parent="Window/View/Achievements/VBoxContainer/Records"]
-margin_top = 13.0
-margin_right = 160.0
-margin_bottom = 26.0
-
-[node name="Label" type="Label" parent="Window/View/Achievements/VBoxContainer/Records/TotalFlowers"]
-margin_right = 151.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 9 )
-text = "Flowers grown"
-
-[node name="Count" type="Label" parent="Window/View/Achievements/VBoxContainer/Records/TotalFlowers"]
-margin_left = 155.0
-margin_right = 160.0
-margin_bottom = 13.0
-custom_fonts/font = ExtResource( 9 )
-text = "0"
-align = 2
-
-[node name="TotalFish" type="HBoxContainer" parent="Window/View/Achievements/VBoxContainer/Records"]
-margin_top = 26.0
-margin_right = 160.0
-margin_bottom = 39.0
-
-[node name="Label" type="Label" parent="Window/View/Achievements/VBoxContainer/Records/TotalFish"]
-margin_right = 151.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 9 )
-text = "Fish Caught"
-
-[node name="Count" type="Label" parent="Window/View/Achievements/VBoxContainer/Records/TotalFish"]
-margin_left = 155.0
-margin_right = 160.0
-margin_bottom = 13.0
-custom_fonts/font = ExtResource( 9 )
-text = "0"
-align = 2
-
-[node name="TimesStreamed" type="HBoxContainer" parent="Window/View/Achievements/VBoxContainer/Records"]
-margin_top = 39.0
-margin_right = 160.0
-margin_bottom = 52.0
-
-[node name="Label" type="Label" parent="Window/View/Achievements/VBoxContainer/Records/TimesStreamed"]
-margin_right = 151.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 9 )
-text = "Times Streamed"
-
-[node name="Count" type="Label" parent="Window/View/Achievements/VBoxContainer/Records/TimesStreamed"]
-margin_left = 155.0
-margin_right = 160.0
-margin_bottom = 13.0
-custom_fonts/font = ExtResource( 9 )
-text = "0"
-align = 2
-
-[node name="Karaoke" type="HBoxContainer" parent="Window/View/Achievements/VBoxContainer/Records"]
-margin_top = 52.0
-margin_right = 160.0
-margin_bottom = 65.0
-
-[node name="Label" type="Label" parent="Window/View/Achievements/VBoxContainer/Records/Karaoke"]
-margin_right = 150.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "Longest Combo"
-
-[node name="Count" type="Label" parent="Window/View/Achievements/VBoxContainer/Records/Karaoke"]
-margin_left = 154.0
-margin_right = 160.0
-margin_bottom = 13.0
-text = "0"
-align = 2
-
-[node name="Ssubi" type="HBoxContainer" parent="Window/View/Achievements/VBoxContainer/Records"]
-margin_top = 65.0
-margin_right = 160.0
-margin_bottom = 78.0
-
-[node name="Label" type="Label" parent="Window/View/Achievements/VBoxContainer/Records/Ssubi"]
-margin_right = 150.0
-margin_bottom = 13.0
-size_flags_horizontal = 3
-text = "Talked to Ssubi"
-
-[node name="Count" type="Label" parent="Window/View/Achievements/VBoxContainer/Records/Ssubi"]
-margin_left = 154.0
-margin_right = 160.0
-margin_bottom = 13.0
-text = "0"
-align = 2
-
 [node name="Label2" type="Label" parent="Window/View/Achievements/VBoxContainer"]
-margin_top = 95.0
+margin_top = 17.0
 margin_right = 160.0
-margin_bottom = 121.0
+margin_bottom = 43.0
 rect_min_size = Vector2( 0, 26 )
 text = "Achievements"
 valign = 2
 
 [node name="HSeparator2" type="HSeparator" parent="Window/View/Achievements/VBoxContainer"]
-margin_top = 121.0
+margin_top = 43.0
 margin_right = 160.0
-margin_bottom = 125.0
+margin_bottom = 47.0
 
 [node name="Achievements" type="VBoxContainer" parent="Window/View/Achievements/VBoxContainer"]
-margin_top = 125.0
+margin_top = 47.0
 margin_right = 160.0
-margin_bottom = 125.0
+margin_bottom = 47.0
 custom_constants/separation = 0

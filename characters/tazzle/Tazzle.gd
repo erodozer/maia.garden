@@ -2,22 +2,27 @@ extends "res://characters/npc/npc.gd"
 
 onready var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 
+func can_sell():
+	var value = 0
+	for f in GameState.inventory.data:
+		if f.ref.type == "fish" and f.amount > 0:
+			var price = f.ref.price
+			if f.id.ends_with(":rare"):
+				price *= 2
+			value += price * f.amount
+
+	return value <= 0
+
 func sell():
 	var value = 0
 	var fish = []
 	for f in GameState.inventory.data:
 		if f.ref.type == "fish" and f.amount > 0:
 			var price = f.ref.price
-			if f.id.ends_with(":big"):
+			if f.id.ends_with(":rare"):
 				price *= 2
 			value += price * f.amount
 			fish.append(f)
-	
-	if value <= 0:
-		yield(dialogue.open([
-			"Looks like you haven't caught anything",
-		]), "completed")
-		return
 	
 	var choice = yield(dialogue.open([
 		"Do you have some fish for me?",
@@ -46,12 +51,9 @@ func hint():
 	return "Talk to Tazzle"
 	
 func interact():
-	yield(dialogue.open([
-		"Hi Maia, good to see you!",
-		"Do you have some fish for me?"
-	]), "completed")
-
-	var choices = ["Sell"]
+	var choices = []
+	if can_sell():
+		choices.append("Sell")
 	if can_talk():
 		choices.push_front("Talk")
 	

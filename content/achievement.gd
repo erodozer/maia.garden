@@ -2,6 +2,11 @@ extends Node
 
 var completed = false
 
+var id setget ,get_id
+
+func get_id():
+	return name.to_lower()
+
 func get_title():
 	return ""
 	

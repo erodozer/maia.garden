@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-onready var fishing = get_node("CanvasLayer/Fishing")
+onready var fishing = get_tree().get_nodes_in_group("fishing").front()
 
 func hint():
 	return "Fish (River)"

@@ -7,13 +7,13 @@ onready var record_list = get_node("VBoxContainer/Records")
 onready var achievement_list = get_node("VBoxContainer/Achievements")
 
 func build():
-	for i in GameState.stats:
+	for i in GameState.stats.values():
 		var row = StatRecord.instance()
 		record_list.add_child(row)
 		row.get_node("Label").text = i.get_title()
 		row.get_node("Count").text = "%s" % i.value()
 			
-	for i in GameState.achievements:
+	for i in GameState.achievements.values():
 		var row = AchievementRecord.instance()
 		achievement_list.add_child(row)
 		row.get_node("VBoxContainer/Title").text = i.get_title()

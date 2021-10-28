@@ -44,12 +44,16 @@ func get_fish(type):
 	return fish
 
 func open(type):
+	# can not fish if you do not have enough stamina
+	if GameState.stamina < 7:
+		return
+	
 	var player = get_tree().get_nodes_in_group("player").front()
 	
 	visible = true
 	if player:
 		player.fishing = true
-	
+	hooked = false
 	# first wait to hook the fish
 	while not hooked:
 		yield(get_tree().create_timer(randf() * 5.0 + 0.5), "timeout")
@@ -86,8 +90,6 @@ func open(type):
 	if not caught:
 		return
 	
-	GameState.stamina -= int(lerp(3, 7, size))
-	
 	fish = {
 		"ref": fish,
 		"size": lerp(fish.min_size, fish.max_size, size),
@@ -97,14 +99,16 @@ func open(type):
 	catch_record.visible = isRecord
 	catch_dialog.bbcode_text = "[center]%s\n%.02fin[/center]" % [fish.ref.name, fish.size]
 	yield(get_tree(), "idle_frame")
-	tween.interpolate_property(catch_anchor, "rect_position:y", 200, 125, .3)
+	tween.interpolate_property(catch_anchor, "rect_position:y", -50, 25, .3, Tween.EASE_OUT)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	yield(get_tree().create_timer(3.0), "timeout")
-	tween.interpolate_property(catch_anchor, "rect_position:y", 125, 200, .3)
+	tween.interpolate_property(catch_anchor, "rect_position:y", 25, -50, .3, Tween.EASE_IN)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	visible = false
+	
+	GameState.stamina -= int(lerp(3, 7, size))
 	
 func set_direction(v):
 	match v:

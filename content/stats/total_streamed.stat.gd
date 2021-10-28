@@ -8,7 +8,7 @@ func get_title():
 func value():
 	return total
 	
-func _on_stat(id, params):
+func _on_stat(id, _params):
 	if id != "streamed":
 		return
 		
