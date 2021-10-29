@@ -18,24 +18,27 @@ func _ready():
 func exchange(item, value):
 	# purchase an item
 	if GameState.konpeto - value < 0:
-		return
+		return false
+	
+	if item.type == "cafe":
+		# cafe items restore stamina instead of going into the inventory
+		GameState.stamina += item.stamina
+	else:
+		var added = GameState.inventory.insert_item({
+			"id": item.id,
+			"ref": item,
+			"amount": 1,
+		})
+		if not added:
+			return false
 	
 	GameState.konpeto -= value
 	GameState.emit_signal("stat", "shop.purchase", {
 		"item": item,
 	})
-		
-	if item.type == "cafe":
-		# cafe items restore stamina instead of going into the inventory
-		GameState.stamina += item.stamina
-	else:
-		GameState.inventory.insert_item({
-			"id": item.id,
-			"ref": item,
-			"amount": 1,
-		})
 	
 	emit_signal("exchange", item, value)
+	return true
 	
 func open(item_list):
 	group = ButtonGroup.new()

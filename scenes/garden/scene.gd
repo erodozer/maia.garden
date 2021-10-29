@@ -5,8 +5,6 @@ Manages interactive tilemap state
 
 """
 
-const PlantScene = preload("./soil/Plant.tscn")
-
 onready var player = get_node("Maia")
 
 func _setup(params):
@@ -18,12 +16,6 @@ func _setup(params):
 			player.position = Vector2(0, 192)
 		_:
 			player.position = Vector2(0, 0)
-
-func _input(event):
-	if event.is_action_pressed("ui_select"):
-		set_process_input(false)
-		yield(get_node("CanvasLayer/Journal").open(), "completed")
-		set_process_input(true)
 
 func _on_Maia_interact_start():
 	set_process_input(false)

@@ -7,3 +7,4 @@ export var name: String
 export(int, 1, 999) var price = 5
 export(int, 1, 30) var mature = 2
 export var description: String
+export var stack = 1

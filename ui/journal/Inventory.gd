@@ -12,7 +12,10 @@ func build():
 		grid.add_child(record)
 		record.get_node("Details/Icon").texture = i.ref.icon
 		record.get_node("Details/ItemName").text = i.ref.name
-		record.get_node("Details/Count").text = "%d" % i.amount
+		if i.amount > 1:
+			record.get_node("Details/Count").text = "%d" % i.amount
+		else:
+			record.get_node("Details/Count").visible = false
 
 func destroy():
 	for i in grid.get_children():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/journal/journal.gd" type="Script" id=2]
@@ -8,9 +8,10 @@
 [ext_resource path="res://ui/journal/Fishing.gd" type="Script" id=6]
 [ext_resource path="res://ui/journal/achievement.png" type="Texture" id=7]
 [ext_resource path="res://ui/journal/calendar.png" type="Texture" id=8]
+[ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=9]
 [ext_resource path="res://ui/journal/Achievements.gd" type="Script" id=11]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
@@ -25,7 +26,7 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
@@ -40,7 +41,7 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
@@ -95,9 +96,9 @@ custom_constants/separation = 1
 margin_right = 20.0
 margin_bottom = 21.0
 focus_mode = 0
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 toggle_mode = true
 shortcut_in_tooltip = false
 pressed = true
@@ -108,9 +109,9 @@ margin_left = 21.0
 margin_right = 41.0
 margin_bottom = 21.0
 focus_mode = 0
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 toggle_mode = true
 shortcut_in_tooltip = false
 icon = ExtResource( 3 )
@@ -120,9 +121,9 @@ margin_left = 42.0
 margin_right = 62.0
 margin_bottom = 21.0
 focus_mode = 0
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 toggle_mode = true
 shortcut_in_tooltip = false
 icon = ExtResource( 7 )
@@ -230,30 +231,6 @@ margin_top = 47.0
 margin_right = 160.0
 margin_bottom = 60.0
 
-[node name="Stats" type="ScrollContainer" parent="Window/View"]
-visible = false
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 176.0
-margin_bottom = 99.0
-follow_focus = true
-
-[node name="Content" type="Control" parent="Window/View/Stats"]
-margin_bottom = 95.0
-size_flags_vertical = 3
-
-[node name="Requests" type="ScrollContainer" parent="Window/View"]
-visible = false
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 176.0
-margin_bottom = 99.0
-follow_focus = true
-
-[node name="Content" type="Control" parent="Window/View/Requests"]
-margin_bottom = 95.0
-size_flags_vertical = 3
-
 [node name="Achievements" type="ScrollContainer" parent="Window/View"]
 visible = false
 margin_left = 4.0
@@ -305,3 +282,26 @@ margin_top = 47.0
 margin_right = 160.0
 margin_bottom = 47.0
 custom_constants/separation = 0
+
+[node name="InventoryCounter" type="Panel" parent="."]
+margin_left = 157.0
+margin_top = 133.0
+margin_right = 190.0
+margin_bottom = 147.0
+rect_clip_content = true
+size_flags_horizontal = 10
+
+[node name="Label" type="Label" parent="InventoryCounter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+margin_right = -4.0
+margin_bottom = -1.0
+rect_min_size = Vector2( 25, 8 )
+custom_fonts/font = ExtResource( 9 )
+text = "50/50"
+align = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

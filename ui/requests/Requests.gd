@@ -11,14 +11,13 @@ func _ready():
 	set_process_input(false)
 
 func open(request):
+	visible = true
 	# build the hint
 	var text = "[center]%s[/center]" % request.prompt()
 	for i in request.get_requirements():
 		text += "\n[b]%s[/b]" % i.hint
 	text += "\n"
 	requirements.bbcode_text = text
-	requirements.visible = true
-	requirements.rect_position.y = -999
 	
 	# test the requirements
 	var has_items = request.requirements_met()
@@ -37,9 +36,8 @@ func open(request):
 	tween.interpolate_property(self, "rect_position:y", 0, -150, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")
-	requirements.visible = false
-	
-	return submit
+	visible = false
+	return has_items and submit
 		
 func _input(event):
 	if event.is_action_pressed("ui_accept"):

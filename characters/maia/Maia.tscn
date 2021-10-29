@@ -1,20 +1,29 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://characters/maia/outfits/default/standing.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://characters/maia/outfits/default/walking.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://characters/maia/fishing_rod/fishing_rod.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://ui/stamina/Stamina.tscn" type="PackedScene" id=4]
 [ext_resource path="res://characters/maia/Maia.gd" type="Script" id=5]
 [ext_resource path="res://characters/maia/bubble/bubble.png" type="Texture" id=6]
 [ext_resource path="res://characters/maia/bubble/Bubble.gd" type="Script" id=7]
+[ext_resource path="res://ui/journal/journal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ui/konpeto/Konpeto.tscn" type="PackedScene" id=9]
+[ext_resource path="res://characters/maia/HUD.gd" type="Script" id=10]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 10.0773
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.0
+height = 2.0
 
 [sub_resource type="RayShape2D" id=2]
 length = 16.0
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 5.0
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
 
 [node name="Maia" type="KinematicBody2D" groups=[
 "player",
@@ -48,13 +57,15 @@ playing = true
 visible = false
 position = Vector2( -9, 1 )
 frames = ExtResource( 3 )
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.148895, 0.511157 )
+position = Vector2( 0, 3 )
 shape = SubResource( 1 )
 
 [node name="Interact" type="Area2D" parent="."]
+position = Vector2( 0, 3 )
 input_pickable = false
 collision_layer = 0
 collision_mask = 4
@@ -74,8 +85,35 @@ script = ExtResource( 7 )
 
 [node name="Tween" type="Tween" parent="Bubble"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="HUD" type="HBoxContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_bottom = 16.0
+custom_constants/separation = -2
+alignment = 2
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stamina" parent="CanvasLayer/HUD" instance=ExtResource( 4 )]
+margin_left = 122.0
+margin_right = 162.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="Konpeto" parent="CanvasLayer/HUD" instance=ExtResource( 9 )]
+margin_left = 160.0
+margin_right = 200.0
+custom_styles/panel = SubResource( 5 )
+
+[node name="Journal" parent="CanvasLayer" instance=ExtResource( 8 )]
+
 [connection signal="can_interact" from="." to="Bubble" method="_on_Maia_can_interact"]
 [connection signal="interact_end" from="." to="Bubble" method="_on_Maia_interact_end"]
+[connection signal="interact_end" from="." to="CanvasLayer/HUD" method="_on_Maia_interact_end"]
 [connection signal="interact_start" from="." to="Bubble" method="_on_Maia_interact_start"]
+[connection signal="interact_start" from="." to="CanvasLayer/HUD" method="_on_Maia_interact_start"]
 [connection signal="body_entered" from="Interact" to="." method="_on_Interact_body_entered"]
 [connection signal="body_exited" from="Interact" to="." method="_on_Interact_body_exited"]

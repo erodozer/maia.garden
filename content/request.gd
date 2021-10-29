@@ -4,7 +4,7 @@ var accepted setget ,is_accepted
 var completed setget ,is_completed
 
 func get_id():
-	return null
+	return filename.get_basename().to_lower()
 
 func get_requirements():
 	return []
@@ -22,7 +22,9 @@ func prompt():
 		"yuuki":
 			return "Yuuki is in need of supplies for the Catfe"
 		"proller":
-			return "Proller wants to add the following to their collection"
+			return "Proller wants to add the following to his collection"
+		"tazzle":
+			return "Tazzle wants to cook up some fish"
 	return ""
 
 func is_completed():
@@ -74,7 +76,7 @@ func show_requirements():
 func get_matching_items(requirement):
 	var select = []
 	if "type" in requirement:
-		for i in Content.ITEMS:
+		for i in Content.Items:
 			if i.type != requirement.type:
 				continue
 
@@ -82,8 +84,8 @@ func get_matching_items(requirement):
 				if "location" in requirement and i.location != requirement.location:
 					continue
 				
-				if "big" in requirement and requirement.big:
-					select.append("%s:big" % i.id)
+				if "rare" in requirement and requirement.big:
+					select.append("%s:rare" % i.id)
 					continue
 			
 			select.append(i.id)

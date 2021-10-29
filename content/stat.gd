@@ -10,3 +10,9 @@ func get_title():
 
 func value():
 	return 0
+
+func visible():
+	return true
+
+func get_weight():
+	return 0

@@ -3,9 +3,6 @@ extends "../request.gd"
 func get_owner():
 	return "clover"
 
-func get_id():
-	return "vegetables"
-
 func get_requirements():
 	return [
 		{

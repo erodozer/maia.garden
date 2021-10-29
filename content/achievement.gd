@@ -5,7 +5,7 @@ var completed = false
 var id setget ,get_id
 
 func get_id():
-	return name.to_lower()
+	return filename.get_basename().to_lower()
 
 func get_title():
 	return ""
@@ -19,6 +19,7 @@ func update_progress():
 		completed = true
 		# no need to listen to stats anymore
 		GameState.disconnect("stat", self, "handle_stat")
+		GameState.toggle_flag("achievement:%d:completed" % get_id())
 		GameState.emit_signal("stat", "achievement.complete", {
 			"achievement": self,
 			"timestamp": OS.get_unix_time(),

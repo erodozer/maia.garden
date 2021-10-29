@@ -14,7 +14,6 @@ onready var tween = get_node("Tween")
 
 const REEL_RATE = 20
 
-var hooked = false
 var direction = 0 setget set_direction
 
 const direction_to_input = {
@@ -31,47 +30,77 @@ func _ready():
 	set_process(false)
 	timer.stop()
 	
-func get_fish(type):
-	var selection = {}
-	for f in Content.Items:
-		if f.type == "fish" and f.location == type:
-			selection[f] = f.rarity
-	if len(selection) <= 0:
-		return null
-	
-	# pick fish based on rarity weight
-	var fish = godash.rand_chance(selection)
-	return fish
-
 func open(type):
 	# can not fish if you do not have enough stamina
-	if GameState.stamina < 7:
-		return
-	
 	var player = get_tree().get_nodes_in_group("player").front()
+	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	
+	if GameState.inventory.is_full():
+		yield(dialogue.open([
+			"I can't hold any more fish",
+		]), "completed")
+		return
+		
 	visible = true
 	if player:
 		player.fishing = true
-	hooked = false
-	# first wait to hook the fish
-	while not hooked:
-		yield(get_tree().create_timer(randf() * 5.0 + 0.5), "timeout")
+	
+	var fish = GameState.fishing.get_fish(type)
+	
+	# handle empty fishing
+	if not fish:
+		yield(get_tree().create_timer(randf() * 5.0 + 2.0), "timeout")
+		if player:
+			player.fishing = false
+		if dialogue:
+			yield(dialogue.open([
+				"No fish are biting",
+				"Maybe some other time",
+			]), "completed")
+		return
+	
+	# test if player has enough stamina to catch the fish
+	var attempt = 3
+	while attempt > 0 and fish and not GameState.can_perform_action(fish.stamina):
+		# sample random fish up to 3 times
+		fish = GameState.fishing.get_fish(type)
+		attempt -= 1
+	if attempt == 0 or not fish:
+		yield(get_tree().create_timer(randf() * 5.0 + 2.0), "timeout")
 		Input.start_joy_vibration(0, 0.3, 0.7)
-		player.bubble.visible = true
-		set_process_input(true)
-		var wait = get_tree().create_timer(randf() * 3.0 + 0.5)
-		wait.connect("timeout", self, "emit_signal", ["hook", false])
-		hooked = yield(self, "hook")
-		wait.disconnect("timeout", self, "emit_signal")
-		set_process_input(false)
+		yield(get_tree().create_timer(2.0), "timeout")
 		Input.stop_joy_vibration(0)
-		player.bubble.visible = false
+		if player:
+			player.fishing = false
+		if dialogue:
+			yield(dialogue.open([
+				"The fish was too big",
+			]), "completed")
+		return
 	
-	var fish = get_fish(type)
+	# first wait to hook the fish
+	yield(get_tree().create_timer(randf() * 10.0 + 2.5), "timeout")
+	Input.start_joy_vibration(0, 0.3, 0.7)
+	player.bubble.visible = true
+	set_process_input(true)
+	var wait = get_tree().create_timer(randf() * 3.0 + 0.5)
+	wait.connect("timeout", self, "emit_signal", ["hook", false])
+	var hooked = yield(self, "hook")
+	wait.disconnect("timeout", self, "emit_signal")
+	set_process_input(false)
+	Input.stop_joy_vibration(0)
+	player.bubble.visible = false
 	
-	var size = randf()
-	health.max_value = lerp(fish.health * 0.9, fish.health * 1.2, size) 
+	if not hooked:
+		if player:
+			player.fishing = false
+		if dialogue:
+			yield(dialogue.open([
+				"The fish got away",
+			]), "completed")
+		return
+		
+	health.max_value = lerp(fish.ref.health * 0.9, fish.ref.health * 1.2, fish.size) 
 	health.value = health.max_value * 0.8
 	pick_direction()
 	joystick.visible = true
@@ -90,10 +119,6 @@ func open(type):
 	if not caught:
 		return
 	
-	fish = {
-		"ref": fish,
-		"size": lerp(fish.min_size, fish.max_size, size),
-	}
 	var isRecord = GameState.fishing.catch(fish)
 	
 	catch_record.visible = isRecord
@@ -108,7 +133,7 @@ func open(type):
 	yield(tween, "tween_all_completed")
 	visible = false
 	
-	GameState.stamina -= int(lerp(3, 7, size))
+	GameState.perform_action(fish.stamina)
 	
 func set_direction(v):
 	match v:

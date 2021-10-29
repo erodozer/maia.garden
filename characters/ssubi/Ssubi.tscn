@@ -5,8 +5,9 @@
 [ext_resource path="res://characters/ssubi/Ssubi.gd" type="Script" id=3]
 [ext_resource path="res://ui/ssubi_says/Game.tscn" type="PackedScene" id=4]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 1.41421
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.0
+height = 66.0
 
 [node name="Ssubi" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -18,7 +19,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="Talk" parent="." index="2"]
-position = Vector2( 0, -17 )
+position = Vector2( 0, -24 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
 

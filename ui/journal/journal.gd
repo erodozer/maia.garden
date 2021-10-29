@@ -63,6 +63,8 @@ func open():
 	for v in views.get_children():
 		if v.has_method("build"):
 			v.build()
+	
+	get_node("InventoryCounter/Label").text = "%d/%d" % [len(GameState.inventory.data), GameState.inventory.bag_size]
 			
 	tab_group.get_buttons()[0].pressed = true
 	
@@ -97,3 +99,5 @@ func _on_tab_toggled(button_pressed, view):
 	active_view.visible = true
 	active_view.grab_focus()
 	active_view.grab_click_focus()
+
+	get_node("InventoryCounter").visible = active_view.name == "Inventory"

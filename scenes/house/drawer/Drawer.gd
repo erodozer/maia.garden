@@ -11,7 +11,7 @@ func hint():
 
 func interact():
 	var ui = get_node("CanvasLayer/Anchor")
-	var outfits = get_node("CanvasLayer/Anchor/Control/MarginContainer/ItemList")
+	var outfits = get_node("CanvasLayer/Anchor/Control/ItemList")
 	var tween = get_node("CanvasLayer/Tween")
 	
 	for outfit in Outfits:

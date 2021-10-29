@@ -11,7 +11,7 @@ var watering_stamina_cost = 2
 var seeds = []
 
 func _ready():
-	if GameState.flag("request.proller_1.complete"):
+	if GameState.flag("garden_efficiency"):
 		planting_stamina_cost = 3
 		watering_stamina_cost = 1
 	
@@ -57,11 +57,9 @@ func harvest(plant):
 	})
 	
 func water(plant):
-	if GameState.stamina < watering_stamina_cost:
-		return 
-		
-	GameState.stamina -= 1  # watering costs a little stamina
-	plant.watered = true
+	var watered = GameState.perform_action(watering_stamina_cost)
+	if watered:
+		plant.watered = true
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_focus_next"):

@@ -6,8 +6,15 @@ const AchievementRecord = preload("./AchievementRecord.tscn")
 onready var record_list = get_node("VBoxContainer/Records")
 onready var achievement_list = get_node("VBoxContainer/Achievements")
 
+func sort_by_weight(a, b):
+	return a.get_weight() < b.get_weight()
+
 func build():
-	for i in GameState.stats.values():
+	var stats = GameState.stats.values()
+	stats.sort_custom(self, "sort_by_weight")
+	for i in stats:
+		if not i.visible():
+			continue
 		var row = StatRecord.instance()
 		record_list.add_child(row)
 		row.get_node("Label").text = i.get_title()

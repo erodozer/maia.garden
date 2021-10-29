@@ -11,6 +11,7 @@ onready var stand_sprite = get_node("Sprite/Stand")
 onready var fish_sprite = get_node("Sprite/Fishing")
 onready var interact_collider = get_node("Interact")
 onready var bubble = get_node("Bubble")
+onready var journal = get_node("CanvasLayer/Journal")
 
 var interactable_npc
 
@@ -25,9 +26,11 @@ func _ready():
 	
 func pause():
 	set_physics_process(false)
+	set_process_input(false)
 
 func resume():
 	set_physics_process(true)
+	set_process_input(true)
 	
 func toggle_fishing(v):
 	fishing = v
@@ -42,6 +45,8 @@ func perform_action():
 	if not interactable_npc:
 		return
 		
+	walk_sprite.visible = false
+	stand_sprite.visible = true
 	emit_signal("interact_start")
 	pause()
 	if interactable_npc.has_method("interact"):
@@ -51,13 +56,21 @@ func perform_action():
 	resume()
 	emit_signal("interact_end")
 
-func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		walk_sprite.visible = false
-		stand_sprite.visible = true
+func open_journal():
+	emit_signal("interact_start")
+	pause()
+	yield(journal.open(), "completed")
+	resume()
+	emit_signal("interact_end")
+
+func _input(event):
+	if Input.is_action_pressed("ui_accept"):
 		perform_action()
-		return
 	
+	if Input.is_action_pressed("ui_select"):
+		open_journal()
+		
+func _physics_process(_delta):
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_left"):
 		direction += Vector2.LEFT

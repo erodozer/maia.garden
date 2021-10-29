@@ -6,41 +6,32 @@ var talked_to_clover = false
 func get_owner():
 	return "proller"
 
-func get_id():
-	return "proller_1"
-
 func get_requirements():
 	return [
 		{
-			"hint": "1 River Fish",
+			"hint": "1 Fish",
 			"type": "fish",
-			"category": "river",
 			"amount": 1,
 		},
 		{
-			"hint": "3 Tulips",
-			"id": "tulip",
-			"amount": 4,
+			"hint": "3 Flowers",
+			"id": "flower",
+			"amount": 3,
 		}
 	]
 	
 func can_accept():
 	return true
 
-func accept():
-	.accept()
-	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
-	yield(dialogue.open([
-		"Hey Maia, could you help me?",
-		"My cats deserve something nice",
-		"Will you visit the flower shop",
-		"They should have Catgrass",
-		"Thank you~",
-	]), "completed")
-
 func complete():
 	.complete()
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	yield(dialogue.open([
-		"This is perfect! Thank you Maia~",
+		"[wave amp=20 freq=2]A fine addition...thank you[/wave]",
+		"[wave amp=20 freq=2]In return...a favor[/wave]",
 	]), "completed")
+	yield(get_tree().create_timer(2.0), "timeout")
+	yield(dialogue.open([
+		"[You can now change into Tiny Maia]",
+	]), "completed")
+	GameState.toggle_flag("outfit.tiny")

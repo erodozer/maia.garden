@@ -14,3 +14,4 @@ starting = 5
 flower = ExtResource( 3 )
 description = "Grows a patch of clovers (2 days)"
 unlock = ""
+stack = 30

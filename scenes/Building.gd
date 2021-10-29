@@ -1,7 +1,8 @@
-extends Node2D
+extends Node
 
 signal exit
 
+onready var player = get_tree().get_nodes_in_group("player").front()
 export(String, "home", "forest") var return_location = "forest"
 
 func _input(event):

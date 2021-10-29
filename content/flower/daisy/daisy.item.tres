@@ -11,3 +11,4 @@ name = "Daisy"
 price = 30
 mature = 3
 description = ""
+stack = 1

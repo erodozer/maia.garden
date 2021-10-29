@@ -2,24 +2,11 @@ extends Node
 
 var day = 1634616000 # day as unix timestamp, so we can leverage OS Date features
 
-# private vars
-var total_spent_stamina = 0
-var total_flowers_planted = 0
-var total_fish_caught = 0
-
 const MAIAS_BIRTHDAY = 1637038800
 const PROLLER_DAY = 1635048000
+const CHIE_DAY = 1634616000
 
 signal advance(day)
-
-func _on_stat(id, params):
-	if id == "stamina":
-		if params.new_value < params.old_value:
-			total_spent_stamina += params.old_value - params.new_value
-	if id == "garden.plant":
-		total_flowers_planted += 1
-	if id == "fish.caught":
-		total_fish_caught += 1
 
 func advance_day():
 	day += 86400 # add a day in unix seconds
@@ -27,17 +14,25 @@ func advance_day():
 	GameState.stamina = 100
 	GameState.has_streamed = false
 	
-	if total_spent_stamina > 250:
+	# only introduce proller after a certain amount of time has passed
+	# and you've been introduced to everyone else
+	if day >= PROLLER_DAY and \
+		GameState.flag("introduce.yuuki") and \
+		GameState.flag("introduce.clover") and \
+		GameState.flag("introduce.tazzle"):
+		GameState.toggle_flag("introduce.proller")
+		
+	if day >= CHIE_DAY:
+		GameState.toggle_flag("introduce.chie")
+	
+	if GameState.stats.stamina_used.value() > 250:
 		GameState.toggle_flag("introduce.yuuki")
 		
-	if total_flowers_planted > 5:
+	if GameState.stats.flowers_planted.value() > 5:
 		GameState.toggle_flag("introduce.clover")
 	
-	if total_fish_caught > 8:
+	if GameState.stats.fish_caught.value() > 8:
 		GameState.toggle_flag("introduce.tazzle")
-		
-	if day >= PROLLER_DAY:
-		GameState.toggle_flag("introduce.proller")
 		
 	if day >= MAIAS_BIRTHDAY:
 		GameState.toggle_flag("maia_birthday")

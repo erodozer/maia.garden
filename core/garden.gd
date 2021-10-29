@@ -1,5 +1,8 @@
 extends Node
 
+const godash = preload("res://addons/godash/godash.gd")
+const Fortunes = preload("res://core/fortune.gd").Fortunes
+
 var plots = {}
 
 func plant(seed_tool, cell):
@@ -26,8 +29,18 @@ func plant(seed_tool, cell):
 		"cell": cell,
 	}
 	plots[cell] = plant
-	GameState.total_flowers_planted += 1
 	GameState.emit_signal("stat", "garden.plant", {
+		"plant": plant
+	})
+	return plant
+	
+func kill(cell):
+	if not (cell in plots):
+		return false
+		
+	var plant = plots[cell]
+	plots.erase(cell)
+	GameState.emit_signal("stat", "garden.kill", {
 		"plant": plant
 	})
 	return plant
@@ -39,3 +52,21 @@ func _on_calendar_advance(_day):
 			p.age += 1
 		
 		p.watered = false
+
+func _on_Fortune_changed(fortune):
+	# kill off some plants randomly
+	if fortune == Fortunes.BAD_LUCK_DEAD_PLANTS:
+		var amount = randi() % 6
+		for i in range(amount):
+			var cell = godash.rand_choice(plots.keys())
+			if cell:
+				kill(cell)
+	
+	# instantly mature a random amount of plants
+	if fortune == Fortunes.GOOD_LUCK_PLANT:
+		var amount = randi() % 6
+		for i in range(amount):
+			var plant = godash.rand_choice(plots.values())
+			if plant:
+				var age = plant.ref.mature
+				plant.age = age

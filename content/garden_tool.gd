@@ -9,3 +9,4 @@ export(int, 0, 99) var starting = 0
 export(Resource) var flower
 export var description: String
 export var unlock: String
+export var stack = 1

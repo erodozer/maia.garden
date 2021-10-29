@@ -1,4 +1,4 @@
-extends Node
+extends StaticBody2D
 
 onready var talk_indicator = get_node("Talk")
 

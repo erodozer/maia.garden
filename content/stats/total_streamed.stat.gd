@@ -2,6 +2,9 @@ extends "res://content/stat.gd"
 
 var total = 0
 
+func get_id():
+	return "total_streamed"
+	
 func get_title():
 	return "Times Streamed"
 	

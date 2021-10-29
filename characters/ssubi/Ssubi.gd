@@ -25,7 +25,6 @@ func get_phrase():
 	var phrases = [
 		"[shake rate=30 level=8]SKREEEEEECH[/shake]",
 		"[shake rate=30 level=8]SKREEEEEECH[/shake]",
-		"[shake rate=30 level=8]SKREEEEEECH[/shake]",
 	]
 	
 	if GameState.flag("ssubi.phrase_1"):

@@ -14,3 +14,4 @@ starting = 0
 flower = ExtResource( 3 )
 description = "Grows catgrass (2 days)"
 unlock = "unlocked_catgrass"
+stack = 30

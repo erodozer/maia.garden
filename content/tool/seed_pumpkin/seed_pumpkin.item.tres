@@ -14,3 +14,4 @@ starting = 0
 flower = ExtResource( 3 )
 description = "Grows pumpkin (10 days)"
 unlock = "unlocked_vegetables"
+stack = 30
