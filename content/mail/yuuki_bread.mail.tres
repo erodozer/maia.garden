@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "yuuki_bread"
+sendAt = "request:flower_1:completed"
+sender = "Yuuki"
+message = "Hi Maia!
+
+If you stop by the Catfe later, I have some new items on the menu that I'm sure you'll love.
+
+Thank you again so much!"
+outro = ""
+sets = "unlock_bread"

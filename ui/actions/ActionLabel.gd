@@ -14,6 +14,7 @@ func _on_Maia_can_interact(npc):
 	
 	if not text:
 		label.text = "Interact"
+		visible = false
 	else:
 		label.text = text
 

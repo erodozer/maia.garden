@@ -10,5 +10,6 @@ icon = ExtResource( 2 )
 name = "Coffee"
 price = 10
 stamina = 10
-description = "Strong and bitter"
+description = "Strong and bitter (10 ST)"
 unlock = ""
+stack = 0

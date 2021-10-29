@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://content/flower/wheat/icon.png" type="Texture" id=1]
+[ext_resource path="res://content/flower.gd" type="Script" id=2]
+[ext_resource path="res://content/flower/wheat/young.png" type="Texture" id=3]
+[ext_resource path="res://content/flower/wheat/mature.png" type="Texture" id=4]
+
+[resource]
+script = ExtResource( 2 )
+id = "wheat"
+icon = ExtResource( 1 )
+young_sprite = ExtResource( 3 )
+mature_sprite = ExtResource( 4 )
+name = "Wheat"
+price = 100
+mature = 6
+description = "Grind into flour"
+stack = 20

@@ -3,6 +3,8 @@ extends Node
 var accepted setget ,is_accepted
 var completed setget ,is_completed
 
+var id setget ,get_id
+
 func get_id():
 	return filename.get_basename().to_lower()
 

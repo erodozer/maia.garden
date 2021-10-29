@@ -17,25 +17,44 @@ func _ready():
 	
 func exchange(item, value):
 	# purchase an item
-	if GameState.konpeto - value < 0:
+	if value > 0 and GameState.konpeto - value < 0:
 		return false
 	
-	if item.type == "cafe":
-		# cafe items restore stamina instead of going into the inventory
-		GameState.stamina += item.stamina
-	else:
-		var added = GameState.inventory.insert_item({
+	var exchanged = false
+
+	# if value is zero, it may cost an inventory item
+	if value == 0:
+		exchanged = GameState.inventory.insert_item({
+			"id": item.id,
+			"ref": item,
+			"amount": -1,
+		})
+	elif item.stack > 0:
+		exchanged = GameState.inventory.insert_item({
 			"id": item.id,
 			"ref": item,
 			"amount": 1,
 		})
-		if not added:
-			return false
 	
-	GameState.konpeto -= value
-	GameState.emit_signal("stat", "shop.purchase", {
-		"item": item,
-	})
+	if not exchanged:
+		return false
+	
+	if item.type == "cafe":
+		if item.stack == 0 or value == 0:
+			# most cafe items restore stamina directly 
+			# instead of going into the inventory
+			GameState.stamina += item.stamina
+	
+	if value > 0:
+		GameState.konpeto -= value
+		GameState.emit_signal("stat", "shop.purchase", {
+			"item": item,
+			"value": value,
+		})
+	else:
+		GameState.emit_signal("stat", "shop.spend", {
+			"item": item,
+		})
 	
 	emit_signal("exchange", item, value)
 	return true
@@ -46,7 +65,8 @@ func open(item_list):
 	for i in item_list:
 		var b = button.instance()
 		items.add_child(b)
-		b.item = i
+		b.item = i.ref
+		b.price = i.price
 		b.group = group
 		b.connect("focus_entered", self, "update_description", [i])
 		
@@ -79,5 +99,4 @@ func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		var btn = group.get_pressed_button()
 		var item = btn.item
-		var exchange_mode = btn.exchange
-		exchange(item, item.price)
+		exchange(btn.item, btn.price)

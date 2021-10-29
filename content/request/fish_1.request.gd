@@ -3,6 +3,9 @@ extends "../request.gd"
 func get_owner():
 	return "tazzle"
 
+func get_id():
+	return "fish_1"
+
 func get_requirements():
 	return [
 		{

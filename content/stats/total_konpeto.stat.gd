@@ -6,7 +6,7 @@ func get_id():
 	return "total_konpeto"
 
 func get_title():
-	return "Total Konpeto Earned"
+	return "Total Konpeito Earned"
 	
 func value():
 	return total

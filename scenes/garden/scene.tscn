@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/garden/Garden.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/garden/mailbox/Mailbox.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/garden/explore/ExploreMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/garden/soil/Soil.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/garden/tools/Tools.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/garden/table/Table.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/garden/HUD.gd" type="Script" id=11]
 [ext_resource path="res://ui/dialogue/Dialogue.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ui/actions/ActionLabel.tscn" type="PackedScene" id=14]
@@ -42,6 +43,9 @@ position = Vector2( -64, 112 )
 
 [node name="Mailbox" parent="." instance=ExtResource( 2 )]
 position = Vector2( -24, 18 )
+
+[node name="Table" parent="." instance=ExtResource( 10 )]
+position = Vector2( -60, 59 )
 
 [node name="Maia" parent="." instance=ExtResource( 3 )]
 collision_layer = 0

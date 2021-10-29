@@ -10,7 +10,7 @@ onready var highlight = get_node("Highlight")
 
 var selected = null
 var plots = []
-
+		
 func _ready():
 	if GameState.flag("garden_boost_2"):
 		soil = get_node("Plots/Level3")

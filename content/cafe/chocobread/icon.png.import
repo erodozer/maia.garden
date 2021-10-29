@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/konpeto.png-63be4e84cd0fb2ac6a25e1fe3da37b08.stex"
+path="res://.import/icon.png-668b574e1d18cae37f8dde356b48235c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/konpeto/konpeto.png"
-dest_files=[ "res://.import/konpeto.png-63be4e84cd0fb2ac6a25e1fe3da37b08.stex" ]
+source_file="res://content/cafe/chocobread/icon.png"
+dest_files=[ "res://.import/icon.png-668b574e1d18cae37f8dde356b48235c.stex" ]
 
 [params]
 

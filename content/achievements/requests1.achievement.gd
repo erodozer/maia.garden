@@ -2,6 +2,9 @@ extends "res://content/achievement.gd"
 
 var requests_completed = []
 	
+func get_id():
+	return "requests1"
+	
 func _on_stat(id, params):
 	if id != "request.completed":
 		return false

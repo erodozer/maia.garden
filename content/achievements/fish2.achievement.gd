@@ -2,6 +2,9 @@ extends "res://content/achievement.gd"
 
 const has_caught = {}
 
+func get_id():
+	return "fish2"
+
 func _ready():
 	for c in Content.Items:
 		if c.type == "fish" and c.location == "river":

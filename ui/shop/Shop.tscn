@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/shop/Shop.gd" type="Script" id=1]
-[ext_resource path="res://ui/konpeto/Konpeto.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/konpeito/Konpeito.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=3]
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://ui/stamina/Stamina.tscn" type="PackedScene" id=5]

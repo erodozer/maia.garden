@@ -6,6 +6,9 @@ var talked_to_clover = false
 func get_owner():
 	return "proller"
 
+func get_id():
+	return "proller_collection_1"
+
 func get_requirements():
 	return [
 		{

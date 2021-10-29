@@ -72,6 +72,9 @@ func interact():
 		if f.unlock and not GameState.flag(f.unlock):
 			continue
 		
-		select.append(f)
+		select.append({
+			"ref": f,
+			"value": f.price,
+		})
 	
 	yield(shop.open(select), "completed")

@@ -13,7 +13,7 @@ onready var interact_collider = get_node("Interact")
 onready var bubble = get_node("Bubble")
 onready var journal = get_node("CanvasLayer/Journal")
 
-var interactable_npc
+var interactable_npc = []
 
 signal can_interact(npc)
 signal interact_start
@@ -42,15 +42,16 @@ func change_outfit(outfit):
 	walk_sprite.frames = load("res://characters/maia/outfits/%s/walking.tres" % outfit)
 	
 func perform_action():
-	if not interactable_npc:
+	var npc = interactable_npc.front()
+	if not npc:
 		return
 		
 	walk_sprite.visible = false
 	stand_sprite.visible = true
 	emit_signal("interact_start")
 	pause()
-	if interactable_npc.has_method("interact"):
-		var state = interactable_npc.interact()
+	if npc.has_method("interact"):
+		var state = npc.interact()
 		if state and state is GDScriptFunctionState:
 			yield(state, "completed")
 	resume()
@@ -98,10 +99,12 @@ func _physics_process(_delta):
 		return
 
 func _on_Interact_body_entered(body):
-	interactable_npc = body
-	emit_signal("can_interact", interactable_npc)
+	interactable_npc.push_front(body)
+	emit_signal("can_interact", interactable_npc[0])
 	
 func _on_Interact_body_exited(body):
-	if body == interactable_npc:
-		interactable_npc = null
-		emit_signal("can_interact", interactable_npc)
+	var idx = interactable_npc.find(body)
+	if idx != -1:
+		interactable_npc.remove(idx)
+		var f = interactable_npc.front()
+		emit_signal("can_interact", f)

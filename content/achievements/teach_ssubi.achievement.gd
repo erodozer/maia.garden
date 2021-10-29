@@ -7,6 +7,9 @@ var learned = {
 	"ssubi.phrase_4": false,
 	"ssubi.phrase_5": false,
 }
+
+func get_id():
+	return "t"
 	
 func _on_stat(id, params):
 	if id != "flag":

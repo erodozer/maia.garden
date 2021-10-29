@@ -2,35 +2,43 @@ extends "../request.gd"
 
 func get_owner():
 	return "yuuki"
+	
+func get_id():
+	return "cafe_2"
 
 func get_requirements():
 	return [
 		{
-			"hint": "5 Catgrass",
-			"id": "catgrass",
-			"amount": 5
+			"hint": "10 Wheat",
+			"id": "Wheat",
+			"amount": 10
 		}
 	]
 	
 func can_accept():
-	return true
+	return GameState.flag("request:flower_1:completed")
 
 func accept():
 	.accept()
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	yield(dialogue.open([
-		"Hey Maia, could you help me?",
-		"My cats deserve something nice",
-		"Will you visit the flower shop",
-		"They should have Catgrass",
-		"Thank you~",
+		"Oh Maia...",
+		"As much as I like my new catfe",
+		"it's lacking something.",
+		"There's no bread!",
+		"What's a catfe without bread",
+		"Warm fresh bread",
+		"And its delicious smell.",
 	]), "completed")
 
 func complete():
 	.complete()
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	yield(dialogue.open([
-		"This is perfect! Thank you Maia~",
+		"Oh this is just amazing!",
+		"I can make flour with this",
+		"And with that delicious bread!",
+		"Thank you so much Maia",
 	]), "completed")
 
 func can_talk_to_clover():

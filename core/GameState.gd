@@ -47,22 +47,22 @@ signal stat(id, params)
 func _ready():
 	for r in godash.load_dir("res://content/request", "request.gd", true).values():
 		var request = r.new()
+		request.name = request.id
 		get_node("Requests").add_child(request)
-		request.name = request.get_id()
 		requests.append(request)
 		
 	for a in godash.load_dir("res://content/achievements", "achievement.gd", true).values():
 		var achievement = a.new()
 		connect("stat", achievement, "handle_stat")
-		get_node("Achievements").add_child(achievement)
 		achievement.name = achievement.id
+		get_node("Achievements").add_child(achievement)
 		achievements[achievement.id] = achievement
 	
 	for s in godash.load_dir("res://content/stats", "stat.gd", true).values():
 		var stat = s.new()
 		connect("stat", stat, "_on_stat")
-		get_node("Stats").add_child(stat)
 		stat.name = stat.id
+		get_node("Stats").add_child(stat)
 		stats[stat.id] = stat
 	
 	mail.deliver_mail(calendar.day)

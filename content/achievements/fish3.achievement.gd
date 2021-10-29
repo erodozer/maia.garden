@@ -2,6 +2,9 @@ extends "res://content/achievement.gd"
 
 var size = 0
 
+func get_id():
+	return "fish3"
+
 func _on_stat(id, params):
 	if id != "fish.caught":
 		return false

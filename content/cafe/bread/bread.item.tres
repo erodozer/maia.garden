@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://content/cafe/bread/icon.png" type="Texture" id=1]
+[ext_resource path="res://content/cafe.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+id = "bread"
+icon = ExtResource( 1 )
+name = "Bread"
+price = 30
+stamina = 15
+description = "Fluffy Bread (15 ST) (Portable)"
+unlock = ""
+stack = 0

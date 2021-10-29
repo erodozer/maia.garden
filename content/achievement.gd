@@ -5,7 +5,7 @@ var completed = false
 var id setget ,get_id
 
 func get_id():
-	return filename.get_basename().to_lower()
+	return ""
 
 func get_title():
 	return ""

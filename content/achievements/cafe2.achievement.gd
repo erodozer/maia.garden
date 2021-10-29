@@ -2,6 +2,9 @@ extends "res://content/achievement.gd"
 
 var caffinated = false
 
+func get_id():
+	return "cafe2"
+	
 func _on_stat(id, params):
 	if id != "shop.purchase":
 		return false

@@ -2,6 +2,9 @@ extends "res://content/achievement.gd"
 
 const has_eaten = {}
 
+func get_id():
+	return "cafe1"
+
 func _ready():
 	for c in Content.Items:
 		if c.type == "cafe":

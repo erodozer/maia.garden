@@ -3,6 +3,9 @@ extends "../request.gd"
 func get_owner():
 	return "proller"
 
+func get_id():
+	return "proller_collection_2"
+	
 func get_requirements():
 	return [
 		{
@@ -18,7 +21,7 @@ func get_requirements():
 	]
 
 func can_accept():
-	return GameState.flag("request:proller_collection_1:complete")
+	return GameState.flag("request:proller_collection_1:complete") and GameState.flag("request:flower_1:complete")
 
 func accept():
 	.accept()

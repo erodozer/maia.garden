@@ -35,6 +35,9 @@ func interact():
 		if i.type == "cafe":
 			if i.unlock and not GameState.flag(i.unlock):
 				continue
-			Cafe.append(i)
+			Cafe.append({
+				"ref": i,
+				"value": i.price,
+			})
 		
 	yield(shop.open(Cafe), "completed")

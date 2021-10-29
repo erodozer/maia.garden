@@ -1,13 +1,17 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://content/flower/catgrass/mature.tres" type="Texture" id=1]
 [ext_resource path="res://content/flower.gd" type="Script" id=2]
+[ext_resource path="res://content/flower/catgrass/young.tres" type="Texture" id=3]
 
 [resource]
 script = ExtResource( 2 )
 id = "catgrass"
 icon = ExtResource( 1 )
+young_sprite = ExtResource( 3 )
+mature_sprite = ExtResource( 1 )
 name = "Catgrass"
 price = 12
 mature = 2
 description = "Favored treat of furry friends"
+stack = 1

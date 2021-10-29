@@ -17,4 +17,3 @@ flip_h = true
 
 [node name="Talk" parent="." index="2"]
 position = Vector2( 0, -11 )
-offset = Vector2( 0, 0 )

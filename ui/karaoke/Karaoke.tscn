@@ -443,7 +443,7 @@ margin_bottom = 79.0
 margin_right = 34.0
 margin_bottom = 13.0
 custom_fonts/font = ExtResource( 7 )
-text = "Konpeto"
+text = "Konpeito"
 
 [node name="Value" type="Label" parent="Results/PanelContainer/VBoxContainer/Payout"]
 margin_left = 38.0
