@@ -4,10 +4,14 @@ const godash = preload("res://addons/godash/godash.gd")
 
 const Note = preload("./Note.tscn")
 
-onready var camera = get_node("HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D")
-onready var combo_label = get_node("HBoxContainer/Panel/Combo")
-onready var count_label = get_node("HBoxContainer/VBoxContainer/Container/MarginContainer/VBoxContainer/Count")
-onready var song_progress = get_node("ProgressBar")
+onready var game = get_node("Game")
+onready var difficulty_selector = get_node("Difficulty")
+onready var difficulty_list = get_node("Difficulty/PanelContainer/ItemList")
+onready var results = get_node("Results")
+onready var camera = get_node("Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D")
+onready var combo_label = get_node("Game/HBoxContainer/Panel/Combo")
+onready var count_label = get_node("Game/HBoxContainer/VBoxContainer/Container/VBoxContainer/Count")
+onready var song_progress = get_node("Game/ProgressBar")
 
 var scroll_speed
 var combo = 0
@@ -22,53 +26,91 @@ signal start
 signal end
 signal update_note_count
 
+const DIFFICULTY = [
+	{
+		"bpm": 120.0,
+		"notes": 50,
+		"scale": 1.0,
+		"freq": [1.0, 1.0 / 2.0],
+	},
+	{
+		"bpm": 120.0,
+		"notes": 100,
+		"scale": 1.0,
+		"freq": [1.0, 1.0 / 2.0, 1.0 / 4.0],
+	},
+	{
+		"bpm": 150.0,
+		"notes": 150,
+		"scale": 1.5,
+		"freq": [1.0, 1.0 / 2.0, 1.0 / 4.0],
+	}
+]
+const MEASURE_SCALE = 48.0
+
 func _ready():
 	set_process(false)
 	if demo:
 		play()
 
 func play():
-	# generate notes randomly
-	var weight = randf()
+	visible = true
+	difficulty_selector.visible = true
+	difficulty_list.grab_focus()
+	difficulty_list.select(0)
+	var difficulty = yield(difficulty_list, "item_activated")
+	difficulty_selector.visible = false
 	
-	var bpm = godash.rand_choice([120.0, 140.0, 160.0, 180.0, 200.0, 300.0])
-	var song_length = lerp(30.0, 60.0, weight)
-	scroll_speed = 30.0 * (bpm / 60.0)
-	var beat = 0
-	var beats = song_length * (bpm / 60.0)
-	note_count = 0
+	note_count = DIFFICULTY[difficulty].notes
+	var bpm = DIFFICULTY[difficulty].bpm
+	scroll_speed = MEASURE_SCALE * (bpm / 60.0)
+	var note = 0
 	notes_hit = 0
 	combo = 0
 	highest_combo = 0
-	var measure = 0.0
-	while measure * 4.0 < beats:
-		var note = godash.rand_choice([1.0 / 2.0, 1.0 / 4.0, 1.0 / 8.0])
-		measure += note
+	var beat = 3.0
+	
+	# generate notes randomly
+	while note < note_count:
+		var step = godash.rand_choice(DIFFICULTY[difficulty].freq)
+		beat += step
 		
 		var lane = godash.rand_choice([-1, 0, 1, 2, 3])
 		if lane < 0:
 			continue
 		
 		var n = Note.instance()
-		n.position.y = measure * scroll_speed
+		n.position.y = beat * MEASURE_SCALE
 		n.set_meta("direction", lane)
 		emit_signal("add_note", n)
-		note_count += 1
+		note += 1
+	
+	beat += 3.0
 		
+	var song_length = (beat / bpm) * 60
 	song_progress.max_value = song_length
 	song_progress.value = 0
 	count_label.text = "  %d/%d" % [notes_hit, note_count]
-	
-	visible = true
+	game.visible = true
 	emit_signal("start")
 	set_process(true)
 	yield(get_tree().create_timer(song_length), "timeout")
 	set_process(false)
-	yield(get_tree().create_timer(3.0), "timeout")
+	game.visible = false
+	
+	var payout = (notes_hit * DIFFICULTY[difficulty].scale) + highest_combo
+	
+	results.visible = true
+	results.get_node("PanelContainer/VBoxContainer/Accuracy/Value").text = "%2d%%" % (notes_hit / note_count)
+	results.get_node("PanelContainer/VBoxContainer/Combo/Value").text = "%d" % highest_combo
+	results.get_node("PanelContainer/VBoxContainer/Payout/Value").text = "%d" % payout
+	yield(get_tree().create_timer(7.0), "timeout")
+	results.visible = false
+	
 	visible = false
 	emit_signal("end")
 			
-	return notes_hit + highest_combo
+	return payout
 	
 func _process(delta):
 	song_progress.value += delta

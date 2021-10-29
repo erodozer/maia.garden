@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ui/karaoke/Karaoke.gd" type="Script" id=1]
 [ext_resource path="res://ui/karaoke/right_button.png" type="Texture" id=2]
@@ -22,12 +22,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-
-[sub_resource type="RectangleShape2D" id=3]
-
-[sub_resource type="RectangleShape2D" id=4]
-
-[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 8, 10 )
 
 [node name="Karaoke" type="Control"]
 anchor_right = 1.0
@@ -38,7 +33,74 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Difficulty" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -40.0
+margin_right = 64.0
+margin_bottom = 40.0
+mouse_filter = 1
+theme = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="Difficulty"]
+margin_right = 128.0
+margin_bottom = 80.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="ItemList" parent="Difficulty/PanelContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 124.0
+margin_bottom = 76.0
+rect_min_size = Vector2( 120, 72 )
+rect_clip_content = false
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_constants/vseparation = 4
+custom_constants/line_separation = 0
+items = [ "100 KP - EASY", null, false, "200 KP - HARD", null, false, "375 KP - EXTREME", null, false ]
+same_column_width = true
+fixed_icon_size = Vector2( 24, 24 )
+
+[node name="Panel" type="PanelContainer" parent="Difficulty"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -37.5
+margin_top = -19.0
+margin_right = 37.5
+margin_bottom = 2.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Difficulty/Panel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 71.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "Select Difficulty"
+align = 1
+
+[node name="Game" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 2
@@ -46,188 +108,126 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 53.0
+[node name="Panel" type="Panel" parent="Game/HBoxContainer"]
+margin_right = 78.0
 margin_bottom = 150.0
-grow_vertical = 0
-size_flags_horizontal = 3
-custom_constants/separation = 1
-alignment = 2
+rect_min_size = Vector2( 78, 150 )
+
+[node name="Animation" type="Control" parent="Game/HBoxContainer/Panel"]
+margin_left = 38.0
+margin_top = 120.0
+margin_right = 38.0
+margin_bottom = 120.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Container" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 124.0
-margin_right = 53.0
-margin_bottom = 150.0
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/Container"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 51.0
-margin_bottom = 24.0
-custom_constants/margin_left = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Container/MarginContainer"]
-margin_left = 2.0
-margin_right = 49.0
-margin_bottom = 22.0
-custom_constants/separation = -4
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Container/MarginContainer/VBoxContainer"]
-margin_right = 47.0
-margin_bottom = 13.0
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
-custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/shadow_offset_y = 0
-text = "Notes"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Count" type="Label" parent="HBoxContainer/VBoxContainer/Container/MarginContainer/VBoxContainer"]
-margin_top = 9.0
-margin_right = 47.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
-custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
-custom_constants/shadow_offset_x = 1
-custom_constants/shadow_offset_y = 0
-text = "100/100"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="HBoxContainer"]
-margin_left = 55.0
-margin_right = 145.0
-margin_bottom = 150.0
-rect_min_size = Vector2( 90, 150 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Node2D" type="Node2D" parent="HBoxContainer/Panel"]
-position = Vector2( 47, 120 )
-scale = Vector2( 2, 2 )
-
-[node name="Sprite" type="AnimatedSprite" parent="HBoxContainer/Panel/Node2D"]
+[node name="Maia" type="AnimatedSprite" parent="Game/HBoxContainer/Panel/Animation"]
 frames = SubResource( 1 )
 playing = true
 
-[node name="Sprite2" type="Sprite" parent="HBoxContainer/Panel/Node2D"]
+[node name="Microphone" type="Sprite" parent="Game/HBoxContainer/Panel/Animation"]
 position = Vector2( -8, 6 )
 texture = ExtResource( 10 )
 
-[node name="ViewportContainer" type="ViewportContainer" parent="HBoxContainer/Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -45.0
-margin_top = -75.0
-margin_right = 45.0
-margin_bottom = 75.0
-rect_min_size = Vector2( 90, 150 )
+[node name="ViewportContainer" type="ViewportContainer" parent="Game/HBoxContainer/Panel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 74.0
+margin_bottom = 154.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="HBoxContainer/Panel/ViewportContainer"]
-size = Vector2( 90, 150 )
+[node name="Viewport" type="Viewport" parent="Game/HBoxContainer/Panel/ViewportContainer"]
+size = Vector2( 70, 150 )
 transparent_bg = true
 handle_input_locally = false
 disable_3d = true
 usage = 0
-render_target_update_mode = 3
+render_target_update_mode = 0
 
-[node name="Camera2D" type="Camera2D" parent="HBoxContainer/Panel/ViewportContainer/Viewport"]
-offset = Vector2( 45, 75 )
+[node name="Camera2D" type="Camera2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
+offset = Vector2( 35, 75 )
 current = true
 
-[node name="Left" type="Area2D" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
-position = Vector2( 12, 16 )
+[node name="Left" type="Area2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
+position = Vector2( 8, 16 )
 collision_layer = 0
 collision_mask = 8
 script = ExtResource( 6 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left"]
 shape = SubResource( 2 )
 
-[node name="Button" type="Sprite" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left"]
+[node name="Button" type="Sprite" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left"]
 texture = ExtResource( 4 )
 
-[node name="Up" type="Area2D" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
-position = Vector2( 34, 16 )
+[node name="Up" type="Area2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
+position = Vector2( 26, 16 )
 collision_layer = 0
 collision_mask = 8
 script = ExtResource( 6 )
 input_key = "ui_up"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up"]
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up"]
+shape = SubResource( 2 )
 
-[node name="Button" type="Sprite" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up"]
+[node name="Button" type="Sprite" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up"]
 texture = ExtResource( 5 )
 
-[node name="Down" type="Area2D" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
-position = Vector2( 56, 16 )
+[node name="Down" type="Area2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
+position = Vector2( 44, 16 )
 collision_layer = 0
 collision_mask = 8
 script = ExtResource( 6 )
 input_key = "ui_down"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down"]
-shape = SubResource( 4 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down"]
+shape = SubResource( 2 )
 
-[node name="Button" type="Sprite" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down"]
+[node name="Button" type="Sprite" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down"]
 texture = ExtResource( 3 )
 
-[node name="Right" type="Area2D" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
-position = Vector2( 78, 16 )
+[node name="Right" type="Area2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
+position = Vector2( 62, 16 )
 collision_layer = 0
 collision_mask = 8
 script = ExtResource( 6 )
 input_key = "ui_right"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right"]
-shape = SubResource( 5 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right"]
+shape = SubResource( 2 )
 
-[node name="Button" type="Sprite" parent="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right"]
+[node name="Button" type="Sprite" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right"]
 texture = ExtResource( 2 )
 
-[node name="Left" type="YSort" parent="HBoxContainer/Panel/ViewportContainer/Viewport"]
-position = Vector2( 12, 0 )
+[node name="Left" type="YSort" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
+position = Vector2( 8, 0 )
 script = ExtResource( 12 )
 
-[node name="Up" type="YSort" parent="HBoxContainer/Panel/ViewportContainer/Viewport"]
-position = Vector2( 34, 0 )
+[node name="Up" type="YSort" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
+position = Vector2( 26, 0 )
 script = ExtResource( 12 )
 direction = 1
 
-[node name="Down" type="YSort" parent="HBoxContainer/Panel/ViewportContainer/Viewport"]
-position = Vector2( 56, 0 )
+[node name="Down" type="YSort" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
+position = Vector2( 44, 0 )
 script = ExtResource( 12 )
 direction = 2
 
-[node name="Right" type="YSort" parent="HBoxContainer/Panel/ViewportContainer/Viewport"]
-position = Vector2( 78, 0 )
+[node name="Right" type="YSort" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
+position = Vector2( 62, 0 )
 script = ExtResource( 12 )
 direction = 3
 
-[node name="Combo" type="Label" parent="HBoxContainer/Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -45.0
-margin_top = 13.0
-margin_right = 45.0
-margin_bottom = 27.0
+[node name="Combo" type="Label" parent="Game/HBoxContainer/Panel"]
+margin_left = 4.0
+margin_top = 96.0
+margin_right = 74.0
+margin_bottom = 109.0
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
 custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
@@ -239,13 +239,69 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 147.0
-margin_right = 200.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Game/HBoxContainer"]
+margin_left = 80.0
+margin_right = 138.0
+margin_bottom = 150.0
+grow_vertical = 0
+size_flags_horizontal = 3
+custom_constants/separation = 1
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="PanelContainer" parent="Game/HBoxContainer/VBoxContainer"]
+margin_top = 120.0
+margin_right = 58.0
+margin_bottom = 150.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game/HBoxContainer/VBoxContainer/Container"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 54.0
+margin_bottom = 26.0
+custom_constants/separation = -4
+
+[node name="Label" type="Label" parent="Game/HBoxContainer/VBoxContainer/Container/VBoxContainer"]
+margin_right = 50.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "Notes"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Count" type="Label" parent="Game/HBoxContainer/VBoxContainer/Container/VBoxContainer"]
+margin_top = 9.0
+margin_right = 50.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "100/100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Game/HBoxContainer"]
+margin_left = 140.0
+margin_right = 198.0
 margin_bottom = 150.0
 size_flags_horizontal = 3
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="Control" type="Control" parent="Game/HBoxContainer"]
+margin_left = 200.0
+margin_right = 200.0
+margin_bottom = 150.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Game"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -262,35 +318,171 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="add_note" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Left" method="_on_Karaoke_add_note"]
-[connection signal="add_note" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_add_note"]
-[connection signal="add_note" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Down" method="_on_Karaoke_add_note"]
-[connection signal="add_note" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Right" method="_on_Karaoke_add_note"]
-[connection signal="end" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Left" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Down" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Right" method="_on_Karaoke_end"]
-[connection signal="start" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_Karaoke_start"]
-[connection signal="start" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_Karaoke_start"]
-[connection signal="start" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_Karaoke_start"]
-[connection signal="start" from="." to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_Karaoke_start"]
-[connection signal="area_entered" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_area_entered"]
-[connection signal="area_exited" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_area_exited"]
-[connection signal="hit" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="." method="_on_hit"]
-[connection signal="miss" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="." method="_on_miss"]
-[connection signal="area_entered" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_area_entered"]
-[connection signal="area_exited" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_area_exited"]
-[connection signal="hit" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="." method="_on_hit"]
-[connection signal="miss" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="." method="_on_miss"]
-[connection signal="area_entered" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_area_entered"]
-[connection signal="area_exited" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_area_exited"]
-[connection signal="hit" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="." method="_on_hit"]
-[connection signal="miss" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="." method="_on_miss"]
-[connection signal="area_entered" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_area_entered"]
-[connection signal="area_exited" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_area_exited"]
-[connection signal="hit" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="." method="_on_hit"]
-[connection signal="miss" from="HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="." method="_on_miss"]
+[node name="Results" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="Results"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -54.0
+margin_top = -44.0
+margin_right = 54.0
+margin_bottom = 44.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Results/PanelContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 104.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 100, 80 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Results/PanelContainer/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Results/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_right = 80.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Results"
+valign = 2
+
+[node name="Animation" type="Control" parent="Results/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 84.0
+margin_right = 100.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 16, 20 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Maia" type="AnimatedSprite" parent="Results/PanelContainer/VBoxContainer/HBoxContainer/Animation"]
+position = Vector2( 5, 9 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+
+[node name="Microphone" type="Sprite" parent="Results/PanelContainer/VBoxContainer/HBoxContainer/Animation"]
+position = Vector2( -3, 15 )
+texture = ExtResource( 10 )
+
+[node name="HSeparator" type="HSeparator" parent="Results/PanelContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 100.0
+margin_bottom = 24.0
+custom_constants/separation = 0
+
+[node name="Accuracy" type="HBoxContainer" parent="Results/PanelContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 100.0
+margin_bottom = 41.0
+
+[node name="Label" type="Label" parent="Results/PanelContainer/VBoxContainer/Accuracy"]
+margin_right = 36.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 7 )
+text = "Accuracy"
+
+[node name="Value" type="Label" parent="Results/PanelContainer/VBoxContainer/Accuracy"]
+margin_left = 40.0
+margin_right = 100.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "0%"
+align = 2
+
+[node name="Combo" type="HBoxContainer" parent="Results/PanelContainer/VBoxContainer"]
+margin_top = 45.0
+margin_right = 100.0
+margin_bottom = 58.0
+
+[node name="Label" type="Label" parent="Results/PanelContainer/VBoxContainer/Combo"]
+margin_right = 63.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 7 )
+text = "Longest Combo"
+
+[node name="Value" type="Label" parent="Results/PanelContainer/VBoxContainer/Combo"]
+margin_left = 67.0
+margin_right = 100.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "0"
+align = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Results/PanelContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 100.0
+margin_bottom = 62.0
+custom_constants/separation = 0
+
+[node name="Payout" type="HBoxContainer" parent="Results/PanelContainer/VBoxContainer"]
+margin_top = 66.0
+margin_right = 100.0
+margin_bottom = 79.0
+
+[node name="Label" type="Label" parent="Results/PanelContainer/VBoxContainer/Payout"]
+margin_right = 34.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 7 )
+text = "Konpeto"
+
+[node name="Value" type="Label" parent="Results/PanelContainer/VBoxContainer/Payout"]
+margin_left = 38.0
+margin_right = 100.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "0"
+align = 2
+
+[connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Left" method="_on_Karaoke_add_note"]
+[connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_add_note"]
+[connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Down" method="_on_Karaoke_add_note"]
+[connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Right" method="_on_Karaoke_add_note"]
+[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_Karaoke_end"]
+[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_Karaoke_end"]
+[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_Karaoke_end"]
+[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_Karaoke_end"]
+[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Left" method="_on_Karaoke_end"]
+[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_end"]
+[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Down" method="_on_Karaoke_end"]
+[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Right" method="_on_Karaoke_end"]
+[connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_Karaoke_start"]
+[connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_Karaoke_start"]
+[connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_Karaoke_start"]
+[connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_Karaoke_start"]
+[connection signal="area_entered" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_area_entered"]
+[connection signal="area_exited" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_area_exited"]
+[connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="." method="_on_hit"]
+[connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="." method="_on_miss"]
+[connection signal="area_entered" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_area_entered"]
+[connection signal="area_exited" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_area_exited"]
+[connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="." method="_on_hit"]
+[connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="." method="_on_miss"]
+[connection signal="area_entered" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_area_entered"]
+[connection signal="area_exited" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_area_exited"]
+[connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="." method="_on_hit"]
+[connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="." method="_on_miss"]
+[connection signal="area_entered" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_area_entered"]
+[connection signal="area_exited" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_area_exited"]
+[connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="." method="_on_hit"]
+[connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="." method="_on_miss"]
