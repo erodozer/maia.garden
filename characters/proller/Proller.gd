@@ -31,8 +31,8 @@ func interact():
 		yield(dialogue.open([
 			"[wave amp=20 freq=2]Maia...[/wave]",
 			"[wave amp=20 freq=2]why are you here...[/wave]",
-			"[wave amp=20 freq=2]your assistance...it...[/wave]",
+			"[wave amp=20 freq=2]...your assistance...[/wave]",
 			"[wave amp=20 freq=2]was not requested...[/wave]",
 			"[wave amp=20 freq=2]Your presence...however[/wave]",
-			"[wave amp=20 freq=2]is appreciated...[/wave]",
+			"[wave amp=20 freq=2]...is appreciated...[/wave]",
 		]), "completed")

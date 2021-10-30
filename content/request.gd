@@ -27,6 +27,8 @@ func prompt():
 			return "Proller wants to add the following to his collection"
 		"tazzle":
 			return "Tazzle wants to cook up some fish"
+		"chie":
+			return "Chie needs help to maintain the shrine"
 	return ""
 
 func is_completed():
@@ -49,6 +51,11 @@ func complete():
 		
 		var claim = requirement.amount
 		for s in select:
+			if s == "konpeito":
+				GameState.konpeto -= claim
+				claim = 0
+				break
+				
 			var record = GameState.inventory.get_item(s)
 			if record and record.amount > 0:
 				var amount = min(record.amount, claim)
@@ -63,7 +70,7 @@ func complete():
 		assert(claim == 0)
 		
 	GameState.toggle_flag("%s:completed" % key())
-	GameState.emit_signal("state", "request.completed", {
+	GameState.emit_signal("stat", "request.completed", {
 		"request": self,
 		"timestamp": OS.get_unix_time(),
 	})
@@ -73,7 +80,9 @@ func show_requirements():
 	var submitted = yield(requests_ui.open(self), "completed")
 	
 	if submitted:
-		complete()
+		var state = complete()
+		if state and state is GDScriptFunctionState:
+			yield(state, "completed")
 		
 func get_matching_items(requirement):
 	var select = []
@@ -102,6 +111,9 @@ func requirements_met():
 		
 		var sum = 0
 		for i in select:
+			if i == "konpeito":
+				sum += GameState.konpeto
+				continue
 			var item = GameState.inventory.get_item(i)
 			if item:
 				sum += item.amount

@@ -2,6 +2,7 @@ extends Control
 
 onready var icon = get_node("ActiveSeed")
 onready var count = get_node("ActiveSeed/Count")
+onready var player = get_tree().get_nodes_in_group("player").front()
 
 var current_tool = null setget set_current_tool
 
@@ -15,7 +16,12 @@ func _ready():
 	for f in GameState.inventory.data:
 		if f.ref.type == "tool" and f.ref.effect.type == "flower":
 			tools.append(f)
-	set_current_tool(tools[0])
+			
+	if tools.empty():
+		visible = false
+		return
+
+	set_current_tool(tools.front())
 
 func set_current_tool(item):
 	if null:
@@ -32,6 +38,7 @@ func set_current_tool(item):
 
 func update_count(_id, item):
 	count.text = "%d" % item.amount
+	player.reevaluate()
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_focus_next"):

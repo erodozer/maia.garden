@@ -15,3 +15,6 @@ price = 200
 mature = 10
 description = "A fall delight"
 stack = 1
+starting = 0
+half_height = false
+stamina = 100

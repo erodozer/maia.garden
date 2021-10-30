@@ -38,6 +38,7 @@ func interact():
 			Cafe.append({
 				"ref": i,
 				"value": i.price,
+				"stock": -1,
 			})
 		
 	yield(shop.open(Cafe), "completed")

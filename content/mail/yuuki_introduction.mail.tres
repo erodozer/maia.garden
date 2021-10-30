@@ -12,4 +12,5 @@ I hear you've been working hard around your garden lately.  Well lucky for you I
 
 If you ever need a boost of energy or a place to relax you should come visit!"
 outro = ""
-sets = ""
+onDelivery = ""
+onRead = ""

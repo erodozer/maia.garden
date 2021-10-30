@@ -12,9 +12,9 @@ func get_id():
 func get_requirements():
 	return [
 		{
-			"hint": "1 Fish",
+			"hint": "3 Fish",
 			"type": "fish",
-			"amount": 1,
+			"amount": 3,
 		},
 		{
 			"hint": "3 Flowers",
@@ -24,7 +24,7 @@ func get_requirements():
 	]
 	
 func can_accept():
-	return true
+	return GameState.flag('introduce.proller')
 
 func complete():
 	.complete()

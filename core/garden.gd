@@ -10,8 +10,8 @@ func plant(seed_tool, cell):
 	if cell in plots:
 		return null
 
-	var flower = seed_tool.ref.flower
-	if not flower:
+	var flower = seed_tool.ref.effect
+	if not flower or flower.type != "flower":
 		return null
 
 	var planted = GameState.inventory.insert_item({
@@ -33,6 +33,21 @@ func plant(seed_tool, cell):
 		"plant": plant
 	})
 	return plant
+	
+func harvest(cell):
+	if not (cell in plots):
+		return false
+		
+	var plant = plots[cell]
+	plots.erase(cell)
+	GameState.inventory.insert_item({
+		"id": plant.ref.id,
+		"ref": plant.ref,
+		"amount": 1,
+	})
+	GameState.emit_signal("stat", "garden.harvest", {
+		"plant": plant
+	})
 	
 func kill(cell):
 	if not (cell in plots):
@@ -57,7 +72,7 @@ func _on_Fortune_changed(fortune):
 	# kill off some plants randomly
 	if fortune == Fortunes.BAD_LUCK_DEAD_PLANTS:
 		var amount = randi() % 6
-		for i in range(amount):
+		for _i in range(amount):
 			var cell = godash.rand_choice(plots.keys())
 			if cell:
 				kill(cell)
@@ -65,7 +80,7 @@ func _on_Fortune_changed(fortune):
 	# instantly mature a random amount of plants
 	if fortune == Fortunes.GOOD_LUCK_PLANT:
 		var amount = randi() % 6
-		for i in range(amount):
+		for _i in range(amount):
 			var plant = godash.rand_choice(plots.values())
 			if plant:
 				var age = plant.ref.mature

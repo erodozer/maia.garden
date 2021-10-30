@@ -5,8 +5,10 @@
 [resource]
 script = ExtResource( 1 )
 id = "test_message"
-sendAt = "0"
+sendAt = "-1"
 sender = "Ero"
 message = "This is a test message
 If you see this in the final version I forgot to remove it"
 outro = ""
+onDelivery = ""
+onRead = ""

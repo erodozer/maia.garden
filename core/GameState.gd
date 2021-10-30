@@ -31,6 +31,8 @@ var flags = {
 	"introduce.proller": false,
 	"introduce.tazzle": false,
 	"maia_birthday": false,
+	# debug
+	"unlock_bread": false
 }
 
 # daily vars
@@ -38,7 +40,6 @@ var has_streamed = false
 var delivered_mail = false
 var stamina = 100 setget update_stamina
 
-signal new_record(fish)
 signal balance_changed(new_amount, old_amount)
 signal stamina_changed(new_amount, old_amount)
 signal change_outfit(outfit)

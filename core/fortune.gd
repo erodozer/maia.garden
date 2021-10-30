@@ -21,11 +21,12 @@ signal changed(fortune)
 
 func get_new_fortune():
 	if next_fortune != null:
-		return
+		return next_fortune
 	
 	next_fortune = godash.rand_choice(Fortunes.values())
+	return next_fortune
 	
-func on_calendar_advance(day):
+func _on_calendar_advance(_day):
 	current_fortune = next_fortune
 	next_fortune = null
 	emit_signal("changed", current_fortune)

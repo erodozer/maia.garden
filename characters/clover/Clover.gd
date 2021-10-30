@@ -75,6 +75,7 @@ func interact():
 		select.append({
 			"ref": f,
 			"value": f.price,
+			"stock": -1,
 		})
 	
 	yield(shop.open(select), "completed")

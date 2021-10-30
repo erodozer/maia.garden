@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 
 onready var seed_tool = get_tree().get_nodes_in_group("seed_tool").front()
 
@@ -20,34 +20,31 @@ func _ready():
 		return
 	set_plant(plant)
 	
-func sow(cell):
+func sow(c):
 	if GameState.stamina < planting_stamina_cost:
 		return null
 	
-	var plant = GameState.garden.plant(seed_tool.current_tool, cell)
+	var p = GameState.garden.plant(seed_tool.current_tool, c)
 	
-	if plant:
+	if p:
 		GameState.stamina -= planting_stamina_cost  # planting costs some stamina
 	
-	return plant
+	return p
 	
-func harvest(plant):
+func harvest(p):
 	# reaping costs no stamina
-	GameState.inventory.insert_item({
-		"id": plant.ref.id,
-		"ref": plant.ref,
-		"amount": 1,
-	})
+	plant = null
+	GameState.garden.harvest(cell)
 	
-func water(plant):
+func water(p):
 	var watered = GameState.perform_action(watering_stamina_cost)
 	if watered:
-		plant.watered = true
+		p.watered = true
 		
 func set_plant(p):
 	plant = p
 	
-	if not p:
+	if not plant:
 		water_sprite.visible = false
 		sprite.visible = false
 		return
@@ -56,6 +53,7 @@ func set_plant(p):
 		sprite.texture = preload("res://scenes/garden/soil/seed.tres")
 	elif plant.age >= plant.ref.mature:
 		sprite.texture = plant.ref.mature_sprite
+		collision_layer = 12 if plant.ref.half_height else 4
 	else:
 		sprite.texture = plant.ref.young_sprite
 	
@@ -63,18 +61,38 @@ func set_plant(p):
 	water_sprite.visible = plant.watered
 
 func hint():
-	if not seed_tool.current_tool.ref.effect:
-		return null
-	if seed_tool.current_tool.ref.effect.type != "flower":
-		return null
-	
 	if not plant:
+		if not seed_tool.current_tool:
+			return null
+		if not seed_tool.current_tool.ref.effect:
+			return null
+		if seed_tool.current_tool.ref.effect.type != "flower":
+			return null
+		
 		return "Plant (%s)" % seed_tool.current_tool.ref.effect.name
 	
 	if plant.age >= plant.ref.mature:
 		return "Pick (%s)" % [plant.ref.name]
 	
 	return "Water (%s)" % [plant.ref.name]
+	
+func can_interact():
+	if not plant:
+		if not seed_tool.current_tool:
+			return false
+		if not seed_tool.current_tool.ref.effect:
+			return false
+		if seed_tool.current_tool.ref.effect.type != "flower":
+			return false
+		if seed_tool.current_tool.amount <= 0:
+			return false
+		
+		return true
+	
+	if plant.age >= plant.ref.mature:
+		return true
+	
+	return not plant.watered
 
 func interact():
 	if not plant:

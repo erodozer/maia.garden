@@ -66,7 +66,7 @@ func open():
 	
 	get_node("InventoryCounter/Label").text = "%d/%d" % [len(GameState.inventory.data), GameState.inventory.bag_size]
 			
-	tab_group.get_buttons()[0].pressed = true
+	tab_group.get_buttons().front().pressed = true
 	
 	var cal = OS.get_datetime_from_unix_time(GameState.calendar.day)
 	get_node("Window/Tabs/Calendar/HBoxContainer/Date").text = "%d/%d" % [cal.month, cal.day]

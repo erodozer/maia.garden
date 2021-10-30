@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://characters/npc/NPC.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/chie/chie.png" type="Texture" id=2]
+[ext_resource path="res://characters/chie/Chie.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 25.0799
+radius = 33.0
 
 [node name="Chie" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )

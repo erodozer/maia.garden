@@ -12,9 +12,9 @@ var selected = null
 var plots = []
 		
 func _ready():
-	if GameState.flag("garden_boost_2"):
+	if GameState.flag("garden.boost_1") and GameState.flag("garden.boost_2"):
 		soil = get_node("Plots/Level3")
-	elif GameState.flag("garden_boost_1"):
+	elif GameState.flag("garden.boost_1") or GameState.flag("garden.boost_2"):
 		soil = get_node("Plots/Level2")
 	else:
 		soil = get_node("Plots/Level1")

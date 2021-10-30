@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "clover_introduction"
+sendAt = "introduce.clover"
+sender = "Clover"
+message = "Dear Maia,
+It looks like that garden of yours is going to be full of beautiful flowers soon, but what do you plan to do after they bloom?
+
+Not to worry, The Flower Shop in the Forest is now open for business!
+
+I'll gladly pay you for any flowers your pick from your garden.  I also have seeds for you to buy!
+
+So please stop by, I'll be waiting for you~"
+outro = ""
+onDelivery = ""
+onRead = ""

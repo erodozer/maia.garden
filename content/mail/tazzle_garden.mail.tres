@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "tazzle_introduction"
+sendAt = "request:fish_2:complete"
+sender = "Tazzle"
+message = "Good Morning Maia!
+
+Thanks again for all the fish.  I've never had such a comfy camping experience, because of you I've been able to enjoy all this forest has to offer.
+
+Since I know you like your garden as much as I like camping, I figured to return the favor I'd help till some land for you.  Now you can grow even more flowers!"
+outro = ""
+onDelivery = "garden.boost_2"
+onRead = ""

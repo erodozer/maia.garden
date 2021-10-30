@@ -16,7 +16,7 @@ func get_requirements():
 	]
 	
 func can_accept():
-	return GameState.flag("introduce.clover")
+	return GameState.flag("introduce.clover") and GameState.flag("introduce.yuuki")
 
 func accept():
 	.accept()
@@ -37,7 +37,7 @@ func complete():
 	]), "completed")
 
 func can_talk_to_clover():
-	return not GameState.flag("unlocked_catgrass" % key())
+	return not GameState.flag("unlocked_catgrass")
 
 func talk_to_clover():
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()

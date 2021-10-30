@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://content/flower/plants.png" type="Texture" id=1]
 [ext_resource path="res://scenes/garden/soil/Plant.gd" type="Script" id=2]
-[ext_resource path="res://content/flower/clover/mature.tres" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -12,7 +11,7 @@ atlas = ExtResource( 1 )
 region = Rect2( 16, 0, 16, 16 )
 
 [node name="Plant" type="StaticBody2D" groups=[
-"npc",
+"plant",
 ]]
 collision_layer = 4
 collision_mask = 2
@@ -24,14 +23,15 @@ shape = SubResource( 1 )
 
 [node name="Watered" type="Sprite" parent="."]
 visible = false
+z_as_relative = false
 texture = SubResource( 2 )
 centered = false
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0, 16 )
+z_as_relative = false
 
 [node name="Sprite" type="Sprite" parent="Anchor"]
 scale = Vector2( 1, -1 )
-texture = ExtResource( 3 )
 centered = false
 flip_v = true

@@ -9,7 +9,8 @@ func deliver_mail(day):
 		
 		var delivered = false
 		if m.sendAt.is_valid_integer():
-			delivered = day >= m.sendAt.to_int()
+			var date = m.sendAt.to_int()
+			delivered = day >= date and date >= 0
 		else:
 			delivered = GameState.flag(m.sendAt)
 
@@ -20,6 +21,8 @@ func deliver_mail(day):
 				"unread": true,
 				"ref": m
 			}
+			if m.onDelivery:
+				GameState.toggle_flag(m.onDelivery)
 
 func _on_calendar_advance(day):
 	deliver_mail(day)

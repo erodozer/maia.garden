@@ -39,6 +39,8 @@ func interact():
 			]
 		)
 		inbox.set_item_metadata(idx, m)
+	if inbox.get_item_count() <= 0:
+		return
 	inbox.select(0)
 	
 	tween.interpolate_property(gui, "rect_position", Vector2(-200, 0), Vector2(0, 0), .2)
@@ -77,6 +79,9 @@ func close():
 func _on_ItemList_item_activated(index):
 	open_letter = inbox.get_item_metadata(index)
 	open_letter.unread = false
+	if open_letter.ref.onDelivery:
+		GameState.toggle_flag(open_letter.ref.onDelivery)
+
 	var date = OS.get_datetime_from_unix_time(open_letter.delivered)
 	inbox.set_item_text(
 		index, 

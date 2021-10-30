@@ -15,3 +15,4 @@ price = 12
 mature = 2
 description = "Favored treat of furry friends"
 stack = 1
+starting = 0

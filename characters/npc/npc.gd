@@ -32,18 +32,23 @@ func can_talk():
 
 func check_requests():
 	for request in GameState.requests:
-		if request.is_accepted() and not request.is_completed():
-			if request.get_owner() == get_id():
+		if request.is_completed():
+			continue
+			
+		if request.get_owner() == get_id():
+			if request.is_accepted():
 				yield(request.show_requirements(), "completed")
-			elif request.has_method("can_talk_to_%s" % get_id()) and request.call("can_talk_to_%s" % get_id()):
-				var state = request.call("talk_to_%s" % get_id())
+				break
+			elif request.can_accept():
+				var state = request.accept()
 				if state and state is GDScriptFunctionState:
 					yield(state, "completed")
-					
-		elif request.get_owner() == get_id() and request.can_accept():
-			var state = request.accept()
+				yield(request.show_requirements(), "completed")
+				break
+		elif request.has_method("can_talk_to_%s" % get_id()) and request.call("can_talk_to_%s" % get_id()):
+			var state = request.call("talk_to_%s" % get_id())
 			if state and state is GDScriptFunctionState:
 				yield(state, "completed")
-			yield(request.show_requirements(), "completed")
+			break
 	
 	can_talk()  # refresh the indicator

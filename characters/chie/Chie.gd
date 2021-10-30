@@ -1,6 +1,9 @@
 extends "res://characters/npc/npc.gd"
 
 onready var dialogue = get_tree().get_nodes_in_group("dialogue").front()
+onready var fortune = get_tree().get_nodes_in_group("fortune").front()
+
+const FORTUNE_FEE = 10
 
 func hint():
 	return "Talk to Chie"
@@ -10,9 +13,9 @@ func interact():
 	var text = [
 		"Hello Maia!",
 	]
-	if GameState.konpeto > 10:
+	if GameState.konpeto > FORTUNE_FEE:
 		text.append(
-			"Would you like to know about tomorrow?"
+			"Want to know about tomorrow?"
 		)
 		choices = ["Fortune", "No Thanks"]
 		
@@ -26,8 +29,8 @@ func interact():
 		return
 		
 	if choice == "Fortune":
-		var fortune = GameState.get_fortune()
-		
-		yield(fortune(), "completed")
+		GameState.konpeto -= FORTUNE_FEE
+		var f = GameState.fortune.get_new_fortune()
+		yield(fortune.open(f), "completed")
 		return
 	

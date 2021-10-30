@@ -9,56 +9,42 @@ func get_id():
 func get_requirements():
 	return [
 		{
-			"hint": "1 Pumpkin",
-			"id": "pumpkin",
-			"amount": 1
-		},
-		{
-			"hint": "1 Tomato",
-			"id": "tomato",
-			"amount": 1
+			"hint": "2500 Konpeito",
+			"id": "konpeito",
+			"amount": 2500
 		},
 	]
 	
 func can_accept():
 	# must complete yuuki's first quest before this unlocks
-	return GameState.flag("request:catgrass:completed")
+	return GameState.flag("request:flower_1:completed")
 
 func accept():
 	.accept()
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	yield(dialogue.open([
-		"I recently got a seed shipment",
-		"But they're for vegetables",
-		"And this is a flower shop...",
-		"What should I do?",
-		"Hey!",
-		"How about I give them to you!",
-		"[Got 1 Pumpkin Seed]",
-		"[Got 1 Tomato Seed]",
-		"You can say thanks by"
-		
+		"You've been a big help lately",
+		"The flowers you grow",
+		"they sell out so fast!",
+		"So I came up with an idea",
+		"Let me help you help me",
+		"I can make your garden bigger",
+		"Then you can grow more flowers",
+		"But, uhhh, I can't work for free",
+		"Expanding your garden",
+		"That takes time",
+		"time I could be selling flowers",
+		"So what I'm saying is",
+		"Please pay me up front~",
 	]), "completed")
-	var item = Content.get_item_reference("seed_pumpkin")
-	GameState.inventory.insert_item({
-		"id": item.id,
-		"ref": item,
-		"amount": 5
-	})
-	item = Content.get_item_reference("seed_tomato")
-	GameState.inventory.insert_item({
-		"id": item.id,
-		"ref": item,
-		"amount": 5
-	})
 
 func complete():
 	.complete()
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	yield(dialogue.open([
-		"These look absolutely delicious!",
-		"Maybe I will start selling these",
-		"Thank you Maia!",
-		"[You can now buy vegetables]"
+		"This definitely covers expenses",
+		"Alright, time to work the field",
+		"Thanks a bunch, Maia",
+		"I'm sure you'll love it",
 	]), "completed")
-	GameState.toggle("unlocked_vegetables")
+	GameState.toggle("garden.boost_1")

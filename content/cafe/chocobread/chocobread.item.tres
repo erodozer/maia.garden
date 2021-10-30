@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://content/cafe.gd" type="Script" id=1]
+[ext_resource path="res://content/cafe/chocobread/icon.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = "chocobread"
+icon = ExtResource( 2 )
+name = "C. Bread"
+price = 50
+stamina = 30
+description = "Sweet Chocolate Bread (30 ST) (Portable)"
+unlock = "unlock_chocobread"
+stack = 1
+starting = 0

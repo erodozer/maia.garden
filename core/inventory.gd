@@ -7,7 +7,7 @@ var bag_size setget ,get_bag_size
 
 func _ready():
 	for f in Content.Items:
-		if f.type == "tool" and f.starting > 0:
+		if f.get("starting") and f.starting > 0:
 			insert_item({
 				"id": f.id,
 				"ref": f,
@@ -51,6 +51,10 @@ func insert_item(entry):
 	
 	item.amount = amount
 	emit_signal("changed", item.id, item)
+	
+	if item.amount == 0:
+		data.remove(data.find(item))
+	
 	return true
 
 func get_item(id):

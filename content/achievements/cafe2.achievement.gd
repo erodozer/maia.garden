@@ -20,7 +20,7 @@ func get_title():
 	return "Over Caffinated"
 	
 func get_description():
-	return "Tried one of every cafe item"
+	return "Enjoy the Catfe with full stamina"
 	
 func get_progress():
 	return {

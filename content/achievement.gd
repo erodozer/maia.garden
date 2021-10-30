@@ -34,7 +34,7 @@ func get_progress():
 func _on_stat(_id, _params):
 	pass
 
-func handle_stat(id, params):
-	var handled = _on_stat(id, params)
+func handle_stat(key, params):
+	var handled = _on_stat(key, params)
 	if handled:
 		update_progress()

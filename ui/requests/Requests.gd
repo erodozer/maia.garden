@@ -9,6 +9,8 @@ signal end(submit)
 
 func _ready():
 	set_process_input(false)
+	for b in buttons.get_children():
+		b.connect("focus_entered", b, "set", ["pressed", true])
 
 func open(request):
 	visible = true

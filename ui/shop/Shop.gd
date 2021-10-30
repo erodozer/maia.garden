@@ -5,17 +5,21 @@ const button = preload("./ItemButton.tscn")
 signal exchange(item, value)
 signal end
 
-onready var items = get_node("PanelContainer/MarginContainer/ScrollContainer/Items")
+onready var items = get_node("PanelContainer/ScrollContainer/Items")
 onready var tween = get_node("Tween")
-onready var description = get_node("Description/MarginContainer/Label")
-onready var scroll = get_node("PanelContainer/MarginContainer/ScrollContainer")
+onready var description = get_node("Description/Label")
+onready var scroll = get_node("PanelContainer/ScrollContainer")
 	
 var group
 
 func _ready():
 	set_process_input(false)
 	
-func exchange(item, value):
+func exchange(btn):
+	var item = btn.item
+	var value = btn.price
+	var stock = btn.stock
+			
 	# purchase an item
 	if value > 0 and GameState.konpeto - value < 0:
 		return false
@@ -39,7 +43,7 @@ func exchange(item, value):
 	if not exchanged:
 		return false
 	
-	if item.type == "cafe":
+	if item.get("stamina") and item.stamina > 0:
 		if item.stack == 0 or value == 0:
 			# most cafe items restore stamina directly 
 			# instead of going into the inventory
@@ -56,6 +60,13 @@ func exchange(item, value):
 			"item": item,
 		})
 	
+	if stock > 0:
+		stock -= 1
+		btn.stock = stock
+		
+	if btn.stock == 0:
+		btn.queue_free()
+
 	emit_signal("exchange", item, value)
 	return true
 	
@@ -63,15 +74,17 @@ func open(item_list):
 	group = ButtonGroup.new()
 	
 	for i in item_list:
-		var b = button.instance()
-		items.add_child(b)
-		b.item = i.ref
-		b.price = i.price
-		b.group = group
-		b.connect("focus_entered", self, "update_description", [i])
+		if i.stock != 0:
+			var b = button.instance()
+			items.add_child(b)
+			b.item = i.ref
+			b.price = i.price
+			b.stock = i.stock
+			b.group = group
+			b.connect("focus_entered", self, "update_description", [i.ref])
 		
-	group.get_buttons()[0].pressed = true
-	group.get_buttons()[0].grab_focus()
+	group.get_buttons().front().pressed = true
+	group.get_buttons().front().grab_focus()
 		
 	visible = true
 	tween.interpolate_property(self, "rect_position:y", -120, 0, .3)
@@ -98,5 +111,7 @@ func _input(event):
 		emit_signal("end")
 	if event.is_action_pressed("ui_accept"):
 		var btn = group.get_pressed_button()
-		var item = btn.item
-		exchange(btn.item, btn.price)
+		exchange(btn)
+		yield(get_tree(), "idle_frame")
+		if items.get_child_count() <= 0:
+			emit_signal("end")

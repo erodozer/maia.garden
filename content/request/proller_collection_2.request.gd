@@ -45,8 +45,10 @@ func complete():
 		"[wave amp=20 freq=2]yes...I feel it...[/wave]",
 		"[wave amp=20 freq=2]My collection...is lucky[/wave]",
 		"[wave amp=20 freq=2]I am satisfied...[/wave]",
-		"[wave amp=20 freq=2]Maia...I have this[/wave]",
-		"[wave amp=20 freq=2]you may have it[/wave]",
+		"[wave amp=20 freq=2]Maia...[/wave]",
+		"[wave amp=20 freq=2]you may have this[/wave]",
 		"[You got a bigger Backpack]",
+		"[wave amp=20 freq=2]That is all...I require[/wave]",
+		"[wave amp=20 freq=2]...for now...[/wave]",
 	]), "completed")
 	GameState.toggle_flag("bag_expansion:level_2")
