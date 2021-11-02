@@ -69,5 +69,5 @@ func perform_action(cost):
 	return false
 
 func _on_Calendar_advance(_day):
-	stamina = 100
+	self.stamina = 100
 	has_streamed = false

@@ -36,6 +36,7 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 toggle_mode = true
 shortcut_in_tooltip = false
+action_mode = 0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -55,12 +56,14 @@ margin_left = 4.0
 margin_right = 28.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
+mouse_filter = 1
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
 [node name="Pressed" type="Panel" parent="ItemButton/Icon"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -69,6 +72,7 @@ __meta__ = {
 [node name="Unpressed" type="Panel" parent="ItemButton/Icon"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -117,6 +121,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="ItemButton/Cost"]
 margin_right = 32.0
 margin_bottom = 13.0
+mouse_filter = 1
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.627451, 0.356863, 0.32549, 1 )

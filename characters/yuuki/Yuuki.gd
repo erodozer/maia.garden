@@ -37,7 +37,7 @@ func interact():
 				continue
 			Cafe.append({
 				"ref": i,
-				"value": i.price,
+				"price": i.price,
 				"stock": -1,
 			})
 		

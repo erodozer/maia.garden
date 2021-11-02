@@ -74,7 +74,7 @@ func interact():
 		
 		select.append({
 			"ref": f,
-			"value": f.price,
+			"price": f.price,
 			"stock": -1,
 		})
 	

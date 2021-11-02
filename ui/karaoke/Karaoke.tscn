@@ -120,6 +120,7 @@ __meta__ = {
 
 [node name="Maia" type="AnimatedSprite" parent="Game/HBoxContainer/Panel/Animation"]
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="Microphone" type="Sprite" parent="Game/HBoxContainer/Panel/Animation"]
@@ -335,7 +336,6 @@ __meta__ = {
 [node name="Maia" type="AnimatedSprite" parent="Results/PanelContainer/VBoxContainer/HBoxContainer/Animation"]
 position = Vector2( 5, 9 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="Microphone" type="Sprite" parent="Results/PanelContainer/VBoxContainer/HBoxContainer/Animation"]

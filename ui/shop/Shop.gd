@@ -82,8 +82,8 @@ func open(item_list):
 			b.stock = i.stock
 			b.group = group
 			b.connect("focus_entered", self, "update_description", [i.ref])
+			b.connect("toggled", self, "_on_toggle_button", [b])
 		
-	group.get_buttons().front().pressed = true
 	group.get_buttons().front().grab_focus()
 		
 	visible = true
@@ -106,12 +106,15 @@ func open(item_list):
 func update_description(item):
 	description.text = item.description
 	
+func _on_toggle_button(pressed, btn):
+	if not pressed:
+		return
+		
+	exchange(btn)
+	yield(get_tree(), "idle_frame")
+	if items.get_child_count() <= 0:
+		emit_signal("end")
+	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("end")
-	if event.is_action_pressed("ui_accept"):
-		var btn = group.get_pressed_button()
-		exchange(btn)
-		yield(get_tree(), "idle_frame")
-		if items.get_child_count() <= 0:
-			emit_signal("end")
