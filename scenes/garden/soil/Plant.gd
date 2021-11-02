@@ -33,13 +33,14 @@ func sow(c):
 	
 func harvest(p):
 	# reaping costs no stamina
-	plant = null
 	GameState.garden.harvest(p)
+	set_plant(null)
 	
 func water(p):
 	var watered = GameState.player.perform_action(watering_stamina_cost)
 	if watered:
 		p.watered = true
+		set_plant(p)
 		
 func set_plant(p):
 	plant = p
@@ -108,8 +109,6 @@ func interact():
 		
 	if plant.age >= plant.ref.mature:
 		harvest(plant)
-		set_plant(null)
 		return
 	if not plant.watered:
 		water(plant)
-		set_plant(plant)

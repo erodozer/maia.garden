@@ -63,12 +63,11 @@ func plant(seed_tool, cell):
 	})
 	return plant
 	
-func harvest(cell):
-	if not (cell in plots):
+func harvest(plant):
+	if not (plant.cell in plots):
 		return false
 		
-	var plant = plots[cell]
-	plots.erase(cell)
+	plots.erase(plant.cell)
 	GameState.inventory.insert_item({
 		"id": plant.ref.id,
 		"ref": plant.ref,
