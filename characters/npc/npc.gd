@@ -14,6 +14,9 @@ func get_id():
 func can_talk():
 	var say = false
 	for request in GameState.requests:
+		if request.is_completed():
+			continue
+			
 		if request.is_accepted():
 			if request.get_owner() == get_id():
 				say = true
@@ -50,5 +53,7 @@ func check_requests():
 			if state and state is GDScriptFunctionState:
 				yield(state, "completed")
 			break
+	
+	yield(get_tree(), "idle_frame")
 	
 	can_talk()  # refresh the indicator

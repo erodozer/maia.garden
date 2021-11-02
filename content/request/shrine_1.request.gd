@@ -25,7 +25,7 @@ func accept():
 		"Maia, would you lend an ear",
 		"The shrine is short on funds",
 		"and it's nearly falling apart",
-		"If you can spare some funds",
+		"If you can spare some",
 		"it would go a long way",
 	]), "completed")
 
