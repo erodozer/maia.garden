@@ -15,6 +15,7 @@ extents = Vector2( 123, 11 )
 
 [node name="Map" instance=ExtResource( 2 )]
 script = ExtResource( 6 )
+return_location = "River"
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource( 4 )
@@ -40,11 +41,8 @@ scale = Vector2( 2, 2 )
 [node name="Maia" parent="." index="4"]
 position = Vector2( 78, 47 )
 
-[node name="Walking" parent="Maia/Sprite" index="1"]
-frame = 3
-
 [node name="Fishing" parent="Maia/Sprite" index="2"]
-frame = 1
+frame = 3
 
 [node name="River" parent="." index="6" instance=ExtResource( 1 )]
 position = Vector2( -57, 104 )

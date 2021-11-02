@@ -19,6 +19,7 @@ extents = Vector2( 10, 30 )
 
 [node name="Map" instance=ExtResource( 1 )]
 script = ExtResource( 7 )
+return_location = "Shrine"
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource( 2 )
@@ -95,7 +96,7 @@ autowrap = true
 position = Vector2( 68, 45 )
 
 [node name="Walking" parent="Maia/Sprite" index="1"]
-frame = 2
+frame = 0
 
 [node name="Chie" parent="." index="5" instance=ExtResource( 3 )]
 position = Vector2( -61, 34 )

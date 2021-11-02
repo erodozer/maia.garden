@@ -8,6 +8,7 @@ Manages interactive tilemap state
 const Plant = preload("./soil/Plant.tscn")
 
 onready var player = get_tree().get_nodes_in_group("player").front()
+onready var portals = get_tree().get_nodes_in_group("portals").front()
 
 onready var highlight = get_node("Highlight")
 
@@ -17,12 +18,11 @@ var plots = []
 func _setup(params):
 	if not params:
 		return
-
-	match params.location:
-		"forest":
-			player.position = Vector2(0, 192)
-		_:
-			player.position = Vector2(0, 0)
+	
+	var portal = portals.get_node(params[0])
+	if not portal:
+		portal = portals.get_node("Home")
+	player.position = portal.position
 		
 func _ready():
 	var soil

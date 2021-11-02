@@ -20,6 +20,7 @@ extents = Vector2( 6.71454, 30.6434 )
 
 [node name="Map" instance=ExtResource( 3 )]
 script = ExtResource( 4 )
+return_location = "FlowerShop"
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource( 2 )
@@ -52,5 +53,8 @@ position = Vector2( 74.6921, 48.4704 )
 
 [node name="Walking" parent="Maia/Sprite" index="1"]
 frame = 3
+
+[node name="Fishing" parent="Maia/Sprite" index="2"]
+frame = 2
 
 [editable path="Maia"]

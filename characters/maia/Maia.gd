@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const MOVEMENT_SPEED = 1
+const MOVEMENT_SPEED = 64
 
 export var sidescrolling_mode = false
 export var fishing = false setget toggle_fishing
@@ -80,7 +80,7 @@ func _input(event):
 	if event.is_action_pressed("ui_select"):
 		open_journal()
 		
-func _physics_process(_delta):
+func _physics_process(delta):
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_left"):
 		direction += Vector2.LEFT
@@ -98,7 +98,7 @@ func _physics_process(_delta):
 	direction = direction.normalized()
 		
 	if direction != Vector2.ZERO:
-		move_and_collide(direction * MOVEMENT_SPEED)
+		move_and_collide(direction * MOVEMENT_SPEED * delta)
 		walk_sprite.visible = true
 		stand_sprite.visible = false
 		interact_collider.rotation = direction.angle()
