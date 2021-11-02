@@ -10,15 +10,15 @@ func hint():
 	
 func can_talk():
 	if not GameState.flag("ssubi.phrase_1"):
-		return GameState.stats["talked_to_ssubi"].value() > 2
+		return GameState.stats["talked_to_ssubi"].value > 2
 	if not GameState.flag("ssubi.phrase_2"):
-		return GameState.stats["talked_to_ssubi"].value() > 5
+		return GameState.stats["talked_to_ssubi"].value > 5
 	if not GameState.flag("ssubi.phrase_3"):
-		return GameState.stats["talked_to_ssubi"].value() > 9
+		return GameState.stats["talked_to_ssubi"].value > 9
 	if not GameState.flag("ssubi.phrase_4"):
-		return GameState.stats["talked_to_ssubi"].value() > 15
+		return GameState.stats["talked_to_ssubi"].value > 15
 	if not GameState.flag("ssubi.phrase_5"):
-		return GameState.stats["talked_to_ssubi"].value() > 23
+		return GameState.stats["talked_to_ssubi"].value > 23
 	return false
 	
 func get_phrase():

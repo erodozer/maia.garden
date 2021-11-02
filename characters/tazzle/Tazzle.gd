@@ -40,7 +40,7 @@ func sell():
 				"id": f.id,
 				"amount": -f.amount
 			})
-		GameState.konpeto += value
+		GameState.player.balance += value
 	else:
 		yield(dialogue.open([
 			"Oh, that's too bad",

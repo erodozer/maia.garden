@@ -26,3 +26,23 @@ func deliver_mail(day):
 
 func _on_calendar_advance(day):
 	deliver_mail(day)
+
+func persist(data):
+	data["mail"] = []
+	for m in inbox.values():
+		data.mail.append({
+			"id": m.id,
+			"delivered": m.delivered,
+			"unread": m.unread
+		})
+	
+func restore(data):
+	inbox = {}
+
+	for m in data.mail:
+		data.mail.append({
+			"id": m.id,
+			"delivered": m.delivered,
+			"unread": m.unread,
+			"ref": Content.get_mail_reference(m.id)
+		})

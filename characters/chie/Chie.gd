@@ -13,7 +13,7 @@ func interact():
 	var text = [
 		"Hello Maia!",
 	]
-	if GameState.konpeto > FORTUNE_FEE:
+	if GameState.player.balance > FORTUNE_FEE:
 		text.append(
 			"Want to know about tomorrow?"
 		)
@@ -29,7 +29,7 @@ func interact():
 		return
 		
 	if choice == "Fortune":
-		GameState.konpeto -= FORTUNE_FEE
+		GameState.player.balance -= FORTUNE_FEE
 		var f = GameState.fortune.get_new_fortune()
 		yield(fortune.open(f), "completed")
 		return

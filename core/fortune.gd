@@ -31,3 +31,13 @@ func _on_calendar_advance(_day):
 	next_fortune = null
 	emit_signal("changed", current_fortune)
 	
+func persist(data):
+	data["fortune"] = {
+		"current": current_fortune,
+		"next": next_fortune
+	}
+	return data
+	
+func restore(data):
+	current_fortune = data["fortune"]["current"]
+	next_fortune = data["fortune"]["next"]

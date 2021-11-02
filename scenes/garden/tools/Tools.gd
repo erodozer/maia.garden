@@ -41,6 +41,9 @@ func update_count(_id, item):
 	player.reevaluate()
 	
 func _process(_delta):
+	if len(tools) <= 0:
+		return
+	
 	if Input.is_action_just_pressed("ui_focus_next"):
 		self.current_tool = tools[wrapi(tools.find(current_tool) + 1, 0, len(tools))]
 		return

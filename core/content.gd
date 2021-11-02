@@ -18,3 +18,9 @@ func get_item_reference(id):
 		if i.id == id:
 			return i
 	return null
+
+func get_mail_reference(id):
+	for i in Mail:
+		if i.id == id:
+			return i
+	return null

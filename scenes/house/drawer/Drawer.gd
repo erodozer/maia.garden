@@ -33,14 +33,15 @@ func interact():
 	yield(tween, "tween_all_completed")
 	outfits.grab_focus()
 	outfits.grab_click_focus()
+	outfits.select(0)
 	var selected = yield(outfits, "item_activated")
 	match selected:
 		0:
-			GameState.outfit = "default"
+			GameState.player.outfit = "default"
 		1:
-			GameState.outfit = "hat"
+			GameState.player.outfit = "hat"
 		2:
-			GameState.outfit = "tiny"
+			GameState.player.outfit = "tiny"
 	tween.interpolate_property(ui, "rect_position:y", 75, 200, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")

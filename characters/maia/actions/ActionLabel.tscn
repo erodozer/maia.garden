@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://characters/maia/actions/ActionLabel.gd" type="Script" id=1]
+[ext_resource path="res://characters/maia/bubble/bubble.png" type="Texture" id=2]
+[ext_resource path="res://ui/UITheme.tres" type="Theme" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.956863, 0.8, 0.631373, 1 )
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.368627, 0.211765, 0.262745, 1 )
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+anti_aliasing = false
+
+[node name="ActionLabel" type="PanelContainer"]
+visible = false
+margin_top = 2.0
+margin_right = 40.0
+margin_bottom = 24.0
+theme = ExtResource( 3 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 36.0
+margin_bottom = 18.0
+mouse_filter = 2
+size_flags_horizontal = 0
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+margin_right = 12.0
+margin_bottom = 14.0
+texture = ExtResource( 2 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 16.0
+margin_right = 32.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 0, 14 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 0
+text = "Eat"

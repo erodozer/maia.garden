@@ -23,7 +23,7 @@ func get_requirements():
 	]
 	
 func can_accept():
-	return GameState.stats.total_fish_caught.value() > 30 and GameState.flag("request:fish_1:completed")
+	return GameState.stats.total_fish_caught.value > 30 and GameState.flag("request:fish_1:completed")
 
 func accept():
 	.accept()

@@ -50,7 +50,7 @@ func _input(event):
 			GameState.garden.plots[p].watered = true
 		GameState.calendar.advance_day()
 	if event.is_action_pressed("debug_money"):
-		GameState.konpeto += 100
+		GameState.player.balance += 100
 
 func _on_Maia_interact_start():
 	set_process_input(false)

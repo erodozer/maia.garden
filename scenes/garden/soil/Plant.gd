@@ -21,23 +21,23 @@ func _ready():
 	set_plant(plant)
 	
 func sow(c):
-	if GameState.stamina < planting_stamina_cost:
+	if not GameState.player.can_perform_action(planting_stamina_cost):
 		return null
 	
 	var p = GameState.garden.plant(seed_tool.current_tool, c)
 	
 	if p:
-		GameState.stamina -= planting_stamina_cost  # planting costs some stamina
+		GameState.player.perform_action(planting_stamina_cost)  # planting costs some stamina
 	
 	return p
 	
 func harvest(p):
 	# reaping costs no stamina
 	plant = null
-	GameState.garden.harvest(cell)
+	GameState.garden.harvest(p)
 	
 func water(p):
-	var watered = GameState.perform_action(watering_stamina_cost)
+	var watered = GameState.player.perform_action(watering_stamina_cost)
 	if watered:
 		p.watered = true
 		
@@ -78,6 +78,8 @@ func hint():
 	
 func can_interact():
 	if not plant:
+		if not GameState.player.can_perform_action(planting_stamina_cost):
+			return false
 		if not seed_tool.current_tool:
 			return false
 		if not seed_tool.current_tool.ref.effect:
@@ -92,6 +94,9 @@ func can_interact():
 	if plant.age >= plant.ref.mature:
 		return true
 	
+	if not GameState.player.can_perform_action(watering_stamina_cost):
+		return false
+		
 	return not plant.watered
 
 func interact():

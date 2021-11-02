@@ -5,6 +5,35 @@ const Fortunes = preload("res://core/fortune.gd").Fortunes
 
 var plots = {}
 
+func persist(data):
+	var d = []
+	
+	for p in plots.values():
+		d.append({
+			"id": p.ref.id,
+			"age": p.age,
+			"watered": p.watered,
+			"cell": {
+				"x": p.cell.x,
+				"y": p.cell.y,
+			}
+		})
+	data["garden"] = d
+	return data
+		
+func restore(data):
+	plots = {}
+	
+	for p in data.garden:
+		var cell = Vector2(p.cell.x, p.cell.y)
+		plots[cell] = {
+			"ref": Content.get_item_reference(p.id),
+			"age": p.age,
+			"watered": p.watered,
+			"cell": cell,
+		}
+	
+
 func plant(seed_tool, cell):
 	# do not allow planting where there is already a plant
 	if cell in plots:

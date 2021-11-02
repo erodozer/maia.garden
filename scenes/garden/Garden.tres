@@ -26,7 +26,7 @@ points = PoolVector2Array( 7.06851, 0.139542, 12.1156, 0.139542, 12.3025, 15.841
 [sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( 3.4992, 0, 7.892, 0.139542, 7.892, 16, 3.31227, 15.9349 )
 
-[sub_resource type="ConvexPolygonShape2D" id=33]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 points = PoolVector2Array( 41.7464, 64, 8.41163, 64, 8.41163, 27.1692, 41.7464, 27.1692 )
 
 [sub_resource type="ConvexPolygonShape2D" id=10]
@@ -35,7 +35,7 @@ points = PoolVector2Array( 6.97505, 4.42119, 16, 4.51465, 16, 16, 7.06851, 15.91
 [sub_resource type="ConvexPolygonShape2D" id=11]
 points = PoolVector2Array( 0.0410423, 4.32773, 7.70508, 4.32773, 7.70508, 15.9172, 0, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=34]
+[sub_resource type="ConvexPolygonShape2D" id=12]
 points = PoolVector2Array( 40.4538, 64, 9.83232, 64, 9.83232, 27.363, 40.4538, 27.363 )
 
 [sub_resource type="ConvexPolygonShape2D" id=13]
@@ -560,14 +560,14 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 57.1021, 0, 57.5866 )
 20/navigation_offset = Vector2( 0, 0 )
 20/shape_offset = Vector2( 0, 0 )
 20/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-20/shape = SubResource( 33 )
+20/shape = SubResource( 9 )
 20/shape_one_way = false
 20/shape_one_way_margin = 1.0
 20/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 33 ),
+"shape": SubResource( 9 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 20/z_index = 0
@@ -623,14 +623,14 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 57.1021, 0, 57.5866 )
 23/navigation_offset = Vector2( 0, 0 )
 23/shape_offset = Vector2( 0, 0 )
 23/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-23/shape = SubResource( 34 )
+23/shape = SubResource( 12 )
 23/shape_one_way = false
 23/shape_one_way_margin = 1.0
 23/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 34 ),
+"shape": SubResource( 12 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 23/z_index = 0

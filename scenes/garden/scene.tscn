@@ -7,11 +7,11 @@
 [ext_resource path="res://scenes/garden/scene.gd" type="Script" id=5]
 [ext_resource path="res://scenes/garden/house/Door.gd" type="Script" id=6]
 [ext_resource path="res://scenes/garden/explore/ExploreMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/shop/Shop.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/garden/tools/Tools.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/garden/table/Table.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/garden/HUD.gd" type="Script" id=11]
 [ext_resource path="res://ui/dialogue/Dialogue.tscn" type="PackedScene" id=12]
-[ext_resource path="res://ui/actions/ActionLabel.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -74,6 +74,8 @@ tile_data = PoolIntArray( 0, 8, 196609, 1, 8, 3, 2, 8, 3, 3, 8, 3, 4, 8, 3, 5, 8
 
 [node name="Pond" parent="." instance=ExtResource( 4 )]
 position = Vector2( -64, 112 )
+z_index = -1
+z_as_relative = false
 
 [node name="Mailbox" parent="." instance=ExtResource( 2 )]
 position = Vector2( -24, 18 )
@@ -131,9 +133,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ActionLabel" parent="CanvasLayer/HUD" instance=ExtResource( 14 )]
-margin_right = 56.0
-
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD"]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -158,13 +157,12 @@ custom_constants/margin_bottom = 2
 
 [node name="Dialogue" parent="CanvasLayer" instance=ExtResource( 12 )]
 
+[node name="Shop" parent="CanvasLayer" instance=ExtResource( 8 )]
+
 [connection signal="can_interact" from="Maia" to="." method="_on_Maia_can_interact"]
-[connection signal="can_interact" from="Maia" to="CanvasLayer/HUD/ActionLabel" method="_on_Maia_can_interact"]
 [connection signal="interact_end" from="Maia" to="." method="_on_Maia_interact_end"]
 [connection signal="interact_end" from="Maia" to="CanvasLayer/HUD" method="_on_Maia_interact_end"]
-[connection signal="interact_end" from="Maia" to="CanvasLayer/HUD/ActionLabel" method="_on_Maia_interact_end"]
 [connection signal="interact_end" from="Maia" to="CanvasLayer/HUD/HBoxContainer/MarginContainer/Seeds" method="resume"]
 [connection signal="interact_start" from="Maia" to="." method="_on_Maia_interact_start"]
 [connection signal="interact_start" from="Maia" to="CanvasLayer/HUD" method="_on_Maia_interact_start"]
-[connection signal="interact_start" from="Maia" to="CanvasLayer/HUD/ActionLabel" method="_on_Maia_interact_start"]
 [connection signal="interact_start" from="Maia" to="CanvasLayer/HUD/HBoxContainer/MarginContainer/Seeds" method="pause"]

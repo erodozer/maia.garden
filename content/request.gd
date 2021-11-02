@@ -52,7 +52,7 @@ func complete():
 		var claim = requirement.amount
 		for s in select:
 			if s == "konpeito":
-				GameState.konpeto -= claim
+				GameState.player.balance -= claim
 				claim = 0
 				break
 				
@@ -112,7 +112,7 @@ func requirements_met():
 		var sum = 0
 		for i in select:
 			if i == "konpeito":
-				sum += GameState.konpeto
+				sum += GameState.player.balance
 				continue
 			var item = GameState.inventory.get_item(i)
 			if item:

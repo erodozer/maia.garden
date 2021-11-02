@@ -22,9 +22,9 @@ signal interact_end
 
 func _ready():
 	set_physics_process(true)
-	change_outfit(GameState.outfit)
+	change_outfit(GameState.player.outfit)
 	slice(half_height)
-	GameState.connect("change_outfit", self, "change_outfit")
+	GameState.player.connect("change_outfit", self, "change_outfit")
 	
 func pause():
 	set_physics_process(false)
@@ -64,6 +64,7 @@ func perform_action():
 			yield(state, "completed")
 	resume()
 	emit_signal("interact_end")
+	reevaluate()
 
 func open_journal():
 	emit_signal("interact_start")
@@ -133,11 +134,11 @@ func _on_Interact_body_exited(body):
 	var idx = interactable_npc.find(body)
 	if idx != -1:
 		interactable_npc.remove(idx)
-		if interactable_npc.empty():
-			emit_signal("can_interact", null)
-		else:
-			var f = interactable_npc.front()
-			emit_signal("can_interact", f)
+	if interactable_npc.empty():
+		emit_signal("can_interact", null)
+	else:
+		var f = interactable_npc.front()
+		emit_signal("can_interact", f)
 
 var overlay = []
 func _on_overlay_body_entered(b):
@@ -148,5 +149,5 @@ func _on_overlay_body_exited(body):
 	var idx = overlay.find(body)
 	if idx != -1:
 		overlay.remove(idx)
-		if overlay.empty():
-			self.half_height = false
+	if overlay.empty():
+		self.half_height = false

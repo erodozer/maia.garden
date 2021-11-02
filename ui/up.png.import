@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/up.png-664da561f082799fa0c384cb5ef861c3.stex"
+path="res://.import/up.png-35f03b2bdc7de4220129ac46a22b90f6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/ssubi_says/up.png"
-dest_files=[ "res://.import/up.png-664da561f082799fa0c384cb5ef861c3.stex" ]
+source_file="res://ui/up.png"
+dest_files=[ "res://.import/up.png-35f03b2bdc7de4220129ac46a22b90f6.stex" ]
 
 [params]
 

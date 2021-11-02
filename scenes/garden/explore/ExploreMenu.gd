@@ -39,6 +39,9 @@ func interact():
 		menu.set_item_metadata(4, "darkness")
 	else:
 		menu.add_item("???", null, true)
+
+	for i in range(menu.get_item_count()):
+		menu.set_item_tooltip_enabled(i, false)
 		
 	tween.interpolate_property(container, "rect_position:y", -150, 75 - container.rect_size.y / 2, .3)
 	tween.start()

@@ -18,7 +18,7 @@ func build():
 		var row = StatRecord.instance()
 		record_list.add_child(row)
 		row.get_node("Label").text = i.get_title()
-		row.get_node("Count").text = "%s" % i.value()
+		row.get_node("Count").text = "%s" % i.get_value()
 			
 	for i in GameState.achievements.values():
 		var row = AchievementRecord.instance()

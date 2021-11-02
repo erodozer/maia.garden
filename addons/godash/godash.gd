@@ -69,6 +69,26 @@ static func extend(d1: Dictionary, d2: Dictionary) -> Dictionary:
 		out[k] = d2[k]
 	return out
 
+static func enumerate_dir(resource_dir, ext = null) -> Array:
+	"""
+	Fetch a list of files in a directory that match the extension.
+	
+	Good for when you just want names without loading the actual file.
+	"""
+	var item_dir = Directory.new()
+	var _items = []
+	if item_dir.open(resource_dir) == OK:
+		item_dir.list_dir_begin(true)
+		var file_name = item_dir.get_next()
+		while (file_name != ""):
+			if (not ext) or (ext and file_name.ends_with(ext)):
+				_items.append("%s%s" % [resource_dir, file_name])
+			file_name = item_dir.get_next()
+		item_dir.list_dir_end()
+	else:
+		printerr("can't load items: %s" % [resource_dir])
+	return _items
+
 static func load_dir(resource_dir, ext = '.tres', recurse = false) -> Dictionary:
 	"""
 	Load resource assets from a directory.

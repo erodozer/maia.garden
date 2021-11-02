@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/down.png-0bef2ccb327dd94041b5c83d3317019d.stex"
+path="res://.import/miss.png-9327578e2a28d52519a0981ed8acfc95.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/ssubi_says/down.png"
-dest_files=[ "res://.import/down.png-0bef2ccb327dd94041b5c83d3317019d.stex" ]
+source_file="res://ui/karaoke/miss.png"
+dest_files=[ "res://.import/miss.png-9327578e2a28d52519a0981ed8acfc95.stex" ]
 
 [params]
 

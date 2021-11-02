@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://content/fish/icon.tres" type="Texture" id=1]
+[ext_resource path="res://content/fish.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+id = "yellow_perch"
+icon = ExtResource( 1 )
+location = "pond"
+name = "Yellow Perch"
+price = 0
+strength = 6
+stamina = 3
+min_size = 7.0
+max_size = 19.7
+rarity = 0.5
+health = 140
+description = ""
+stack = 1
+starting = 0

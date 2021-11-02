@@ -1,11 +1,7 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ui/karaoke/Karaoke.gd" type="Script" id=1]
-[ext_resource path="res://ui/karaoke/right_button.png" type="Texture" id=2]
-[ext_resource path="res://ui/karaoke/down_button.png" type="Texture" id=3]
-[ext_resource path="res://ui/karaoke/left_button.png" type="Texture" id=4]
-[ext_resource path="res://ui/karaoke/up_button.png" type="Texture" id=5]
-[ext_resource path="res://ui/karaoke/Input.gd" type="Script" id=6]
+[ext_resource path="res://ui/karaoke/Lane.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://characters/maia/outfits/default/maia_1.png" type="Texture" id=8]
 [ext_resource path="res://characters/maia/outfits/default/maia_2.png" type="Texture" id=9]
@@ -21,9 +17,6 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 10 )
-
 [node name="Karaoke" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,6 +27,7 @@ __meta__ = {
 }
 
 [node name="Difficulty" type="Control" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -93,7 +87,6 @@ text = "Select Difficulty"
 align = 1
 
 [node name="Game" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -147,62 +140,26 @@ transparent_bg = true
 handle_input_locally = false
 disable_3d = true
 usage = 0
-render_target_update_mode = 0
+render_target_update_mode = 3
 
 [node name="Camera2D" type="Camera2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
 offset = Vector2( 35, 75 )
 current = true
 
-[node name="Left" type="Area2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
+[node name="Left" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 2 )]
 position = Vector2( 8, 16 )
-collision_layer = 0
-collision_mask = 8
-script = ExtResource( 6 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left"]
-shape = SubResource( 2 )
-
-[node name="Button" type="Sprite" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left"]
-texture = ExtResource( 4 )
-
-[node name="Up" type="Area2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
+[node name="Up" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 2 )]
 position = Vector2( 26, 16 )
-collision_layer = 0
-collision_mask = 8
-script = ExtResource( 6 )
-input_key = "ui_up"
+input_key = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up"]
-shape = SubResource( 2 )
-
-[node name="Button" type="Sprite" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up"]
-texture = ExtResource( 5 )
-
-[node name="Down" type="Area2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
+[node name="Down" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 2 )]
 position = Vector2( 44, 16 )
-collision_layer = 0
-collision_mask = 8
-script = ExtResource( 6 )
-input_key = "ui_down"
+input_key = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down"]
-shape = SubResource( 2 )
-
-[node name="Button" type="Sprite" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down"]
-texture = ExtResource( 3 )
-
-[node name="Right" type="Area2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D"]
+[node name="Right" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 2 )]
 position = Vector2( 62, 16 )
-collision_layer = 0
-collision_mask = 8
-script = ExtResource( 6 )
-input_key = "ui_right"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right"]
-shape = SubResource( 2 )
-
-[node name="Button" type="Sprite" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right"]
-texture = ExtResource( 2 )
+input_key = 3
 
 [node name="Left" type="YSort" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
 position = Vector2( 8, 0 )
@@ -238,6 +195,8 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Node2D" type="Node2D" parent="Game/HBoxContainer/Panel"]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Game/HBoxContainer"]
 margin_left = 80.0
@@ -458,10 +417,6 @@ align = 2
 [connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_add_note"]
 [connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Down" method="_on_Karaoke_add_note"]
 [connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Right" method="_on_Karaoke_add_note"]
-[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_Karaoke_end"]
 [connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Left" method="_on_Karaoke_end"]
 [connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_end"]
 [connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Down" method="_on_Karaoke_end"]
@@ -470,19 +425,11 @@ align = 2
 [connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_Karaoke_start"]
 [connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_Karaoke_start"]
 [connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_Karaoke_start"]
-[connection signal="area_entered" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_area_entered"]
-[connection signal="area_exited" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_area_exited"]
 [connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="." method="_on_hit"]
 [connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="." method="_on_miss"]
-[connection signal="area_entered" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_area_entered"]
-[connection signal="area_exited" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_area_exited"]
 [connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="." method="_on_hit"]
 [connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="." method="_on_miss"]
-[connection signal="area_entered" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_area_entered"]
-[connection signal="area_exited" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_area_exited"]
 [connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="." method="_on_hit"]
 [connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="." method="_on_miss"]
-[connection signal="area_entered" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_area_entered"]
-[connection signal="area_exited" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_area_exited"]
 [connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="." method="_on_hit"]
 [connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="." method="_on_miss"]

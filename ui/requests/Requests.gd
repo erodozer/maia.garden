@@ -9,8 +9,6 @@ signal end(submit)
 
 func _ready():
 	set_process_input(false)
-	for b in buttons.get_children():
-		b.connect("focus_entered", b, "set", ["pressed", true])
 
 func open(request):
 	visible = true
@@ -24,7 +22,6 @@ func open(request):
 	# test the requirements
 	var has_items = request.requirements_met()
 	buttons.visible = has_items
-	submit_button.pressed = has_items
 	if has_items:
 		submit_button.grab_focus()
 		
@@ -43,7 +40,20 @@ func open(request):
 		
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		emit_signal("end", submit_button.pressed)
+		if not buttons.visible:
+			emit_signal("end", false)
 
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("end", false)
+
+func _on_Submit_toggled(button_pressed):
+	if not button_pressed:
+		return
+	
+	emit_signal("end", true)
+
+func _on_Cancel_toggled(button_pressed):
+	if not button_pressed:
+		return
+	
+	emit_signal("end", false)

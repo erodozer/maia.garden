@@ -8,12 +8,13 @@ const CHIE_DAY = 1634616000
 
 signal advance(day)
 
+func reset():
+	day = 1634616000
+	emit_signal("advance", day)
+	
 func advance_day():
 	day += 86400 # add a day in unix seconds
 
-	GameState.stamina = 100
-	GameState.has_streamed = false
-	
 	# only introduce proller after a certain amount of time has passed
 	# and you've been introduced to everyone else
 	if day >= PROLLER_DAY and \
@@ -25,13 +26,13 @@ func advance_day():
 	if day >= CHIE_DAY:
 		GameState.toggle_flag("introduce.chie")
 	
-	if GameState.stats.stamina_used.value() > 250:
+	if GameState.stats.stamina_used.value > 250:
 		GameState.toggle_flag("introduce.yuuki")
 		
-	if GameState.stats.flowers_planted.value() > 5:
+	if GameState.stats.flowers_planted.value > 5:
 		GameState.toggle_flag("introduce.clover")
 	
-	if GameState.stats.fish_caught.value() > 8:
+	if GameState.stats.fish_caught.value > 8:
 		GameState.toggle_flag("introduce.tazzle")
 		
 	if day >= MAIAS_BIRTHDAY:
@@ -39,3 +40,12 @@ func advance_day():
 	
 	emit_signal("advance", day)
 	
+	GameState.save_game("auto")
+	
+func persist(data):
+	data["calendar"] = {
+		"date": day
+	}
+	
+func restore(data):
+	day = data["calendar"]["date"]

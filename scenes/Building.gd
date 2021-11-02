@@ -13,9 +13,7 @@ func _on_Map_exit():
 	SceneManager.change_scene("garden", {"location": return_location})
 
 func _on_Maia_interact_start():
-	get_node("CanvasLayer/HUD").visible = false
 	set_process_input(false)
 
 func _on_Maia_interact_end():
-	get_node("CanvasLayer/HUD").visible = true
 	set_process_input(true)

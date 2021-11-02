@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/journal/journal.gd" type="Script" id=2]
@@ -9,7 +9,9 @@
 [ext_resource path="res://ui/journal/achievement.png" type="Texture" id=7]
 [ext_resource path="res://ui/journal/calendar.png" type="Texture" id=8]
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://ui/journal/data.png" type="Texture" id=10]
 [ext_resource path="res://ui/journal/Achievements.gd" type="Script" id=11]
+[ext_resource path="res://ui/journal/Data.gd" type="Script" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 4.0
@@ -127,6 +129,17 @@ custom_styles/normal = SubResource( 3 )
 toggle_mode = true
 shortcut_in_tooltip = false
 icon = ExtResource( 7 )
+
+[node name="Data" type="Button" parent="Window/Tabs"]
+margin_left = 63.0
+margin_right = 83.0
+margin_bottom = 21.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = ExtResource( 10 )
 
 [node name="Calendar" type="PanelContainer" parent="Window/Tabs"]
 margin_left = 130.0
@@ -283,6 +296,23 @@ margin_right = 160.0
 margin_bottom = 47.0
 custom_constants/separation = 0
 
+[node name="Data" type="ScrollContainer" parent="Window/View"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 176.0
+margin_bottom = 97.0
+focus_mode = 2
+follow_focus = true
+script = ExtResource( 12 )
+
+[node name="ItemList" type="ItemList" parent="Window/View/Data"]
+margin_right = 172.0
+margin_bottom = 93.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+same_column_width = true
+fixed_icon_size = Vector2( 24, 32 )
+
 [node name="InventoryCounter" type="Panel" parent="."]
 margin_left = 157.0
 margin_top = 133.0
@@ -305,3 +335,6 @@ clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="focus_entered" from="Window/View/Data" to="Window/View/Data" method="_on_Data_focus_entered"]
+[connection signal="item_activated" from="Window/View/Data/ItemList" to="Window/View/Data" method="_on_ItemList_item_activated"]

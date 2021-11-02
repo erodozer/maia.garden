@@ -1,9 +1,6 @@
 extends Node
 
 const godash = preload("res://addons/godash/godash.gd")
-const Fortunes = preload("res://core/fortune.gd").Fortunes
-
-var konpeto = 100 setget update_balance
 
 onready var inventory = get_node("Inventory")
 onready var garden = get_node("Garden")
@@ -11,55 +8,33 @@ onready var mail = get_node("Mail")
 onready var calendar = get_node("Calendar")
 onready var fishing = get_node("Fishing")
 onready var fortune = get_node("Fortune")
+onready var player = get_node("Player")
 
 var requests = []
 var achievements = {}
 var stats = {}
 
-var outfit = "default" setget set_outfit
-
 # these are flags that persist
 # once these are toggled they should never go back except on new/load data
-var flags = {
-	"outfit.default": true,
-	"outfit.hat": false,
-	"outfit.tiny": false,
-	# introductions
-	"introduce.chie": false,
-	"introduce.clover": false,
-	"introduce.yuuki": false,
-	"introduce.proller": false,
-	"introduce.tazzle": false,
-	"maia_birthday": false,
-	# debug
-	"unlock_bread": false
-}
+var flags = {}
 
-# daily vars
-var has_streamed = false
-var delivered_mail = false
-var stamina = 100 setget update_stamina
-
-signal balance_changed(new_amount, old_amount)
-signal stamina_changed(new_amount, old_amount)
-signal change_outfit(outfit)
 signal stat(id, params)
 
 func _ready():
-	for r in godash.load_dir("res://content/request", "request.gd", true).values():
+	for r in godash.load_dir("res://content/request", ["gd", "gdc"], true).values():
 		var request = r.new()
 		request.name = request.id
 		get_node("Requests").add_child(request)
 		requests.append(request)
 		
-	for a in godash.load_dir("res://content/achievements", "achievement.gd", true).values():
+	for a in godash.load_dir("res://content/achievements", ["gd", "gdc"], true).values():
 		var achievement = a.new()
 		connect("stat", achievement, "handle_stat")
 		achievement.name = achievement.id
 		get_node("Achievements").add_child(achievement)
 		achievements[achievement.id] = achievement
 	
-	for s in godash.load_dir("res://content/stats", "stat.gd", true).values():
+	for s in godash.load_dir("res://content/stats", ["gd", "gdc"], true).values():
 		var stat = s.new()
 		connect("stat", stat, "_on_stat")
 		stat.name = stat.id
@@ -76,40 +51,72 @@ func toggle_flag(f):
 	emit_signal("stat", "flag", {
 		"id": f
 	})
-
-func set_outfit(v):
-	outfit = v
-	emit_signal("change_outfit", v)
-
-func update_balance(amount):
-	var old = konpeto
-	konpeto = amount
-	emit_signal("balance_changed", amount, old)
-	emit_signal("stat", "konpeto", {
-		"new_value": amount,
-		"old_value": old,
-	})
 	
-func update_stamina(amount):
-	var old = stamina
-	stamina = clamp(amount, 0, 100)
-	emit_signal("stamina_changed", stamina, old)
-	emit_signal("stat", "stamina", {
-		"new_value": stamina,
-		"old_value": old,
-	})
+func persist(data):
+	data["flags"] = flags
+	return data
 	
-func can_perform_action(cost):
-	if cost > 0 and fortune.current_fortune == Fortunes.BAD_LUCK_TIRED:
-		cost *= 2
+func restore(data):
+	flags = data["flags"]
+	
+func reset():
+	flags = {
+		"outfit.default": true,
+		"outfit.hat": false,
+		"outfit.tiny": false,
+		# introductions
+		"introduce.chie": false,
+		"introduce.clover": false,
+		"introduce.yuuki": false,
+		"introduce.proller": false,
+		"introduce.tazzle": false,
+		"maia_birthday": false,
+		# debug
+		"unlock_bread": false
+	}
+	
+func load_headers(slot):
+	var path = "user://garden.%s.save" % slot
+	var f = File.new()
+	if not f.file_exists(path):
+		return null
 		
-	return stamina >= cost
+	f.open(path, File.READ)
+	var data = parse_json(f.get_line())
 	
-func perform_action(cost):
-	if cost > 0 and fortune.current_fortune == Fortunes.BAD_LUCK_TIRED:
-		cost *= 2
+	return {
+		"updatedAt": data.updatedAt,
+	}
+
+func reset_game():
+	for v in get_tree().get_nodes_in_group("Persist"):
+		if v.has_method("reset"):
+			v.reset()
+
+func save_game(slot):
+	var data = {
+		"updatedAt": OS.get_unix_time(),
+	}
+	
+	for v in get_tree().get_nodes_in_group("Persist"):
+		if v.has_method("persist"):
+			v.persist(data)
 		
-	if stamina >= cost:
-		self.stamina -= cost
-		return true
-	return false
+	var save_game = File.new()
+	save_game.open("user://garden.%s.save" % slot, File.WRITE)
+	save_game.store_line(to_json(data))
+	save_game.close()
+	
+func load_game(slot):
+	var path = "user://garden.%s.save" % slot
+	var f = File.new()
+	assert(f.file_exists(path))
+	f.open(path, File.READ)
+	var data = parse_json(f.get_line())
+	
+	SceneManager.change_scene("loading", [data])
+	
+func delete_game():
+	var dir = Directory.new()
+	for d in godash.enumerate_dir("user://", "save"):
+		dir.remove(d)

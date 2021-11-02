@@ -43,7 +43,7 @@ func get_fish(type):
 		"ref": fish,
 		"size": size,
 		"length": lerp(fish.min_size, fish.max_size, size),
-		"stamina": int(lerp(3, 7, size))
+		"stamina": fish.strength
 	}
 
 func catch(fish):
@@ -98,3 +98,6 @@ func _on_Fortune_changed(fortune):
 	if fortune == Fortunes.BAD_LUCK_LESS_FISH:
 		empty = true
 	
+func persist(data):
+	data["fishing"] = records
+	return data

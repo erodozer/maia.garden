@@ -25,6 +25,9 @@ func show_bubble():
 		if m.unread:
 			new_messages = true
 	bubble.visible = new_messages
+	
+func can_interact():
+	return len(GameState.mail.inbox) > 0
 
 func interact():
 	for m in GameState.mail.inbox.values():
@@ -39,6 +42,7 @@ func interact():
 			]
 		)
 		inbox.set_item_metadata(idx, m)
+		inbox.set_item_tooltip_enabled(idx, false)
 	if inbox.get_item_count() <= 0:
 		return
 	inbox.select(0)

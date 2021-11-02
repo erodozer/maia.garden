@@ -201,5 +201,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="gui_input" from="CanvasLayer/Mailbox" to="." method="_on_Mailbox_gui_input"]
 [connection signal="item_activated" from="CanvasLayer/Mailbox/Inbox/Container/MarginContainer/ScrollContainer/ItemList" to="." method="_on_ItemList_item_activated"]

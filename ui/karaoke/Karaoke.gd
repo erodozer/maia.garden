@@ -24,7 +24,6 @@ export var demo = false
 signal add_note(note)
 signal start
 signal end
-signal update_note_count
 
 const DIFFICULTY = [
 	{

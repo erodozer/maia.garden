@@ -6,8 +6,8 @@ onready var tween = get_node("Tween")
 var amount = 0 setget update_text
 
 func _ready():
-	self.amount = GameState.konpeto
-	GameState.connect("balance_changed", self, "update_balance")
+	self.amount = GameState.player.balance
+	GameState.player.connect("balance_changed", self, "update_balance")
 
 func update_text(v):
 	amount = v

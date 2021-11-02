@@ -78,3 +78,6 @@ toggle_mode = true
 keep_pressed_outside = true
 group = SubResource( 1 )
 text = "Keep"
+
+[connection signal="toggled" from="VBoxContainer/Buttons/Submit" to="." method="_on_Submit_toggled"]
+[connection signal="toggled" from="VBoxContainer/Buttons/Cancel" to="." method="_on_Cancel_toggled"]

@@ -1,6 +1,6 @@
 extends Node
 
-var completed = false
+var completed setget ,is_completed
 
 var id setget ,get_id
 
@@ -13,13 +13,13 @@ func get_title():
 func get_description():
 	return ""
 
+func is_completed():
+	return GameState.flag("achievement:%s:completed" % get_id())
+
 func update_progress():
 	var state = get_progress()
 	if state.progress >= state.required:
-		completed = true
-		# no need to listen to stats anymore
-		GameState.disconnect("stat", self, "handle_stat")
-		GameState.toggle_flag("achievement:%d:completed" % get_id())
+		GameState.toggle_flag("achievement:%s:completed" % get_id())
 		GameState.emit_signal("stat", "achievement.complete", {
 			"achievement": self,
 			"timestamp": OS.get_unix_time(),
@@ -35,6 +35,9 @@ func _on_stat(_id, _params):
 	pass
 
 func handle_stat(key, params):
+	if is_completed():
+		return
+		
 	var handled = _on_stat(key, params)
 	if handled:
 		update_progress()

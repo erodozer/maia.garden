@@ -14,6 +14,25 @@ func _ready():
 				"amount": f.starting
 			})
 			
+func persist(d):
+	d["inventory"] = []
+	for i in data:
+		d.inventory.append({
+			"id": i.id,
+			"amount": i.amount
+		})
+		
+	return d
+	
+func restore(d):
+	data = []
+	for i in d.inventory:
+		data.append({
+			"id": i.id,
+			"ref": Content.get_item_reference(i.id),
+			"amount": i.amount
+		})
+	
 func get_bag_size():
 	var size = 20
 	if GameState.flag("bag_expansion:level_3"):

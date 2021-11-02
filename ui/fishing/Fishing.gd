@@ -3,7 +3,6 @@ extends Control
 const godash = preload("res://addons/godash/godash.gd")
 
 onready var joystick = get_node("Joystick")
-onready var joystick_direction = get_node("Joystick/direction")
 onready var health = get_node("Health")
 onready var timer = get_node("Timer")
 onready var catch_anchor = get_node("Catch")
@@ -28,7 +27,6 @@ signal hook(success)
 
 func _ready():
 	set_process(false)
-	timer.stop()
 	
 func open(type):
 	# can not fish if you do not have enough stamina
@@ -46,10 +44,10 @@ func open(type):
 		player.fishing = true
 	
 	var fish = GameState.fishing.get_fish(type)
-	
+	yield(get_tree().create_timer(randf() * 3.0 + 2.0), "timeout")
+		
 	# handle empty fishing
 	if not fish:
-		yield(get_tree().create_timer(randf() * 5.0 + 2.0), "timeout")
 		if player:
 			player.fishing = false
 		if dialogue:
@@ -59,27 +57,7 @@ func open(type):
 			]), "completed")
 		return
 	
-	# test if player has enough stamina to catch the fish
-	var attempt = 3
-	while attempt > 0 and fish and not GameState.can_perform_action(fish.stamina):
-		# sample random fish up to 3 times
-		fish = GameState.fishing.get_fish(type)
-		attempt -= 1
-	if attempt == 0 or not fish:
-		yield(get_tree().create_timer(randf() * 5.0 + 2.0), "timeout")
-		Input.start_joy_vibration(0, 0.3, 0.7)
-		yield(get_tree().create_timer(2.0), "timeout")
-		Input.stop_joy_vibration(0)
-		if player:
-			player.fishing = false
-		if dialogue:
-			yield(dialogue.open([
-				"The fish was too big",
-			]), "completed")
-		return
-	
 	# first wait to hook the fish
-	yield(get_tree().create_timer(randf() * 10.0 + 2.5), "timeout")
 	Input.start_joy_vibration(0, 0.3, 0.7)
 	player.bubble.visible = true
 	set_process_input(true)
@@ -97,6 +75,15 @@ func open(type):
 		if dialogue:
 			yield(dialogue.open([
 				"The fish got away",
+			]), "completed")
+		return
+	# test if player has enough stamina to catch the fish
+	if not GameState.player.can_perform_action(fish.stamina):
+		if player:
+			player.fishing = false
+		if dialogue:
+			yield(dialogue.open([
+				"The line broke!",
 			]), "completed")
 		return
 		
@@ -127,24 +114,31 @@ func open(type):
 	tween.interpolate_property(catch_anchor, "rect_position:y", -50, 25, .3, Tween.EASE_OUT)
 	tween.start()
 	yield(tween, "tween_all_completed")
-	yield(get_tree().create_timer(3.0), "timeout")
+	var to = get_tree().create_timer(3.0)
+	to.connect("timeout", self, "emit_signal", ["hook"])
+	set_process_input(true)
+	yield(self, "hook")
+	set_process_input(false)
+	to.disconnect("timeout", self, "emit_signal")
 	tween.interpolate_property(catch_anchor, "rect_position:y", 25, -50, .3, Tween.EASE_IN)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	visible = false
 	
-	GameState.perform_action(fish.stamina)
+	GameState.player.perform_action(fish.stamina)
 	
 func set_direction(v):
+	for c in get_node("Joystick/Control").get_children():
+		c.visible = false
 	match v:
 		0: # up
-			joystick_direction.position = Vector2(0, -4) 
+			get_node("Joystick/Control/Up").visible = true
 		1: # down
-			joystick_direction.position = Vector2(0, 4)
+			get_node("Joystick/Control/Down").visible = true
 		2: # right
-			joystick_direction.position = Vector2(4, 0)
+			get_node("Joystick/Control/Right").visible = true
 		3: # left
-			joystick_direction.position = Vector2(-4, 0)
+			get_node("Joystick/Control/Left").visible = true
 		_:
 			return
 	direction = v

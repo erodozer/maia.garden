@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://content/fish/icon.tres" type="Texture" id=1]
+[ext_resource path="res://content/fish.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+id = "bluegill"
+icon = ExtResource( 1 )
+location = "pond"
+name = "Bluegill"
+price = 0
+strength = 3
+stamina = 1
+min_size = 6.9
+max_size = 16.0
+rarity = 0.5
+health = 115
+description = ""
+stack = 1
+starting = 0

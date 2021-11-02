@@ -6,6 +6,7 @@ export(Texture) var icon
 export(String, "pond", "river") var location: String = "pond"
 export var name: String
 export(int, 1, 999) var price: int
+export(int, 1, 100) var strength: int = 1
 export(int, 1, 100) var stamina: int = 1
 export(float, 0.01, 1000.0) var min_size: float = 0.1
 export(float, 0.01, 1000.0) var max_size: float = 0.1

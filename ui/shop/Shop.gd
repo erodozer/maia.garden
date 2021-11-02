@@ -21,7 +21,7 @@ func exchange(btn):
 	var stock = btn.stock
 			
 	# purchase an item
-	if value > 0 and GameState.konpeto - value < 0:
+	if value > 0 and GameState.player.balance - value < 0:
 		return false
 	
 	var exchanged = false
@@ -47,10 +47,10 @@ func exchange(btn):
 		if item.stack == 0 or value == 0:
 			# most cafe items restore stamina directly 
 			# instead of going into the inventory
-			GameState.stamina += item.stamina
+			GameState.player.stamina += item.stamina
 	
 	if value > 0:
-		GameState.konpeto -= value
+		GameState.player.balance -= value
 		GameState.emit_signal("stat", "shop.purchase", {
 			"item": item,
 			"value": value,
