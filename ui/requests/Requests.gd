@@ -36,6 +36,8 @@ func open(request):
 	tween.start()
 	yield(tween, "tween_all_completed")
 	visible = false
+	for b in buttons.get_children():
+		b.release_focus()
 	return has_items and submit
 		
 func _input(event):

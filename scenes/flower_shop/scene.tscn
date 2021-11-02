@@ -19,11 +19,9 @@ extents = Vector2( 127.758, 8.92439 )
 extents = Vector2( 6.71454, 30.6434 )
 
 [node name="Map" instance=ExtResource( 3 )]
-
-[node name="SceneController" type="Node" parent="." index="0"]
 script = ExtResource( 4 )
 
-[node name="Background" parent="." index="1"]
+[node name="Background" parent="." index="0"]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds" index="0"]
@@ -42,14 +40,17 @@ shape = SubResource( 3 )
 position = Vector2( -28.0758, 69.6597 )
 shape = SubResource( 4 )
 
-[node name="Shop" parent="CanvasLayer" index="3" instance=ExtResource( 5 )]
+[node name="Shop" parent="CanvasLayer" index="2" instance=ExtResource( 5 )]
 visible = false
 
-[node name="Clover" parent="." index="4" instance=ExtResource( 1 )]
+[node name="Clover" parent="." index="3" instance=ExtResource( 1 )]
 position = Vector2( -61, 48 )
 scale = Vector2( 2, 2 )
 
-[node name="Maia" parent="." index="5"]
+[node name="Maia" parent="." index="4"]
 position = Vector2( 74.6921, 48.4704 )
 
-[connection signal="exit" from="." to="SceneController" method="_on_Map_exit"]
+[node name="Walking" parent="Maia/Sprite" index="1"]
+frame = 3
+
+[editable path="Maia"]

@@ -1,3 +1,1 @@
-extends Node
-
-
+extends "res://scenes/Building.gd"

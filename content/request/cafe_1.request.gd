@@ -48,7 +48,9 @@ func talk_to_clover():
 		"You can grow it in your garden",
 		"The quality will be just as good",
 		"[Got 5 Catgrass Seeds]",
-		"Feel free to buy more if you need"
+		"When you're done helping",
+		"Feel free to purchase more",
+		"I will accept anything you grow",
 	]), "completed")
 	
 	var catgrass = Content.get_item_reference("seed_catgrass")

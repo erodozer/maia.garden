@@ -45,6 +45,7 @@ func interact():
 		inbox.set_item_tooltip_enabled(idx, false)
 	if inbox.get_item_count() <= 0:
 		return
+	yield(get_tree(), "idle_frame")
 	inbox.select(0)
 	
 	tween.interpolate_property(gui, "rect_position", Vector2(-200, 0), Vector2(0, 0), .2)
@@ -60,9 +61,8 @@ func interact():
 	tween.interpolate_property(gui, "rect_position", Vector2(0, 0), Vector2(-200, 3), .2)
 	tween.start()
 	yield(tween, "tween_all_completed")
-	inbox.unselect_all()
-	tween.stop_all()
-	
+	tween.remove_all()
+	inbox.release_focus()
 	inbox.unselect_all()
 	inbox.clear()
 	

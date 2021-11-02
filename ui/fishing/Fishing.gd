@@ -27,6 +27,7 @@ signal hook(success)
 
 func _ready():
 	set_process(false)
+	set_process_input(false)
 	
 func open(type):
 	# can not fish if you do not have enough stamina
@@ -157,9 +158,15 @@ func _process(delta):
 		emit_signal("end", false)
 		return
 	
-	var button = direction_to_input[direction]
+	var success = false
+	if Input.is_action_pressed(direction_to_input[direction]):
+		success = true
 	
-	var success = Input.is_action_pressed(button)
+	for button in [0, 1, 2, 3]:
+		var input = direction_to_input[button]
+		if button != direction and Input.is_action_pressed(input):
+			success = false
+	
 	if success and not reeling:
 		reeling = true
 		Input.start_joy_vibration(0, 0.5, 0.9)
