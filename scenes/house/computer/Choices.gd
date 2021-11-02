@@ -7,10 +7,10 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_left"):
-		if GameState.can_perform_action(25):
+		if GameState.player.can_perform_action(25):
 			emit_signal("choice", 0)
 	if event.is_action_pressed("ui_right"):
-		if GameState.can_perform_action(40):
+		if GameState.player.can_perform_action(40):
 			emit_signal("choice", 1)
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("choice", -1)

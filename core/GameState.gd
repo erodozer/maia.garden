@@ -21,6 +21,8 @@ var flags = {}
 signal stat(id, params)
 
 func _ready():
+	reset_game()
+	
 	for r in godash.load_dir("res://content/request", ["gd", "gdc"], true).values():
 		var request = r.new()
 		request.name = request.id

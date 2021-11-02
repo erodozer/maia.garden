@@ -13,6 +13,7 @@ func _on_newgame_toggled(button_pressed):
 	if not button_pressed:
 		return
 		
+	GameState.reset_game()
 	SceneManager.change_scene("garden")
 
 func _on_loadgame_toggled(button_pressed):
