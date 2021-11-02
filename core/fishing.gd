@@ -3,19 +3,13 @@ extends Node
 const godash = preload("res://addons/godash/godash.gd")
 const Fortunes = preload("res://core/fortune.gd").Fortunes
 
-var total_caught = 0
 var records = {}
 
 var exclusive = null
 var empty = false
 
 func _ready():
-	for f in Content.Items:
-		if f.type == "fish":
-			records[f.id] = {
-				"id": f.id,
-				"size": 0,
-			}
+	reset()
 
 func get_fish(type):
 	if empty and randf() < .8:
@@ -70,8 +64,6 @@ func catch(fish):
 		records[fish.ref.id].size = size
 		new_record = true
 	
-	total_caught += 1
-	
 	GameState.emit_signal("stat", "fish.caught", {
 		"fish": fish.ref,
 		"size": size,
@@ -99,5 +91,27 @@ func _on_Fortune_changed(fortune):
 		empty = true
 	
 func persist(data):
-	data["fishing"] = records
+	data["fishing"] = []
+	for r in records.values():
+		data.fishing.append({
+			"id": r.id,
+			"size": r.size,
+		})
 	return data
+	
+func restore(data):
+	records = {}
+	for r in data.fishing:
+		records[r.id] = {
+			"id": r.id,
+			"size": r.size,
+		}
+	
+func reset():
+	records = {}
+	for f in Content.Items:
+		if f.type == "fish":
+			records[f.id] = {
+				"id": f.id,
+				"size": 0,
+			}

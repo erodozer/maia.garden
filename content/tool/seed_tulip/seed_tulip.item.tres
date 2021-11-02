@@ -12,6 +12,6 @@ name = "Tulip"
 price = 10
 starting = 3
 effect = ExtResource( 3 )
-description = "Grow pink Tulips (4 days)"
+description = "Grow pink Tulips (3 days)"
 unlock = ""
 stack = 30

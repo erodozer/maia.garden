@@ -6,5 +6,6 @@ func _setup(params):
 		if v.has_method("restore"):
 			v.restore(data)
 	
-	SceneManager.change_scene("garden")
+func _start():
+	SceneManager.call_deferred("change_scene", "garden")
 	

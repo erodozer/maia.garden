@@ -39,5 +39,5 @@ func persist(data):
 	return data
 	
 func restore(data):
-	current_fortune = data["fortune"]["current"]
-	next_fortune = data["fortune"]["next"]
+	current_fortune = data.fortune.current
+	next_fortune = data.fortune.next

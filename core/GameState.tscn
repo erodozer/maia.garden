@@ -45,14 +45,16 @@ script = ExtResource( 3 )
 ]]
 script = ExtResource( 7 )
 
+[node name="Player" type="Node" parent="." groups=[
+"Persist",
+]]
+script = ExtResource( 8 )
+
 [node name="Achievements" type="Node" parent="."]
 
 [node name="Stats" type="Node" parent="."]
 
 [node name="Requests" type="Node" parent="."]
-
-[node name="Player" type="Node" parent="."]
-script = ExtResource( 8 )
 
 [connection signal="advance" from="Calendar" to="Garden" method="_on_calendar_advance"]
 [connection signal="advance" from="Calendar" to="Mail" method="_on_calendar_advance"]

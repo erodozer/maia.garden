@@ -134,6 +134,7 @@ icon = ExtResource( 7 )
 margin_left = 63.0
 margin_right = 83.0
 margin_bottom = 21.0
+focus_mode = 0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
@@ -251,7 +252,6 @@ margin_top = 4.0
 margin_right = 176.0
 margin_bottom = 97.0
 focus_mode = 2
-follow_focus = true
 script = ExtResource( 11 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/View/Achievements"]
@@ -297,6 +297,7 @@ margin_bottom = 47.0
 custom_constants/separation = 0
 
 [node name="Data" type="ScrollContainer" parent="Window/View"]
+visible = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 176.0

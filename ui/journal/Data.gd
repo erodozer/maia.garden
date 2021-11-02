@@ -19,6 +19,7 @@ func build():
 		list.set_item_tooltip_enabled(idx, false)
 		
 	list.add_item("Exit to Title")
+	list.select(0)
 
 func destroy():
 	list.clear()
@@ -37,3 +38,4 @@ func _on_ItemList_item_activated(index):
 
 func _on_Data_focus_entered():
 	list.grab_focus()
+	list.grab_click_focus()

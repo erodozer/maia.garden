@@ -40,9 +40,9 @@ func restore(data):
 	inbox = {}
 
 	for m in data.mail:
-		data.mail.append({
+		inbox[m.id] = {
 			"id": m.id,
 			"delivered": m.delivered,
 			"unread": m.unread,
 			"ref": Content.get_mail_reference(m.id)
-		})
+		}

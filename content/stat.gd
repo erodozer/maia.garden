@@ -28,7 +28,7 @@ func persist(data):
 	return data
 	
 func restore(data):
-	value = data["stats"][get_id()]
+	value = data.stats[get_id()]
 
 func reset():
 	value = 0

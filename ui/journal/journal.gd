@@ -50,11 +50,13 @@ func _input(event):
 		emit_signal("end")
 		
 	if event.is_action_pressed("ui_down"):
-		get_tree().set_input_as_handled()
-		(active_view as ScrollContainer).scroll_vertical += event.get_action_strength("ui_down") * 16
+		if not active_view.follow_focus:
+			get_tree().set_input_as_handled()
+			(active_view as ScrollContainer).scroll_vertical += event.get_action_strength("ui_down") * 16
 	if event.is_action_pressed("ui_up"):
-		get_tree().set_input_as_handled()
-		(active_view as ScrollContainer).scroll_vertical -= event.get_action_strength("ui_up") * 16
+		if not active_view.follow_focus:
+			get_tree().set_input_as_handled()
+			(active_view as ScrollContainer).scroll_vertical -= event.get_action_strength("ui_up") * 16
 	
 func open():
 	emit_signal("opened")

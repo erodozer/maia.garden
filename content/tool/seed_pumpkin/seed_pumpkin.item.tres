@@ -12,6 +12,6 @@ name = "Pumpkin"
 price = 15
 starting = 0
 effect = ExtResource( 3 )
-description = "Grows pumpkin (10 days)"
+description = "Grows pumpkin (5 days)"
 unlock = "unlocked_vegetables"
 stack = 30
