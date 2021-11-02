@@ -13,7 +13,7 @@ func get_title():
 	return ""
 
 func get_value():
-	return 0
+	return value
 
 func visible():
 	return true
