@@ -9,8 +9,6 @@ onready var items = get_node("PanelContainer/ScrollContainer/Items")
 onready var tween = get_node("Tween")
 onready var description = get_node("Description/Label")
 onready var scroll = get_node("PanelContainer/ScrollContainer")
-	
-var group
 
 func _ready():
 	set_process_input(false)
@@ -68,10 +66,16 @@ func exchange(btn):
 		btn.queue_free()
 
 	emit_signal("exchange", item, value)
+	
+	yield(get_tree(), "idle_frame")
+	if items.get_child_count() <= 0:
+		emit_signal("end")
+
 	return true
 	
 func open(item_list):
-	group = ButtonGroup.new()
+	var group = ButtonGroup.new()
+	group.connect("changed", self, "update_label")
 	
 	for i in item_list:
 		if i.stock != 0:
@@ -84,12 +88,13 @@ func open(item_list):
 			b.connect("focus_entered", self, "update_description", [i.ref])
 			b.connect("toggled", self, "_on_toggle_button", [b])
 		
-	group.get_buttons().front().grab_focus()
-		
+	yield(get_tree(), "idle_frame")
+	
 	visible = true
 	tween.interpolate_property(self, "rect_position:y", -120, 0, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")
+	items.get_child(0).grab_focus()
 	set_process_input(true)
 	yield(self, "end")
 	set_process_input(false)
@@ -98,9 +103,8 @@ func open(item_list):
 	yield(tween, "tween_all_completed")
 	visible = false
 	
-	group.connect("changed", self, "update_label")
-	
 	for c in items.get_children():
+		c.release_focus()
 		c.queue_free()
 
 func update_description(item):
@@ -111,9 +115,6 @@ func _on_toggle_button(pressed, btn):
 		return
 		
 	exchange(btn)
-	yield(get_tree(), "idle_frame")
-	if items.get_child_count() <= 0:
-		emit_signal("end")
 	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):

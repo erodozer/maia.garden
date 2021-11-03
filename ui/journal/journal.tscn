@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/journal/journal.gd" type="Script" id=2]
@@ -58,6 +58,8 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 anti_aliasing = false
 
+[sub_resource type="ButtonGroup" id=4]
+
 [node name="Journal" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -97,6 +99,8 @@ custom_constants/separation = 1
 [node name="Inventory" type="Button" parent="Window/Tabs"]
 margin_right = 20.0
 margin_bottom = 21.0
+focus_next = NodePath("../Fishing")
+focus_previous = NodePath("../Data")
 focus_mode = 0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
@@ -104,18 +108,22 @@ custom_styles/normal = SubResource( 3 )
 toggle_mode = true
 shortcut_in_tooltip = false
 pressed = true
+group = SubResource( 4 )
 icon = ExtResource( 4 )
 
 [node name="Fishing" type="Button" parent="Window/Tabs"]
 margin_left = 21.0
 margin_right = 41.0
 margin_bottom = 21.0
+focus_next = NodePath("../Achievements")
+focus_previous = NodePath("../Inventory")
 focus_mode = 0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
 toggle_mode = true
 shortcut_in_tooltip = false
+group = SubResource( 4 )
 icon = ExtResource( 3 )
 
 [node name="Achievements" type="Button" parent="Window/Tabs"]
@@ -128,6 +136,7 @@ custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
 toggle_mode = true
 shortcut_in_tooltip = false
+group = SubResource( 4 )
 icon = ExtResource( 7 )
 
 [node name="Data" type="Button" parent="Window/Tabs"]
@@ -140,6 +149,7 @@ custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
 toggle_mode = true
 shortcut_in_tooltip = false
+group = SubResource( 4 )
 icon = ExtResource( 10 )
 
 [node name="Calendar" type="PanelContainer" parent="Window/Tabs"]
