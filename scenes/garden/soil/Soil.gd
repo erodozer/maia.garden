@@ -30,8 +30,7 @@ func _ready():
 			p.plant = GameState.garden.plots[c]
 		plots.append(p)
 		
-	if maia:
-		maia.connect("can_interact", self, "update_highlight")
+	maia.connect("can_interact", self, "update_highlight")
 			
 func update_highlight(cell):
 	if cell in plots:

@@ -47,7 +47,7 @@ func interact():
 		return
 	yield(get_tree(), "idle_frame")
 	inbox.select(0)
-	
+	gui.visible = true
 	tween.interpolate_property(gui, "rect_position", Vector2(-200, 0), Vector2(0, 0), .2)
 	tween.start()
 	yield(tween, "tween_all_completed")
@@ -65,6 +65,7 @@ func interact():
 	inbox.release_focus()
 	inbox.unselect_all()
 	inbox.clear()
+	gui.visible = false
 	
 func hint():
 	return "Check Mail"

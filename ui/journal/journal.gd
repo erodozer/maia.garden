@@ -65,7 +65,7 @@ func open():
 			v.build()
 	
 	get_node("InventoryCounter/Label").text = "%d/%d" % [len(GameState.inventory.data), GameState.inventory.bag_size]
-			
+	visible = true
 	active_view = views.get_child(0)
 	get_node("Window/Tabs/Inventory").pressed = true
 	yield(get_tree(), "idle_frame")
@@ -89,6 +89,7 @@ func open():
 			v.destroy()
 			
 	emit_signal("closed")
+	visible = false
 
 func _on_tab_toggled(button_pressed, view):
 	if not button_pressed:

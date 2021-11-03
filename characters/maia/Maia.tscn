@@ -37,9 +37,8 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/half_height = false
 
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 6.0
-height = 2.0
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 5, 2 )
 
 [sub_resource type="RayShape2D" id=4]
 length = 16.0
@@ -73,7 +72,7 @@ playing = true
 visible = false
 material = SubResource( 2 )
 frames = ExtResource( 2 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Fishing" type="AnimatedSprite" parent="Sprite"]
@@ -84,10 +83,11 @@ frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 3 )
-shape = SubResource( 3 )
+position = Vector2( 0, 7 )
+shape = SubResource( 9 )
 
 [node name="Interact" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, 3 )
 input_pickable = false
 collision_layer = 0
@@ -101,6 +101,7 @@ shape = SubResource( 4 )
 shape = SubResource( 5 )
 
 [node name="HalfHeight" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, 3 )
 input_pickable = false
 collision_layer = 0
@@ -138,6 +139,7 @@ margin_right = 200.0
 custom_styles/panel = SubResource( 8 )
 
 [node name="Journal" parent="CanvasLayer" instance=ExtResource( 8 )]
+visible = false
 
 [connection signal="can_interact" from="." to="CanvasLayer/ActionLabel" method="_on_Maia_can_interact"]
 [connection signal="interact_end" from="." to="CanvasLayer/ActionLabel" method="_on_Maia_interact_end"]
