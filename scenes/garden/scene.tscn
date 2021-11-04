@@ -187,9 +187,7 @@ shape = SubResource( 3 )
 texture = SubResource( 4 )
 
 [node name="Yuuki" type="StaticBody2D" parent="Obstacles"]
-visible = false
 position = Vector2( 815, 745 )
-collision_layer = 0
 script = ExtResource( 14 )
 flag = "introduce.yuuki"
 

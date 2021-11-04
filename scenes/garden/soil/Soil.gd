@@ -20,6 +20,10 @@ func _ready():
 		soil = get_node("Plots/Level1")
 	soil.visible = true
 	
+	for p in get_node("Plots").get_children():
+		if not p.visible:
+			p.queue_free()
+	
 	for c in soil.get_used_cells():
 		var xy = soil.map_to_world(c)
 		var p = Plant.instance()
