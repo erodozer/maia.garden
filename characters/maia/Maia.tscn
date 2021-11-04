@@ -49,9 +49,9 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id=6]
 radius = 3.16228
 
-[sub_resource type="StyleBoxEmpty" id=7]
-
 [sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=7]
 
 [node name="Maia" type="KinematicBody2D" groups=[
 "player",
@@ -72,6 +72,7 @@ playing = true
 visible = false
 material = SubResource( 2 )
 frames = ExtResource( 2 )
+frame = 1
 playing = true
 
 [node name="Fishing" type="AnimatedSprite" parent="Sprite"]
@@ -126,15 +127,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Stamina" parent="CanvasLayer/HUD" instance=ExtResource( 4 )]
-margin_left = 122.0
-margin_right = 162.0
-custom_styles/panel = SubResource( 7 )
-
 [node name="Konpeto" parent="CanvasLayer/HUD" instance=ExtResource( 9 )]
+margin_left = 110.0
+margin_right = 162.0
+custom_styles/panel = SubResource( 8 )
+
+[node name="Stamina" parent="CanvasLayer/HUD" instance=ExtResource( 4 )]
 margin_left = 160.0
 margin_right = 200.0
-custom_styles/panel = SubResource( 8 )
+custom_styles/panel = SubResource( 7 )
 
 [node name="Journal" parent="CanvasLayer" instance=ExtResource( 8 )]
 visible = false
