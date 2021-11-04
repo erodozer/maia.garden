@@ -25,7 +25,7 @@ func interact():
 	var waypoint = yield(menu.open(), "completed")
 	
 	if waypoint and waypoint != self:
-		yield(waypoint.travel(), "complete")
+		yield(waypoint.travel(), "completed")
 
 func hint():
 	if not GameState.flag(flag):

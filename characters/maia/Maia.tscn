@@ -38,7 +38,7 @@ shader = SubResource( 1 )
 shader_param/half_height = false
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 5, 2 )
+extents = Vector2( 5, 3 )
 
 [sub_resource type="RayShape2D" id=4]
 length = 16.0
@@ -79,11 +79,10 @@ playing = true
 visible = false
 position = Vector2( -9, 1 )
 frames = ExtResource( 3 )
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 8 )
+position = Vector2( 0, 7 )
 shape = SubResource( 9 )
 
 [node name="Interact" type="Area2D" parent="."]
