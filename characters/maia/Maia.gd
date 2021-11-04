@@ -99,6 +99,8 @@ func _physics_process(delta):
 		
 	if direction != Vector2.ZERO:
 		move_and_collide(direction * MOVEMENT_SPEED * delta)
+		if direction.x != 0 and direction.y != 0:
+			global_position = global_position.round()
 		walk_sprite.visible = true
 		stand_sprite.visible = false
 		interact_collider.rotation = direction.angle()
