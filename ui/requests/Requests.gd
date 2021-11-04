@@ -15,7 +15,7 @@ func open(request):
 	# build the hint
 	var text = "[center]%s[/center]" % request.prompt()
 	for i in request.get_requirements():
-		text += "\n[b]%s[/b]" % i.hint
+		text += "\n[b]%dx - %s[/b]" % [i.amount, i.hint]
 	text += "\n"
 	requirements.bbcode_text = text
 	

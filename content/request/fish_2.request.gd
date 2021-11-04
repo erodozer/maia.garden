@@ -9,17 +9,11 @@ func get_id():
 func get_requirements():
 	return [
 		{
-			"hint": "3 Rare Fish",
+			"hint": "Rare Fish",
 			"type": "fish",
-			"location": "pond",
-			"amount": 5,
+			"rare": true,
+			"amount": 3,
 		},
-		{
-			"hint": "5 River Fish",
-			"type": "fish",
-			"location": "river",
-			"amount": 5,
-		}
 	]
 	
 func can_accept():

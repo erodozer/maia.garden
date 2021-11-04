@@ -9,12 +9,12 @@ func get_id():
 func get_requirements():
 	return [
 		{
-			"hint": "20 Clover",
+			"hint": "Clover",
 			"id": "clover",
 			"amount": 20,
 		},
 		{
-			"hint": "20 Clover Seeds",
+			"hint": "Clover Seeds",
 			"id": "seed_clover",
 			"amount": 20,
 		}

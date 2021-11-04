@@ -228,9 +228,7 @@ shape = SubResource( 3 )
 texture = SubResource( 4 )
 
 [node name="Clover" type="StaticBody2D" parent="Objects/Obstacles"]
-visible = false
 position = Vector2( 1042, 510 )
-collision_layer = 0
 script = ExtResource( 14 )
 flag = "introduce.clover"
 
@@ -252,9 +250,7 @@ shape = SubResource( 3 )
 texture = SubResource( 4 )
 
 [node name="Chie" type="StaticBody2D" parent="Objects/Obstacles"]
-visible = false
 position = Vector2( 629, 510 )
-collision_layer = 0
 script = ExtResource( 14 )
 flag = "introduce.chie"
 

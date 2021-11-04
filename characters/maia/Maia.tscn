@@ -72,7 +72,6 @@ playing = true
 visible = false
 material = SubResource( 2 )
 frames = ExtResource( 2 )
-frame = 2
 playing = true
 
 [node name="Fishing" type="AnimatedSprite" parent="Sprite"]

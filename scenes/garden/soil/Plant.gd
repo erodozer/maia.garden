@@ -50,6 +50,7 @@ func set_plant(p):
 		sprite.visible = false
 		return
 	
+	collision_layer = 4
 	if plant.age == 0:
 		sprite.texture = preload("res://scenes/garden/soil/seed.tres")
 	elif plant.age >= plant.ref.mature:

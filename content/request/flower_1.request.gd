@@ -9,13 +9,18 @@ func get_id():
 func get_requirements():
 	return [
 		{
-			"hint": "1 Pumpkin",
+			"hint": "Pumpkin",
 			"id": "pumpkin",
 			"amount": 1
 		},
 		{
-			"hint": "1 Tomato",
+			"hint": "Tomato",
 			"id": "tomato",
+			"amount": 1
+		},
+		{
+			"hint": "Wheat",
+			"id": "wheat",
 			"amount": 1
 		},
 	]
@@ -29,27 +34,34 @@ func accept():
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	yield(dialogue.open([
 		"I recently got a seed shipment",
-		"But they're for vegetables",
+		"But they're for farm crops",
 		"And this is a flower shop...",
 		"What should I do?",
 		"Hey!",
 		"How about I give them to you!",
 		"[Got 1 Pumpkin Seed]",
 		"[Got 1 Tomato Seed]",
-		"You can say thanks by"
-		
+		"[Got 1 Wheat Seed]",
+		"You can say thanks by",
+		"giving me what you grow!"
 	]), "completed")
 	var item = Content.get_item_reference("seed_pumpkin")
 	GameState.inventory.insert_item({
 		"id": item.id,
 		"ref": item,
-		"amount": 5
+		"amount": 1
 	})
 	item = Content.get_item_reference("seed_tomato")
 	GameState.inventory.insert_item({
 		"id": item.id,
 		"ref": item,
-		"amount": 5
+		"amount": 1
+	})
+	item = Content.get_item_reference("seed_wheat")
+	GameState.inventory.insert_item({
+		"id": item.id,
+		"ref": item,
+		"amount": 1
 	})
 
 func complete():
@@ -59,6 +71,6 @@ func complete():
 		"These look absolutely delicious!",
 		"Maybe I will start selling these",
 		"Thank you Maia!",
-		"[You can now buy vegetables]"
+		"[You can now buy farm seeds]"
 	]), "completed")
-	GameState.toggle("unlocked_vegetables")
+	GameState.toggle_flag("unlocked_vegetables")

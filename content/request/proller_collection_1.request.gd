@@ -12,12 +12,12 @@ func get_id():
 func get_requirements():
 	return [
 		{
-			"hint": "3 Fish",
+			"hint": "Fish",
 			"type": "fish",
 			"amount": 3,
 		},
 		{
-			"hint": "3 Flowers",
+			"hint": "Flowers",
 			"id": "flower",
 			"amount": 3,
 		}

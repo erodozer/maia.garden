@@ -55,4 +55,4 @@ margin_bottom = 14.0
 rect_min_size = Vector2( 0, 14 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 0
-text = "Eat"
+text = "Interact"

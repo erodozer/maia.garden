@@ -31,12 +31,16 @@ func exchange(btn):
 			"ref": item,
 			"amount": -1,
 		})
+	# handle putting items into your inventory
 	elif item.stack > 0:
 		exchanged = GameState.inventory.insert_item({
 			"id": item.id,
 			"ref": item,
 			"amount": 1,
 		})
+	# handle cafe items that are instant consume
+	elif item.stack == 0 and item.get("stamina") and item.stamina > 0:
+		exchanged = true
 	
 	if not exchanged:
 		return false

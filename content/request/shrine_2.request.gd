@@ -9,7 +9,7 @@ func get_id():
 func get_requirements():
 	return [
 		{
-			"hint": "5 Chocolate Bread",
+			"hint": "Chocolate Bread",
 			"id": "chocobread",
 			"amount": 5
 		}

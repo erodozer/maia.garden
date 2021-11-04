@@ -56,17 +56,18 @@ func complete():
 				claim = 0
 				break
 				
-			var record = GameState.inventory.get_item(s)
-			if record and record.amount > 0:
-				var amount = min(record.amount, claim)
-				GameState.inventory.insert_item({
-					"id": record.id,
-					"ref": record.ref,
-					"amount": -amount
-				})
-				claim -= amount
-			if claim <= 0:
-				break
+			var records = GameState.inventory.get_item(s)
+			for record in records:
+				if record.amount > 0:
+					var amount = min(record.amount, claim)
+					GameState.inventory.insert_item({
+						"id": record.id,
+						"ref": record.ref,
+						"amount": -amount
+					})
+					claim -= amount
+					if claim <= 0:
+						break
 		assert(claim == 0)
 		
 	GameState.toggle_flag("%s:completed" % key())
@@ -95,7 +96,7 @@ func get_matching_items(requirement):
 				if "location" in requirement and i.location != requirement.location:
 					continue
 				
-				if "rare" in requirement and requirement.big:
+				if "rare" in requirement and requirement.rare:
 					select.append("%s:rare" % i.id)
 					continue
 			
@@ -115,8 +116,8 @@ func requirements_met():
 				sum += GameState.player.balance
 				continue
 			var item = GameState.inventory.get_item(i)
-			if item:
-				sum += item.amount
+			for record in item:
+				sum += record.amount
 		if sum < requirement.amount:
 			has_items = false
 			break

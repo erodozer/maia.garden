@@ -11,7 +11,7 @@ func _on_stat(id, params):
 		
 	var item = params.item
 	if item.type == "cafe":
-		if GameState.stamina >= 100 and item.stamina > 0:
+		if GameState.player.stamina >= 100 and item.stamina > 0:
 			caffinated = true
 			return true
 	return false

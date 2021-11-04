@@ -7,5 +7,5 @@ func interact():
 	if GameState.flag("introduce.proller") and not GameState.flag("introduce.proller.complete"):
 		SceneManager.change_scene("darkness")
 	else:
-		SceneManager.change_scene("garden", {"location": "home"})
+		SceneManager.change_scene("garden", ["Home"])
 	GameState.calendar.advance_day()

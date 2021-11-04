@@ -9,7 +9,7 @@ func get_id():
 func get_requirements():
 	return [
 		{
-			"hint": "2500 Konpeito",
+			"hint": "Konpeito",
 			"id": "konpeito",
 			"amount": 2500
 		},
@@ -29,13 +29,11 @@ func accept():
 		"So I came up with an idea",
 		"Let me help you help me",
 		"I can make your garden bigger",
-		"Then you can grow more flowers",
+		"Then you can grow more",
 		"But, uhhh, I can't work for free",
 		"Expanding your garden",
 		"That takes time",
 		"time I could be selling flowers",
-		"So what I'm saying is",
-		"Please pay me up front~",
 	]), "completed")
 
 func complete():

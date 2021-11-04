@@ -9,13 +9,13 @@ func get_id():
 func get_requirements():
 	return [
 		{
-			"hint": "5 Pond Fish",
+			"hint": "Pond Fish",
 			"type": "fish",
 			"location": "pond",
 			"amount": 5,
 		},
 		{
-			"hint": "5 River Fish",
+			"hint": "River Fish",
 			"type": "fish",
 			"location": "river",
 			"amount": 5,

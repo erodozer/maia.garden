@@ -51,7 +51,7 @@ func insert_item(entry):
 	var item
 	for i in data:
 		if i.id == entry.id:
-			if i.amount + entry.amount < i.ref.stack:
+			if i.amount + entry.amount <= i.ref.stack:
 				item = i
 				break
 	
@@ -77,7 +77,8 @@ func insert_item(entry):
 	return true
 
 func get_item(id):
+	var matching = []
 	for i in data:
 		if i.id == id:
-			return i
-	return null
+			matching.append(i)
+	return matching

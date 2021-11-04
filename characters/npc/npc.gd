@@ -38,21 +38,21 @@ func check_requests():
 		if request.is_completed():
 			continue
 			
-		if request.get_owner() == get_id():
-			if request.is_accepted():
+		if request.is_accepted():
+			if request.get_owner() == get_id():
 				yield(request.show_requirements(), "completed")
 				break
-			elif request.can_accept():
+			if request.has_method("can_talk_to_%s" % get_id()) and request.call("can_talk_to_%s" % get_id()):
+				var state = request.call("talk_to_%s" % get_id())
+				if state and state is GDScriptFunctionState:
+					yield(state, "completed")
+				break
+		elif request.can_accept() and request.get_owner() == get_id():
 				var state = request.accept()
 				if state and state is GDScriptFunctionState:
 					yield(state, "completed")
 				yield(request.show_requirements(), "completed")
 				break
-		elif request.has_method("can_talk_to_%s" % get_id()) and request.call("can_talk_to_%s" % get_id()):
-			var state = request.call("talk_to_%s" % get_id())
-			if state and state is GDScriptFunctionState:
-				yield(state, "completed")
-			break
 	
 	yield(get_tree(), "idle_frame")
 	
