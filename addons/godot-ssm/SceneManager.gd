@@ -58,6 +58,7 @@ func change_scene(next_scene, params=[]):
 			var state = scene._teardown()
 			if state and state is GDScriptFunctionState:
 				yield(state, "completed")
+			yield(get_tree(), "idle_frame")
 		scene.queue_free()
 		yield(get_tree(), "idle_frame")
 	

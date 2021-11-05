@@ -8,6 +8,9 @@ Manages interactive tilemap state
 onready var player = get_tree().get_nodes_in_group("player").front()
 onready var portals = get_tree().get_nodes_in_group("portals").front()
 
+func _ready():
+	Bgm.change_song(preload("res://bgm/ontama_kawaii_hananoyounaegao_ogg/explore.tres"))
+
 func _setup(params):
 	if not params:
 		return
@@ -16,7 +19,7 @@ func _setup(params):
 	if not portal:
 		portal = portals.get_node("Home")
 	player.position = portal.position
-		
+			
 func _input(event):
 	if event.is_action_pressed("debug_advance"):
 		for p in GameState.garden.plots:

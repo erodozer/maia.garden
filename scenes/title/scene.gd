@@ -8,6 +8,15 @@ func _ready():
 			get_node("CanvasLayer/TitleButtons/VBoxContainer/Exit/Button").queue_free()
 			
 	get_node("CanvasLayer/TitleButtons/VBoxContainer/NewGame/Button").grab_focus()
+	
+	Bgm.change_song(preload("res://bgm/ontama_rensaku_05_watashinimo_ogg/title.tres"))
+	
+	var anim = get_node("AnimationPlayer")
+	anim.play("intro")
+	yield(anim, "animation_finished")
+	anim.play("float")
+	
+	get_node("CanvasLayer/TitleButtons/VBoxContainer/NewGame/Button").grab_focus()
 
 func _on_newgame_toggled(button_pressed):
 	if not button_pressed:
@@ -24,9 +33,11 @@ func _on_loadgame_toggled(button_pressed):
 	get_node("CanvasLayer/TitleButtons/VBoxContainer/LoadGame/Button").pressed = false
 	get_node("CanvasLayer/TitleButtons/VBoxContainer/LoadGame/Button").grab_focus()
 	
-
 func _on_exit_toggled(button_pressed):
 	if not button_pressed:
 		return
 		
 	get_tree().quit()
+
+func _teardown():
+	yield(Bgm.fadeout(2.0), "completed")

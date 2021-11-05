@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 onready var seed_tool = get_tree().get_nodes_in_group("seed_tool").front()
-
+onready var particles = get_node("Explosion")
 onready var sprite = get_node("Anchor/Sprite")
 onready var water_sprite = get_node("Watered")
 
@@ -34,6 +34,7 @@ func sow(c):
 func harvest(p):
 	# reaping costs no stamina
 	GameState.garden.harvest(p)
+	particles.emitting = true
 	set_plant(null)
 	
 func water(p):

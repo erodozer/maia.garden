@@ -18,39 +18,39 @@
 [ext_resource path="res://scenes/garden/explore/Waypoint.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/garden/explore/Explore.tscn" type="PackedScene" id=17]
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=1]
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=2]
 radius = 32.0
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 15 )
 region = Rect2( 192, 0, 64, 64 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 32, 29 )
 
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="CircleShape2D" id=5]
 radius = 16.0312
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 15 )
 region = Rect2( 128, 0, 64, 64 )
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=7]
 radius = 18.0
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 32, 10 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 224, 48, 16 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 96, 10 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 10, 112 )
 
 [node name="Garden" type="Node"]
@@ -111,7 +111,7 @@ scene = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Home"]
 position = Vector2( 0, -27 )
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="Shrine" type="StaticBody2D" parent="Objects/Portals"]
 position = Vector2( 624, 416 )
@@ -121,7 +121,7 @@ goto = "Shrine"
 scene = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Shrine"]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="Forest" type="StaticBody2D" parent="Objects/Portals"]
 position = Vector2( 1248, 416 )
@@ -129,7 +129,7 @@ collision_layer = 4
 script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Forest"]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="River" type="StaticBody2D" parent="Objects/Portals"]
 position = Vector2( 1656, 873 )
@@ -140,7 +140,7 @@ scene = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/River"]
 position = Vector2( 17, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="Garden" type="StaticBody2D" parent="Objects/Portals"]
 position = Vector2( 0, 192 )
@@ -149,7 +149,7 @@ script = ExtResource( 13 )
 goto = "Forest"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Garden"]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="Darkness" type="StaticBody2D" parent="Objects/Portals"]
 position = Vector2( 1040, 928 )
@@ -159,7 +159,7 @@ goto = "Darkness"
 scene = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Darkness"]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="Cafe" type="StaticBody2D" parent="Objects/Portals"]
 position = Vector2( 624, 797 )
@@ -172,15 +172,15 @@ scene = true
 position = Vector2( 15, -40 )
 
 [node name="Sprite" type="Sprite" parent="Objects/Portals/Cafe/StaticBody2D"]
-texture = SubResource( 10 )
+texture = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Cafe/StaticBody2D"]
 position = Vector2( 0, -3 )
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Cafe"]
 position = Vector2( 0, -20 )
-shape = SubResource( 11 )
+shape = SubResource( 5 )
 
 [node name="FlowerShop" type="StaticBody2D" parent="Objects/Portals"]
 position = Vector2( 1040, 487 )
@@ -193,15 +193,15 @@ scene = true
 position = Vector2( 0, -50 )
 
 [node name="Sprite" type="Sprite" parent="Objects/Portals/FlowerShop/StaticBody2D"]
-texture = SubResource( 7 )
+texture = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/FlowerShop/StaticBody2D"]
 position = Vector2( 0, -3 )
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/FlowerShop"]
 position = Vector2( 0, -30 )
-shape = SubResource( 8 )
+shape = SubResource( 7 )
 
 [node name="Obstacles" type="Node2D" parent="Objects"]
 
@@ -211,10 +211,10 @@ script = ExtResource( 14 )
 flag = "introduce.proller"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Obstacles/Proller"]
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Objects/Obstacles/Proller"]
-texture = SubResource( 4 )
+texture = SubResource( 9 )
 
 [node name="Tazzle" type="StaticBody2D" parent="Objects/Obstacles"]
 position = Vector2( 1385, 815 )
@@ -222,10 +222,10 @@ script = ExtResource( 14 )
 flag = "introduce.tazzle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Obstacles/Tazzle"]
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Objects/Obstacles/Tazzle"]
-texture = SubResource( 4 )
+texture = SubResource( 9 )
 
 [node name="Clover" type="StaticBody2D" parent="Objects/Obstacles"]
 position = Vector2( 1042, 510 )
@@ -233,10 +233,10 @@ script = ExtResource( 14 )
 flag = "introduce.clover"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Obstacles/Clover"]
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Objects/Obstacles/Clover"]
-texture = SubResource( 4 )
+texture = SubResource( 9 )
 
 [node name="Yuuki" type="StaticBody2D" parent="Objects/Obstacles"]
 position = Vector2( 815, 745 )
@@ -244,10 +244,10 @@ script = ExtResource( 14 )
 flag = "introduce.yuuki"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Obstacles/Yuuki"]
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Objects/Obstacles/Yuuki"]
-texture = SubResource( 4 )
+texture = SubResource( 9 )
 
 [node name="Chie" type="StaticBody2D" parent="Objects/Obstacles"]
 position = Vector2( 629, 510 )
@@ -255,10 +255,10 @@ script = ExtResource( 14 )
 flag = "introduce.chie"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Obstacles/Chie"]
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Objects/Obstacles/Chie"]
-texture = SubResource( 4 )
+texture = SubResource( 9 )
 
 [node name="Waypoints" type="Node2D" parent="Objects"]
 
@@ -329,19 +329,19 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 624, 384 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 1248, 400 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 1040, 944 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 1681, 873 )
-shape = SubResource( 2 )
+shape = SubResource( 11 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0

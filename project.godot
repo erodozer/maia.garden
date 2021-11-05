@@ -20,6 +20,7 @@ IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resol
 SceneManager="*res://addons/godot-ssm/SceneManager.tscn"
 Content="*res://core/content.gd"
 GameState="*res://core/GameState.tscn"
+Bgm="*res://BGM.tscn"
 
 [debug]
 
