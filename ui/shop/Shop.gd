@@ -43,8 +43,8 @@ func exchange(btn):
 	if not exchanged:
 		return false
 	
-	if item.ref.get("stamina") and item.stamina > 0:
-		if item.stack == 0 or item.price == 0:
+	if item.ref.get("stamina") and item.ref.stamina > 0:
+		if item.ref.stack == 0 or item.price == 0:
 			# most cafe items restore stamina directly 
 			# instead of going into the inventory
 			GameState.player.stamina += item.ref.stamina
@@ -82,6 +82,7 @@ func open(item_list):
 	
 	var group = ButtonGroup.new()
 	group.connect("changed", self, "update_label")
+	group.connect("pressed", self, "exchange")
 	
 	for i in item_list:
 		if i.stock != 0:
@@ -125,12 +126,6 @@ func update_description(item):
 		d = "%s (%d days)" % [d, item.ref.effect.mature]
 	
 	description.text = d
-	
-func _on_toggle_button(pressed, btn):
-	if not pressed:
-		return
-		
-	exchange(btn)
 	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):

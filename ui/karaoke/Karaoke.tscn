@@ -120,7 +120,6 @@ __meta__ = {
 
 [node name="Maia" type="AnimatedSprite" parent="Game/HBoxContainer/Panel/Animation"]
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="Microphone" type="Sprite" parent="Game/HBoxContainer/Panel/Animation"]
@@ -187,11 +186,11 @@ margin_left = 4.0
 margin_top = 96.0
 margin_right = 74.0
 margin_bottom = 109.0
-custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
 custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
+custom_fonts/font = ExtResource( 7 )
 text = "100 combo"
 align = 1
 __meta__ = {
@@ -227,11 +226,11 @@ custom_constants/separation = -4
 [node name="Label" type="Label" parent="Game/HBoxContainer/VBoxContainer/Container/VBoxContainer"]
 margin_right = 50.0
 margin_bottom = 13.0
-custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
 custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 0
+custom_fonts/font = ExtResource( 7 )
 text = "Notes"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -241,11 +240,11 @@ __meta__ = {
 margin_top = 9.0
 margin_right = 50.0
 margin_bottom = 22.0
-custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
 custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 0
+custom_fonts/font = ExtResource( 7 )
 text = "100/100"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -273,7 +272,7 @@ margin_right = 148.0
 margin_bottom = 1.0
 rect_rotation = -90.0
 rect_pivot_offset = Vector2( 60, 0 )
-value = 50.0
+step = 0.001
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -336,6 +335,7 @@ __meta__ = {
 [node name="Maia" type="AnimatedSprite" parent="Results/PanelContainer/VBoxContainer/HBoxContainer/Animation"]
 position = Vector2( 5, 9 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="Microphone" type="Sprite" parent="Results/PanelContainer/VBoxContainer/HBoxContainer/Animation"]
@@ -413,6 +413,8 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "0"
 align = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Left" method="_on_Karaoke_add_note"]
 [connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_add_note"]

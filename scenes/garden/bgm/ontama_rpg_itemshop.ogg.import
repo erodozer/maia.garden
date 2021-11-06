@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ontama_rpg_itemshop.ogg-2248b646a2fd810669cba334bea8a2d9.oggstr"
+
+[deps]
+
+source_file="res://scenes/garden/bgm/ontama_rpg_itemshop.ogg"
+dest_files=[ "res://.import/ontama_rpg_itemshop.ogg-2248b646a2fd810669cba334bea8a2d9.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

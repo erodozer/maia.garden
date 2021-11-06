@@ -11,45 +11,28 @@
 [ext_resource path="res://core/shops/FlowerShop.gd" type="Script" id=9]
 [ext_resource path="res://core/shops/Cafe.gd" type="Script" id=10]
 
-[node name="GameState" type="Node" groups=[
-"Persist",
-"game_state",
-]]
+[node name="GameState" type="Node" groups=["Persist", "game_state"]]
 script = ExtResource( 1 )
 
-[node name="Calendar" type="Node" parent="." groups=[
-"Persist",
-]]
+[node name="Calendar" type="Node" parent="." groups=["Persist"]]
 script = ExtResource( 4 )
 
-[node name="Garden" type="Node" parent="." groups=[
-"Persist",
-]]
+[node name="Garden" type="Node" parent="." groups=["Persist"]]
 script = ExtResource( 6 )
 
-[node name="Inventory" type="Node" parent="." groups=[
-"Persist",
-]]
+[node name="Inventory" type="Node" parent="." groups=["Persist"]]
 script = ExtResource( 5 )
 
-[node name="Mail" type="Node" parent="." groups=[
-"Persist",
-]]
+[node name="Mail" type="Node" parent="." groups=["Persist"]]
 script = ExtResource( 2 )
 
-[node name="Fishing" type="Node" parent="." groups=[
-"Persist",
-]]
+[node name="Fishing" type="Node" parent="." groups=["Persist"]]
 script = ExtResource( 3 )
 
-[node name="Fortune" type="Node" parent="." groups=[
-"Persist",
-]]
+[node name="Fortune" type="Node" parent="." groups=["Persist"]]
 script = ExtResource( 7 )
 
-[node name="Player" type="Node" parent="." groups=[
-"Persist",
-]]
+[node name="Player" type="Node" parent="." groups=["Persist"]]
 script = ExtResource( 8 )
 
 [node name="Achievements" type="Node" parent="."]
@@ -60,14 +43,10 @@ script = ExtResource( 8 )
 
 [node name="Shops" type="Node" parent="."]
 
-[node name="Cafe" type="Node" parent="Shops" groups=[
-"Persist",
-]]
+[node name="Cafe" type="Node" parent="Shops" groups=["Persist"]]
 script = ExtResource( 10 )
 
-[node name="FlowerShop" type="Node" parent="Shops" groups=[
-"Persist",
-]]
+[node name="FlowerShop" type="Node" parent="Shops" groups=["Persist"]]
 script = ExtResource( 9 )
 
 [connection signal="advance" from="Calendar" to="Garden" method="_on_calendar_advance"]

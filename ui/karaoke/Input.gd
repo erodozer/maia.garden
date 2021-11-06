@@ -22,6 +22,8 @@ const DirToAngle = {
 
 export(Direction) var input_key = Direction.Left
 
+onready var anim = get_node("AnimationPlayer")
+
 const explosion = preload("res://ui/karaoke/HitExplosion.tscn")
 var notes = []
 
@@ -34,6 +36,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed(DirToInput[input_key]):
+		anim.play("tap")
 		if notes.empty():
 			return
 		var note = notes.front()

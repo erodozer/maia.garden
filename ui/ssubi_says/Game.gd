@@ -46,10 +46,10 @@ func start(difficulty):
 	yield(get_tree().create_timer(0.3), "timeout")
 		
 	input_queue = []
-	for i in range(2):
+	for _i in range(2):
 		input_queue.append(godash.rand_choice(KEY_MAP.keys()))
 		
-	for i in range(difficulty + 1):
+	for _i in range(difficulty + 1):
 		attempts = 0
 		input_queue.append(godash.rand_choice(KEY_MAP.keys()))
 		

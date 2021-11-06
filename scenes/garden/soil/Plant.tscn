@@ -16,9 +16,7 @@ region = Rect2( 16, 0, 16, 16 )
 max_value = 2.0
 _data = [ Vector2( 0, 1.16364 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[node name="Plant" type="StaticBody2D" groups=[
-"plant",
-]]
+[node name="Plant" type="StaticBody2D" groups=["plant"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource( 2 )

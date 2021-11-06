@@ -2,9 +2,7 @@
 
 [ext_resource path="res://BGM.gd" type="Script" id=1]
 
-[node name="BGM" type="AudioStreamPlayer" groups=[
-"bgm",
-]]
+[node name="BGM" type="AudioStreamPlayer" groups=["bgm"]]
 pause_mode = 2
 bus = "BGM"
 script = ExtResource( 1 )

@@ -81,26 +81,18 @@ func _input(event):
 		open_journal()
 		
 func _physics_process(delta):
-	var direction = Vector2.ZERO
-	if Input.is_action_pressed("ui_left"):
-		direction += Vector2.LEFT
+	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	if direction.x < 0:
 		sprite_container.scale = Vector2(1, 1)
-	elif Input.is_action_pressed("ui_right"):
-		direction += Vector2.RIGHT
+	elif direction.x > 0:
 		sprite_container.scale = Vector2(-1, 1)
 		
-	if not sidescrolling_mode:
-		if Input.is_action_pressed("ui_up"):
-			direction += Vector2.UP
-		elif Input.is_action_pressed("ui_down"):
-			direction += Vector2.DOWN
-		
-	direction = direction.normalized()
+	if sidescrolling_mode:
+		direction.y = 0
 		
 	if direction != Vector2.ZERO:
 		move_and_collide(direction * MOVEMENT_SPEED * delta)
-		if direction.x != 0 and direction.y != 0:
-			global_position = global_position.round()
+		global_position = global_position.round()
 		walk_sprite.visible = true
 		stand_sprite.visible = false
 		interact_collider.rotation = direction.angle()

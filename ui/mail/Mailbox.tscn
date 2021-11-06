@@ -57,8 +57,8 @@ margin_left = 2.73291
 margin_top = -1.68179
 margin_right = 42.7329
 margin_bottom = 11.3182
-custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.87451, 0.964706, 0.960784, 1 )
+custom_fonts/font = ExtResource( 1 )
 text = "Inbox"
 __meta__ = {
 "_edit_use_anchors_": false

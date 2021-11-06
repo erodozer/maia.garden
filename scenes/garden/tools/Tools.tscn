@@ -5,9 +5,7 @@
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=4]
 
-[node name="Seeds" type="PanelContainer" groups=[
-"seed_tool",
-]]
+[node name="Seeds" type="PanelContainer" groups=["seed_tool"]]
 margin_left = 2.0
 margin_top = 2.0
 margin_right = 28.0
@@ -34,11 +32,11 @@ margin_left = 1.0
 margin_top = 8.0
 margin_right = 19.0
 margin_bottom = 21.0
-custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.87451, 0.964706, 0.960784, 1 )
 custom_colors/font_color_shadow = Color( 0.223529, 0.278431, 0.470588, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 0
+custom_fonts/font = ExtResource( 3 )
 text = "5"
 align = 2
 valign = 2

@@ -31,9 +31,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -3 ), Vector2( 0, 0 ) ]
 }
 
-[node name="Mailbox" type="StaticBody2D" groups=[
-"npc",
-]]
+[node name="Mailbox" type="StaticBody2D" groups=["npc"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource( 2 )

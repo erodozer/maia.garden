@@ -53,9 +53,7 @@ radius = 3.16228
 
 [sub_resource type="StyleBoxEmpty" id=8]
 
-[node name="Maia" type="KinematicBody2D" groups=[
-"player",
-]]
+[node name="Maia" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource( 5 )
 fishing = true
@@ -88,9 +86,9 @@ shape = SubResource( 3 )
 [node name="Interact" type="Area2D" parent="."]
 visible = false
 position = Vector2( 0, 3 )
-input_pickable = false
 collision_layer = 0
 collision_mask = 4
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
 rotation = -1.5708
@@ -102,9 +100,9 @@ shape = SubResource( 5 )
 [node name="HalfHeight" type="Area2D" parent="."]
 visible = false
 position = Vector2( 0, 3 )
-input_pickable = false
 collision_layer = 0
 collision_mask = 8
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HalfHeight"]
 position = Vector2( 0, 3 )
