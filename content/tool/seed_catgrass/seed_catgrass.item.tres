@@ -12,6 +12,6 @@ name = "Catgrass"
 price = 5
 starting = 0
 effect = ExtResource( 3 )
-description = "Grows catgrass (2 days)"
+description = "Grows catgrass"
 unlock = "unlocked_catgrass"
 stack = 30

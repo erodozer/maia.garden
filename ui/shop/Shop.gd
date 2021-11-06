@@ -15,69 +15,71 @@ func _ready():
 	
 func exchange(btn):
 	var item = btn.item
-	var value = btn.price
-	var stock = btn.stock
 			
 	# purchase an item
-	if value > 0 and GameState.player.balance - value < 0:
+	if item.price > 0 and GameState.player.balance - item.price < 0:
 		return false
 	
 	var exchanged = false
 
 	# if value is zero, it may cost an inventory item
-	if value == 0:
+	if item.price == 0:
 		exchanged = GameState.inventory.insert_item({
-			"id": item.id,
-			"ref": item,
+			"id": item.ref.id,
+			"ref": item.ref,
 			"amount": -1,
 		})
 	# handle putting items into your inventory
-	elif item.stack > 0:
+	elif item.ref.stack > 0:
 		exchanged = GameState.inventory.insert_item({
-			"id": item.id,
-			"ref": item,
+			"id": item.ref.id,
+			"ref": item.ref,
 			"amount": 1,
 		})
 	# handle cafe items that are instant consume
-	elif item.stack == 0 and item.get("stamina") and item.stamina > 0:
+	elif item.ref.stack == 0 and item.ref.get("stamina") and item.ref.stamina > 0:
 		exchanged = true
 	
 	if not exchanged:
 		return false
 	
-	if item.get("stamina") and item.stamina > 0:
-		if item.stack == 0 or value == 0:
+	if item.ref.get("stamina") and item.stamina > 0:
+		if item.stack == 0 or item.price == 0:
 			# most cafe items restore stamina directly 
 			# instead of going into the inventory
-			GameState.player.stamina += item.stamina
+			GameState.player.stamina += item.ref.stamina
 	
-	if value > 0:
-		GameState.player.balance -= value
+	if item.price > 0:
+		GameState.player.balance -= item.price
 		GameState.emit_signal("stat", "shop.purchase", {
-			"item": item,
-			"value": value,
+			"item": item.ref,
+			"value": item.price,
 		})
 	else:
 		GameState.emit_signal("stat", "shop.spend", {
-			"item": item,
+			"item": item.ref,
 		})
 	
-	if stock > 0:
-		stock -= 1
-		btn.stock = stock
-		
-	if btn.stock == 0:
-		btn.queue_free()
-
-	emit_signal("exchange", item, value)
+	if item.stock > 0:
+		item.stock -= 1
+			
+	emit_signal("exchange", item.ref, item.price)
 	
-	yield(get_tree(), "idle_frame")
-	if items.get_child_count() <= 0:
-		emit_signal("end")
+	if item.stock == 0:
+		btn.queue_free()
+		yield(btn, "tree_exited")
+		if items.get_child_count() <= 0:
+			emit_signal("end")
+		else:
+			items.get_child(0).grab_focus()
+	else:
+		btn.item = item
 
 	return true
 	
 func open(item_list):
+	assert(len(item_list) > 0)
+	
 	var group = ButtonGroup.new()
 	group.connect("changed", self, "update_label")
 	
@@ -85,11 +87,9 @@ func open(item_list):
 		if i.stock != 0:
 			var b = button.instance()
 			items.add_child(b)
-			b.item = i.ref
-			b.price = i.price
-			b.stock = i.stock
+			b.item = i
 			b.group = group
-			b.connect("focus_entered", self, "update_description", [i.ref])
+			b.connect("focus_entered", self, "update_description", [i])
 			b.connect("toggled", self, "_on_toggle_button", [b])
 		
 	yield(get_tree(), "idle_frame")
@@ -112,7 +112,19 @@ func open(item_list):
 		c.queue_free()
 
 func update_description(item):
-	description.text = item.description
+	var ref = item.ref
+	var d = ref.description
+	if "description" in item and item.description:
+		d = item.description
+	if not d:
+		d = ref.name
+		
+	if "stamina" in ref and ref.stamina > 0:
+		d = "%s (%d ST)" % [d, ref.stamina]
+	if item.ref.type == "tool" and item.ref.effect.type == "flower":
+		d = "%s (%d days)" % [d, item.ref.effect.mature]
+	
+	description.text = d
 	
 func _on_toggle_button(pressed, btn):
 	if not pressed:

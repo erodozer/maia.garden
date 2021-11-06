@@ -9,8 +9,8 @@ func hint():
 func sell():
 	var value = 0
 	var flowers = []
-	for f in GameState.inventory.data:
-		if f.ref.type == "flower" and f.amount > 0:
+	for f in GameState.inventory.safe():
+		if f.ref.type == "flower":
 			value += f.ref.price * f.amount
 			flowers.append(f)
 	
@@ -60,22 +60,4 @@ func interact():
 		yield(sell(), "completed")
 		return
 	
-	var select = []
-	for f in Content.Items:
-		if f.type != "tool":
-			continue
-
-		# only sell seeds
-		if not f.id.begins_with("seed_"):
-			continue
-
-		if f.unlock and not GameState.flag(f.unlock):
-			continue
-		
-		select.append({
-			"ref": f,
-			"price": f.price,
-			"stock": -1,
-		})
-	
-	yield(shop.open(select), "completed")
+	yield(shop.open(GameState.shops.flowershop.stock), "completed")

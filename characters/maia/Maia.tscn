@@ -37,7 +37,7 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/half_height = false
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 5, 3 )
 
 [sub_resource type="RayShape2D" id=4]
@@ -49,9 +49,9 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id=6]
 radius = 3.16228
 
-[sub_resource type="StyleBoxEmpty" id=8]
-
 [sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
 
 [node name="Maia" type="KinematicBody2D" groups=[
 "player",
@@ -72,19 +72,18 @@ playing = true
 visible = false
 material = SubResource( 2 )
 frames = ExtResource( 2 )
-frame = 3
 playing = true
 
 [node name="Fishing" type="AnimatedSprite" parent="Sprite"]
 visible = false
 position = Vector2( -9, 1 )
 frames = ExtResource( 3 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 7 )
-shape = SubResource( 9 )
+shape = SubResource( 3 )
 
 [node name="Interact" type="Area2D" parent="."]
 visible = false
@@ -131,12 +130,12 @@ __meta__ = {
 [node name="Konpeto" parent="CanvasLayer/HUD" instance=ExtResource( 9 )]
 margin_left = 110.0
 margin_right = 162.0
-custom_styles/panel = SubResource( 8 )
+custom_styles/panel = SubResource( 7 )
 
 [node name="Stamina" parent="CanvasLayer/HUD" instance=ExtResource( 4 )]
 margin_left = 160.0
 margin_right = 200.0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 8 )
 
 [node name="Journal" parent="CanvasLayer" instance=ExtResource( 8 )]
 visible = false

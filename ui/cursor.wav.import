@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cursor.wav-53b14b155c50cc9981a9eb97405f418a.sample"
+
+[deps]
+
+source_file="res://ui/cursor.wav"
+dest_files=[ "res://.import/cursor.wav-53b14b155c50cc9981a9eb97405f418a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -67,15 +67,17 @@ func harvest(plant):
 	if not (plant.cell in plots):
 		return false
 		
-	plots.erase(plant.cell)
-	GameState.inventory.insert_item({
+	var inserted = GameState.inventory.insert_item({
 		"id": plant.ref.id,
 		"ref": plant.ref,
 		"amount": 1,
 	})
-	GameState.emit_signal("stat", "garden.harvest", {
-		"plant": plant
-	})
+	if inserted:
+		GameState.emit_signal("stat", "garden.harvest", {
+			"plant": plant
+		})
+		plots.erase(plant.cell)
+	return inserted
 	
 func kill(cell):
 	if not (cell in plots):

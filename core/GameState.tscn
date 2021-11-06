@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://core/GameState.gd" type="Script" id=1]
 [ext_resource path="res://core/maildaemon.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://core/garden.gd" type="Script" id=6]
 [ext_resource path="res://core/fortune.gd" type="Script" id=7]
 [ext_resource path="res://core/Player.gd" type="Script" id=8]
+[ext_resource path="res://core/shops/FlowerShop.gd" type="Script" id=9]
+[ext_resource path="res://core/shops/Cafe.gd" type="Script" id=10]
 
 [node name="GameState" type="Node" groups=[
 "Persist",
@@ -55,6 +57,18 @@ script = ExtResource( 8 )
 [node name="Stats" type="Node" parent="."]
 
 [node name="Requests" type="Node" parent="."]
+
+[node name="Shops" type="Node" parent="."]
+
+[node name="Cafe" type="Node" parent="Shops" groups=[
+"Persist",
+]]
+script = ExtResource( 10 )
+
+[node name="FlowerShop" type="Node" parent="Shops" groups=[
+"Persist",
+]]
+script = ExtResource( 9 )
 
 [connection signal="advance" from="Calendar" to="Garden" method="_on_calendar_advance"]
 [connection signal="advance" from="Calendar" to="Mail" method="_on_calendar_advance"]

@@ -26,22 +26,14 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_focus_next"):
 		get_tree().set_input_as_handled()
-		var buttons = tab_group.get_buttons()
 		var button = tab_group.get_pressed_button()
-		
-		var idx = buttons.find(button)
-		idx = wrapi(idx + 1, 0, len(buttons))
-		
-		buttons[idx].pressed = true
+		var next = button.focus_next
+		button.get_node(next).pressed = true
 	if event.is_action_pressed("ui_focus_prev"):
 		get_tree().set_input_as_handled()
-		var buttons = tab_group.get_buttons()
 		var button = tab_group.get_pressed_button()
-		
-		var idx = buttons.find(button)
-		idx = wrapi(idx - 1, 0, len(buttons))
-		
-		buttons[idx].pressed = true
+		var prev = button.focus_previous
+		button.get_node(prev).pressed = true
 	
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().set_input_as_handled()

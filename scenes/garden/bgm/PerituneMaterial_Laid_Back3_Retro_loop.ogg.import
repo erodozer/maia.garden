@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/PerituneMaterial_Laid_Back3_Retro_loop.ogg-916e2372a20635a1ae4061a5ccf0ea6f.oggstr"
+
+[deps]
+
+source_file="res://scenes/garden/bgm/PerituneMaterial_Laid_Back3_Retro_loop.ogg"
+dest_files=[ "res://.import/PerituneMaterial_Laid_Back3_Retro_loop.ogg-916e2372a20635a1ae4061a5ccf0ea6f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

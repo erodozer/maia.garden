@@ -5,11 +5,17 @@ Manages interactive tilemap state
 
 """
 
+const godash = preload("res://addons/godash/godash.gd")
+
 onready var player = get_tree().get_nodes_in_group("player").front()
 onready var portals = get_tree().get_nodes_in_group("portals").front()
 
 func _ready():
-	Bgm.change_song(preload("res://bgm/ontama_kawaii_hananoyounaegao_ogg/explore.tres"))
+	Bgm.change_song(
+		load(godash.rand_choice(
+			godash.enumerate_dir("res://scenes/garden/bgm/", "ogg")
+		))
+	)
 
 func _setup(params):
 	if not params:

@@ -24,7 +24,7 @@ func _ready():
 	set_current_tool(tools.front())
 
 func set_current_tool(item):
-	if null:
+	if not item:
 		return
 		
 	current_tool = item
@@ -37,6 +37,9 @@ func set_current_tool(item):
 	emit_signal("change_tool", item)
 
 func update_count(_id, item):
+	if current_tool and _id != current_tool.id:
+		return
+	
 	count.text = "%d" % item.amount
 	player.reevaluate()
 	

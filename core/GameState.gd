@@ -9,6 +9,7 @@ onready var calendar = get_node("Calendar")
 onready var fishing = get_node("Fishing")
 onready var fortune = get_node("Fortune")
 onready var player = get_node("Player")
+var shops = {}
 
 var requests = []
 var achievements = {}
@@ -17,6 +18,8 @@ var stats = {}
 # these are flags that persist
 # once these are toggled they should never go back except on new/load data
 var flags = {}
+
+var world_seed = 0
 
 signal stat(id, params)
 
@@ -34,6 +37,7 @@ func _ready():
 		connect("stat", achievement, "handle_stat")
 		achievement.name = achievement.id
 		get_node("Achievements").add_child(achievement)
+		achievement.add_to_group("Persist")
 		achievements[achievement.id] = achievement
 	
 	for s in godash.load_dir("res://content/stats", ["gd", "gdc"], true).values():
@@ -42,6 +46,9 @@ func _ready():
 		stat.name = stat.id
 		get_node("Stats").add_child(stat)
 		stats[stat.id] = stat
+	
+	for s in get_node("Shops").get_children():
+		shops[s.name.to_lower()] = s
 	
 	mail.deliver_mail(calendar.day)
 
@@ -91,12 +98,16 @@ func load_headers(slot):
 	}
 
 func reset_game():
+	randomize() # new world seed every time the game starts
+	world_seed = randi()
+	seed(world_seed)
 	for v in get_tree().get_nodes_in_group("Persist"):
 		if v.has_method("reset"):
 			v.reset()
 
 func save_game(slot):
 	var data = {
+		"seed": world_seed,
 		"updatedAt": OS.get_unix_time(),
 	}
 	
@@ -116,6 +127,8 @@ func load_game(slot):
 		return
 	f.open(path, File.READ)
 	var data = parse_json(f.get_line())
+	world_seed = data.get("seed", randi())
+	seed(world_seed)
 	
 	SceneManager.change_scene("loading", [data])
 	

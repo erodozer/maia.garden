@@ -4,8 +4,8 @@ onready var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 
 func can_sell():
 	var value = 0
-	for f in GameState.inventory.data:
-		if f.ref.type == "fish" and f.amount > 0:
+	for f in GameState.inventory.safe():
+		if f.ref.type == "fish":
 			var price = f.ref.price
 			if f.id.ends_with(":rare"):
 				price *= 2
@@ -16,8 +16,8 @@ func can_sell():
 func sell():
 	var value = 0
 	var fish = []
-	for f in GameState.inventory.data:
-		if f.ref.type == "fish" and f.amount > 0:
+	for f in GameState.inventory.safe():
+		if f.ref.type == "fish":
 			var price = f.ref.price
 			if f.id.ends_with(":rare"):
 				price *= 2

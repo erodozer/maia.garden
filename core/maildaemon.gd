@@ -11,6 +11,17 @@ func deliver_mail(day):
 		if m.sendAt.is_valid_integer():
 			var date = m.sendAt.to_int()
 			delivered = day >= date and date >= 0
+		elif m.sendAt.begins_with("quest:"):
+			var quest_name = m.sendAt.substr(len("quest:"))
+			var request = null
+			for q in GameState.requests:
+				if q.id == quest_name:
+					request = q
+					break
+			if not request:
+				continue
+					
+			delivered = request.can_accept() and not request.completed and not request.accepted
 		else:
 			delivered = GameState.flag(m.sendAt)
 

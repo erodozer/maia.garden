@@ -6,6 +6,7 @@
 "bgm",
 ]]
 pause_mode = 2
+bus = "BGM"
 script = ExtResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]

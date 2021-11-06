@@ -30,11 +30,11 @@ margin_bottom = 16.0
 custom_constants/separation = -2
 alignment = 2
 
-[node name="Stamina" parent="HBoxContainer" instance=ExtResource( 5 )]
-margin_left = 112.0
+[node name="Konpeto" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 100.0
 margin_right = 152.0
 
-[node name="Konpeto" parent="HBoxContainer" instance=ExtResource( 2 )]
+[node name="Stamina" parent="HBoxContainer" instance=ExtResource( 5 )]
 margin_left = 150.0
 margin_right = 190.0
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://content/tool/seed_clover/seed.png" type="Texture" id=2]
 [ext_resource path="res://ui/shop/ItemButton.gd" type="Script" id=3]
+[ext_resource path="res://ui/cursor.wav" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.956863, 0.8, 0.631373, 1 )
@@ -61,6 +62,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 
 [node name="Pressed" type="Panel" parent="ItemButton/Icon"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -70,7 +72,6 @@ __meta__ = {
 }
 
 [node name="Unpressed" type="Panel" parent="ItemButton/Icon"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -131,6 +132,9 @@ custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 0
 text = "100 KP"
 align = 1
+
+[node name="Sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

@@ -60,7 +60,7 @@ func change_scene(next_scene, params=[]):
 				yield(state, "completed")
 			yield(get_tree(), "idle_frame")
 		scene.queue_free()
-		yield(get_tree(), "idle_frame")
+		yield(scene, "tree_exited")
 	
 	if next_scene is String:
 		"""

@@ -82,3 +82,45 @@ func get_item(id):
 		if i.id == id:
 			matching.append(i)
 	return matching
+
+# get list of all items (merged stacks) that are safe to process against (not required by any active quests)
+func safe():
+	var select = {}
+	var requirements = {}
+	for request in GameState.requests:
+		if not request.accepted:
+			continue
+			
+		for requirement in request.get_requirements():
+			for i in request.get_matching_items(requirement):
+				if i == "konpeito":
+					continue
+					
+				var sum = requirements.get(i, 0)
+				var item = GameState.inventory.get_item(i)
+				for record in item:
+					sum += record.amount
+				requirements[i] = sum
+			
+	for i in GameState.inventory.data:
+		if i.ref.id in select:
+			select[i.ref.id].amount += i.amount
+			continue
+		
+		select[i.ref.id] = {
+			"ref": i.ref,
+			"price": 0,
+			"amount": i.amount,
+		}
+	
+	for r in requirements:
+		if not (r in select):
+			continue
+			
+		select[r].amount -= requirements[r]
+			
+		if select[r].amount <= 0:
+			select.erase(r)
+	
+	return select.values()
+	

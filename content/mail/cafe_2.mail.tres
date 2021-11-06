@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "cafe_2"
+sendAt = "quest:cafe_2"
+sender = "Yuuki"
+message = "Hi Maia,
+
+The Catfe hasn't been attracting as many customers as I expected.  Maybe something is missing from the menu.  Could you come over and help me figure this out?"
+outro = ""
+onDelivery = ""
+onRead = ""

@@ -12,6 +12,6 @@ name = "Daisy"
 price = 10
 starting = 5
 effect = ExtResource( 3 )
-description = "Grow cute white Daisy's (2 days)"
+description = "Grow cute white Daisy's"
 unlock = ""
 stack = 30

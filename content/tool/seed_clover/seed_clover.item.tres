@@ -12,6 +12,6 @@ name = "Clover"
 price = 5
 starting = 5
 effect = ExtResource( 3 )
-description = "Grows a patch of clovers (2 days)"
+description = "Grows a patch of clovers"
 unlock = ""
 stack = 30

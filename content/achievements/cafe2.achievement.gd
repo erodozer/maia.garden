@@ -27,3 +27,11 @@ func get_progress():
 		"progress": int(caffinated),
 		"required": 1,
 	}
+
+func persist(data):
+	var save = data.get("achievements", {})
+	save["cafe2"] = caffinated
+	
+func restore(data):
+	caffinated = data.get("achievements", {}).get("cafe2", false)
+	

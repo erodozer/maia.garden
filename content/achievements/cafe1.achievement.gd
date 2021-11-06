@@ -1,6 +1,6 @@
 extends "res://content/achievement.gd"
 
-const has_eaten = {}
+var has_eaten = {}
 
 func get_id():
 	return "cafe1"
@@ -35,3 +35,14 @@ func get_progress():
 		"progress": progress,
 		"required": len(has_eaten),
 	}
+
+func persist(data):
+	var save = data.get("achievements", {})
+	save["cafe1"] = has_eaten
+	
+func restore(data):
+	has_eaten = {}
+	var loaded = data.get("achievements", {}).get("cafe1", {})
+	for c in Content.Items:
+		if c.type == "cafe":
+			has_eaten[c] = false if not (c in loaded) else loaded[c]

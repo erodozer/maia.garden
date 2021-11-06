@@ -11,6 +11,8 @@ onready var catch_dialog = get_node("Catch/PanelContainer/VBoxContainer/RichText
 onready var catch_record = get_node("Catch/PanelContainer/VBoxContainer/Label")
 onready var tween = get_node("Tween")
 
+onready var sfx_controller = get_node("SfxController")
+
 const REEL_RATE = 20
 
 var direction = 0 setget set_direction
@@ -41,25 +43,26 @@ func open(type):
 		return
 		
 	visible = true
-	if player:
-		player.fishing = true
+	player.fishing = true
+	
+	sfx_controller.play("waiting")
 	
 	var fish = GameState.fishing.get_fish(type)
 	yield(get_tree().create_timer(randf() * 3.0 + 2.0), "timeout")
 		
 	# handle empty fishing
 	if not fish:
-		if player:
-			player.fishing = false
-		if dialogue:
-			yield(dialogue.open([
-				"No fish are biting",
-				"Maybe some other time",
-			]), "completed")
+		player.fishing = false
+		sfx_controller.stop()
+		yield(dialogue.open([
+			"No fish are biting",
+			"Maybe some other time",
+		]), "completed")
 		return
 	
 	# first wait to hook the fish
 	Input.start_joy_vibration(0, 0.3, 0.7)
+	sfx_controller.play("fight")
 	player.bubble.visible = true
 	set_process_input(true)
 	var wait = get_tree().create_timer(randf() * 3.0 + 0.5)
@@ -69,31 +72,29 @@ func open(type):
 	set_process_input(false)
 	Input.stop_joy_vibration(0)
 	player.bubble.visible = false
+	sfx_controller.stop()
 	
 	if not hooked:
-		if player:
-			player.fishing = false
-		if dialogue:
-			yield(dialogue.open([
-				"The fish got away",
-			]), "completed")
+		player.fishing = false
+		yield(dialogue.open([
+			"The fish got away",
+		]), "completed")
 		return
 	# test if player has enough stamina to catch the fish
 	if not GameState.player.can_perform_action(fish.stamina):
-		if player:
-			player.fishing = false
-		if dialogue:
-			yield(dialogue.open([
-				"The line broke!",
-			]), "completed")
+		player.fishing = false
+		yield(dialogue.open([
+			"The line broke!",
+		]), "completed")
 		return
 		
 	health.max_value = lerp(fish.ref.health * 0.9, fish.ref.health * 1.2, fish.size) 
-	health.value = health.max_value * 0.8
+	health.value = health.max_value * 0.85
 	pick_direction()
 	joystick.visible = true
 	health.visible = true
 	Input.start_joy_vibration(0, 0.1, 0.4)
+	sfx_controller.play("fight")
 	set_process(true)
 	var caught = yield(self, "end")
 	set_process(false)
@@ -101,10 +102,13 @@ func open(type):
 	timer.stop()
 	joystick.visible = false
 	health.visible = false
-	if player:
-		player.fishing = false
+	player.fishing = false
+	sfx_controller.play("pull")
 	
 	if not caught:
+		yield(dialogue.open([
+			"The fish got away",
+		]), "completed")
 		return
 	
 	var isRecord = GameState.fishing.catch(fish)
@@ -170,9 +174,11 @@ func _process(delta):
 	if success and not reeling:
 		reeling = true
 		Input.start_joy_vibration(0, 0.5, 0.9)
+		sfx_controller.play("reel")
 	elif not success and reeling:
 		reeling = false
 		Input.start_joy_vibration(0, 0.1, 0.4)
+		sfx_controller.stop()
 		
 	if reeling:
 		health.value = health.value - (REEL_RATE * delta)

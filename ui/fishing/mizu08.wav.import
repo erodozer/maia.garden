@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mizu08.wav-ac9406c9f86bc913f20afe30eeb18800.sample"
+
+[deps]
+
+source_file="res://ui/fishing/mizu08.wav"
+dest_files=[ "res://.import/mizu08.wav-ac9406c9f86bc913f20afe30eeb18800.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -5,6 +5,9 @@ onready var particles = get_node("Explosion")
 onready var sprite = get_node("Anchor/Sprite")
 onready var water_sprite = get_node("Watered")
 
+onready var seed_sfx = get_node("SeedSfx")
+onready var harvest_sfx = get_node("HarvestSfx")
+
 var plant = null setget set_plant
 var cell = 0
 
@@ -33,9 +36,10 @@ func sow(c):
 	
 func harvest(p):
 	# reaping costs no stamina
-	GameState.garden.harvest(p)
-	particles.emitting = true
-	set_plant(null)
+	if GameState.garden.harvest(p):
+		particles.emitting = true
+		set_plant(null)
+		harvest_sfx.play()
 	
 func water(p):
 	var watered = GameState.player.perform_action(watering_stamina_cost)
@@ -60,7 +64,7 @@ func set_plant(p):
 	else:
 		sprite.texture = plant.ref.young_sprite
 	
-	sprite.visible = true	
+	sprite.visible = true
 	water_sprite.visible = plant.watered
 
 func hint():
@@ -107,6 +111,7 @@ func interact():
 		var result = sow(cell)
 		if result:
 			self.plant = result
+			seed_sfx.play()
 		return
 		
 	if plant.age >= plant.ref.mature:

@@ -26,6 +26,8 @@ func destroy():
 
 func _on_ItemList_item_activated(index):
 	if index == 3:
+		get_tree().paused = true
+		yield(Bgm.fadeout(0.3), "completed")
 		SceneManager.change_scene("title")
 		return
 

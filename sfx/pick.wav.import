@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pick.wav-ccc61ba8cd8ab66799eb042b03054835.sample"
+
+[deps]
+
+source_file="res://sfx/pick.wav"
+dest_files=[ "res://.import/pick.wav-ccc61ba8cd8ab66799eb042b03054835.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

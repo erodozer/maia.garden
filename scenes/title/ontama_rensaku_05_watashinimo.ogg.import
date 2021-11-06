@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ontama_rensaku_05_watashinimo.ogg-400ff88bc291b7bd3509ef2f409c230b.oggstr"
+
+[deps]
+
+source_file="res://scenes/title/ontama_rensaku_05_watashinimo.ogg"
+dest_files=[ "res://.import/ontama_rensaku_05_watashinimo.ogg-400ff88bc291b7bd3509ef2f409c230b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

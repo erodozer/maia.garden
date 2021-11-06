@@ -12,6 +12,8 @@ config_version=4
 
 config/name="MaiaGarden"
 run/main_scene="res://Main.tscn"
+boot_splash/image="res://splash.png"
+boot_splash/use_filter=false
 config/icon="res://characters/maia/outfits/default/maia_1.png"
 
 [autoload]
@@ -129,10 +131,16 @@ common/enable_object_picking=false
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
+quality/driver/fallback_to_gles2=true
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
 2d/snapping/use_gpu_pixel_snap=true
 quality/shadows/filter_mode=0
+quality/filters/anisotropic_filter_level=1
 quality/filters/use_nearest_mipmap_filter=true
 environment/default_clear_color=Color( 0.188235, 0.172549, 0.180392, 1 )
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false
 environment/snapping/use_gpu_pixel_snap=true

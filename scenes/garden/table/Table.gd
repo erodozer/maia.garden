@@ -12,13 +12,16 @@ func hint():
 	
 func get_edibles():
 	var select = []
-	for i in GameState.inventory.data:
-		if i.ref.get("stamina") and i.ref.stamina > 0:
-			select.append({
-				"ref": i.ref,
-				"price": 0,
-				"stock": i.amount,
-			})
+	for i in GameState.inventory.safe():
+		if not i.ref.get("stamina"):
+			continue
+			
+		select.append({
+			"ref": i.ref,
+			"price": 0,
+			"stock": i.amount,
+		})
+	
 	return select
 	
 func can_interact():

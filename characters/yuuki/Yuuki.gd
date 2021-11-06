@@ -30,15 +30,4 @@ func interact():
 		yield(check_requests(), "completed")
 		return
 	
-	var Cafe = []
-	for i in Content.Items:
-		if i.type == "cafe":
-			if i.unlock and not GameState.flag(i.unlock):
-				continue
-			Cafe.append({
-				"ref": i,
-				"price": i.price,
-				"stock": -1,
-			})
-		
-	yield(shop.open(Cafe), "completed")
+	yield(shop.open(GameState.shops.cafe.stock), "completed")
