@@ -59,6 +59,8 @@ func play():
 	difficulty_list.grab_focus()
 	difficulty_list.select(0)
 	var difficulty = yield(difficulty_list, "item_activated")
+	if difficulty >= len(DIFFICULTY):
+		return -1
 	difficulty_selector.visible = false
 	Bgm.fadeout(1.0)
 	

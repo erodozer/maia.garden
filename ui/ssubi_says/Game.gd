@@ -26,20 +26,25 @@ func _ready():
 	set_process_input(false)
 
 func _input(event):
-	
 	for i in KEY_MAP.keys():
 		if event.is_action_pressed(i):
+			controls.get_node(KEY_MAP[i]).visible = true
+			set_process_input(false)
+			yield(get_tree().create_timer(0.3), "timeout")
+			controls.get_node(KEY_MAP[i]).visible = false
 			if input_queue[key] != i:
 				emit_signal("end", true)
 			else:
 				key += 1
 				if key >= len(input_queue):
 					emit_signal("end", false)
+			set_process_input(true)
 	
 func start(difficulty):
 	visible = true
 	var attempts = 0
 	
+	yield(get_tree().create_timer(0.5), "timeout")
 	start_prompt.visible = true
 	yield(get_tree().create_timer(3.0), "timeout")
 	start_prompt.visible = false
@@ -82,7 +87,14 @@ func start(difficulty):
 		
 			if not miss:
 				break
+			
+			controls.visible = false
+			attempt_counter.visible = false
 			attempts += 1
+			if attempts < MAX_ATTEMPTS:
+				yield(get_tree().create_timer(0.5), "timeout")
+				attempt_counter.visible = true
+				controls.visible = true
 		
 		controls.visible = false
 		attempt_counter.visible = false

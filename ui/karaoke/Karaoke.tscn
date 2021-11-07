@@ -61,7 +61,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_constants/vseparation = 4
 custom_constants/line_separation = 0
-items = [ "100 KP - EASY", null, false, "200 KP - HARD", null, false, "375 KP - EXTREME", null, false ]
+items = [ "EASY - Baka Mitai", null, false, "HARD - Bad Apple", null, false, "EXTREME - Rolling Girl", null, false, "Cancel", null, false ]
 same_column_width = true
 fixed_icon_size = Vector2( 24, 24 )
 
@@ -417,16 +417,16 @@ align = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Left" method="_on_Karaoke_add_note"]
-[connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_add_note"]
 [connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Down" method="_on_Karaoke_add_note"]
+[connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_add_note"]
 [connection signal="add_note" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Right" method="_on_Karaoke_add_note"]
 [connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Left" method="_on_Karaoke_end"]
-[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_end"]
 [connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Down" method="_on_Karaoke_end"]
+[connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Up" method="_on_Karaoke_end"]
 [connection signal="end" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Right" method="_on_Karaoke_end"]
 [connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" method="_on_Karaoke_start"]
-[connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_Karaoke_start"]
 [connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" method="_on_Karaoke_start"]
+[connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" method="_on_Karaoke_start"]
 [connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_Karaoke_start"]
 [connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="." method="_on_hit"]
 [connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="." method="_on_miss"]

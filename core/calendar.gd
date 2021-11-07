@@ -29,10 +29,10 @@ func advance_day():
 	if GameState.stats.stamina_used.value > 250:
 		GameState.toggle_flag("introduce.yuuki")
 		
-	if GameState.stats.flowers_planted.value > 5:
+	if GameState.stats.flowers_planted.value > 10:
 		GameState.toggle_flag("introduce.clover")
 	
-	if GameState.stats.fish_caught.value > 8:
+	if GameState.stats.fish_caught.value > 5:
 		GameState.toggle_flag("introduce.tazzle")
 		
 	if day >= MAIAS_BIRTHDAY:
