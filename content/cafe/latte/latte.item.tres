@@ -14,4 +14,4 @@ description = "Perfectly sweet and light"
 unlock = ""
 stack = 0
 starting = 0
-daily_stock = -1
+daily_stock = 1

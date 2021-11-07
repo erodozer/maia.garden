@@ -14,6 +14,7 @@ func persist(data):
 		item_stock[i.ref.id] = i.stock
 	
 	shop_data[name.to_lower()] = item_stock
+	data["shops"] = shop_data
 	return data
 
 func restore(data):

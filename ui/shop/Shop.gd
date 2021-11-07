@@ -91,7 +91,6 @@ func open(item_list):
 			b.item = i
 			b.group = group
 			b.connect("focus_entered", self, "update_description", [i])
-			b.connect("toggled", self, "_on_toggle_button", [b])
 		
 	yield(get_tree(), "idle_frame")
 	

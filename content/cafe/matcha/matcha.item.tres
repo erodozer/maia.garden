@@ -14,4 +14,4 @@ description = "A relaxing tea seeped in tradition"
 unlock = ""
 stack = 0
 starting = 0
-daily_stock = -1
+daily_stock = 2

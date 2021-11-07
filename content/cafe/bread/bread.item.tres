@@ -14,4 +14,4 @@ description = "Fluffy Bread (Portable)"
 unlock = "unlock_bread"
 stack = 1
 starting = 1
-daily_stock = -1
+daily_stock = 9
