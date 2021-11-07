@@ -21,6 +21,7 @@ var flags = {}
 
 # temporary world state data that gets cleared each day
 var temp = {}
+var time_played = 0
 
 var world_seed = 0
 
@@ -71,7 +72,26 @@ func persist(data):
 func restore(data):
 	flags = data["flags"]
 	
-func reset():
+func load_headers(slot):
+	var path = "user://garden.%s.save" % slot
+	var f = File.new()
+	if not f.file_exists(path):
+		return null
+		
+	f.open(path, File.READ)
+	var data = parse_json(f.get_line())
+	
+	return {
+		"slot": slot,
+		"updated_at": data.updatedAt,
+		"game_time": data.calendar.get("date", 1634616000),
+		"time_played": data.get("timePlayed", 0),
+		"outfit": data.player.get("outfit", "default"),
+	}
+
+func reset_game():
+	time_played = 0
+	temp = {}
 	flags = {
 		"outfit.default": true,
 		"outfit.hat": false,
@@ -87,23 +107,10 @@ func reset():
 		"unlock_bread": false
 	}
 	
-func load_headers(slot):
-	var path = "user://garden.%s.save" % slot
-	var f = File.new()
-	if not f.file_exists(path):
-		return null
-		
-	f.open(path, File.READ)
-	var data = parse_json(f.get_line())
-	
-	return {
-		"updatedAt": data.updatedAt,
-	}
-
-func reset_game():
 	randomize() # new world seed every time the game starts
 	world_seed = randi()
 	seed(world_seed)
+	
 	for v in get_tree().get_nodes_in_group("Persist"):
 		if v.has_method("reset"):
 			v.reset()
@@ -112,6 +119,7 @@ func save_game(slot):
 	var data = {
 		"seed": world_seed,
 		"updatedAt": OS.get_unix_time(),
+		"timePlayed": time_played,
 	}
 	
 	for v in get_tree().get_nodes_in_group("Persist"):
@@ -132,6 +140,7 @@ func load_game(slot):
 	var data = parse_json(f.get_line())
 	world_seed = data.get("seed", randi())
 	seed(world_seed)
+	time_played = data.get("timePlayed", 0)
 	
 	SceneManager.change_scene("loading", [data])
 	
@@ -142,3 +151,7 @@ func delete_game():
 
 func _on_Calendar_advance(_day):
 	temp = {}
+
+func _process(delta):
+	time_played += delta
+	

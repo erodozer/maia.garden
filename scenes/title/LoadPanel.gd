@@ -23,7 +23,7 @@ func build():
 	for s in ["auto", "00", "01", "02"]:
 		var header = GameState.load_headers(s)
 		if header:
-			var d = OS.get_datetime_from_unix_time(header.updatedAt)
+			var d = OS.get_datetime_from_unix_time(header.updated_at)
 			list.add_item(
 				"%s - %d/%d/%d %02d:%02d" % [s, d.day, d.month, d.year, d.hour, d.minute]
 			)

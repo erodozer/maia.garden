@@ -336,13 +336,11 @@ focus_mode = 2
 follow_focus = true
 script = ExtResource( 12 )
 
-[node name="ItemList" type="ItemList" parent="Window/View/Data"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/View/Data"]
 margin_right = 172.0
 margin_bottom = 93.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-same_column_width = true
-fixed_icon_size = Vector2( 24, 32 )
 
 [node name="InventoryCounter" type="Panel" parent="."]
 margin_left = 157.0
@@ -368,4 +366,3 @@ __meta__ = {
 }
 
 [connection signal="focus_entered" from="Window/View/Data" to="Window/View/Data" method="_on_Data_focus_entered"]
-[connection signal="item_activated" from="Window/View/Data/ItemList" to="Window/View/Data" method="_on_ItemList_item_activated"]

@@ -1,37 +1,40 @@
 extends ScrollContainer
 
-onready var list = get_node("ItemList") as ItemList
+const DataRecord = preload("res://ui/journal/DataRecord.tscn")
+
+onready var list = get_node("VBoxContainer")
 
 func build():
+	var button_group = ButtonGroup.new()
+	button_group.connect("pressed", self, "_on_item_activated")
 	for s in ["00", "01", "02"]:
 		var header = GameState.load_headers(s)
-		if header:
-			var d = OS.get_datetime_from_unix_time(header.updatedAt)
-			list.add_item(
-				"%s - %d/%d/%d %02d:%02d" % [s, d.day, d.month, d.year, d.hour, d.minute]
-			)
-		else:
-			list.add_item(
-				"%s - [Empty]" % [s]
-			)
-		var idx = list.get_item_count() - 1
-		list.set_item_metadata(idx, s)
-		list.set_item_tooltip_enabled(idx, false)
+		var button = DataRecord.instance()
+		list.add_child(button)
+		button.group = button_group
+		button.data = header
 		
-	list.add_item("Exit to Title")
-	list.select(0)
-
+	var exit_button = Button.new()
+	exit_button.text = "Exit to Title"
+	exit_button.rect_min_size = Vector2(0, 26)
+	exit_button.size_flags_horizontal = SIZE_EXPAND_FILL
+	exit_button.size_flags_vertical = SIZE_FILL
+	exit_button.connect("pressed", self, "_on_exit_game")
+	list.add_child(exit_button)
+	
 func destroy():
-	list.clear()
+	for f in list.get_children():
+		f.group = null
+		f.queue_free()
+	
+func _on_exit_game():
+	get_tree().paused = true
+	yield(Bgm.fadeout(0.3), "completed")
+	SceneManager.change_scene("title")
+	return
 
-func _on_ItemList_item_activated(index):
-	if index == 3:
-		get_tree().paused = true
-		yield(Bgm.fadeout(0.3), "completed")
-		SceneManager.change_scene("title")
-		return
-
-	var slot = list.get_item_metadata(index)
+func _on_item_activated(button):
+	var slot = button.data.slot
 	GameState.save_game(slot)
 	
 	destroy()
@@ -39,5 +42,5 @@ func _on_ItemList_item_activated(index):
 	build()
 
 func _on_Data_focus_entered():
-	list.grab_focus()
-	list.grab_click_focus()
+	list.get_child(0).grab_focus()
+	
