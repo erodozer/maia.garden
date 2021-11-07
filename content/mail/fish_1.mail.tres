@@ -7,7 +7,9 @@ script = ExtResource( 1 )
 id = "tazzle_introduction"
 sendAt = "quest:fish_1"
 sender = "Tazzle"
-message = ""
+message = "Hey Maia,
+
+Could you come up to the campsite and help me out with something?  Be sure to bring your fishing rod!"
 outro = ""
 onDelivery = ""
 onRead = ""

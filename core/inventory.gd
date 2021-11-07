@@ -6,6 +6,10 @@ var data = []
 var bag_size setget ,get_bag_size
 
 func _ready():
+	reset()
+			
+func reset():
+	data = []
 	for f in Content.Items:
 		if f.get("starting") and f.starting > 0:
 			insert_item({

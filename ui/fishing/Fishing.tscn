@@ -309,8 +309,8 @@ custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
 bbcode_text = "[center]Guppy
 28in[/center]"
-text = "[center]Guppy
-28in[/center]"
+text = "Guppy
+28in"
 fit_content_height = true
 scroll_active = false
 
@@ -328,6 +328,7 @@ align = 1
 
 [node name="Sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+volume_db = -80.0
 
 [node name="SfxController" type="AnimationPlayer" parent="."]
 anims/fight = SubResource( 2 )

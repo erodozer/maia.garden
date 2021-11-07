@@ -140,5 +140,5 @@ func delete_game():
 	for d in godash.enumerate_dir("user://", "save"):
 		dir.remove(d)
 
-func _on_Calendar_advance(day):
+func _on_Calendar_advance(_day):
 	temp = {}
