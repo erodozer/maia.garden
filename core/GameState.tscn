@@ -49,6 +49,7 @@ script = ExtResource( 10 )
 [node name="FlowerShop" type="Node" parent="Shops" groups=["Persist"]]
 script = ExtResource( 9 )
 
+[connection signal="advance" from="Calendar" to="." method="_on_Calendar_advance"]
 [connection signal="advance" from="Calendar" to="Garden" method="_on_calendar_advance"]
 [connection signal="advance" from="Calendar" to="Mail" method="_on_calendar_advance"]
 [connection signal="advance" from="Calendar" to="Fortune" method="_on_calendar_advance"]

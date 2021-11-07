@@ -19,6 +19,9 @@ var stats = {}
 # once these are toggled they should never go back except on new/load data
 var flags = {}
 
+# temporary world state data that gets cleared each day
+var temp = {}
+
 var world_seed = 0
 
 signal stat(id, params)
@@ -136,3 +139,6 @@ func delete_game():
 	var dir = Directory.new()
 	for d in godash.enumerate_dir("user://", "save"):
 		dir.remove(d)
+
+func _on_Calendar_advance(day):
+	temp = {}

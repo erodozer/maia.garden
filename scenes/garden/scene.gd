@@ -11,11 +11,15 @@ onready var player = get_tree().get_nodes_in_group("player").front()
 onready var portals = get_tree().get_nodes_in_group("portals").front()
 
 func _ready():
-	Bgm.change_song(
-		load(godash.rand_choice(
+	var garden_bgm
+	if "garden_bgm" in GameState.temp:
+		garden_bgm = GameState.temp.garden_bgm
+	else:
+		garden_bgm = load(godash.rand_choice(
 			godash.enumerate_dir("res://scenes/garden/bgm/", "ogg")
 		))
-	)
+		GameState.temp["garden_bgm"] = garden_bgm
+	Bgm.change_song(garden_bgm)
 
 func _setup(params):
 	if not params:

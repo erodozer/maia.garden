@@ -29,19 +29,19 @@ signal end
 const DIFFICULTY = [
 	{
 		"bpm": 80.0,
-		"scale": 1.0,
+		"scale": 0.3,
 		"freq": [1.0, 1.0 / 2.0],
 		"song": preload("res://ui/karaoke/songs/easy/Baka Mitai.ogg")
 	},
 	{
 		"bpm": 120.0,
-		"scale": 1.0,
+		"scale": 0.4,
 		"freq": [1.0, 1.0 / 2.0, 1.0 / 4.0],
 		"song": preload("res://ui/karaoke/songs/medium/Bad_Apple.ogg")
 	},
 	{
 		"bpm": 150.0,
-		"scale": 1.5,
+		"scale": 0.5,
 		"freq": [1.0, 1.0 / 2.0, 1.0 / 4.0],
 		"song": preload("res://ui/karaoke/songs/hard/Rolling Girl.ogg")
 	}
@@ -99,10 +99,9 @@ func play():
 	game.visible = true
 	yield(get_tree().create_timer(1.0), "timeout")
 	emit_signal("start")
-	audio.play(0)
 	set_process(true)
-	yield(audio, "finished")
-	yield(get_tree().create_timer(1.0), "timeout")
+	audio.play(0)
+	yield(get_tree().create_timer(song_length + 1.0), "timeout")
 	set_process(false)
 	game.visible = false
 	
@@ -118,11 +117,20 @@ func play():
 	visible = false
 	emit_signal("end")
 			
+	Bgm.fadein(1.0)
+	
+	GameState.emit_signal("stat", "karaoke", {
+		"difficulty": difficulty,
+		"notes_hit": notes_hit,
+		"note_count": note_count,
+		"combo": highest_combo
+	})
+	
 	return payout
 	
 func _process(delta):
 	song_progress.value = audio.get_playback_position()
-	camera.position.y = audio.get_playback_position() * scroll_speed
+	camera.position.y += delta * scroll_speed
 
 func _on_hit():
 	combo += 1

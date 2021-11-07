@@ -11,7 +11,7 @@ func persist(data):
 	var item_stock = {}
 	
 	for i in stock:
-		item_stock[i.ref.id] = i.amount
+		item_stock[i.ref.id] = i.stock
 	
 	shop_data[name.to_lower()] = item_stock
 	return data

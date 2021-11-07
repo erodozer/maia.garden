@@ -150,13 +150,13 @@ current = true
 [node name="Left" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 2 )]
 position = Vector2( 8, 16 )
 
-[node name="Up" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 2 )]
-position = Vector2( 26, 16 )
-input_key = 1
-
 [node name="Down" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 2 )]
-position = Vector2( 44, 16 )
+position = Vector2( 26, 16 )
 input_key = 2
+
+[node name="Up" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 2 )]
+position = Vector2( 44, 16 )
+input_key = 1
 
 [node name="Right" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 2 )]
 position = Vector2( 62, 16 )
@@ -166,15 +166,15 @@ input_key = 3
 position = Vector2( 8, 0 )
 script = ExtResource( 12 )
 
-[node name="Up" type="YSort" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
+[node name="Down" type="YSort" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
 position = Vector2( 26, 0 )
 script = ExtResource( 12 )
-direction = 1
+direction = 2
 
-[node name="Down" type="YSort" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
+[node name="Up" type="YSort" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
 position = Vector2( 44, 0 )
 script = ExtResource( 12 )
-direction = 2
+direction = 1
 
 [node name="Right" type="YSort" parent="Game/HBoxContainer/Panel/ViewportContainer/Viewport"]
 position = Vector2( 62, 0 )
@@ -430,9 +430,9 @@ align = 2
 [connection signal="start" from="." to="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" method="_on_Karaoke_start"]
 [connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="." method="_on_hit"]
 [connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Left" to="." method="_on_miss"]
-[connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="." method="_on_hit"]
-[connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="." method="_on_miss"]
 [connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="." method="_on_hit"]
 [connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Down" to="." method="_on_miss"]
+[connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="." method="_on_hit"]
+[connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Up" to="." method="_on_miss"]
 [connection signal="hit" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="." method="_on_hit"]
 [connection signal="miss" from="Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D/Right" to="." method="_on_miss"]
