@@ -33,16 +33,14 @@ position = Vector2( -119, -16 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Bounds" index="2"]
-position = Vector2( 121, -16 )
+position = Vector2( 154, -16 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Bounds" index="3"]
 position = Vector2( -35, 50 )
 shape = SubResource( 3 )
 
-[node name="Fortune" type="Control" parent="CanvasLayer" index="2" groups=[
-"fortune",
-]]
+[node name="Fortune" type="Control" parent="CanvasLayer" index="2" groups=["fortune"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -96,7 +94,10 @@ autowrap = true
 position = Vector2( 68, 45 )
 
 [node name="Walking" parent="Maia/Sprite" index="1"]
-frame = 0
+frame = 3
+
+[node name="Fishing" parent="Maia/Sprite" index="2"]
+frame = 1
 
 [node name="Chie" parent="." index="5" instance=ExtResource( 3 )]
 position = Vector2( -61, 34 )

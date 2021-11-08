@@ -79,6 +79,9 @@ func exchange(btn):
 	
 func open(item_list):
 	assert(len(item_list) > 0)
+	if len(item_list) <= 0:
+		yield(get_tree(), "idle_frame")
+		return
 	
 	var group = ButtonGroup.new()
 	group.connect("changed", self, "update_label")

@@ -8,6 +8,9 @@ const CHIE_DAY = 1634616000
 
 signal advance(day)
 
+func is_maia_day():
+	return day == MAIAS_BIRTHDAY
+
 func reset():
 	day = 1634616000
 	emit_signal("advance", day)

@@ -11,9 +11,6 @@ func replenish_stock():
 		if i.effect.type != "flower":
 			continue
 
-		if i.unlock and not GameState.flag(i.unlock):
-			continue
-		
 		stock.append({
 			"ref": i,
 			"price": i.price,

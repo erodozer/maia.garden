@@ -10,10 +10,14 @@ func _input(event):
 		emit_signal("exit")
 
 func _on_Map_exit():
-	SceneManager.change_scene("garden", [return_location])
+	pass
+	# SceneManager.change_scene("garden", [return_location])
 
 func _on_Maia_interact_start():
 	set_process_input(false)
 
 func _on_Maia_interact_end():
 	set_process_input(true)
+
+func _on_Exit_body_entered(body):
+	SceneManager.change_scene("garden", [return_location])

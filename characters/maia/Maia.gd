@@ -80,7 +80,7 @@ func _input(event):
 	if event.is_action_pressed("ui_select"):
 		open_journal()
 		
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if direction.x < 0:
 		sprite_container.scale = Vector2(1, 1)

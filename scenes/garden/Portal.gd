@@ -7,7 +7,12 @@ onready var portals = get_tree().get_nodes_in_group("portals").front()
 onready var player = get_tree().get_nodes_in_group("player").front()
 onready var fader = get_tree().get_nodes_in_group("fader").front()
 
+func can_interact():
+	return not GameState.calendar.is_maia_day()
+
 func hint():
+	if scene:
+		return "Enter %s" % goto.replace("_", " ")
 	return "Go to %s" % goto.replace("_", " ")
 	
 func interact():

@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://characters/maia/Maia.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Building.gd" type="Script" id=5]
 [ext_resource path="res://ui/dialogue/Dialogue.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/requests/Requests.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 38.8773 )
 
 [node name="Map" type="Node2D"]
 script = ExtResource( 5 )
@@ -26,14 +29,30 @@ mouse_filter = 1
 scale = Vector2( 2, 2 )
 sidescrolling_mode = true
 
+[node name="Walking" parent="Maia/Sprite" index="1"]
+frame = 2
+
+[node name="Fishing" parent="Maia/Sprite" index="2"]
+frame = 2
+
 [node name="CollisionShape2D" parent="Maia/Interact" index="0"]
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2( 124.474, 44.3835 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+position = Vector2( 0, -14.4951 )
+shape = SubResource( 1 )
+
 [connection signal="exit" from="." to="." method="_on_Map_exit"]
 [connection signal="interact_end" from="Maia" to="." method="_on_Maia_interact_end"]
 [connection signal="interact_start" from="Maia" to="." method="_on_Maia_interact_start"]
+[connection signal="body_entered" from="Exit" to="." method="_on_Exit_body_entered"]
 
 [editable path="Maia"]

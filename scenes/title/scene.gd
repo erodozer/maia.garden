@@ -14,7 +14,7 @@ func _setup(_params):
 func _start():
 	get_node("TitleButtons/VBoxContainer/NewGame/Button").grab_focus()
 	
-	Bgm.change_song(preload("res://scenes/title/ontama_rensaku_05_watashinimo.ogg"))
+	Bgm.change_song(preload("res://scenes/title/ontama_rensaku_05_watashinimo.ogg"), 0)
 	
 	var anim = get_node("AnimationPlayer")
 	anim.play("intro")

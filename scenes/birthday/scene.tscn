@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://characters/maia/outfits/default/standing.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://characters/proller/proller.png" type="Texture" id=2]
+[ext_resource path="res://characters/clover/clover.png" type="Texture" id=3]
+[ext_resource path="res://scenes/birthday/chair.png" type="Texture" id=4]
+[ext_resource path="res://scenes/birthday/background.png" type="Texture" id=5]
+[ext_resource path="res://characters/yuuki/yuuki.png" type="Texture" id=6]
+[ext_resource path="res://characters/tazzle/tazzle.png" type="Texture" id=7]
+[ext_resource path="res://characters/chie/chie.png" type="Texture" id=8]
+[ext_resource path="res://scenes/birthday/table.png" type="Texture" id=9]
+[ext_resource path="res://ui/fader/Fader.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Building.gd" type="Script" id=11]
+[ext_resource path="res://scenes/birthday/message.png" type="Texture" id=12]
+[ext_resource path="res://ui/dialogue/Dialogue.tscn" type="PackedScene" id=13]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform bool half_height = false;
+
+void fragment() {
+	// vec4 sample = texture(TEXTURE, UV.xy);
+	//if (val(sample.rgb) < transition) {
+	//	COLOR = vec4(0,0,0,0);
+	//} else {
+	//	COLOR = clear_color;
+	//}
+	
+	vec4 sample = texture(TEXTURE, UV.xy);
+	if (half_height && UV.y > 0.6) {
+		COLOR = vec4(0,0,0,0);
+	} else {
+		COLOR = sample;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/half_height = false
+
+[node name="Map" type="Node2D"]
+script = ExtResource( 11 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Dialogue" parent="CanvasLayer" instance=ExtResource( 13 )]
+mouse_filter = 1
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 0, 6 )
+
+[node name="Proller" type="Sprite" parent="Node2D"]
+position = Vector2( -37.1905, 20 )
+rotation = -3.14159
+scale = Vector2( 2, -2 )
+texture = ExtResource( 2 )
+
+[node name="Yuuki" type="Sprite" parent="Node2D"]
+position = Vector2( -57, 34 )
+rotation = -3.14159
+scale = Vector2( 2, -2 )
+texture = ExtResource( 6 )
+
+[node name="Chie" type="Sprite" parent="Node2D"]
+position = Vector2( -19, 29 )
+rotation = 3.14159
+scale = Vector2( 2, -2 )
+texture = ExtResource( 8 )
+
+[node name="Clover" type="Sprite" parent="Node2D"]
+position = Vector2( 42, 29 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="Tazzle" type="Sprite" parent="Node2D"]
+position = Vector2( 60, 32 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
+
+[node name="Chair" type="Sprite" parent="Node2D/Tazzle"]
+show_behind_parent = true
+position = Vector2( 0.5, 9 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="Maia" type="AnimatedSprite" parent="Node2D"]
+material = SubResource( 2 )
+position = Vector2( 14, 20 )
+scale = Vector2( 2, 2 )
+frames = ExtResource( 1 )
+playing = true
+
+[node name="table" type="Sprite" parent="Node2D"]
+position = Vector2( 0, 46 )
+texture = ExtResource( 9 )
+
+[node name="Fader" parent="." instance=ExtResource( 10 )]
+color = Color( 0.223529, 0.192157, 0.294118, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 12 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[connection signal="exit" from="." to="." method="_on_Map_exit"]

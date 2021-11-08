@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/message.png-cc463335e2a27f42109d124d37e602b8.stex"
+path="res://.import/chair.png-6533bce44e2c3f0bdbd2fb8036309ab2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/birthday/message.png"
-dest_files=[ "res://.import/message.png-cc463335e2a27f42109d124d37e602b8.stex" ]
+source_file="res://scenes/birthday/chair.png"
+dest_files=[ "res://.import/chair.png-6533bce44e2c3f0bdbd2fb8036309ab2.stex" ]
 
 [params]
 

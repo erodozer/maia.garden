@@ -9,7 +9,7 @@
 [ext_resource path="res://scenes/home/computer/Computer.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 112, 10 )
+extents = Vector2( 132.5, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 112 )
@@ -22,7 +22,7 @@ return_location = "Home"
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds" index="0"]
-position = Vector2( 0, 80 )
+position = Vector2( 20.5, 80 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Bounds" index="1"]
@@ -30,7 +30,7 @@ position = Vector2( -104, -8 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Bounds" index="2"]
-position = Vector2( 104, -8 )
+position = Vector2( 138, -8 )
 shape = SubResource( 2 )
 
 [node name="Bed" parent="." index="3" instance=ExtResource( 6 )]

@@ -23,9 +23,6 @@ func open():
 	visible = false
 	
 func build():
-	var button_group = ButtonGroup.new()
-	button_group.connect("pressed", self, "_on_item_activated")
-	
 	for i in list.get_children():
 		i.group = null
 		i.queue_free()

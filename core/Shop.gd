@@ -1,9 +1,21 @@
 extends Node
 
-var stock = []
+var stock = [] setget ,get_stock
 
 func replenish_stock():
 	pass
+	
+func get_stock():
+	var select = []
+	for s in stock:
+		if s.ref.unlock and not GameState.flag(s.ref.unlock):
+			continue
+		
+		if s.stock == 0:
+			continue
+		
+		select.append(s)
+	return select
 
 func persist(data):
 	var shop_data = data.get("shops", {})

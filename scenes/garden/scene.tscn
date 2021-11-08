@@ -17,7 +17,7 @@
 [ext_resource path="res://scenes/garden/tiles.png" type="Texture" id=15]
 [ext_resource path="res://scenes/garden/explore/Waypoint.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/garden/explore/Explore.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/garden/IntroCinematic.gd" type="Script" id=18]
+[ext_resource path="res://scenes/garden/Clover.tscn" type="PackedScene" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -55,9 +55,6 @@ extents = Vector2( 10, 112 )
 
 [node name="Garden" type="Node"]
 script = ExtResource( 5 )
-
-[node name="IntroCinematic" type="Node" parent="."]
-script = ExtResource( 18 )
 
 [node name="Ground" type="TileMap" parent="."]
 z_index = -1
@@ -269,6 +266,8 @@ position = Vector2( -24, 18 )
 
 [node name="Table" parent="Objects" instance=ExtResource( 10 )]
 position = Vector2( -60, 59 )
+
+[node name="Clover" parent="Objects" instance=ExtResource( 18 )]
 
 [node name="Maia" parent="Objects" instance=ExtResource( 3 )]
 collision_layer = 0

@@ -7,9 +7,6 @@ func replenish_stock():
 		if i.type != "cafe":
 			continue
 			
-		if i.unlock and not GameState.flag(i.unlock):
-			continue
-			
 		stock.append({
 			"ref": i,
 			"price": i.price,

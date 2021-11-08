@@ -29,5 +29,14 @@ func interact():
 	if choice == "Talk":
 		yield(check_requests(), "completed")
 		return
+		
+	var stock = GameState.shops.cafe.stock
+	if len(stock) == 0:
+		yield(dialogue.open([
+			"Oh, sorry Maia",
+			"It looks like I'm all out",
+			"You'll have to visit tomorrow",
+		]), "completed")
+		return
 	
-	yield(shop.open(GameState.shops.cafe.stock), "completed")
+	yield(shop.open(stock), "completed")
