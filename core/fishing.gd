@@ -100,12 +100,13 @@ func persist(data):
 	return data
 	
 func restore(data):
-	records = {}
+	reset()
 	for r in data.fishing:
-		records[r.id] = {
-			"id": r.id,
-			"size": r.size,
-		}
+		if r.id in records:
+			records[r.id] = {
+				"id": r.id,
+				"size": r.size,
+			}
 	
 func reset():
 	records = {}

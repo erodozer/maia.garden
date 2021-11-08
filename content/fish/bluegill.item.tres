@@ -7,14 +7,14 @@
 script = ExtResource( 2 )
 id = "bluegill"
 icon = ExtResource( 1 )
-location = "pond"
+location = "river"
 name = "Bluegill"
-price = 0
+price = 4
 strength = 3
 stamina = 1
 min_size = 6.9
 max_size = 16.0
-rarity = 0.5
+rarity = 0.394
 health = 115
 description = ""
 stack = 1

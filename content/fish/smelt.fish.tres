@@ -5,17 +5,17 @@
 
 [resource]
 script = ExtResource( 2 )
-id = "guppy"
+id = "smelt"
 icon = ExtResource( 1 )
 location = "pond"
-name = "Guppy"
-price = 3
+name = "Smelt"
+price = 2
 strength = 2
 stamina = 1
-min_size = 0.6
-max_size = 2.4
-rarity = 0.377
-health = 60
+min_size = 6.0
+max_size = 10.0
+rarity = 0.651
+health = 70
 description = ""
 stack = 1
 starting = 0
