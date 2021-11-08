@@ -38,3 +38,78 @@ margin_right = 172.0
 margin_bottom = 92.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Confirm" type="PanelContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -79.0
+margin_top = -39.0
+margin_right = 79.0
+margin_bottom = 39.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Confirm"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 154.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 150, 70 )
+
+[node name="Label" type="RichTextLabel" parent="Confirm/VBoxContainer"]
+margin_right = 150.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/line_separation = -3
+bbcode_enabled = true
+bbcode_text = "[center]This will permanently delete all your save data.
+
+Are you sure?[/center]"
+text = "This will permanently delete all your save data.
+
+Are you sure?"
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Confirm/VBoxContainer"]
+margin_top = 49.0
+margin_right = 150.0
+margin_bottom = 66.0
+alignment = 1
+
+[node name="Confirm" type="Button" parent="Confirm/VBoxContainer/HBoxContainer"]
+margin_left = 26.0
+margin_right = 49.0
+margin_bottom = 17.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../Cancel")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath("../Cancel")
+focus_previous = NodePath(".")
+action_mode = 0
+text = "yes"
+
+[node name="Cancel" type="Button" parent="Confirm/VBoxContainer/HBoxContainer"]
+margin_left = 53.0
+margin_right = 123.0
+margin_bottom = 17.0
+focus_neighbour_left = NodePath("../Confirm")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath("../Confirm")
+focus_previous = NodePath(".")
+text = "absolutely not"
+
+[node name="Control" type="Control" parent="Confirm/VBoxContainer"]
+margin_top = 70.0
+margin_right = 150.0
+margin_bottom = 70.0
+
+[connection signal="pressed" from="Confirm/VBoxContainer/HBoxContainer/Confirm" to="." method="_on_confirm_delete"]
+[connection signal="pressed" from="Confirm/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_delete"]

@@ -209,6 +209,29 @@ action_mode = 0
 group = ExtResource( 1 )
 text = "Exit"
 
+[node name="Credits" type="MarginContainer" parent="TitleButtons"]
+margin_left = -6.0
+margin_top = 137.0
+margin_right = 39.0
+margin_bottom = 154.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="TitleButtons/Credits"]
+margin_right = 45.0
+margin_bottom = 17.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../../VBoxContainer/LoadGame/Button")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../../VBoxContainer/NewGame/Button")
+focus_next = NodePath("../../VBoxContainer/NewGame/Button")
+focus_previous = NodePath("../../VBoxContainer/LoadGame/Button")
+toggle_mode = true
+action_mode = 0
+group = ExtResource( 1 )
+text = "Credits"
+
 [node name="LoadPanel" parent="." instance=ExtResource( 4 )]
 visible = false
 
@@ -225,3 +248,5 @@ stream = ExtResource( 8 )
 [connection signal="toggled" from="TitleButtons/VBoxContainer/LoadGame/Button" to="." method="_on_loadgame_toggled"]
 [connection signal="focus_entered" from="TitleButtons/VBoxContainer/Exit/Button" to="." method="_on_Button_focus_entered"]
 [connection signal="toggled" from="TitleButtons/VBoxContainer/Exit/Button" to="." method="_on_exit_toggled"]
+[connection signal="focus_entered" from="TitleButtons/Credits/Button" to="." method="_on_Button_focus_entered"]
+[connection signal="toggled" from="TitleButtons/Credits/Button" to="." method="_on_credits_toggled"]

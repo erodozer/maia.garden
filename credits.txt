@@ -1,0 +1,62 @@
+# Welcome To The Garden
+
+Erodozer
+  twitter.com/erodozer
+
+## Special Thanks
+
+### Featured Vtubers
+
+Ichika Maia
+
+Chie
+Clover
+Proller
+Tazzle
+Yuuki
+
+### Playtesters
+
+Artermia
+Ayria
+FuLavu
+FungiWizard
+Kyle
+Oliver
+Moonmanclint
+OmegaPendragon
+Ryeflekun
+VogonPoetry_42
+
+## Third Party Assets
+
+### Palette
+
+Zughy 32
+https://lospec.com/palette-list/zughy-32
+
+### Music by
+Ontama
+http://ontama-m.com/
+
+Peritune
+https://peritune.com/freematerial_list/
+
+Emily Fitch Music
+https://www.youtube.com/c/RetroTV5000
+
+### Fonts
+
+TinyUnicode
+http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=1683
+
+Verdana2
+http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=278
+
+### Code
+
+Godot Engine
+https://godotengine.org/
+
+IntegerResolutionHandler
+https://github.com/Yukitty/godot-addon-integer_resolution_handler

@@ -83,13 +83,14 @@ func load_headers(slot):
 		
 	f.open(path, File.READ)
 	var data = parse_json(f.get_line())
+	f.close()
 	
 	return {
 		"slot": slot,
 		"updated_at": data.updatedAt,
-		"game_time": data.calendar.get("date", 1634616000),
+		"game_time": data.get("calendar", {}).get("date", 1634616000),
 		"time_played": data.get("timePlayed", 0),
-		"outfit": data.player.get("outfit", "default"),
+		"outfit": data.get("player", {}).get("outfit", "default"),
 	}
 
 func reset_game():

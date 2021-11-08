@@ -3,9 +3,11 @@ extends Control
 const DataRecord = preload("res://ui/journal/DataRecord.tscn")
 
 signal end
+signal confirm(choice)
 
 onready var list = get_node("PanelContainer/ScrollContainer/VBoxContainer")
 onready var button_group = ButtonGroup.new()
+onready var confirmation = get_node("Confirm")
 
 func _ready():
 	button_group.connect("pressed", self, "_on_item_activated")
@@ -52,9 +54,24 @@ func _on_item_activated(button):
 	GameState.load_game(slot)
 	
 func _on_clear_save_data():
-	GameState.delete_game()
-	build()
+	confirmation.visible = true
+	get_node("Confirm/VBoxContainer/HBoxContainer/Cancel").grab_focus()
+	var choice = yield(self, "confirm")
+	if choice:
+		GameState.delete_game()
+		build()
+	confirmation.visible = false
+	list.get_child(0).grab_focus()
 	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		emit_signal("end")
+		if confirmation.visible:
+			_on_cancel_delete()
+		else:
+			emit_signal("end")
+
+func _on_confirm_delete():
+	emit_signal("confirm", true)
+
+func _on_cancel_delete():
+	emit_signal("confirm", false)

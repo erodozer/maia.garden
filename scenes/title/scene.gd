@@ -10,7 +10,6 @@ func _setup(_params):
 	match OS.get_name():
 		"HTML5":
 			get_node("TitleButtons/VBoxContainer/Exit/Button").queue_free()
-			
 	
 func _start():
 	get_node("TitleButtons/VBoxContainer/NewGame/Button").grab_focus()
@@ -61,3 +60,21 @@ func _on_ItemList_item_selected(index):
 func _on_Button_focus_entered():
 	if done:
 		cursor_sfx.play()
+
+func _on_credits_toggled(button_pressed):
+	if not button_pressed:
+		return
+	
+	match OS.get_name():
+		"HTML5":
+			var f = File.new()
+			f.open("res://credits.txt", File.READ)
+			var credits = f.get_as_text()
+			f.close()
+			credits = credits.replace("\n", "<br>")
+			var win = JavaScript.get_interface("window")
+			var doc = win.open("", "_blank")
+			doc.document.write(credits)
+		_:
+			OS.shell_open(ProjectSettings.globalize_path("res://credits.txt"))
+			

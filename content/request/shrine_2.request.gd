@@ -27,9 +27,9 @@ func accept():
 		"and how she bakes fresh bread.",
 		"It sounds so good",
 		"I want to taste it so badly",
-		"I rarely leave the shrine",
+		"Since I rarely leave the shrine",
+		"usually I cook for myself.",
 		"Could you please bring me some",
-		"I'll forever be in your debt",
 	]), "completed")
 
 func complete():
@@ -41,7 +41,7 @@ func complete():
 		"DELICIOUS",
 		"[shake rate=30 level=8]Thank you so much Maia[/shake]",
 		"[shake rate=30 level=8]WAAAAAAAAAAAA[/shake]",
-		"The Gods will always be in your favor!"
+		"I will always be in your favor!"
 	]), "completed")
 
 func can_talk_to_yuuki():
