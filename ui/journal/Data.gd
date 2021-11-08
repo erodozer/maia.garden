@@ -3,10 +3,12 @@ extends ScrollContainer
 const DataRecord = preload("res://ui/journal/DataRecord.tscn")
 
 onready var list = get_node("VBoxContainer")
+onready var button_group = ButtonGroup.new()
+
+func _ready():
+	button_group.connect("pressed", self, "_on_item_activated")
 
 func build():
-	var button_group = ButtonGroup.new()
-	button_group.connect("pressed", self, "_on_item_activated")
 	for s in ["00", "01", "02"]:
 		var header = GameState.load_headers(s)
 		var button = DataRecord.instance()

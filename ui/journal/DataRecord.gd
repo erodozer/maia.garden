@@ -7,8 +7,13 @@ func set_data_reference(d):
 	if not d:
 		return
 		
+	get_node("HBoxContainer/VBoxContainer/HBoxContainer/Slot").text = "Slot: %s" % [d.slot]
+		
+	if not d.updated_at:
+		return
+		
 	var game_time = OS.get_datetime_from_unix_time(d.game_time)
-	get_node("HBoxContainer/VBoxContainer/GameTime").text = "Game Time: %d/%d" % [game_time.month, game_time.day]
+	get_node("HBoxContainer/VBoxContainer/HBoxContainer/GameTime").text = "Game Time: %d/%d" % [game_time.month, game_time.day]
 	get_node("HBoxContainer/VBoxContainer/TimePlayed").text = "Time Played: %d:%02d:%02d" % [
 		int(d.time_played / 360),
 		int(d.time_played / 60) % 60,

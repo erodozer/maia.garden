@@ -76,7 +76,10 @@ func load_headers(slot):
 	var path = "user://garden.%s.save" % slot
 	var f = File.new()
 	if not f.file_exists(path):
-		return null
+		return {
+			"slot": slot,
+			"updated_at": null,
+		}
 		
 	f.open(path, File.READ)
 	var data = parse_json(f.get_line())
