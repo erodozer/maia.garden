@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/garden/Obstacle.gd" type="Script" id=1]
+[ext_resource path="res://scenes/garden/tiles.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 29.5, 12.5 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 224, 48, 24 )
+
+[node name="Proller" type="StaticBody2D"]
+script = ExtResource( 1 )
+flag = "introduce.proller"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.5, -2.5 )
+shape = SubResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = SubResource( 9 )

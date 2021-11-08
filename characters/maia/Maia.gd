@@ -91,7 +91,7 @@ func _physics_process(delta):
 		direction.y = 0
 		
 	if direction != Vector2.ZERO:
-		move_and_collide(direction * MOVEMENT_SPEED * delta)
+		move_and_slide(direction * MOVEMENT_SPEED)
 		global_position = global_position.round()
 		walk_sprite.visible = true
 		stand_sprite.visible = false
