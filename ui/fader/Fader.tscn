@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/fader/FaderShader.tres" type="Material" id=1]
 [ext_resource path="res://ui/fader/Fader.gd" type="Script" id=2]
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+width = 1
 
 [sub_resource type="Animation" id=1]
 length = 0.4
@@ -19,11 +26,17 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[node name="Fader" type="ColorRect" groups=["fader"]]
+[node name="Fader" type="TextureRect" groups=["fader"]]
 material = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 200, 150 )
 mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 3 )
+expand = true
+stretch_mode = 2
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_fungi"
+sendAt = "1637038800"
+sender = "FungiWizard"
+message = "Happy birthday Maia!! I can’t believe you’re one year older already! Hopefully this next year is amazing for you! Can’t wait for when you’re another year older!"
+outro = ""
+onDelivery = ""
+onRead = ""

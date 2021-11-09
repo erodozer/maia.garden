@@ -53,7 +53,7 @@ extents = Vector2( 192, 20.25 )
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 10, 112 )
 
-[node name="Garden" type="Node"]
+[node name="Garden" type="Node" groups=["scene"]]
 script = ExtResource( 5 )
 
 [node name="Ground" type="TileMap" parent="."]
@@ -267,7 +267,7 @@ position = Vector2( -24, 18 )
 [node name="Table" parent="Objects" instance=ExtResource( 10 )]
 position = Vector2( -60, 59 )
 
-[node name="Clover" parent="Objects" instance=ExtResource( 18 )]
+[node name="Chie" parent="Objects" instance=ExtResource( 18 )]
 
 [node name="Maia" parent="Objects" instance=ExtResource( 3 )]
 collision_layer = 0

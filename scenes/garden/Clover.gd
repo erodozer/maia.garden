@@ -7,14 +7,25 @@ func _ready():
 		queue_free()
 		
 func hint():
-	return "Talk to Clover"
+	return "Talk to Chie"
 
 func interact():
 	yield(
 		dialogue.open([
 			"Good morning, Maia!",
-			"Come with me into the forest",
+			"I have something to show you",
+			"will you follow me?",
 		], ["Okay!", "Um...", "Why not"]),
+		"completed"
+	)
+	yield(
+		dialogue.open([
+			"Great!",
+			"It's something you'll love!",
+			"Right this way~",
+			"Oh, and also",
+			"Happy Birthday!",
+		]),
 		"completed"
 	)
 	

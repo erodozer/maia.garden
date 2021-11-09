@@ -89,7 +89,7 @@ tracks/4/keys = {
 "values": [ Vector2( -3.8147e-06, 33 ), Vector2( 0, 0 ) ]
 }
 
-[node name="Title" type="Node"]
+[node name="Title" type="Node" groups=["scene"]]
 script = ExtResource( 3 )
 
 [node name="Background" type="TextureRect" parent="."]

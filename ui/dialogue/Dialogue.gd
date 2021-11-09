@@ -4,6 +4,7 @@ onready var panel = get_node("VBoxContainer/Control/CenterContainer/Panel")
 onready var label = get_node("VBoxContainer/Control/CenterContainer/Panel/Label")
 onready var tween = get_node("Tween")
 onready var choice_buttons = get_node("VBoxContainer/MarginContainer/Choices")
+onready var voice = get_node("Voice")
 
 signal next
 signal choice(option)
@@ -30,7 +31,9 @@ func open(lines, choices = []):
 			len(line) * (1.0 / 45.0)
 		)
 		tween.start()
+		# voice.play()
 		yield(tween, "tween_all_completed")
+		# voice.stop()
 		yield(self, "next")
 	
 	set_process_input(false)

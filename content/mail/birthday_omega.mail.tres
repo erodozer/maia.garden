@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_omega"
+sendAt = "1637038800"
+sender = "Omega"
+message = "It's that time of year again... It's your birthday once more! Truly a momentous occasion for our dear fairy god mother! I hope your birthday is absolute splendid one, maia! Filled with lots of love from your friends, family and from the beautiful garden that you've made. Happy birthday maia~"
+outro = ""
+onDelivery = ""
+onRead = ""

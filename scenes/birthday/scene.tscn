@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://characters/maia/outfits/default/standing.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://characters/proller/proller.png" type="Texture" id=2]
@@ -8,11 +8,14 @@
 [ext_resource path="res://characters/yuuki/yuuki.png" type="Texture" id=6]
 [ext_resource path="res://characters/tazzle/tazzle.png" type="Texture" id=7]
 [ext_resource path="res://characters/chie/chie.png" type="Texture" id=8]
-[ext_resource path="res://scenes/birthday/table.png" type="Texture" id=9]
+[ext_resource path="res://scenes/birthday/trees.png" type="Texture" id=9]
 [ext_resource path="res://ui/fader/Fader.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/Building.gd" type="Script" id=11]
-[ext_resource path="res://scenes/birthday/message.png" type="Texture" id=12]
+[ext_resource path="res://scenes/birthday/scene.gd" type="Script" id=11]
+[ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=12]
 [ext_resource path="res://ui/dialogue/Dialogue.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ui/small_font.tres" type="DynamicFont" id=14]
+[ext_resource path="res://ui/cursive.tres" type="DynamicFont" id=15]
+[ext_resource path="res://scenes/birthday/character.gd" type="Script" id=16]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -40,7 +43,75 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/half_height = false
 
-[node name="Map" type="Node2D"]
+[sub_resource type="Animation" id=3]
+resource_name = "Cutscene"
+length = 22.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.33, 0.33 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -40 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Trees:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ), Vector2( 2, 2 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Fader:material:shader_param/transition")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 18, 20 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "FadeText"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Message:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.188235, 0.172549, 0.180392, 1 ), Color( 0.278431, 0.176471, 0.235294, 1 ), Color( 0.478431, 0.266667, 0.290196, 1 ), Color( 0.74902, 0.47451, 0.345098, 1 ), Color( 0.956863, 0.8, 0.631373, 1 ) ]
+}
+
+[node name="Map" type="Node2D" groups=["scene"]]
 script = ExtResource( 11 )
 
 [node name="Background" type="Sprite" parent="."]
@@ -49,39 +120,166 @@ texture = ExtResource( 5 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
 
+[node name="Fader" parent="CanvasLayer" instance=ExtResource( 10 )]
+
+[node name="Message" type="Control" parent="CanvasLayer"]
+modulate = Color( 0.956863, 0.8, 0.631373, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lead" type="VBoxContainer" parent="CanvasLayer/Message"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = -75.0
+margin_right = 70.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 140, 150 )
+size_flags_horizontal = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Message/Lead"]
+margin_top = 25.0
+margin_right = 140.0
+margin_bottom = 107.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "To the sweetest fairy who made this garden we call home
+
+Happy Birthday, Maia"
+align = 1
+autowrap = true
+
+[node name="Label2" type="Label" parent="CanvasLayer/Message/Lead"]
+margin_top = 111.0
+margin_right = 140.0
+margin_bottom = 124.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 14 )
+text = "- November 16, 2021 -"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Message"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 150.0
+margin_bottom = 769.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Letter" type="Label" parent="CanvasLayer/Message/MarginContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 196.0
+margin_bottom = 1051.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_constants/line_spacing = -2
+custom_fonts/font = ExtResource( 12 )
+text = "Happy birthday Maia! You've reached a new personal best age! I hope you have an absolutely wonderful day! I hope you got some awesome presents!!!
+- Oliver -
+
+
+
+Dear maia, Happy birthday to you! Please keep being amazing. I wish you the best in everything you'll do!
+- FuLavu -
+
+
+
+Happy Birthday Maia! Only 186 candles to blow out~ I hope you got some cake and you're having an amazing birthday!
+- Artermia -
+
+
+
+It's already that time again.
+This is the second of your birthdays we get to celebrate together, I'm really happy that we got to and I hope we get to celebrate many many more together.
+Happy birthday Maia hope you have an amazing day.
+- Rakknir -
+
+
+
+Happy birthday Maia!! I can't believe you'’re one year older already! Hopefully this next year is amazing for you! Can’t wait for when you're another year older!
+- FungiWizard -
+
+
+
+A sweet Happy Birfday to the sweetest little fairy!  Thanks for a whole year of streams and then a whole year of birthdays!  The Garden wishes you the absolute best on your special day!  
+- Vogon -
+
+
+
+Happy Birthday Maia! Today is the day to celebrate you~ Being bless into this world is everything that we needed. Thank you so much for all of you for us. I hope that you will be surrounded by all of your loved ones and eat lots of cake. You deserve everything and the world. Expect a boba delivery at your front door soon <3
+- Yuuki -
+
+
+
+It's that time of year again... It's your birthday once more! Truly a momentous occasion for our dear fairy god mother! I hope your birthday is absolute splendid one, maia! Filled with lots of love from your friends, family and from the beautiful garden that you've made. 
+Happy birthday maia~
+- Omega -
+
+
+
+Happy Birthday Maia! Today is a very special day for a very special person! You've brought so much happiness to so many people. I hope that you are able to find all the love and happiness that you deserve! Oh, and thanks for all the fish!
+- Tazzle -
+
+
+
+Dear, Maia. Thank you so much for being such an inspiration and wonderful fairy. You've helped me achieve something I've only dreamed of through this game. I'm looking forward to another year of making you smile and enjoying your infectious laugh. You're truly a special person who deserves every bit of love. 
+Happy Birthday <3
+- Ero -"
+align = 1
+autowrap = true
+
 [node name="Dialogue" parent="CanvasLayer" instance=ExtResource( 13 )]
 mouse_filter = 1
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 0, 6 )
+position = Vector2( -6, 6 )
 
 [node name="Proller" type="Sprite" parent="Node2D"]
-position = Vector2( -37.1905, 20 )
-rotation = -3.14159
-scale = Vector2( 2, -2 )
+position = Vector2( -14, 33 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 2 )
+script = ExtResource( 16 )
+flag = "introduce.proller"
 
 [node name="Yuuki" type="Sprite" parent="Node2D"]
-position = Vector2( -57, 34 )
-rotation = -3.14159
-scale = Vector2( 2, -2 )
+position = Vector2( -31, 47 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 6 )
+script = ExtResource( 16 )
+flag = "introduce.yuuki"
 
 [node name="Chie" type="Sprite" parent="Node2D"]
-position = Vector2( -19, 29 )
-rotation = 3.14159
-scale = Vector2( 2, -2 )
+position = Vector2( -11, 45 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 8 )
+script = ExtResource( 16 )
+flag = "introduce.chie"
 
 [node name="Clover" type="Sprite" parent="Node2D"]
-position = Vector2( 42, 29 )
-scale = Vector2( 2, 2 )
+position = Vector2( 22, 45 )
 texture = ExtResource( 3 )
+script = ExtResource( 16 )
+flag = "introduce.clover"
 
 [node name="Tazzle" type="Sprite" parent="Node2D"]
-position = Vector2( 60, 32 )
-scale = Vector2( 2, 2 )
+position = Vector2( 40, 43 )
 texture = ExtResource( 7 )
+script = ExtResource( 16 )
+flag = "introduce.tazzle"
 
 [node name="Chair" type="Sprite" parent="Node2D/Tazzle"]
 show_behind_parent = true
@@ -91,23 +289,18 @@ texture = ExtResource( 4 )
 
 [node name="Maia" type="AnimatedSprite" parent="Node2D"]
 material = SubResource( 2 )
-position = Vector2( 14, 20 )
-scale = Vector2( 2, 2 )
+position = Vector2( 6, 49 )
 frames = ExtResource( 1 )
 playing = true
 
-[node name="table" type="Sprite" parent="Node2D"]
-position = Vector2( 0, 46 )
+[node name="Trees" type="Sprite" parent="."]
 texture = ExtResource( 9 )
-
-[node name="Fader" parent="." instance=ExtResource( 10 )]
-color = Color( 0.223529, 0.192157, 0.294118, 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 12 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[connection signal="exit" from="." to="." method="_on_Map_exit"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Cutscene = SubResource( 3 )
+anims/FadeText = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]

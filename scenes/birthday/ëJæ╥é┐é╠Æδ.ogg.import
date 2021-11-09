@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ëJæ╥é┐é╠Æδ.ogg-5200c34e21e79a2aca85f54ab12d75df.oggstr"
+
+[deps]
+
+source_file="res://scenes/birthday/ëJæ╥é┐é╠Æδ.ogg"
+dest_files=[ "res://.import/ëJæ╥é┐é╠Æδ.ogg-5200c34e21e79a2aca85f54ab12d75df.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

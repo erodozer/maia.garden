@@ -55,6 +55,6 @@ position = Vector2( 74.6921, 48.4704 )
 frame = 2
 
 [node name="Fishing" parent="Maia/Sprite" index="2"]
-frame = 2
+frame = 0
 
 [editable path="Maia"]

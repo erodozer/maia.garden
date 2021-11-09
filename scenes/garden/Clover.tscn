@@ -2,7 +2,7 @@
 
 [ext_resource path="res://characters/npc/bubble.png" type="Texture" id=1]
 [ext_resource path="res://scenes/garden/Clover.gd" type="Script" id=2]
-[ext_resource path="res://characters/clover/clover.png" type="Texture" id=3]
+[ext_resource path="res://characters/chie/chie.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=14]
 radius = 25.0799

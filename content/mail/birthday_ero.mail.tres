@@ -1,0 +1,62 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_ero"
+sendAt = "1637038800"
+sender = "Ero"
+message = "Happy birthday Maia! You've reached a new personal best age! I hope you have an absolutely wonderful day! I hope you got some awesome presents!!!
+- Oliver -
+
+
+
+Dear maia, Happy birthday to you! Please keep being amazing. I wish you the best in everything you'll do!
+- FuLavu -
+
+
+
+Happy Birthday Maia! Only 186 candles to blow out~ I hope you got some cake and you're having an amazing birthday!
+- Artermia -
+
+
+
+It's already that time again.
+This is the second of your birthdays we get to celebrate together, I'm really happy that we got to and I hope we get to celebrate many many more together.
+Happy birthday Maia hope you have an amazing day.
+- Rakknir -
+
+
+
+Happy birthday Maia!! I can't believe you'’re one year older already! Hopefully this next year is amazing for you! Can’t wait for when you're another year older!
+- FungiWizard -
+
+
+
+A sweet Happy Birfday to the sweetest little fairy!  Thanks for a whole year of streams and then a whole year of birthdays!  The Garden wishes you the absolute best on your special day!  
+- Vogon -
+
+
+
+Happy Birthday Maia! Today is the day to celebrate you~ Being bless into this world is everything that we needed. Thank you so much for all of you for us. I hope that you will be surrounded by all of your loved ones and eat lots of cake. You deserve everything and the world. Expect a boba delivery at your front door soon <3
+- Yuuki -
+
+
+
+It's that time of year again... It's your birthday once more! Truly a momentous occasion for our dear fairy god mother! I hope your birthday is absolute splendid one, maia! Filled with lots of love from your friends, family and from the beautiful garden that you've made. 
+Happy birthday maia~
+- Omega -
+
+
+
+Happy Birthday Maia! Today is a very special day for a very special person! You've brought so much happiness to so many people. I hope that you are able to find all the love and happiness that you deserve! Oh, and thanks for all the fish!
+- Tazzle -
+
+
+
+Dear, Maia. Thank you so much for being such an inspiration and wonderful fairy. You've helped me achieve something I've only dreamed of through this game. I'm looking forward to another year of making you smile and enjoying your infectious laugh. You're truly a special person who deserves every bit of love. 
+Happy Birthday <3"
+outro = ""
+onDelivery = ""
+onRead = ""

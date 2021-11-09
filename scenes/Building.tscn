@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 38.8773 )
 
-[node name="Map" type="Node2D"]
+[node name="Map" type="Node2D" groups=["scene"]]
 script = ExtResource( 5 )
 
 [node name="Background" type="Sprite" parent="."]
@@ -30,10 +30,7 @@ scale = Vector2( 2, 2 )
 sidescrolling_mode = true
 
 [node name="Walking" parent="Maia/Sprite" index="1"]
-frame = 2
-
-[node name="Fishing" parent="Maia/Sprite" index="2"]
-frame = 2
+frame = 1
 
 [node name="CollisionShape2D" parent="Maia/Interact" index="0"]
 disabled = true
@@ -50,7 +47,6 @@ collision_mask = 2
 position = Vector2( 0, -14.4951 )
 shape = SubResource( 1 )
 
-[connection signal="exit" from="." to="." method="_on_Map_exit"]
 [connection signal="interact_end" from="Maia" to="." method="_on_Maia_interact_end"]
 [connection signal="interact_start" from="Maia" to="." method="_on_Maia_interact_start"]
 [connection signal="body_entered" from="Exit" to="." method="_on_Exit_body_entered"]

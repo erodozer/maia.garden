@@ -1,4 +1,4 @@
-extends ColorRect
+extends Control
 
 func fade_in():
 	var anim = get_node("AnimationPlayer")

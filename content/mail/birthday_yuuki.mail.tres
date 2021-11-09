@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_yuuki"
+sendAt = "1637038800"
+sender = "Yuuki"
+message = "Happy Birthday Maia! Today is the day to celebrate you~ Being bless into this world is everything that we needed. Thank you so much for all of you for us. I hope that you will be surrounded by all of your loved ones and eat lots of cake. You deserve everything and the world. Expect a boba delivery at your front door soon <3"
+outro = ""
+onDelivery = ""
+onRead = ""

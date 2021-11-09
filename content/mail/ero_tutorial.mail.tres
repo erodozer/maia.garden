@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "test_message"
+sendAt = "0"
+sender = "Ero"
+message = "Hello Maia!
+
+There's plenty to do here in your garden.  I see you've already learned that you can check your mail!  Each day you might get new messages, so check it often~
+
+You'll also find that you can grow flowers and fish right here.  Be sure to do plenty of each so your garden and friendships flourish.
+
+Did I say friendships?  That's right!  You have plenty of friends in the forest, but they might not be ready to see you just yet.  
+
+In the meantime, go ahead and take care of things in the garden for a bit and tire yourself out.  When you're done, you can rest up in your house.  Oh, but maybe before that, if you still have some energy you should stream for a bit, we're all excited to see you~
+
+Take care and have fun!"
+outro = ""
+onDelivery = ""
+onRead = ""
