@@ -161,6 +161,7 @@ quality/intended_usage/framebuffer_allocation.mobile=0
 2d/snapping/use_gpu_pixel_snap=true
 quality/shadows/filter_mode=0
 quality/filters/anisotropic_filter_level=1
+batching/precision/uv_contract=true
 environment/default_clear_color=Color( 0.188235, 0.172549, 0.180392, 1 )
 quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

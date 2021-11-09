@@ -184,12 +184,12 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 196.0
-margin_bottom = 1051.0
+margin_bottom = 1821.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_constants/line_spacing = -2
 custom_fonts/font = ExtResource( 12 )
 text = "Happy birthday Maia! You've reached a new personal best age! I hope you have an absolutely wonderful day! I hope you got some awesome presents!!!
-- Oliver -
+- Ollie -
 
 
 
@@ -220,14 +220,20 @@ A sweet Happy Birfday to the sweetest little fairy!  Thanks for a whole year of 
 
 
 
-Happy Birthday Maia! Today is the day to celebrate you~ Being bless into this world is everything that we needed. Thank you so much for all of you for us. I hope that you will be surrounded by all of your loved ones and eat lots of cake. You deserve everything and the world. Expect a boba delivery at your front door soon <3
-- Yuuki -
-
-
-
 It's that time of year again... It's your birthday once more! Truly a momentous occasion for our dear fairy god mother! I hope your birthday is absolute splendid one, maia! Filled with lots of love from your friends, family and from the beautiful garden that you've made. 
 Happy birthday maia~
 - Omega -
+
+
+
+Happy Birthday Maia! It's been such an honor and a privilege both knowing you and helping you out with various things. The garden is by far the most wonderful, kind, and supportive communities of people I've ever met and I mentally thank you every day for giving me a place I can feel comfortable belonging in! I hope your birthday this year is as happy as you make us every day!
+- Moonmanclint -
+
+
+
+Happy Birthday Maia! 
+Today is the day to celebrate you~ Being bless into this world is everything that we needed. Thank you so much for all of you for us. I hope that you will be surrounded by all of your loved ones and eat lots of cake. You deserve everything and the world. Expect a boba delivery at your front door soon <3
+- Yuuki -
 
 
 
@@ -236,7 +242,23 @@ Happy Birthday Maia! Today is a very special day for a very special person! You'
 
 
 
-Dear, Maia. Thank you so much for being such an inspiration and wonderful fairy. You've helped me achieve something I've only dreamed of through this game. I'm looking forward to another year of making you smile and enjoying your infectious laugh. You're truly a special person who deserves every bit of love. 
+Happy Birthday Maia! Thank you for sharing your soul with us and creating such a fun and welcoming community where everyone feels appreciated. I'm incredibly grateful to have met you. From one person trying to make it in a human world to another, I hope your birthday is full of peace, love, and good vibes. And I hope whoever sings to you includes the \"cha cha cha's\" after each verse because you absolutely deserve it. And if they don't, I'll have to personally deliver them.
+- Proller -
+
+
+
+Dear m'sharty Maia, 
+I can't believe another year has flown by & it's your birthday again. Which also means you've been stuck with me again for another year! I hope your day is filled with happiness, laughter & most importantly - delicious food. I love you so much. Watching you blossom this past year makes me so unbelievably happy & proud. I feel like I rarely tell you this, but meeting you has literally changed my life in so many positive ways that I don't even know where to begin. I can't wait to grow old and grey & still laugh about stupid tit jokes with you. I'll always be here for you & I ain't ever gonna stop lovin' you beeetch~ <3
+- Chie -
+
+
+
+Wishing you the happiest of birthdays, Maia! I don't think I've ever been so lucky to know a fairy in my life. Thank you for the never ending smiles and laughs. I hope this past year has been everything you could have hoped for, and for the next to bring much more. Let me know if you ever need some extra seeds, or just somewhere to get some catgrass and chill <3
+- Clover
+
+
+
+Dear, Maia.  Thank you so much for being such an inspiration and wonderful fairy, you have made it possible for me to achieve something I've only dreamed of through this game. You and the garden have helped me through so much emotionally this past year, I'm so grateful for this home and friends I never expected to find.  I hope you enjoy your special day, and that over this next year of your life I continue to make you smile.  I'm so happy for you and will always cherish this time I've known you.
 Happy Birthday <3
 - Ero -"
 align = 1
@@ -294,10 +316,13 @@ frames = ExtResource( 1 )
 playing = true
 
 [node name="Trees" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -40 )
 current = true
+zoom = Vector2( 0.33, 0.33 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Cutscene = SubResource( 3 )

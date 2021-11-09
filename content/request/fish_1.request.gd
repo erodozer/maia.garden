@@ -47,12 +47,13 @@ func complete():
 		"I can't decide!",
 		"Well, I guess I can",
 		"I'll let you know later",
-		"As for now, though",
-		"A gift, as thanks!",
+		"I have something for you too",
 		"[You got a hat]",
 		"[You got a bigger Backpack]",
-		"Now you can fish even more!",
-		"Good for you and me"
+		"Now you look like you fish",
+		"and with that bigger bag",
+		"you can fish even more!",
+		"Thanks for the help~"
 	]), "completed")
 	GameState.toggle_flag("bag_expansion:level_1")
 	GameState.toggle_flag("outfit.hat")

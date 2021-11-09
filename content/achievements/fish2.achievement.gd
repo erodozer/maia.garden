@@ -1,24 +1,13 @@
 extends "res://content/achievement.gd"
 
-const has_caught = {}
-
 func get_id():
 	return "fish2"
-
-func _ready():
-	for c in Content.Items:
-		if c.type == "fish" and c.location == "river":
-			has_caught[c.id] = false
 
 func _on_stat(id, params):
 	if id != "fish.caught":
 		return false
 		
-	var fish = params.fish
-	if fish.id in has_caught:
-		has_caught[fish.id] = true
-		return true
-	return false
+	return true
 
 func get_title():
 	return "River King"
@@ -28,10 +17,19 @@ func get_description():
 	
 func get_progress():
 	var progress = 0
-	for i in has_caught.values():
-		if i:
+	var required = 0
+	for i in Content.Items:
+		if i.type != "fish":
+			continue
+		
+		if i.location != "river":
+			continue
+		
+		required += 1
+		
+		if GameState.fishing.records[i.id].size > 0:
 			progress += 1
 	return {
 		"progress": progress,
-		"required": len(has_caught),
+		"required": required,
 	}

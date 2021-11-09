@@ -27,6 +27,8 @@ func interact():
 	
 	# start karaoke
 	var earnings = yield(karaoke.play(), "completed")
+	if earnings < 0:
+		return
 	GameState.player.balance += earnings
 	GameState.player.perform_action(40)
 	GameState.player.has_streamed = true

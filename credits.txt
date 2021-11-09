@@ -24,9 +24,9 @@ FungiWizard
 Kyle
 Oliver
 Moonmanclint
-OmegaPendragon
+Omega
 Ryeflekun
-VogonPoetry_42
+Vogon
 
 ## Third Party Assets
 
@@ -52,6 +52,9 @@ http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=1683
 
 Verdana2
 http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=278
+
+true italic WIP
+http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=372
 
 ### Code
 

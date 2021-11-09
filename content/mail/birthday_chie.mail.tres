@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_chie"
+sendAt = "1637038800"
+sender = "Chie"
+message = "Dear m'sharty Maia, 
+I can't believe another year has flown by & it's your birthday again. Which also means you've been stuck with me again for another year! I hope your day is filled with happiness, laughter & most importantly - delicious food. I love you so much. Watching you blossom this past year makes me so unbelievably happy & proud. I feel like I rarely tell you this, but meeting you has literally changed my life in so many positive ways that I don't even know where to begin. I can't wait to grow old and grey & still laugh about stupid tit jokes with you. I'll always be here for you & I ain't ever gonna stop lovin' you beeetch~"
+outro = ""
+onDelivery = ""
+onRead = ""

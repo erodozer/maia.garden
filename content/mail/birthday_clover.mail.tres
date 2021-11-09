@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_clover"
+sendAt = "1637038800"
+sender = "Clover"
+message = "Wishing you the happiest of birthdays, Maia!
+I don't think I've ever been so lucky to know a fairy in my life. Thank you for the never ending smiles and laughs. I hope this past year has been everything you could have hoped for, and for the next to bring much more. Let me know if you ever need some extra seeds, or just somewhere to get some catgrass and chill <3"
+outro = ""
+onDelivery = ""
+onRead = ""

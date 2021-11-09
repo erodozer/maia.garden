@@ -1,7 +1,5 @@
 extends "res://content/achievement.gd"
 
-var size = 0
-
 func get_id():
 	return "fish3"
 
@@ -9,7 +7,6 @@ func _on_stat(id, params):
 	if id != "fish.caught":
 		return false
 	
-	size = max(size, params.size)
 	return true
 
 func get_title():
@@ -19,7 +16,10 @@ func get_description():
 	return "Catch a big fish (>75in)"
 	
 func get_progress():
+	var caught = 0
+	for i in GameState.fishing.records.values():
+		caught = max(caught, i.size)
 	return {
-		"progress": size,
+		"progress": caught,
 		"required": 75,
 	}

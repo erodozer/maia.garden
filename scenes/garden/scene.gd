@@ -16,7 +16,7 @@ func _ready():
 		garden_bgm = GameState.temp.garden_bgm
 	else:
 		garden_bgm = load(godash.rand_choice(
-			godash.enumerate_dir("res://scenes/garden/bgm/", "ogg")
+			godash.enumerate_dir("res://scenes/garden/bgm/", "bgm.tres")
 		))
 		GameState.temp["garden_bgm"] = garden_bgm
 	Bgm.change_song(garden_bgm)

@@ -32,5 +32,7 @@ func _start():
 	
 	yield(get_tree().create_timer(5.0), "timeout")
 	
+	yield(Bgm.fadeout(2.0), "completed")
+	
 	GameState.calendar.advance_day()
 	SceneManager.change_scene("garden")

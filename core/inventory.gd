@@ -67,7 +67,7 @@ func insert_item(entry):
 	
 	if not item:
 		item = entry
-		if len(data) + 1 < self.bag_size:
+		if len(data) + 1 <= self.bag_size:
 			data.append(entry)
 		else:
 			return false

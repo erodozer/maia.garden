@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "tazzle_introduction"
+sendAt = "quest:fish_2"
+sender = "Tazzle"
+message = "Hi Maia,
+
+I got a nice campfire burning, ready to cook some good over it!  How about you drop by and enjoy the warmth and some crispy fish."
+outro = ""
+onDelivery = ""
+onRead = ""

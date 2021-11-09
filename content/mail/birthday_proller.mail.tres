@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_proller"
+sendAt = "1637038800"
+sender = "Proller"
+message = "Happy Birthday Maia! Thank you for sharing your soul with us and creating such a fun and welcoming community where everyone feels appreciated. I'm incredibly grateful to have met you. From one person trying to make it in a human world to another, I hope your birthday is full of peace, love, and good vibes. And I hope whoever sings to you includes the \"cha cha cha's\" after each verse because you absolutely deserve it. And if they don't, I'll have to personally deliver them."
+outro = ""
+onDelivery = ""
+onRead = ""

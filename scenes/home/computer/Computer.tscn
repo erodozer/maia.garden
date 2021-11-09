@@ -8,9 +8,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 1.9344
 
-[node name="Computer" type="StaticBody2D" groups=[
-"npc",
-]]
+[node name="Computer" type="StaticBody2D" groups=["npc"]]
 position = Vector2( 14, 40 )
 collision_layer = 4
 collision_mask = 0

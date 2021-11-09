@@ -8,11 +8,13 @@ onready var game = get_node("Game")
 onready var difficulty_selector = get_node("Difficulty")
 onready var difficulty_list = get_node("Difficulty/PanelContainer/ItemList")
 onready var results = get_node("Results")
-onready var camera = get_node("Game/HBoxContainer/Panel/ViewportContainer/Viewport/Camera2D")
-onready var combo_label = get_node("Game/HBoxContainer/Panel/Combo")
-onready var count_label = get_node("Game/HBoxContainer/VBoxContainer/Container/VBoxContainer/Count")
+onready var camera = get_node("Game/LaneView/ViewportContainer/Viewport/Camera2D")
+onready var combo_label = get_node("Game/LaneView/Combo")
+onready var count_label = get_node("Game/ComboCounter/VBoxContainer/Count")
 onready var song_progress = get_node("Game/ProgressBar")
 onready var audio = get_node("AudioStreamPlayer")
+
+onready var anim = get_node("AnimationPlayer")
 
 var scroll_speed
 var combo = 0
@@ -55,12 +57,17 @@ func _ready():
 
 func play():
 	visible = true
-	difficulty_selector.visible = true
+	anim.play("difficulty")
+	yield(anim, "animation_finished")
 	difficulty_list.grab_focus()
 	difficulty_list.select(0)
 	var difficulty = yield(difficulty_list, "item_activated")
 	if difficulty >= len(DIFFICULTY):
+		visible = false
+		emit_signal("end")
 		return -1
+	anim.play_backwards("difficulty")
+	yield(anim, "animation_finished")
 	difficulty_selector.visible = false
 	Bgm.fadeout(1.0)
 	
@@ -98,23 +105,22 @@ func play():
 	combo = 0
 	highest_combo = 0
 	
-	game.visible = true
+	anim.play("karaoke")
+	yield(anim, "animation_finished")
 	yield(get_tree().create_timer(1.0), "timeout")
 	emit_signal("start")
 	set_process(true)
 	audio.play(0)
-	yield(get_tree().create_timer(song_length + 1.0), "timeout")
+	yield(get_tree().create_timer(song_length + 3.0), "timeout")
 	set_process(false)
-	game.visible = false
 	
 	var payout = (notes_hit * DIFFICULTY[difficulty].scale) + highest_combo
 	
-	results.visible = true
 	results.get_node("PanelContainer/VBoxContainer/Accuracy/Value").text = "%2d%%" % ((float(notes_hit) / float(note_count) * 100))
 	results.get_node("PanelContainer/VBoxContainer/Combo/Value").text = "%d" % highest_combo
 	results.get_node("PanelContainer/VBoxContainer/Payout/Value").text = "%d" % payout
-	yield(get_tree().create_timer(7.0), "timeout")
-	results.visible = false
+	anim.play("results")
+	yield(anim, "animation_finished")
 	
 	visible = false
 	emit_signal("end")

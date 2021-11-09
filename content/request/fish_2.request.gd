@@ -23,15 +23,19 @@ func accept():
 	.accept()
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	yield(dialogue.open([
+		"Oh hey there Maia...",
+		"Sorry, but...",
+		"I'm already out of fish.",
+		"So nothing to cook right now",
+		"However, on that note",
 		"The fish you caught last time",
 		"were plenty good, but...",
-		"I've been thinking again.",
 		"Do you think a fish tastes better",
 		"when it's harder to catch?",
 		"Have you ever caught a rare fish?",
 		"When a fish is larger than average,",
 		"that is for its species,",
-		"I consider rare.",
+		"I consider that rare.",
 		"Could you help me catch some"
 	]), "completed")
 
@@ -40,7 +44,7 @@ func complete():
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	yield(dialogue.open([
 		"Woah!!",
-		"Some of these kinds of fish",
+		"Some of these fish",
 		"I've never seen so big before!",
 		"But what's big in size,",
 		"Big in flavor?",
@@ -48,4 +52,3 @@ func complete():
 		"Thanks again, Maia",
 		"I'll return the favor somehow",
 	]), "completed")
-	GameState.toggle_flag("bag_expansion:level_1")

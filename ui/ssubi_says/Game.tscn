@@ -121,7 +121,7 @@ margin_left = 4.0
 margin_top = 7.0
 margin_right = 125.0
 margin_bottom = 20.0
-text = "Repeat after SSubi"
+text = "Repeat after Ssubi"
 align = 1
 
 [node name="Prompt2" type="PanelContainer" parent="."]

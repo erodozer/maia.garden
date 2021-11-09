@@ -6,7 +6,9 @@
 script = ExtResource( 1 )
 id = "birthday_oliver"
 sendAt = "1637038800"
-sender = "Oliver"
+sender = "Ollie"
 message = "Happy birthday Maia! 
 You've survived another revolution around our sun and that's pretty neato if you ask me. I hope you have an incredible day and an even better one next year"
 outro = ""
+onDelivery = ""
+onRead = ""

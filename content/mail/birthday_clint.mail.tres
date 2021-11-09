@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_clint"
+sendAt = "1637038800"
+sender = "Moonmanclint"
+message = "Happy Birthday Maia! It's been such an honor and a privilege both knowing you and helping you out with various things. The garden is by far the most wonderful, kind, and supportive communities of people I've ever met and I mentally thank you every day for giving me a place I can feel comfortable belonging in! I hope your birthday this year is as happy as you make us every day!"
+outro = ""
+onDelivery = ""
+onRead = ""
