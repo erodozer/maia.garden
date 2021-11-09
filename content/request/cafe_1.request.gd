@@ -34,6 +34,10 @@ func complete():
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	yield(dialogue.open([
 		"This is perfect! Thank you Maia~",
+		"By the way,",
+		"While you were helping me",
+		"I was working on the menu!",
+		"Come stop by again tomorrow~",
 	]), "completed")
 
 func can_talk_to_clover():

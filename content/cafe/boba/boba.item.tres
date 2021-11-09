@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://content/cafe/boba/icon.png" type="Texture" id=1]
+[ext_resource path="res://content/cafe.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+id = "boba"
+icon = ExtResource( 1 )
+name = "Boba"
+price = 75
+stamina = 20
+description = "Bubble Tea aka Boba"
+unlock = "unlock_boba"
+stack = 0
+starting = 0
+daily_stock = 1
