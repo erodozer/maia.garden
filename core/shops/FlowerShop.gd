@@ -1,6 +1,6 @@
 extends "res://core/Shop.gd"
 
-func replenish_stock():
+func replenish_stock(_day = null):
 	stock = []
 	
 	for i in Content.Items:

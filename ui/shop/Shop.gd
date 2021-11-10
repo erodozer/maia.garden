@@ -77,6 +77,11 @@ func exchange(btn):
 
 	return true
 	
+func sort_stock(a, b):
+	if "sort_weight" in a.ref and "sort_weight" in b.ref:
+		return a.ref.sort_weight < b.ref.sort_weight
+	return false
+	
 func open(item_list):
 	if len(item_list) <= 0:
 		yield(get_tree(), "idle_frame")
@@ -86,6 +91,7 @@ func open(item_list):
 	group.connect("changed", self, "update_label")
 	group.connect("pressed", self, "exchange")
 	
+	item_list.sort_custom(self, "sort_stock")
 	for i in item_list:
 		if i.stock != 0:
 			var b = button.instance()

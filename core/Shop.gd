@@ -2,7 +2,7 @@ extends Node
 
 var stock = [] setget ,get_stock
 
-func replenish_stock():
+func replenish_stock(_day = null):
 	pass
 	
 func get_stock():

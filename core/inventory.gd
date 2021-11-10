@@ -31,11 +31,16 @@ func persist(d):
 func restore(d):
 	data = []
 	for i in d.inventory:
-		data.append({
+		var record = {
 			"id": i.id,
 			"ref": Content.get_item_reference(i.id),
 			"amount": i.amount
-		})
+		}
+		if record.ref.type == "fish":
+			record["icon"] = preload("res://content/fish/rare.png") \
+				if i.id.ends_with(":rare") \
+				else preload("res://content/fish/icon.png")
+		data.append(record)
 	
 func get_bag_size():
 	var size = 20
@@ -97,36 +102,29 @@ func safe():
 		if request.completed:
 			continue
 			
+		requirements[request] = {}
 		for requirement in request.get_requirements():
-			for i in request.get_matching_items(requirement):
-				if i == "konpeito":
-					continue
-					
-				var sum = requirements.get(i, 0)
-				var item = GameState.inventory.get_item(i)
-				for record in item:
-					sum += record.amount
-				requirements[i] = sum
-			
-	for i in GameState.inventory.data:
-		if i.ref.id in select:
-			select[i.ref.id].amount += i.amount
-			continue
+			requirements[request][requirement] = {
+				"matches": request.get_matching_items(requirement),
+				"amount": requirement.amount,
+			}
 		
-		select[i.ref.id] = {
+	for i in GameState.inventory.data:
+		select[i.id] = {
+			"id": i.id,
 			"ref": i.ref,
 			"price": 0,
 			"amount": i.amount,
 		}
-	
-	for r in requirements:
-		if not (r in select):
-			continue
-			
-		select[r].amount -= requirements[r]
-			
-		if select[r].amount <= 0:
-			select.erase(r)
+		
+		for request in requirements:
+			for requirement in requirements[request].values():
+				if i.id in requirement.matches:
+					select[i.id].amount = max(i.amount - requirement.amount, 0)
+					requirement.amount = max(requirement.amount - i.amount, 0)
+		
+		if select[i.id].amount <= 0:
+			select.erase(i.id)
 	
 	return select.values()
 	

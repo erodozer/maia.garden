@@ -38,7 +38,8 @@ func _input(event):
 				key += 1
 				if key >= len(input_queue):
 					emit_signal("end", false)
-			set_process_input(true)
+				else:
+					set_process_input(true)
 	
 func start(difficulty):
 	visible = true
@@ -105,5 +106,6 @@ func start(difficulty):
 			break
 		
 	visible = false
+	set_process_input(false)
 	
 	return attempts < MAX_ATTEMPTS

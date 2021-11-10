@@ -54,5 +54,7 @@ script = ExtResource( 9 )
 [connection signal="advance" from="Calendar" to="Mail" method="_on_calendar_advance"]
 [connection signal="advance" from="Calendar" to="Fortune" method="_on_calendar_advance"]
 [connection signal="advance" from="Calendar" to="Player" method="_on_Calendar_advance"]
+[connection signal="advance" from="Calendar" to="Shops/Cafe" method="replenish_stock"]
+[connection signal="advance" from="Calendar" to="Shops/FlowerShop" method="replenish_stock"]
 [connection signal="changed" from="Fortune" to="Garden" method="_on_Fortune_changed"]
 [connection signal="changed" from="Fortune" to="Fishing" method="_on_Fortune_changed"]

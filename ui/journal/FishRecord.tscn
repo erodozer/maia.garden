@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://content/fish/rare.png" type="Texture" id=2]
 
 [node name="FishRow" type="HBoxContainer"]
 margin_right = 172.0
@@ -10,7 +11,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Rare" type="TextureRect" parent="."]
+margin_right = 14.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 14, 0 )
+texture = ExtResource( 2 )
+stretch_mode = 4
+
 [node name="Label" type="Label" parent="."]
+margin_left = 18.0
 margin_right = 141.0
 margin_bottom = 13.0
 size_flags_horizontal = 3

@@ -11,3 +11,4 @@ export var unlock: String
 export(int, 0, 1) var stack = 0
 export(int, 0, 99) var starting = 0
 export(int, -1, 99) var daily_stock = -1
+export(int) var sort_weight = 0

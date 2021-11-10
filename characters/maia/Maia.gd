@@ -102,6 +102,8 @@ func _physics_process(_delta):
 		return
 
 func reevaluate():
+	move_and_slide(Vector2.ZERO)
+	yield(get_tree(), "physics_frame")
 	if interactable_npc.empty():
 		return
 		

@@ -10,6 +10,10 @@ var empty = false
 
 func _ready():
 	reset()
+	
+func is_rare(fish, size):
+	var length = inverse_lerp(fish.min_size, fish.max_size, size)
+	return length >= 0.8
 
 func get_fish(type):
 	if empty and randf() < .8:
@@ -41,14 +45,13 @@ func get_fish(type):
 	}
 
 func catch(fish):
-	var size = fish.length
 	var prev = records[fish.ref.id].size
 	var new_record = false
 	
-	var is_rare = fish.size > .8
+	var rare = is_rare(fish.ref, fish.size)
 	
 	var key = "%s:rare" % fish.ref.id \
-		if is_rare \
+		if is_rare(fish.ref, fish.size) \
 		else fish.ref.id
 		
 	var inserted = GameState.inventory.insert_item({
@@ -60,14 +63,14 @@ func catch(fish):
 	if not inserted:
 		return false
 	
-	if size > prev:
-		records[fish.ref.id].size = size
+	if fish.size > prev:
+		records[fish.ref.id].size = fish.size
 		new_record = true
 	
 	GameState.emit_signal("stat", "fish.caught", {
 		"fish": fish.ref,
-		"size": size,
-		"rare": is_rare,
+		"size": fish.size,
+		"rare": rare,
 		"timestamp": OS.get_unix_time(),
 		"record": new_record
 	})

@@ -15,3 +15,4 @@ unlock = "unlock_bread"
 stack = 1
 starting = 1
 daily_stock = 9
+sort_weight = 2

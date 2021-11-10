@@ -7,6 +7,7 @@ var interactable = false
 func _on_Maia_can_interact(npc):
 	visible = false
 	if not npc:
+		interactable = false
 		return
 	yield(get_tree(), "idle_frame")
 	var text = null

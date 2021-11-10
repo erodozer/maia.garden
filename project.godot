@@ -10,11 +10,14 @@ config_version=4
 
 [application]
 
-config/name="MaiaGarden"
+config/name="Welcome to the Garden"
 run/main_scene="res://Main.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Godot/app_userdata/MaiaGarden"
 boot_splash/image="res://splash.png"
 boot_splash/use_filter=false
 config/icon="res://characters/maia/outfits/default/maia_1.png"
+config/windows_native_icon="res://maia.ico"
 
 [autoload]
 

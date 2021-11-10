@@ -32,14 +32,14 @@ region = Rect2( 192, 0, 64, 64 )
 extents = Vector2( 32, 29 )
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 16.0312
+radius = 11.0454
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 15 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="CircleShape2D" id=7]
-radius = 18.0
+radius = 11.0454
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 96, 10 )
@@ -186,7 +186,7 @@ position = Vector2( 0, -3 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Cafe"]
-position = Vector2( 0, -20 )
+position = Vector2( -4, -20 )
 shape = SubResource( 5 )
 
 [node name="FlowerShop" type="StaticBody2D" parent="Objects/Portals"]

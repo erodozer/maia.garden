@@ -10,8 +10,9 @@ func build():
 			continue
 		var record = ItemRecord.instance()
 		grid.add_child(record)
-		record.get_node("Details/Icon").texture = i.ref.icon
-		record.get_node("Details/ItemName").text = i.ref.name
+		var ref = i.ref
+		record.get_node("Details/Icon").texture = ref.icon if not ("icon" in i) else i.icon
+		record.get_node("Details/ItemName").text = ref.name
 		if i.amount > 1:
 			record.get_node("Details/Count").text = "%d" % i.amount
 		else:

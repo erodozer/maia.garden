@@ -10,3 +10,4 @@ export(Resource) var effect
 export var description: String
 export var unlock: String
 export(int, 0, 99) var stack = 1
+export(int) var sort_weight = 0

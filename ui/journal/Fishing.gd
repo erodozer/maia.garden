@@ -21,9 +21,13 @@ func build():
 		if fishing_record.size <= 0:
 			row.get_node("Label").text = "???"
 			row.get_node("Size").text = "N/A"
-		else:
-			row.get_node("Label").text = i.name
-			row.get_node("Size").text = "%.02fin" % fishing_record.size
+			row.get_node("Rare").texture = null
+			continue
+		
+		row.get_node("Label").text = i.name
+		row.get_node("Size").text = "%.02fin" % fishing_record.size
+		if not GameState.fishing.is_rare(i, fishing_record.size):
+			row.get_node("Rare").texture = null
 		
 func destroy():
 	for i in pond_list.get_children():

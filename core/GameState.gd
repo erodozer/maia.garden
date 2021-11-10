@@ -20,7 +20,9 @@ var stats = {}
 var flags = {}
 
 # temporary world state data that gets cleared each day
+# this data does not get preserved when saving the game
 var temp = {}
+
 var time_played = 0
 
 var world_seed = 0
@@ -82,7 +84,7 @@ func load_headers(slot):
 		}
 		
 	f.open(path, File.READ)
-	var data = parse_json(f.get_line())
+	var data = parse_json(f.get_as_text())
 	f.close()
 	
 	return {
@@ -141,7 +143,7 @@ func load_game(slot):
 	if not f.file_exists(path):
 		return
 	f.open(path, File.READ)
-	var data = parse_json(f.get_line())
+	var data = parse_json(f.get_as_text())
 	world_seed = data.get("seed", randi())
 	seed(world_seed)
 	time_played = data.get("timePlayed", 0)

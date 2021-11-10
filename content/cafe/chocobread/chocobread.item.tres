@@ -15,3 +15,4 @@ unlock = "unlock_chocobread"
 stack = 1
 starting = 0
 daily_stock = 5
+sort_weight = 2

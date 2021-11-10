@@ -15,3 +15,4 @@ unlock = "unlock_boba"
 stack = 0
 starting = 0
 daily_stock = 1
+sort_weight = 1
