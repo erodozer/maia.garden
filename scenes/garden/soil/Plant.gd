@@ -53,6 +53,7 @@ func set_plant(p):
 	if not plant:
 		water_sprite.visible = false
 		sprite.visible = false
+		collision_layer = 4
 		return
 	
 	collision_layer = 4

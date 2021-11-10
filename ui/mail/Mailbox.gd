@@ -15,7 +15,9 @@ func _ready():
 	set_process_input(false)
 
 func sort_mail(a, b):
-	return a.delivered - b.delivered
+	if b.delivered < a.delivered:
+		return true
+	return false
 
 func open():
 	var mail = GameState.mail.inbox.values()

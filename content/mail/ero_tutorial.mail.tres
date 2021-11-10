@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-id = "test_message"
+id = "ero_tutorial"
 sendAt = "0"
 sender = "Ero"
 message = "Hello Maia!

@@ -78,7 +78,6 @@ func exchange(btn):
 	return true
 	
 func open(item_list):
-	assert(len(item_list) > 0)
 	if len(item_list) <= 0:
 		yield(get_tree(), "idle_frame")
 		return

@@ -10,14 +10,14 @@ const godash = preload("res://addons/godash/godash.gd")
 onready var player = get_tree().get_nodes_in_group("player").front()
 onready var portals = get_tree().get_nodes_in_group("portals").front()
 
-func _ready():
+func _start():
 	var garden_bgm
 	if "garden_bgm" in GameState.temp:
 		garden_bgm = GameState.temp.garden_bgm
 	else:
-		garden_bgm = load(godash.rand_choice(
+		garden_bgm = yield(godash.load_async(godash.rand_choice(
 			godash.enumerate_dir("res://scenes/garden/bgm/", "bgm.tres")
-		))
+		)), "completed")
 		GameState.temp["garden_bgm"] = garden_bgm
 	Bgm.change_song(garden_bgm)
 

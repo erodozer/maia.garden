@@ -33,7 +33,7 @@ func sell():
 		]), "completed")
 		for f in flowers:
 			GameState.inventory.insert_item({
-				"id": f.id,
+				"id": f.ref.id,
 				"amount": -f.amount
 			})
 		GameState.player.balance += value

@@ -61,8 +61,7 @@ mouse_filter = 1
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="Pressed" type="Panel" parent="ItemButton/Icon"]
-visible = false
+[node name="Unpressed" type="Panel" parent="ItemButton/Icon"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -71,7 +70,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Unpressed" type="Panel" parent="ItemButton/Icon"]
+[node name="Pressed" type="Panel" parent="ItemButton/Icon"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1

@@ -2,6 +2,8 @@ extends PanelContainer
 
 onready var label = get_node("HBoxContainer/Label")
 
+var interactable = false
+
 func _on_Maia_can_interact(npc):
 	visible = false
 	if not npc:
@@ -23,10 +25,11 @@ func _on_Maia_can_interact(npc):
 	queue_sort()
 	
 	call_deferred("set_visible", true)
+	interactable = true
 	
 func _on_Maia_interact_start():
 	visible = false
 
 func _on_Maia_interact_end():
-	call_deferred("set_visible", true)
+	call_deferred("set_visible", interactable)
 	

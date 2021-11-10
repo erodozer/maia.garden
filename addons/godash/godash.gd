@@ -93,6 +93,8 @@ static func load_dir(resource_dir, ext = '.tres', recurse = false) -> Dictionary
 	"""
 	Load resource assets from a directory.
 	Needed for various factories, such as for Items and Enemies
+	
+	This uses blocking io and is not suitable for large directories with lots of big files
 	"""
 	if ext is String:
 		ext = [ext]
@@ -118,3 +120,13 @@ static func load_dir(resource_dir, ext = '.tres', recurse = false) -> Dictionary
 	else:
 		printerr("can't load items: %s" % [resource_dir])
 	return _items
+
+static func load_async(path):
+	yield(Engine.get_main_loop(), "idle_frame")
+	var loader = ResourceLoader.load_interactive(path)
+	while loader.poll() == OK:
+		yield(Engine.get_main_loop(), "idle_frame")
+	
+	assert(loader.poll() == ERR_FILE_EOF)
+	return loader.get_resource()
+	

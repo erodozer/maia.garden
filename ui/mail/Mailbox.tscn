@@ -31,7 +31,6 @@ expand_margin_bottom = 2.0
 anti_aliasing = false
 
 [node name="Mailbox" type="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -199.709
@@ -96,6 +95,7 @@ scroll_horizontal_enabled = false
 
 [node name="ItemList" type="ItemList" parent="Inbox/Container/MarginContainer/ScrollContainer"]
 margin_right = 89.0
+margin_bottom = 122.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath(".")
 focus_neighbour_right = NodePath(".")
@@ -103,8 +103,8 @@ focus_neighbour_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath(".")
 size_flags_horizontal = 3
+size_flags_vertical = 3
 allow_reselect = true
-auto_height = true
 same_column_width = true
 
 [node name="Letter" type="Panel" parent="."]

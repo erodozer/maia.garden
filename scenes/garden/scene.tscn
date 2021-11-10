@@ -17,7 +17,7 @@
 [ext_resource path="res://scenes/garden/tiles.png" type="Texture" id=15]
 [ext_resource path="res://scenes/garden/explore/Waypoint.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/garden/explore/Explore.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/garden/Clover.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/garden/Chie.tscn" type="PackedScene" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 

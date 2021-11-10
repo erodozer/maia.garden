@@ -9,5 +9,5 @@ func _on_Maia_interact_start():
 func _on_Maia_interact_end():
 	set_process_input(true)
 
-func _on_Exit_body_entered(body):
+func _on_Exit_body_entered(_body):
 	SceneManager.change_scene("garden", [return_location])

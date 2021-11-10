@@ -13,7 +13,9 @@ func _ready():
 	
 	add_to_group("content")
 
-func get_item_reference(id):
+func get_item_reference(id: String):
+	if id.ends_with(":rare"): # handle fish type
+		id = id.left(id.find(":rare"))
 	for i in Items:
 		if i.id == id:
 			return i

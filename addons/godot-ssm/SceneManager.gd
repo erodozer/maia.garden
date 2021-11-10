@@ -12,6 +12,8 @@ SceneManager.gd
 """
 extends Node
 
+const godash = preload("res://addons/godash/godash.gd")
+
 onready var anim = $Transition/Fader/AnimationPlayer
 onready var container = $Scene
 
@@ -68,7 +70,8 @@ func change_scene(next_scene, params=[]):
 		we only need to fade in.  Else we're loading the scene
 		"""
 		next_scene = next_scene if next_scene.begins_with("res://") else "res://scenes/%s/scene.tscn" % next_scene
-		current_scene = load(next_scene).instance()
+		var res = yield(godash.load_async(next_scene), "completed")
+		current_scene = res.instance()
 	elif next_scene is Node:
 		current_scene = next_scene
 	else:

@@ -23,7 +23,7 @@ void fragment() {
 	//	COLOR = clear_color;
 	//}
 	
-	vec4 sample = texture(SCREEN_TEXTURE, SCREEN_UV.xy);
+	vec4 sample = texture(TEXTURE, UV.xy);
 	if (lum(sample) <= transition) {
 		COLOR = vec4(clear_color.rgb, sample.a);
 	} else {

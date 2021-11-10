@@ -94,6 +94,8 @@ func safe():
 	for request in GameState.requests:
 		if not request.accepted:
 			continue
+		if request.completed:
+			continue
 			
 		for requirement in request.get_requirements():
 			for i in request.get_matching_items(requirement):

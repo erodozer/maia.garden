@@ -29,7 +29,7 @@ func accept():
 		"What's a catfe without bread",
 		"And its delicious smell.",
 		"I was talking to Clover",
-		"She said you grew wheat!",
+		"They said you grew wheat!",
 		"Could you grow some for me?",
 		"Bread with fresh ingredients",
 		"I'm so excited!"
