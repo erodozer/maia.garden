@@ -13,7 +13,10 @@ onready var tween = get_node("Tween")
 
 onready var sfx_controller = get_node("SfxController")
 
-const REEL_RATE = 20
+const BASE_REEL_RATE = 20
+var reel_rate = BASE_REEL_RATE
+
+var rand = RandomNumberGenerator.new()
 
 var direction = 0 setget set_direction
 
@@ -32,9 +35,13 @@ func _ready():
 	set_process_input(false)
 	
 func open(type):
+	rand.randomize()
 	# can not fish if you do not have enough stamina
 	var player = get_tree().get_nodes_in_group("player").front()
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
+	
+	if GameState.player.outfit == "hat":
+		reel_rate = BASE_REEL_RATE * 2.5
 	
 	if GameState.inventory.is_full():
 		yield(dialogue.open([
@@ -48,7 +55,7 @@ func open(type):
 	sfx_controller.play("waiting")
 	
 	var fish = GameState.fishing.get_fish(type)
-	yield(get_tree().create_timer(randf() * 3.0 + 2.0), "timeout")
+	yield(get_tree().create_timer(rand.randf() * 3.0 + 2.0), "timeout")
 		
 	# handle empty fishing
 	if not fish:
@@ -65,7 +72,7 @@ func open(type):
 	sfx_controller.play("fight")
 	player.bubble.visible = true
 	set_process_input(true)
-	var wait = get_tree().create_timer(randf() * 3.0 + 0.5)
+	var wait = get_tree().create_timer(rand.randf() * 3.0 + 0.5)
 	wait.connect("timeout", self, "emit_signal", ["hook", false])
 	var hooked = yield(self, "hook")
 	wait.disconnect("timeout", self, "emit_signal")
@@ -88,7 +95,7 @@ func open(type):
 		]), "completed")
 		return
 		
-	health.max_value = lerp(fish.ref.health * 0.9, fish.ref.health * 1.2, fish.size) 
+	health.max_value = fish.ref.health
 	health.value = health.max_value * 0.85
 	pick_direction()
 	joystick.visible = true
@@ -109,6 +116,8 @@ func open(type):
 		yield(dialogue.open([
 			"The fish got away",
 		]), "completed")
+		GameState.player.perform_action(fish.stamina / 3)
+	
 		return
 	
 	var isRecord = GameState.fishing.catch(fish)
@@ -149,9 +158,12 @@ func set_direction(v):
 	direction = v
 
 func pick_direction():
-	var r = randi() % 4
+	# use custom random so that fishing input is not predictable every time
+	var r = direction
+	while r == direction:
+		r = rand.randi() % 4
 	self.direction = r
-	timer.start(lerp(0.5, 5.0, randf()))
+	timer.start(lerp(1.0, 3.0, rand.randf()))
 
 var reeling = false
 func _process(delta):
@@ -181,9 +193,9 @@ func _process(delta):
 		sfx_controller.stop()
 		
 	if reeling:
-		health.value = health.value - (REEL_RATE * delta)
+		health.value -= reel_rate * delta
 	else:
-		health.value = health.value + ((health.max_value / 10.0) * delta)
+		health.value += (health.max_value / 10.0) * delta
 	
 func _on_Timer_timeout():
 	pick_direction()

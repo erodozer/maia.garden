@@ -56,32 +56,67 @@ func is_full():
 	return len(data) >= self.bag_size
 
 func insert_item(entry):
+	var ref = entry.ref if "ref" in entry else Content.get_item_reference(entry.id)
+	var sell = entry.amount < 0
 	var amount = entry.amount
-	var item
+	var items = []
 	for i in data:
 		if i.id == entry.id:
-			if i.amount + entry.amount <= i.ref.stack:
-				item = i
-				break
-	
-	if item:
-		amount += item.amount
-	
-	if amount < 0:
-		return false
-	
-	if not item:
-		item = entry
-		if len(data) + 1 <= self.bag_size:
-			data.append(entry)
-		else:
+			if sell:
+				amount += i.amount
+			else:
+				amount -= i.amount
+			items.append(i)
+			
+	var total = 0
+	if sell:
+		if amount < 0:
 			return false
-	
-	item.amount = amount
-	emit_signal("changed", item.id, item)
-	
-	if item.amount == 0:
-		data.remove(data.find(item))
+			
+		amount = entry.amount
+		for item in items:
+			var a = item.amount
+			item.amount = max(amount + a, 0)
+			amount = min(amount + a, 0)
+			if item.amount == 0:
+				data.remove(data.find(item))
+			else:
+				total += item.amount
+	else:
+		# check if there's room for new stacks
+		amount = entry.amount
+		for i in items:
+			if i.amount < ref.stack:
+				amount -= ref.stack - i.amount
+		var stacks = int(ceil(amount / float(ref.stack))) if amount > 0 else 0
+		
+		if len(data) + stacks > self.bag_size:
+			return false
+		
+		amount = entry.amount
+		# fill existing stacks
+		for i in items:
+			var a = i.amount
+			i.amount = min(ref.stack, amount + i.amount)
+			amount -= i.amount - a
+			total += i.amount - a
+		
+		# create new stacks
+		while amount > 0:
+			var a = min(ref.stack, amount)
+			data.append({
+				"id": entry.id,
+				"ref": ref,
+				"amount": a,
+			})
+			amount -= a
+			total += a
+			
+	emit_signal("changed", entry.id, {
+		"id": entry.id,
+		"ref": ref,
+		"amount": total,
+	})
 	
 	return true
 
@@ -91,6 +126,9 @@ func get_item(id):
 		if i.id == id:
 			matching.append(i)
 	return matching
+
+func sort_by_stack_size(a, b):
+	return a.amount < b.amount
 
 # get list of all items (merged stacks) that are safe to process against (not required by any active quests)
 func safe():
@@ -110,21 +148,25 @@ func safe():
 			}
 		
 	for i in GameState.inventory.data:
-		select[i.id] = {
+		var item = {
 			"id": i.id,
 			"ref": i.ref,
 			"price": 0,
-			"amount": i.amount,
+			"amount": i.amount + select.get(i.id, {}).get("amount", 0),
 		}
 		
 		for request in requirements:
 			for requirement in requirements[request].values():
 				if i.id in requirement.matches:
-					select[i.id].amount = max(i.amount - requirement.amount, 0)
+					item.amount = max(i.amount - requirement.amount, 0)
 					requirement.amount = max(requirement.amount - i.amount, 0)
 		
-		if select[i.id].amount <= 0:
+		if item.amount <= 0:
 			select.erase(i.id)
+		else:
+			select[i.id] = item
 	
-	return select.values()
+	var v = select.values()
+	v.sort_custom(self, "sort_by_stack_size")
+	return v
 	

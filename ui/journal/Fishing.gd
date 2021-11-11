@@ -12,10 +12,10 @@ func build():
 		
 		var row = ItemRecord.instance()
 		match i.location:
-			"pond":
-				pond_list.add_child(row)
 			"river":
 				river_list.add_child(row)
+			_:
+				pond_list.add_child(row)
 				
 		var fishing_record = GameState.fishing.records[i.id]
 		if fishing_record.size <= 0:

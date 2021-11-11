@@ -17,14 +17,14 @@ func sell():
 	if value <= 0:
 		yield(dialogue.open([
 			"Sorry Maia,",
-			"I only buy flowers",
+			"There's nothing I'd like to buy",
 		]), "completed")
 		return
 	
 	var choice = yield(dialogue.open([
 		"Let's see...",
 		"Yes, these look excellent!",
-		"How does %d sound?" % [value]
+		"How does %d konpeito sound?" % [value]
 	], ["Yes", "No"]), "completed")
 	
 	if choice == "Yes":

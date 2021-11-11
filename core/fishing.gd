@@ -39,8 +39,7 @@ func get_fish(type):
 	var size = randf()
 	return {
 		"ref": fish,
-		"size": size,
-		"length": lerp(fish.min_size, fish.max_size, size),
+		"size": lerp(fish.min_size, fish.max_size, size),
 		"stamina": fish.strength
 	}
 

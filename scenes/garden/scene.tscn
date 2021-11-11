@@ -253,13 +253,13 @@ position = Vector2( 30, 9 )
 position = Vector2( 698, 761 )
 flag = "waypoint.cafe"
 
-[node name="Darkness" parent="Objects/Waypoints" instance=ExtResource( 16 )]
-position = Vector2( 1034, 832 )
-flag = "waypoint.darkness"
-
 [node name="Riverside Campsite" parent="Objects/Waypoints" instance=ExtResource( 16 )]
 position = Vector2( 1544, 841 )
 flag = "waypoint.river"
+
+[node name="Darkness" parent="Objects/Waypoints" instance=ExtResource( 16 )]
+position = Vector2( 1034, 832 )
+flag = "waypoint.darkness"
 
 [node name="Mailbox" parent="Objects" instance=ExtResource( 2 )]
 position = Vector2( -24, 18 )

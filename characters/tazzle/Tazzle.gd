@@ -11,7 +11,7 @@ func can_sell():
 				price *= 2
 			value += price * f.amount
 
-	return value <= 0
+	return value > 0
 
 func sell():
 	var value = 0
@@ -27,7 +27,7 @@ func sell():
 	var choice = yield(dialogue.open([
 		"Do you have some fish for me?",
 		"Oh, these look delicious!",
-		"How does %d sound?" % [value]
+		"I'll pay %d konpeito for 'em" % [value]
 	], ["Yes", "No"]), "completed")
 	
 	if choice == "Yes":
