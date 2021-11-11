@@ -25,14 +25,14 @@ func exchange(btn):
 	# if value is zero, it may cost an inventory item
 	if item.price == 0:
 		exchanged = GameState.inventory.insert_item({
-			"id": item.ref.id,
+			"id": item.id,
 			"ref": item.ref,
 			"amount": -1,
 		})
 	# handle putting items into your inventory
 	elif item.ref.stack > 0:
 		exchanged = GameState.inventory.insert_item({
-			"id": item.ref.id,
+			"id": item.id,
 			"ref": item.ref,
 			"amount": 1,
 		})

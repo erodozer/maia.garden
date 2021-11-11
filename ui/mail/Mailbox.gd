@@ -26,7 +26,7 @@ func open():
 		var date = OS.get_datetime_from_unix_time(m.delivered)
 		var idx = inbox.get_item_count()
 		inbox.add_item(
-			"%d/%d - %s%s" % [
+			"%02d/%02d - %s%s" % [
 				date.month,
 				date.day,
 				m.ref.sender,

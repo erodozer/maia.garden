@@ -17,6 +17,8 @@ func get_edibles():
 			continue
 			
 		select.append({
+			"id": i.id,
+			"icon": i.icon,
 			"ref": i.ref,
 			"price": 0,
 			"stock": i.amount,

@@ -123,6 +123,7 @@ layer = 0
 [node name="Fader" parent="CanvasLayer" instance=ExtResource( 10 )]
 
 [node name="Message" type="Control" parent="CanvasLayer"]
+visible = false
 modulate = Color( 0.956863, 0.8, 0.631373, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -147,9 +148,9 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CanvasLayer/Message/Lead"]
-margin_top = 25.0
+margin_top = 27.0
 margin_right = 140.0
-margin_bottom = 107.0
+margin_bottom = 109.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "To the sweetest fairy who made this garden we call home
@@ -159,9 +160,9 @@ align = 1
 autowrap = true
 
 [node name="Label2" type="Label" parent="CanvasLayer/Message/Lead"]
-margin_top = 111.0
+margin_top = 113.0
 margin_right = 140.0
-margin_bottom = 124.0
+margin_bottom = 122.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 14 )
 text = "- November 16, 2021 -"
@@ -184,7 +185,7 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 196.0
-margin_bottom = 1821.0
+margin_bottom = 1210.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_constants/line_spacing = -2
 custom_fonts/font = ExtResource( 12 )
@@ -207,6 +208,11 @@ It's already that time again.
 This is the second of your birthdays we get to celebrate together, I'm really happy that we got to and I hope we get to celebrate many many more together.
 Happy birthday Maia hope you have an amazing day.
 - Rakknir -
+
+
+
+Happy birthday Maia. Hope you will celebrate it with delicious foods and refreshing drinks.
+-Ryeflekun
 
 
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Æ⌐é╠Äxôx.ogg-b489800ec2db92cbf925e9c0e27a4ccf.oggstr"
+
+[deps]
+
+source_file="res://scenes/garden/bgm/Æ⌐é╠Äxôx.ogg"
+dest_files=[ "res://.import/Æ⌐é╠Äxôx.ogg-b489800ec2db92cbf925e9c0e27a4ccf.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

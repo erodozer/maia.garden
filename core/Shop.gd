@@ -40,6 +40,8 @@ func restore(data):
 	for i in loaded:
 		var item = Content.get_item_reference(i)
 		stock.append({
+			"id": item.id,
+			"icon": item.icon,
 			"ref": item,
 			"price": item.price,
 			"stock": loaded[i],

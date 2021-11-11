@@ -137,10 +137,11 @@ __meta__ = {
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = -91.0
+margin_top = -86.0
 margin_right = 94.0
-margin_bottom = -32.0
+margin_bottom = -27.0
 rect_min_size = Vector2( 90, 0 )
+custom_constants/separation = 2
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -148,12 +149,12 @@ __meta__ = {
 
 [node name="NewGame" type="MarginContainer" parent="TitleButtons/VBoxContainer"]
 margin_right = 90.0
-margin_bottom = 17.0
+margin_bottom = 21.0
 custom_constants/margin_right = 8
 
 [node name="Button" type="Button" parent="TitleButtons/VBoxContainer/NewGame"]
 margin_right = 82.0
-margin_bottom = 17.0
+margin_bottom = 21.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../Exit/Button")
 focus_neighbour_right = NodePath(".")
@@ -167,16 +168,16 @@ group = ExtResource( 1 )
 text = "New Game"
 
 [node name="LoadGame" type="MarginContainer" parent="TitleButtons/VBoxContainer"]
-margin_top = 21.0
+margin_top = 23.0
 margin_right = 90.0
-margin_bottom = 38.0
+margin_bottom = 44.0
 custom_constants/margin_right = 4
 custom_constants/margin_left = 4
 
 [node name="Button" type="Button" parent="TitleButtons/VBoxContainer/LoadGame"]
 margin_left = 4.0
 margin_right = 86.0
-margin_bottom = 17.0
+margin_bottom = 21.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../NewGame/Button")
 focus_neighbour_right = NodePath(".")
@@ -189,15 +190,15 @@ group = ExtResource( 1 )
 text = "Load Game"
 
 [node name="Exit" type="MarginContainer" parent="TitleButtons/VBoxContainer"]
-margin_top = 42.0
+margin_top = 46.0
 margin_right = 90.0
-margin_bottom = 59.0
+margin_bottom = 67.0
 custom_constants/margin_left = 8
 
 [node name="Button" type="Button" parent="TitleButtons/VBoxContainer/Exit"]
 margin_left = 8.0
 margin_right = 90.0
-margin_bottom = 17.0
+margin_bottom = 21.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../LoadGame/Button")
 focus_neighbour_right = NodePath(".")
@@ -220,7 +221,7 @@ __meta__ = {
 
 [node name="Button" type="Button" parent="TitleButtons/Credits"]
 margin_right = 45.0
-margin_bottom = 17.0
+margin_bottom = 21.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../../VBoxContainer/LoadGame/Button")
 focus_neighbour_right = NodePath(".")

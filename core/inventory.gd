@@ -31,10 +31,12 @@ func persist(d):
 func restore(d):
 	data = []
 	for i in d.inventory:
+		var ref = Content.get_item_reference(i.id)
 		var record = {
 			"id": i.id,
-			"ref": Content.get_item_reference(i.id),
-			"amount": i.amount
+			"ref": ref,
+			"icon": ref.icon,
+			"amount": i.amount,
 		}
 		if record.ref.type == "fish":
 			record["icon"] = preload("res://content/fish/rare.png") \
@@ -101,12 +103,19 @@ func insert_item(entry):
 			amount -= i.amount - a
 			total += i.amount - a
 		
+		var icon = ref.icon
+		if ref.type == "fish":
+			icon = preload("res://content/fish/rare.png") \
+				if entry.id.ends_with(":rare") \
+				else preload("res://content/fish/icon.png")
+		
 		# create new stacks
 		while amount > 0:
 			var a = min(ref.stack, amount)
 			data.append({
 				"id": entry.id,
 				"ref": ref,
+				"icon": icon,
 				"amount": a,
 			})
 			amount -= a
@@ -150,6 +159,7 @@ func safe():
 	for i in GameState.inventory.data:
 		var item = {
 			"id": i.id,
+			"icon": i.icon,
 			"ref": i.ref,
 			"price": 0,
 			"amount": i.amount + select.get(i.id, {}).get("amount", 0),

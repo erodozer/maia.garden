@@ -26,3 +26,10 @@ func get_progress():
 		"progress": spend,
 		"required": 500,
 	}
+	
+func persist(data):
+	var save = data.get("achievements", {})
+	save["cafe3"] = spend
+	
+func restore(data):
+	spend = data.get("achievements", {}).get("cafe3", 0)

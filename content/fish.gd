@@ -15,3 +15,4 @@ export(int, 10, 999) var health = 100
 export var description: String
 export var stack = 1
 export(int, 0, 99) var starting = 0
+var sort_weight = 99

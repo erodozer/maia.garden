@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/garden/explore/Explore.gd" type="Script" id=2]
+[ext_resource path="res://scenes/garden/explore/bubble.png" type="Texture" id=3]
 
-[node name="ExploreMenu" type="Control" groups=[
-"explore",
-]]
+[node name="ExploreMenu" type="Control" groups=["explore"]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -150.0
+margin_bottom = -150.0
+theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -24,9 +26,8 @@ anchor_bottom = 0.5
 margin_left = -75.0
 margin_top = -43.0
 margin_right = 75.0
-margin_bottom = 45.0
-rect_min_size = Vector2( 150, 88 )
-theme = ExtResource( 1 )
+margin_bottom = 43.0
+rect_min_size = Vector2( 150, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -36,8 +37,50 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 146.0
 margin_bottom = 82.0
+grow_vertical = 2
 rect_min_size = Vector2( 0, 64 )
 size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_constants/vseparation = 2
+items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false ]
+auto_height = true
 same_column_width = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -75.0
+margin_top = -62.0
+margin_right = 16.0
+margin_bottom = -42.0
+rect_clip_content = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 87.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 16, 0 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer"]
+margin_left = 20.0
+margin_right = 78.0
+margin_bottom = 12.0
+size_flags_vertical = 5
+text = "Fast Travel"
 
 [connection signal="item_activated" from="Menu/ItemList" to="." method="_on_ItemList_item_activated"]

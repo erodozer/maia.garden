@@ -12,8 +12,8 @@ func can_interact():
 
 func hint():
 	if scene:
-		return "Enter %s" % goto.replace("_", " ")
-	return "Go to %s" % goto.replace("_", " ")
+		return "Enter %s" % name
+	return "Go to %s" % goto
 	
 func interact():
 	if scene:

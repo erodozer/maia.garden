@@ -6,6 +6,7 @@
 [node name="FishRow" type="HBoxContainer"]
 margin_right = 172.0
 margin_bottom = 13.0
+rect_min_size = Vector2( 0, 16 )
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -13,7 +14,7 @@ __meta__ = {
 
 [node name="Rare" type="TextureRect" parent="."]
 margin_right = 14.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 14, 0 )
 texture = ExtResource( 2 )
 stretch_mode = 4
@@ -21,14 +22,19 @@ stretch_mode = 4
 [node name="Label" type="Label" parent="."]
 margin_left = 18.0
 margin_right = 141.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
+size_flags_vertical = 7
 custom_fonts/font = ExtResource( 1 )
 text = "Guppy"
+valign = 1
 
 [node name="Size" type="Label" parent="."]
 margin_left = 145.0
 margin_right = 172.0
-margin_bottom = 13.0
+margin_bottom = 16.0
+size_flags_vertical = 7
 custom_fonts/font = ExtResource( 1 )
 text = "02.91in"
+align = 2
+valign = 1

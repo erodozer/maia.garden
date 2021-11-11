@@ -113,7 +113,7 @@ tile_data = PoolIntArray( -720910, 20, 0, -720906, 20, 0, -720901, 68, 0, -72090
 collision_layer = 4
 collision_mask = 0
 script = ExtResource( 13 )
-goto = "Home"
+goto = "home"
 scene = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Home"]
@@ -124,7 +124,7 @@ shape = SubResource( 1 )
 position = Vector2( 624, 416 )
 collision_layer = 4
 script = ExtResource( 13 )
-goto = "Shrine"
+goto = "shrine"
 scene = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Shrine"]
@@ -138,14 +138,14 @@ script = ExtResource( 13 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Forest"]
 shape = SubResource( 2 )
 
-[node name="River" type="StaticBody2D" parent="Objects/Portals"]
+[node name="Campsite" type="StaticBody2D" parent="Objects/Portals"]
 position = Vector2( 1656, 873 )
 collision_layer = 4
 script = ExtResource( 13 )
-goto = "River"
+goto = "river"
 scene = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/River"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Campsite"]
 position = Vector2( 17, 0 )
 shape = SubResource( 2 )
 
@@ -162,7 +162,7 @@ shape = SubResource( 2 )
 position = Vector2( 1040, 928 )
 collision_layer = 4
 script = ExtResource( 13 )
-goto = "Darkness"
+goto = "darkness"
 scene = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Darkness"]
@@ -172,7 +172,7 @@ shape = SubResource( 2 )
 position = Vector2( 624, 797 )
 collision_layer = 4
 script = ExtResource( 13 )
-goto = "Cafe"
+goto = "cafe"
 scene = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Objects/Portals/Cafe"]
@@ -189,24 +189,24 @@ shape = SubResource( 4 )
 position = Vector2( -4, -20 )
 shape = SubResource( 5 )
 
-[node name="FlowerShop" type="StaticBody2D" parent="Objects/Portals"]
+[node name="Flower Shop" type="StaticBody2D" parent="Objects/Portals"]
 position = Vector2( 1040, 487 )
 collision_layer = 4
 script = ExtResource( 13 )
-goto = "Flower_Shop"
+goto = "flower_shop"
 scene = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Objects/Portals/FlowerShop"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Objects/Portals/Flower Shop"]
 position = Vector2( 0, -50 )
 
-[node name="Sprite" type="Sprite" parent="Objects/Portals/FlowerShop/StaticBody2D"]
+[node name="Sprite" type="Sprite" parent="Objects/Portals/Flower Shop/StaticBody2D"]
 texture = SubResource( 6 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/FlowerShop/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Flower Shop/StaticBody2D"]
 position = Vector2( 0, -3 )
 shape = SubResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/FlowerShop"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Portals/Flower Shop"]
 position = Vector2( 0, -30 )
 shape = SubResource( 7 )
 
@@ -301,7 +301,7 @@ z_index = 1
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 624, 384 )
+position = Vector2( 624, 400 )
 shape = SubResource( 10 )
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]

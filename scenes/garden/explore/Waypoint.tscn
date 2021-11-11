@@ -28,9 +28,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -3 ), Vector2( 0, 0 ) ]
 }
 
-[node name="Garden" type="StaticBody2D" groups=[
-"waypoint",
-]]
+[node name="Garden" type="StaticBody2D" groups=["waypoint"]]
 position = Vector2( 1216, 468 )
 collision_layer = 5
 script = ExtResource( 1 )

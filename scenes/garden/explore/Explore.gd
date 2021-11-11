@@ -10,6 +10,7 @@ func _ready():
 	set_process_input(false)
 
 func open():
+	menu.clear()
 	visible = true
 
 	var waypoints = get_tree().get_nodes_in_group("waypoint")	
@@ -26,15 +27,16 @@ func open():
 		
 	yield(get_tree(), "idle_frame")
 		
-	tween.interpolate_property(container, "rect_position:y", -150, 75 - container.rect_size.y / 2, .3)
+	tween.interpolate_property(self, "rect_position:y", -150, 0, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	menu.grab_focus()
 	menu.grab_click_focus()
+	menu.select(0)
 	set_process_input(true)
 	var waypoint = yield(self, "end")
 	set_process_input(false)
-	tween.interpolate_property(container, "rect_position:y", 75 - container.rect_size.y / 2, -150, .3)
+	tween.interpolate_property(self, "rect_position:y", 0, -150, .3)
 	tween.start()
 	yield(tween, "tween_all_completed")
 		

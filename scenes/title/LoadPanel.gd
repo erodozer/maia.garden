@@ -1,6 +1,6 @@
 extends Control
 
-const DataRecord = preload("res://ui/journal/DataRecord.tscn")
+const DataRecord = preload("res://ui/data_record/DataRecord.tscn")
 
 signal end
 signal confirm(choice)

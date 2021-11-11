@@ -66,15 +66,16 @@ func catch(fish):
 		records[fish.ref.id].size = fish.size
 		new_record = true
 	
-	GameState.emit_signal("stat", "fish.caught", {
+	var result = {
 		"fish": fish.ref,
 		"size": fish.size,
 		"rare": rare,
 		"timestamp": OS.get_unix_time(),
 		"record": new_record
-	})
+	}
+	GameState.emit_signal("stat", "fish.caught", result)
 	
-	return true
+	return result
 
 func _on_Fortune_changed(fortune):
 	exclusive = null

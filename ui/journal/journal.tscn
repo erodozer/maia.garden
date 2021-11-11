@@ -93,12 +93,12 @@ __meta__ = {
 
 [node name="Tabs" type="HBoxContainer" parent="Window"]
 margin_right = 180.0
-margin_bottom = 21.0
+margin_bottom = 20.0
 custom_constants/separation = 1
 
 [node name="Inventory" type="Button" parent="Window/Tabs"]
 margin_right = 20.0
-margin_bottom = 21.0
+margin_bottom = 20.0
 focus_neighbour_left = NodePath("../Data")
 focus_neighbour_top = NodePath(".")
 focus_neighbour_right = NodePath("../Fishing")
@@ -118,7 +118,7 @@ icon = ExtResource( 4 )
 [node name="Fishing" type="Button" parent="Window/Tabs"]
 margin_left = 21.0
 margin_right = 41.0
-margin_bottom = 21.0
+margin_bottom = 20.0
 focus_neighbour_left = NodePath("../Inventory")
 focus_neighbour_top = NodePath(".")
 focus_neighbour_right = NodePath("../Achievements")
@@ -137,7 +137,7 @@ icon = ExtResource( 3 )
 [node name="Achievements" type="Button" parent="Window/Tabs"]
 margin_left = 42.0
 margin_right = 62.0
-margin_bottom = 21.0
+margin_bottom = 20.0
 focus_neighbour_left = NodePath("../Fishing")
 focus_neighbour_top = NodePath(".")
 focus_neighbour_right = NodePath("../Data")
@@ -156,7 +156,7 @@ icon = ExtResource( 7 )
 [node name="Data" type="Button" parent="Window/Tabs"]
 margin_left = 63.0
 margin_right = 83.0
-margin_bottom = 21.0
+margin_bottom = 20.0
 focus_neighbour_left = NodePath("../Achievements")
 focus_neighbour_top = NodePath(".")
 focus_neighbour_right = NodePath("../Inventory")
@@ -175,31 +175,32 @@ icon = ExtResource( 10 )
 [node name="Calendar" type="PanelContainer" parent="Window/Tabs"]
 margin_left = 130.0
 margin_right = 180.0
-margin_bottom = 21.0
+margin_bottom = 20.0
 size_flags_horizontal = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Window/Tabs/Calendar"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 46.0
-margin_bottom = 17.0
+margin_bottom = 16.0
 
 [node name="TextureRect" type="TextureRect" parent="Window/Tabs/Calendar/HBoxContainer"]
 margin_right = 12.0
-margin_bottom = 13.0
+margin_bottom = 12.0
 texture = ExtResource( 8 )
 stretch_mode = 4
 
 [node name="Date" type="Label" parent="Window/Tabs/Calendar/HBoxContainer"]
 margin_left = 16.0
+margin_top = 1.0
 margin_right = 42.0
-margin_bottom = 13.0
+margin_bottom = 10.0
 text = "10/19"
 align = 2
 valign = 1
 
 [node name="View" type="PanelContainer" parent="Window"]
-margin_top = 19.0
+margin_top = 18.0
 margin_right = 180.0
 margin_bottom = 120.0
 mouse_filter = 1
@@ -213,14 +214,14 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 176.0
-margin_bottom = 97.0
+margin_bottom = 98.0
 focus_mode = 2
 scroll_horizontal_enabled = false
 script = ExtResource( 5 )
 
 [node name="GridContainer" type="GridContainer" parent="Window/View/Inventory"]
 margin_right = 160.0
-margin_bottom = 93.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_vertical = 3
 columns = 2
@@ -233,20 +234,20 @@ visible = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 176.0
-margin_bottom = 99.0
+margin_bottom = 98.0
 focus_mode = 2
 script = ExtResource( 6 )
 
 [node name="Content" type="VBoxContainer" parent="Window/View/Fishing"]
 margin_right = 160.0
-margin_bottom = 95.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_vertical = 3
-custom_constants/separation = 0
 
 [node name="Label" type="Label" parent="Window/View/Fishing/Content"]
 margin_right = 160.0
-margin_bottom = 13.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
 text = "Pond"
 
 [node name="HSeparator" type="HSeparator" parent="Window/View/Fishing/Content"]
@@ -255,45 +256,44 @@ margin_right = 160.0
 margin_bottom = 17.0
 
 [node name="Pond" type="VBoxContainer" parent="Window/View/Fishing/Content"]
-margin_top = 17.0
+margin_top = 21.0
 margin_right = 160.0
-margin_bottom = 30.0
+margin_bottom = 21.0
 
 [node name="Label2" type="Label" parent="Window/View/Fishing/Content"]
-margin_top = 30.0
+margin_top = 25.0
 margin_right = 160.0
-margin_bottom = 43.0
+margin_bottom = 34.0
 text = "River"
 
 [node name="HSeparator2" type="HSeparator" parent="Window/View/Fishing/Content"]
-margin_top = 43.0
+margin_top = 38.0
 margin_right = 160.0
-margin_bottom = 47.0
+margin_bottom = 42.0
 
 [node name="River" type="VBoxContainer" parent="Window/View/Fishing/Content"]
-margin_top = 47.0
+margin_top = 46.0
 margin_right = 160.0
-margin_bottom = 60.0
+margin_bottom = 46.0
 
 [node name="Achievements" type="ScrollContainer" parent="Window/View"]
 visible = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 176.0
-margin_bottom = 97.0
+margin_bottom = 98.0
 focus_mode = 2
 script = ExtResource( 11 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/View/Achievements"]
 margin_right = 160.0
-margin_bottom = 93.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_vertical = 3
-custom_constants/separation = 0
 
 [node name="Label" type="Label" parent="Window/View/Achievements/VBoxContainer"]
 margin_right = 160.0
-margin_bottom = 13.0
+margin_bottom = 9.0
 text = "Records"
 
 [node name="HSeparator" type="HSeparator" parent="Window/View/Achievements/VBoxContainer"]
@@ -302,28 +302,28 @@ margin_right = 160.0
 margin_bottom = 17.0
 
 [node name="Records" type="VBoxContainer" parent="Window/View/Achievements/VBoxContainer"]
-margin_top = 17.0
+margin_top = 21.0
 margin_right = 160.0
-margin_bottom = 17.0
-custom_constants/separation = 0
+margin_bottom = 21.0
+custom_constants/separation = 2
 
 [node name="Label2" type="Label" parent="Window/View/Achievements/VBoxContainer"]
-margin_top = 17.0
+margin_top = 25.0
 margin_right = 160.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 0, 26 )
+margin_bottom = 41.0
+rect_min_size = Vector2( 0, 16 )
 text = "Achievements"
 valign = 2
 
 [node name="HSeparator2" type="HSeparator" parent="Window/View/Achievements/VBoxContainer"]
-margin_top = 43.0
+margin_top = 45.0
 margin_right = 160.0
-margin_bottom = 47.0
+margin_bottom = 49.0
 
 [node name="Achievements" type="VBoxContainer" parent="Window/View/Achievements/VBoxContainer"]
-margin_top = 47.0
+margin_top = 53.0
 margin_right = 160.0
-margin_bottom = 47.0
+margin_bottom = 53.0
 custom_constants/separation = 0
 
 [node name="Data" type="ScrollContainer" parent="Window/View"]
@@ -341,6 +341,7 @@ margin_right = 172.0
 margin_bottom = 93.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 2
 
 [node name="InventoryCounter" type="Panel" parent="."]
 margin_left = 157.0
@@ -353,13 +354,12 @@ size_flags_horizontal = 10
 [node name="Label" type="Label" parent="InventoryCounter"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.0
-margin_right = -4.0
-margin_bottom = -1.0
+margin_top = 2.0
 rect_min_size = Vector2( 25, 8 )
 custom_fonts/font = ExtResource( 9 )
 text = "50/50"
-align = 2
+align = 1
+valign = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false

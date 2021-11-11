@@ -1,7 +1,5 @@
 extends "res://content/achievement.gd"
 
-var requests_completed = []
-	
 func get_id():
 	return "requests1"
 	
@@ -9,11 +7,8 @@ func _on_stat(id, params):
 	if id != "request.completed":
 		return false
 		
-	if not (params.request in requests_completed):
-		requests_completed.append(params.request)
-		return true
-	return false
-
+	return true
+	
 func get_title():
 	return "A Helping Hand"
 	
@@ -21,7 +16,11 @@ func get_description():
 	return "Fulfill requests"
 	
 func get_progress():
+	var completed = 0
+	for i in GameState.requests:
+		if i.completed:
+			completed += 1
 	return {
-		"progress": len(requests_completed),
+		"progress": completed,
 		"required": 3,
 	}

@@ -71,13 +71,13 @@ columns = 4
 [node name="Description" type="PanelContainer" parent="."]
 margin_top = 60.0
 margin_right = 190.0
-margin_bottom = 81.0
+margin_bottom = 76.0
 
 [node name="Label" type="Label" parent="Description"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 186.0
-margin_bottom = 17.0
+margin_bottom = 12.0
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
 custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
 custom_constants/shadow_offset_x = 1

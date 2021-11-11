@@ -14,9 +14,10 @@ func open(request):
 	visible = true
 	# build the hint
 	var text = "[center]%s[/center]" % request.prompt()
+	text += "\n[b][table=2]"
 	for i in request.get_requirements():
-		text += "\n[b]%dx - %s[/b]" % [i.amount, i.hint]
-	text += "\n"
+		text += "[cell]%dx[/cell][cell]%s[/cell]\n" % [i.amount, i.hint]
+	text += "[/table][/b]"
 	requirements.bbcode_text = text
 	
 	# test the requirements

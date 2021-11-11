@@ -27,22 +27,24 @@ stretch_mode = 4
 
 [node name="ItemName" type="Label" parent="Details"]
 margin_left = 20.0
-margin_top = 1.0
 margin_right = 46.0
-margin_bottom = 14.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
+size_flags_vertical = 7
 custom_fonts/font = ExtResource( 3 )
 text = "Daisy"
+valign = 2
 
 [node name="Count" type="Label" parent="Details"]
 margin_left = 50.0
-margin_top = 1.0
 margin_right = 66.0
-margin_bottom = 14.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 16, 0 )
+size_flags_vertical = 7
 custom_fonts/font = ExtResource( 3 )
 text = "10"
 align = 2
+valign = 2
 
 [node name="HSeparator" type="HSeparator" parent="."]
 margin_top = 16.0

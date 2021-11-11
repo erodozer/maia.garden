@@ -18,7 +18,7 @@ func get_requirements():
 		},
 		{
 			"hint": "Flowers",
-			"id": "flower",
+			"type": "flower",
 			"amount": 3,
 		}
 	]
@@ -33,8 +33,8 @@ func complete():
 		"[wave amp=20 freq=2]A fine addition...thank you[/wave]",
 		"[wave amp=20 freq=2]In return...a favor[/wave]",
 	]), "completed")
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(1.0), "timeout")
 	yield(dialogue.open([
-		"[You can now change into Tiny Maia]",
+		"[Tiny Maia outfit unlocked]",
 	]), "completed")
 	GameState.toggle_flag("outfit.tiny")

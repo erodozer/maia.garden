@@ -1,6 +1,6 @@
 extends ScrollContainer
 
-const DataRecord = preload("res://ui/journal/DataRecord.tscn")
+const DataRecord = preload("res://ui/data_record/DataRecord.tscn")
 
 onready var list = get_node("VBoxContainer")
 onready var button_group = ButtonGroup.new()

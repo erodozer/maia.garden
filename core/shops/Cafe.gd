@@ -8,6 +8,8 @@ func replenish_stock(_day = null):
 			continue
 			
 		stock.append({
+			"id": i.id,
+			"icon": i.icon,
 			"ref": i,
 			"price": i.price,
 			"stock": i.daily_stock,

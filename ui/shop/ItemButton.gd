@@ -12,7 +12,7 @@ onready var sfx = get_node("Sfx")
 
 func set_item(i):
 	item = i
-	sprite.texture = i.ref.icon
+	sprite.texture = i.icon
 	if i.price == 0:
 		cost.visible = false
 	else:

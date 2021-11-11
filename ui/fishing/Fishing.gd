@@ -7,8 +7,10 @@ onready var health = get_node("Health")
 onready var timer = get_node("Timer")
 onready var catch_anchor = get_node("Catch")
 onready var catch_panel = get_node("Catch/PanelContainer")
-onready var catch_dialog = get_node("Catch/PanelContainer/VBoxContainer/RichTextLabel")
-onready var catch_record = get_node("Catch/PanelContainer/VBoxContainer/Label")
+onready var catch_dialog = get_node("Catch/PanelContainer/HBoxContainer/Label")
+onready var catch_record = get_node("Catch/Label")
+onready var rare_icon = get_node("Catch/PanelContainer/HBoxContainer/Rare")
+onready var normal_icon = get_node("Catch/PanelContainer/HBoxContainer/Normal")
 onready var tween = get_node("Tween")
 
 onready var sfx_controller = get_node("SfxController")
@@ -120,10 +122,12 @@ func open(type):
 	
 		return
 	
-	var isRecord = GameState.fishing.catch(fish)
+	var result = GameState.fishing.catch(fish)
 	
-	catch_record.visible = isRecord
-	catch_dialog.bbcode_text = "[center]%s\n%.02fin[/center]" % [fish.ref.name, fish.size]
+	catch_record.visible = result.record
+	catch_dialog.text = "%s\n%.02fin" % [fish.ref.name, fish.size]
+	normal_icon.visible = not result.rare
+	rare_icon.visible = result.rare
 	yield(get_tree(), "idle_frame")
 	tween.interpolate_property(catch_anchor, "rect_position:y", -50, 25, .3, Tween.EASE_OUT)
 	tween.start()

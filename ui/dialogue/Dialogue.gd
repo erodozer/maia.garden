@@ -1,7 +1,7 @@
 extends Control
 
 onready var panel = get_node("VBoxContainer/Control/CenterContainer/Panel")
-onready var label = get_node("VBoxContainer/Control/CenterContainer/Panel/Label")
+onready var label = get_node("VBoxContainer/Control/CenterContainer/Panel/MarginContainer/Label")
 onready var tween = get_node("Tween")
 onready var choice_buttons = get_node("VBoxContainer/MarginContainer/Choices")
 onready var voice = get_node("Voice")
@@ -18,7 +18,7 @@ func open(lines, choices = []):
 	set_process_input(false)
 	label.percent_visible = 0
 	tween.remove_all()
-	tween.interpolate_property(panel, "rect_min_size:x", 0, 180, .2)
+	tween.interpolate_property(panel, "rect_min_size:x", 0, 185, .2)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	set_process_input(true)
@@ -58,6 +58,7 @@ func open(lines, choices = []):
 		for c in choice_buttons.get_children():
 			c.queue_free()
 	
+	label.percent_visible = 0
 	tween.remove_all()
 	tween.interpolate_property(panel, "rect_min_size:x", 180, 0, .2)
 	tween.start()

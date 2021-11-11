@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://ui/left.png" type="Texture" id=1]
 [ext_resource path="res://ui/up.png" type="Texture" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://ui/down.png" type="Texture" id=9]
 [ext_resource path="res://ui/fishing/mizu00.wav" type="AudioStream" id=10]
 [ext_resource path="res://ui/fishing/mizu08.wav" type="AudioStream" id=11]
+[ext_resource path="res://content/fish/icon.png" type="Texture" id=12]
+[ext_resource path="res://content/fish/rare.png" type="Texture" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 4.0
@@ -287,42 +289,64 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -42.0
 margin_top = -23.0
-margin_right = 42.0
-margin_bottom = 23.0
+margin_right = 46.0
+margin_bottom = 5.0
+rect_min_size = Vector2( 88, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Catch/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Catch/PanelContainer"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 84.0
-margin_bottom = 42.0
-custom_constants/separation = -2
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Catch/PanelContainer/VBoxContainer"]
-margin_right = 80.0
+[node name="Normal" type="TextureRect" parent="Catch/PanelContainer/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 16, 20 )
+texture = ExtResource( 12 )
+stretch_mode = 4
+
+[node name="Rare" type="TextureRect" parent="Catch/PanelContainer/HBoxContainer"]
+visible = false
+margin_right = 16.0
 margin_bottom = 20.0
-rect_min_size = Vector2( 80, 0 )
-custom_constants/line_separation = -5
-custom_fonts/normal_font = ExtResource( 5 )
-bbcode_enabled = true
-bbcode_text = "[center]Guppy
-28in[/center]"
+rect_min_size = Vector2( 16, 20 )
+texture = ExtResource( 13 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Catch/PanelContainer/HBoxContainer"]
+margin_left = 20.0
+margin_right = 80.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
 text = "Guppy
 28in"
+align = 1
+valign = 1
+
+[node name="Label" type="RichTextLabel" parent="Catch"]
+margin_left = -38.0
+margin_top = -3.0
+margin_right = 42.0
+margin_bottom = 29.0
+custom_colors/default_color = Color( 0.803922, 0.376471, 0.576471, 1 )
+custom_colors/font_color_shadow = Color( 0.337255, 0.25098, 0.392157, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave][center]New Record[/center][/wave]"
+text = "New Record"
 fit_content_height = true
 scroll_active = false
-
-[node name="Label" type="Label" parent="Catch/PanelContainer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 80.0
-margin_bottom = 31.0
-custom_colors/font_color = Color( 0.803922, 0.376471, 0.576471, 1 )
-custom_colors/font_color_shadow = Color( 0.337255, 0.25098, 0.392157, 1 )
-custom_fonts/font = ExtResource( 5 )
-text = "New Record"
-align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Timer" type="Timer" parent="."]
 

@@ -13,3 +13,4 @@ export var stack = 1
 export(int, 0, 99) var starting = 0
 export(bool) var half_height = false
 export(int, 0, 100) var stamina = 0
+var sort_weight = 0
