@@ -66,13 +66,13 @@ func open():
 	get_node("Window/Tabs/Calendar/HBoxContainer/Date").text = "%d/%d" % [cal.month, cal.day]
 	
 	# show 
-	tween.interpolate_property(self, "rect_position:y", -150, 0, .3)
+	tween.interpolate_property(self, "rect_position:y", -150, 0, .2)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	set_process_input(true)
 	yield(self, "end")
 	set_process_input(false)
-	tween.interpolate_property(self, "rect_position:y", 0, -150, .3)
+	tween.interpolate_property(self, "rect_position:y", 0, -150, .2)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	

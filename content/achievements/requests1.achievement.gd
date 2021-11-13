@@ -3,7 +3,7 @@ extends "res://content/achievement.gd"
 func get_id():
 	return "requests1"
 	
-func _on_stat(id, params):
+func _on_stat(id, _params):
 	if id != "request.completed":
 		return false
 		

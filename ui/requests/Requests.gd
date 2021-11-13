@@ -1,7 +1,8 @@
 extends Control
 
 onready var tween = get_node("Tween")
-onready var requirements = get_node("VBoxContainer/Panel/Requirements")
+onready var prompt = get_node("VBoxContainer/Panel/VBoxContainer/Label")
+onready var requirements = get_node("VBoxContainer/Panel/VBoxContainer/Requirements")
 onready var submit_button = get_node("VBoxContainer/Buttons/Submit")
 onready var buttons = get_node("VBoxContainer/Buttons")
 
@@ -13,8 +14,8 @@ func _ready():
 func open(request):
 	visible = true
 	# build the hint
-	var text = "[center]%s[/center]" % request.prompt()
-	text += "\n[b][table=2]"
+	prompt.text = request.prompt()
+	var text = "\n[b][table=2]"
 	for i in request.get_requirements():
 		text += "[cell]%dx[/cell][cell]%s[/cell]\n" % [i.amount, i.hint]
 	text += "[/table][/b]"

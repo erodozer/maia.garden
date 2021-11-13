@@ -260,9 +260,9 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Difficulty/Panel"]
 margin_left = 4.0
-margin_top = 4.0
+margin_top = 6.0
 margin_right = 71.0
-margin_bottom = 17.0
+margin_bottom = 15.0
 custom_fonts/font = ExtResource( 7 )
 text = "Select Difficulty"
 align = 1
@@ -285,11 +285,11 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 54.0
 margin_bottom = 26.0
-custom_constants/separation = -4
+custom_constants/separation = 1
 
 [node name="Label" type="Label" parent="Game/ComboCounter/VBoxContainer"]
 margin_right = 50.0
-margin_bottom = 13.0
+margin_bottom = 9.0
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
 custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
 custom_constants/shadow_offset_x = 1
@@ -301,15 +301,16 @@ __meta__ = {
 }
 
 [node name="Count" type="Label" parent="Game/ComboCounter/VBoxContainer"]
-margin_top = 9.0
+margin_top = 10.0
 margin_right = 50.0
-margin_bottom = 22.0
+margin_bottom = 19.0
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
 custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 0
 custom_fonts/font = ExtResource( 7 )
 text = "100/100"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -336,7 +337,6 @@ __meta__ = {
 
 [node name="Maia" type="AnimatedSprite" parent="Game/LaneView/Animation"]
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="Microphone" type="Sprite" parent="Game/LaneView/Animation"]
@@ -494,6 +494,7 @@ __meta__ = {
 [node name="Maia" type="AnimatedSprite" parent="Results/PanelContainer/VBoxContainer/HBoxContainer/Animation"]
 position = Vector2( 5, 9 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="Microphone" type="Sprite" parent="Results/PanelContainer/VBoxContainer/HBoxContainer/Animation"]
@@ -509,64 +510,64 @@ custom_constants/separation = 0
 [node name="Accuracy" type="HBoxContainer" parent="Results/PanelContainer/VBoxContainer"]
 margin_top = 28.0
 margin_right = 100.0
-margin_bottom = 41.0
+margin_bottom = 37.0
 
 [node name="Label" type="Label" parent="Results/PanelContainer/VBoxContainer/Accuracy"]
 margin_right = 36.0
-margin_bottom = 13.0
+margin_bottom = 9.0
 custom_fonts/font = ExtResource( 7 )
 text = "Accuracy"
 
 [node name="Value" type="Label" parent="Results/PanelContainer/VBoxContainer/Accuracy"]
 margin_left = 40.0
 margin_right = 100.0
-margin_bottom = 13.0
+margin_bottom = 9.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "0%"
 align = 2
 
 [node name="Combo" type="HBoxContainer" parent="Results/PanelContainer/VBoxContainer"]
-margin_top = 45.0
+margin_top = 41.0
 margin_right = 100.0
-margin_bottom = 58.0
+margin_bottom = 50.0
 
 [node name="Label" type="Label" parent="Results/PanelContainer/VBoxContainer/Combo"]
 margin_right = 63.0
-margin_bottom = 13.0
+margin_bottom = 9.0
 custom_fonts/font = ExtResource( 7 )
 text = "Longest Combo"
 
 [node name="Value" type="Label" parent="Results/PanelContainer/VBoxContainer/Combo"]
 margin_left = 67.0
 margin_right = 100.0
-margin_bottom = 13.0
+margin_bottom = 9.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "0"
 align = 2
 
 [node name="HSeparator2" type="HSeparator" parent="Results/PanelContainer/VBoxContainer"]
-margin_top = 62.0
+margin_top = 54.0
 margin_right = 100.0
-margin_bottom = 62.0
+margin_bottom = 54.0
 custom_constants/separation = 0
 
 [node name="Payout" type="HBoxContainer" parent="Results/PanelContainer/VBoxContainer"]
-margin_top = 66.0
+margin_top = 58.0
 margin_right = 100.0
-margin_bottom = 79.0
+margin_bottom = 67.0
 
 [node name="Label" type="Label" parent="Results/PanelContainer/VBoxContainer/Payout"]
 margin_right = 36.0
-margin_bottom = 13.0
+margin_bottom = 9.0
 custom_fonts/font = ExtResource( 7 )
 text = "Konpeito"
 
 [node name="Value" type="Label" parent="Results/PanelContainer/VBoxContainer/Payout"]
 margin_left = 40.0
 margin_right = 100.0
-margin_bottom = 13.0
+margin_bottom = 9.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "0"

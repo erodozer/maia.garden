@@ -11,20 +11,20 @@ func hint():
 	return "Eat"
 	
 func get_edibles():
-	var select = []
-	for i in GameState.inventory.safe():
+	var select = {}
+	for i in GameState.inventory.data:
 		if not i.ref.get("stamina"):
 			continue
 			
-		select.append({
+		select[i.id] = {
 			"id": i.id,
 			"icon": i.icon,
 			"ref": i.ref,
 			"price": 0,
-			"stock": i.amount,
-		})
+			"stock": i.amount + select.get(i.id, {}).get("stock", 0),
+		}
 	
-	return select
+	return select.values()
 	
 func can_interact():
 	return GameState.player.stamina < 100 and len(get_edibles())

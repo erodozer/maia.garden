@@ -16,7 +16,7 @@ func get_requirements():
 	]
 	
 func can_accept():
-	return GameState.flag("unlocked_vegetables")
+	return GameState.flag("request:flower_1:completed")
 
 func accept():
 	.accept()

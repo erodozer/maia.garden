@@ -1,6 +1,7 @@
 extends "res://scenes/Building.gd"
 
 func _setup(_params):
+	Bgm.change_song(preload("res://scenes/darkness/bgm.ogg"))
 	if not GameState.flag("introduce.proller.complete"):
 		get_node("Proller").introduction()
 			

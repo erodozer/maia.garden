@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/home/drawer/Drawer.gd" type="Script" id=1]
+[ext_resource path="res://characters/maia/outfits/hat/locked.png" type="Texture" id=2]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=3]
+[ext_resource path="res://characters/maia/outfits/default/locked.png" type="Texture" id=4]
+[ext_resource path="res://characters/maia/outfits/tiny/locked.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 1.93114
 
-[node name="Drawer" type="StaticBody2D" groups=[
-"npc",
-]]
+[node name="Drawer" type="StaticBody2D" groups=["npc"]]
 position = Vector2( 76, 56 )
 collision_layer = 4
 collision_mask = 0
@@ -20,12 +21,10 @@ shape = SubResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Anchor" type="Control" parent="CanvasLayer"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_top = 122.633
-margin_bottom = 122.633
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 150.0
+margin_bottom = 150.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -36,9 +35,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -64.0
-margin_top = -40.0
+margin_top = -49.0
 margin_right = 64.0
-margin_bottom = 40.0
+margin_bottom = 49.0
+grow_vertical = 2
 theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -48,10 +48,13 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 124.0
-margin_bottom = 76.0
+margin_bottom = 94.0
+grow_vertical = 2
 rect_min_size = Vector2( 120, 72 )
 rect_clip_content = false
 size_flags_horizontal = 7
+items = [ "Item 0", ExtResource( 4 ), false, "Item 1", ExtResource( 2 ), false, "Item 2", ExtResource( 5 ), false ]
+auto_height = true
 fixed_icon_size = Vector2( 24, 24 )
 
 [node name="Tween" type="Tween" parent="CanvasLayer"]

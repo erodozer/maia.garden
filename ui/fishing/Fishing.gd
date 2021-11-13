@@ -103,7 +103,6 @@ func open(type):
 	joystick.visible = true
 	health.visible = true
 	Input.start_joy_vibration(0, 0.1, 0.4)
-	sfx_controller.play("fight")
 	set_process(true)
 	var caught = yield(self, "end")
 	set_process(false)
@@ -142,7 +141,7 @@ func open(type):
 	tween.start()
 	yield(tween, "tween_all_completed")
 	visible = false
-	
+	sfx_controller.play("RESET")
 	GameState.player.perform_action(fish.stamina)
 	
 func set_direction(v):
@@ -194,7 +193,7 @@ func _process(delta):
 	elif not success and reeling:
 		reeling = false
 		Input.start_joy_vibration(0, 0.1, 0.4)
-		sfx_controller.stop()
+		sfx_controller.play("RESET")
 		
 	if reeling:
 		health.value -= reel_rate * delta

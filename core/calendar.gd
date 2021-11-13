@@ -2,14 +2,15 @@ extends Node
 
 var day = 1634616000 # day as unix timestamp, so we can leverage OS Date features
 
-const MAIAS_BIRTHDAY = 1637038800
+const MAIAS_BIRTHDAY = { "day": 16, "month": 11 }
 const PROLLER_DAY = 1635048000
 const CHIE_DAY = 1634616000
 
 signal advance(day)
 
 func is_maia_day():
-	return day == MAIAS_BIRTHDAY
+	var dt = OS.get_datetime_from_unix_time(day)
+	return dt.day == MAIAS_BIRTHDAY.day and dt.month == MAIAS_BIRTHDAY.month
 
 func reset():
 	day = 1634616000

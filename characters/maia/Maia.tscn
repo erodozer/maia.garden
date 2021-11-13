@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://characters/maia/outfits/default/standing.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://characters/maia/outfits/default/walking.tres" type="SpriteFrames" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ui/journal/journal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ui/konpeito/Konpeito.tscn" type="PackedScene" id=9]
 [ext_resource path="res://characters/maia/HUD.gd" type="Script" id=10]
+[ext_resource path="res://characters/maia/footsteps.ogg" type="AudioStream" id=11]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -58,6 +59,9 @@ collision_layer = 2
 script = ExtResource( 5 )
 fishing = true
 
+[node name="Footsteps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
 [node name="Sprite" type="Node2D" parent="."]
 material = SubResource( 2 )
 
@@ -70,14 +74,14 @@ playing = true
 visible = false
 material = SubResource( 2 )
 frames = ExtResource( 2 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Fishing" type="AnimatedSprite" parent="Sprite"]
 visible = false
 position = Vector2( -9, 1 )
 frames = ExtResource( 3 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

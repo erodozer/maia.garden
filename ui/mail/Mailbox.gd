@@ -80,7 +80,7 @@ func _on_ItemList_item_activated(index):
 	var date = OS.get_datetime_from_unix_time(open_letter.delivered)
 	inbox.set_item_text(
 		index, 
-		"%d/%d - %s%s" % [
+		"%02d/%02d - %s%s" % [
 			date.month,
 			date.day,
 			open_letter.ref.sender,
@@ -93,6 +93,7 @@ func _on_ItemList_item_activated(index):
 	tween.stop_all()
 	tween.interpolate_property(letter, "rect_position", Vector2(25, 170), Vector2(25, 30), .2)
 	tween.start()
+	get_node("OpenLetter").play()
 	yield(tween, "tween_all_completed")
 	text.grab_focus()
 	text.grab_click_focus()
@@ -100,6 +101,7 @@ func _on_ItemList_item_activated(index):
 	tween.stop_all()
 	tween.interpolate_property(letter, "rect_position", Vector2(25, 30), Vector2(25, 170), .2)
 	tween.start()
+	get_node("CloseLetter").play()
 	yield(tween, "tween_all_completed")
 	inbox.grab_focus()
 	inbox.grab_click_focus()
@@ -109,5 +111,5 @@ func _on_ItemList_item_selected(_index):
 	if not opened:
 		return
 		
-	get_node("AudioStreamPlayer").play()
+	get_node("Cursor").play()
 	

@@ -45,10 +45,24 @@ func complete():
 	]), "completed")
 
 func can_talk_to_yuuki():
-	return not GameState.flag("unlocked_chocobread")
+	return not GameState.flag("unlock_chocobread")
 
 func talk_to_yuuki():
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
+	
+	if not GameState.inventory.can_insert({
+		"id": "chocobread",
+		"amount": 2
+	}):
+		yield(dialogue.open([
+			"Hi Maia~",
+			"Are you here for some bread?",
+			"Oh, looks like your bag is full",
+			"Come back later",
+			"I'll be sure to save you a loaf",
+		]), "completed")
+		return
+	
 	yield(dialogue.open([
 		"Chie asked you to get her bread?",
 		"Not many stop by her shrine lately",
@@ -64,10 +78,9 @@ func talk_to_yuuki():
 		"But I can't give them for free"
 	]), "completed")
 	
-	var catgrass = Content.get_item_reference("chocobread")
+	GameState.toggle_flag("unlock_chocobread")  # allow purchasing catgrass
 	GameState.inventory.insert_item({
-		"id": catgrass.id,
-		"ref": catgrass,
-		"amount": 5
+		"id": "chocobread",
+		"amount": 2
 	})
-	GameState.toggle_flag("unlocked_chocobread")  # allow purchasing catgrass
+	

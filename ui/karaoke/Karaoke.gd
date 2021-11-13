@@ -144,7 +144,7 @@ func _on_hit():
 	combo += 1
 	notes_hit += 1
 	highest_combo = max(highest_combo, combo)
-	count_label.text = "  %d/%d" % [notes_hit, note_count]
+	count_label.text = "%d/%d" % [notes_hit, note_count]
 	
 	if combo > 5:
 		combo_label.text = "%d Combo" % combo

@@ -14,6 +14,8 @@ func interact():
 	var outfits = get_node("CanvasLayer/Anchor/Control/ItemList")
 	var tween = get_node("CanvasLayer/Tween")
 	
+	outfits.clear()
+	
 	for outfit in Outfits:
 		var unlock_key = "outfit.%s" % outfit
 		if unlock_key in GameState.flags and GameState.flags[unlock_key]:
@@ -28,7 +30,7 @@ func interact():
 				false
 			)
 	
-	tween.interpolate_property(ui, "rect_position:y", 200, 75, .3)
+	tween.interpolate_property(ui, "rect_position:y", 150, 0, .2)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	outfits.grab_focus()
@@ -42,7 +44,7 @@ func interact():
 			GameState.player.outfit = "hat"
 		2:
 			GameState.player.outfit = "tiny"
-	tween.interpolate_property(ui, "rect_position:y", 75, 200, .3)
+	tween.interpolate_property(ui, "rect_position:y", 0, 150, .2)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	outfits.clear()

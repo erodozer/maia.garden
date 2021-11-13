@@ -192,12 +192,11 @@ stretch_mode = 4
 
 [node name="Date" type="Label" parent="Window/Tabs/Calendar/HBoxContainer"]
 margin_left = 16.0
-margin_top = 1.0
 margin_right = 42.0
-margin_bottom = 10.0
+margin_bottom = 12.0
+size_flags_vertical = 7
 text = "10/19"
 align = 2
-valign = 1
 
 [node name="View" type="PanelContainer" parent="Window"]
 margin_top = 18.0
@@ -350,6 +349,9 @@ margin_right = 190.0
 margin_bottom = 147.0
 rect_clip_content = true
 size_flags_horizontal = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="InventoryCounter"]
 anchor_right = 1.0

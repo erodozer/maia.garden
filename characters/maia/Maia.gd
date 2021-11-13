@@ -6,6 +6,7 @@ export var sidescrolling_mode = false
 export var fishing = false setget toggle_fishing
 export var half_height = false setget slice
 
+onready var footsteps = get_node("Footsteps")
 onready var sprite_container = get_node("Sprite")
 onready var walk_sprite = get_node("Sprite/Walking")
 onready var stand_sprite = get_node("Sprite/Stand")
@@ -29,6 +30,7 @@ func _ready():
 func pause():
 	set_physics_process(false)
 	set_process_input(false)
+	footsteps.stop()
 
 func resume():
 	set_physics_process(true)
@@ -96,10 +98,13 @@ func _physics_process(_delta):
 		walk_sprite.visible = true
 		stand_sprite.visible = false
 		interact_collider.rotation = direction.angle()
+		if not footsteps.playing:
+			footsteps.play()
 	else:
 		walk_sprite.visible = false
 		stand_sprite.visible = true
-		return
+		if footsteps.playing:
+			footsteps.stop()
 
 func reevaluate():
 	move_and_slide(Vector2.ZERO)

@@ -258,7 +258,7 @@ position = Vector2( 1544, 841 )
 flag = "waypoint.river"
 
 [node name="Darkness" parent="Objects/Waypoints" instance=ExtResource( 16 )]
-position = Vector2( 1034, 832 )
+position = Vector2( 1072, 797 )
 flag = "waypoint.darkness"
 
 [node name="Mailbox" parent="Objects" instance=ExtResource( 2 )]

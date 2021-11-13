@@ -15,6 +15,7 @@ func reset():
 			insert_item({
 				"id": f.id,
 				"ref": f,
+				"icon": f.icon,
 				"amount": f.starting
 			})
 			
@@ -56,76 +57,105 @@ func get_bag_size():
 	
 func is_full():
 	return len(data) >= self.bag_size
-
-func insert_item(entry):
-	var ref = entry.ref if "ref" in entry else Content.get_item_reference(entry.id)
-	var sell = entry.amount < 0
-	var amount = entry.amount
-	var items = []
-	for i in data:
-		if i.id == entry.id:
-			if sell:
-				amount += i.amount
-			else:
-				amount -= i.amount
-			items.append(i)
+	
+func sort_by_stack_capacity(a, b):
+	var space_a = a.ref.stack - a.amount
+	var space_b = b.ref.stack - b.amount
+	return space_a > space_b
+	
+func can_insert(entries):
+	if not (entries is Array):
+		entries = [entries]
+	
+	var total_stacks = len(data)
+	
+	for entry in entries:
+		var ref = entry.ref if "ref" in entry else Content.get_item_reference(entry.id)
+		var sell = entry.amount < 0
+		
+		var amount = entry.amount
+		var total = 0
+		for i in data:
+			if i.id == entry.id:
+				total += i.amount
 			
-	var total = 0
-	if sell:
-		if amount < 0:
-			return false
-			
-		amount = entry.amount
-		for item in items:
-			var a = item.amount
-			item.amount = max(amount + a, 0)
-			amount = min(amount + a, 0)
-			if item.amount == 0:
-				data.remove(data.find(item))
-			else:
-				total += item.amount
-	else:
+		var current_stacks = int(ceil(total / float(ref.stack)))
+		var new_stacks = int(ceil((total + amount) / float(ref.stack)))
+		
+		if sell:
+			# break early if there's not enough items to support the request
+			if total + amount < 0:
+				return false
+				
 		# check if there's room for new stacks
-		amount = entry.amount
-		for i in items:
-			if i.amount < ref.stack:
-				amount -= ref.stack - i.amount
-		var stacks = int(ceil(amount / float(ref.stack))) if amount > 0 else 0
+		total_stacks += new_stacks - current_stacks
 		
-		if len(data) + stacks > self.bag_size:
+		if total_stacks > self.bag_size:
 			return false
+	
+	return true
+
+func insert_item(entries):
+	if not (entries is Array):
+		entries = [entries]
+	
+	if not can_insert(entries):
+		return false
+	
+	for entry in entries:
+		var ref = entry.ref if "ref" in entry else Content.get_item_reference(entry.id)
+		var sell = entry.amount < 0
 		
-		amount = entry.amount
-		# fill existing stacks
-		for i in items:
-			var a = i.amount
-			i.amount = min(ref.stack, amount + i.amount)
-			amount -= i.amount - a
-			total += i.amount - a
-		
-		var icon = ref.icon
-		if ref.type == "fish":
-			icon = preload("res://content/fish/rare.png") \
-				if entry.id.ends_with(":rare") \
-				else preload("res://content/fish/icon.png")
-		
-		# create new stacks
-		while amount > 0:
-			var a = min(ref.stack, amount)
-			data.append({
-				"id": entry.id,
-				"ref": ref,
-				"icon": icon,
-				"amount": a,
-			})
-			amount -= a
-			total += a
-			
-	emit_signal("changed", entry.id, {
-		"id": entry.id,
-		"ref": ref,
-		"amount": total,
-	})
+		var total = 0
+		var items = []
+		for i in data:
+			if i.id == entry.id:
+				items.append(i)
+				total += i.amount
+		total += entry.amount
+	
+		# insure we take or add to lower capacity stacks first so
+		# all stacks are appropriately filled up
+		items.sort_custom(self, "sort_by_stack_capacity")
+
+		if sell:
+			var amount = entry.amount
+			for item in items:
+				var a = item.amount
+				item.amount = max(amount + a, 0)
+				amount = min(amount + a, 0)
+				if item.amount == 0:
+					data.remove(data.find(item))
+		else:
+			var icon = ref.icon
+			if ref.type == "fish":
+				icon = preload("res://content/fish/rare.png") \
+					if entry.id.ends_with(":rare") \
+					else preload("res://content/fish/icon.png")
+
+			var amount = entry.amount
+			# fill existing stacks
+			for i in items:
+				var a = i.amount
+				i.amount = min(ref.stack, amount + i.amount)
+				amount -= i.amount - a
+						
+			# create new stacks
+			while amount > 0:
+				var a = min(ref.stack, amount)
+				data.append({
+					"id": entry.id,
+					"ref": ref,
+					"icon": icon,
+					"amount": a,
+				})
+				amount -= a
+				
+		emit_signal("changed", entry.id, {
+			"id": entry.id,
+			"ref": ref,
+			"amount": total,
+		})
 	
 	return true
 
@@ -139,44 +169,61 @@ func get_item(id):
 func sort_by_stack_size(a, b):
 	return a.amount < b.amount
 
+func sort_requirements_by_priority(a, b):
+	return len(a.matches) > len(b.matches)
+
 # get list of all items (merged stacks) that are safe to process against (not required by any active quests)
 func safe():
-	var select = {}
-	var requirements = {}
+	var requirements = []
 	for request in GameState.requests:
 		if not request.accepted:
 			continue
 		if request.completed:
 			continue
 			
-		requirements[request] = {}
 		for requirement in request.get_requirements():
-			requirements[request][requirement] = {
+			requirements.append({
 				"matches": request.get_matching_items(requirement),
 				"amount": requirement.amount,
-			}
-		
-	for i in GameState.inventory.data:
-		var item = {
-			"id": i.id,
-			"icon": i.icon,
-			"ref": i.ref,
-			"price": 0,
-			"amount": i.amount + select.get(i.id, {}).get("amount", 0),
-		}
-		
-		for request in requirements:
-			for requirement in requirements[request].values():
-				if i.id in requirement.matches:
-					item.amount = max(i.amount - requirement.amount, 0)
-					requirement.amount = max(requirement.amount - i.amount, 0)
-		
-		if item.amount <= 0:
-			select.erase(i.id)
-		else:
-			select[i.id] = item
+			})
 	
-	var v = select.values()
-	v.sort_custom(self, "sort_by_stack_size")
-	return v
+	requirements.sort_custom(self, "sort_requirements_by_priority")
+	
+	var totals = {}
+	
+	for i in GameState.inventory.data:
+		totals[i.id] = totals.get(i.id, 0) + i.amount
+	
+	for requirement in requirements:
+		for i in requirement.matches:
+			if i in totals:
+				var a = totals[i]
+				totals[i] = max(a - requirement.amount, 0)
+				requirement.amount = max(requirement.amount - a, 0)
+				
+				if totals[i] <= 0:
+					totals.erase(i)
+			
+			if requirement.amount <= 0:
+				break
+
+	var select = []
+	for id in totals:
+		var ref = Content.get_item_reference(id)
+		var icon = ref.icon
+		if ref.type == "fish":
+			icon = preload("res://content/fish/rare.png") \
+				if id.ends_with(":rare") \
+				else preload("res://content/fish/icon.png")
+
+		select.append({
+			"id": id,
+			"icon": icon,
+			"ref": ref,
+			"price": 0,
+			"amount": totals[id],
+		})
+	
+	select.sort_custom(self, "sort_by_stack_size")
+	return select
 	

@@ -15,18 +15,17 @@ func can_sell():
 
 func sell():
 	var value = 0
-	var fish = []
+	var fish = {}
 	for f in GameState.inventory.safe():
 		if f.ref.type == "fish":
 			var price = f.ref.price
 			if f.id.ends_with(":rare"):
 				price *= 2
 			value += price * f.amount
-			fish.append(f)
+			fish[f.id] = fish.get(f.id, 0) + f.amount
 	
 	var choice = yield(dialogue.open([
-		"Do you have some fish for me?",
-		"Oh, these look delicious!",
+		"Oh, these fish look delicious!",
 		"I'll pay %d konpeito for 'em" % [value]
 	], ["Yes", "No"]), "completed")
 	
@@ -35,11 +34,13 @@ func sell():
 			"My mouth is already watering~",
 			"Thank you, Maia!",
 		]), "completed")
+		var sell = []
 		for f in fish:
-			GameState.inventory.insert_item({
-				"id": f.id,
-				"amount": -f.amount
+			sell.append({
+				"id": f,
+				"amount": -fish[f],
 			})
+		GameState.inventory.insert_item(sell)
 		GameState.player.balance += value
 	else:
 		yield(dialogue.open([

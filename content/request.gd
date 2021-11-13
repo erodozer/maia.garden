@@ -26,7 +26,7 @@ func prompt():
 		"proller":
 			return "Proller wants to add the following to his collection"
 		"tazzle":
-			return "Tazzle wants to cook up some fish"
+			return "Tazzle wants to cook some fish over a campfire"
 		"chie":
 			return "Chie needs help to maintain the shrine"
 	return ""
@@ -96,8 +96,10 @@ func get_matching_items(requirement):
 				if "location" in requirement and i.location != requirement.location:
 					continue
 				
+				select.append("%s:rare" % i.id)
+				
+				# if explicitly requires rare, do not include the normal id
 				if "rare" in requirement and requirement.rare:
-					select.append("%s:rare" % i.id)
 					continue
 			
 			select.append(i.id)
