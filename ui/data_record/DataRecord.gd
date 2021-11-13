@@ -16,8 +16,8 @@ func set_data_reference(d):
 	get_node("HBoxContainer/VBoxContainer/HBoxContainer/GameTime").text = "Game Time: %d/%d" % [game_time.month, game_time.day]
 	get_node("HBoxContainer/VBoxContainer/TimePlayed").text = "Time Played: %d:%02d:%02d" % [
 		int(d.time_played / 3600),
-		int(d.time_played / 60),
+		int(d.time_played / 60) % 60,
 		int(d.time_played) % 60
 	]
 	get_node("HBoxContainer/TextureRect").texture = load("res://characters/maia/outfits/%s/icon.tres" % d.outfit)
-	
+	get_node("HBoxContainer/TextureRect/Completed").visible = d.completed

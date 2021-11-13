@@ -2,11 +2,13 @@ extends StaticBody2D
 
 onready var seed_tool = get_tree().get_nodes_in_group("seed_tool").front()
 onready var particles = get_node("Explosion")
+onready var water_particles = get_node("Watering")
 onready var sprite = get_node("Anchor/Sprite")
 onready var water_sprite = get_node("Watered")
 
 onready var seed_sfx = get_node("SeedSfx")
 onready var harvest_sfx = get_node("HarvestSfx")
+onready var water_sfx = get_node("WaterSfx")
 
 var plant = null setget set_plant
 var cell = 0
@@ -46,6 +48,8 @@ func water(p):
 	if watered:
 		p.watered = true
 		set_plant(p)
+		water_sfx.play()
+		water_particles.emitting = true 
 		
 func set_plant(p):
 	plant = p

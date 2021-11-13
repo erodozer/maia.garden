@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cast.wav-fc43cf4c0325e4a09bbcde4cd524fa5c.sample"
+
+[deps]
+
+source_file="res://ui/fishing/cast.wav"
+dest_files=[ "res://.import/cast.wav-fc43cf4c0325e4a09bbcde4cd524fa5c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

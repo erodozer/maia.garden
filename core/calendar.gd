@@ -40,9 +40,6 @@ func advance_day():
 		
 		if GameState.stats.fish_caught.value > 5:
 			GameState.toggle_flag("introduce.tazzle")
-			
-	if day >= MAIAS_BIRTHDAY:
-		GameState.toggle_flag("maia_birthday")
 		
 	emit_signal("advance", day)
 	

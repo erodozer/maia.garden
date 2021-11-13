@@ -1,7 +1,7 @@
 extends Node2D
 
 func _setup(_params):
-	Bgm.change_song(preload("res://scenes/birthday/ëJæ╥é┐é╠Æδ.ogg"))
+	Bgm.change_song(preload("res://scenes/birthday/bgm.ogg"), 0)
 
 func _start():
 	var anim = get_node("AnimationPlayer")
@@ -34,5 +34,14 @@ func _start():
 	
 	yield(Bgm.fadeout(2.0), "completed")
 	
+	GameState.toggle_flag("maia_birthday")
+	
+	var dialogue = get_node("CanvasLayer/Dialogue")
+	yield(dialogue.open([
+		"Completion data auto saved",
+		"You can load this save data",
+		"to continue tending your garden",
+	]), "completed")
+	
 	GameState.calendar.advance_day()
-	SceneManager.change_scene("garden")
+	SceneManager.change_scene("title")

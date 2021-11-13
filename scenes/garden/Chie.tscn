@@ -26,7 +26,7 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=16]
 radius = 11.0
 
-[node name="Clover" type="StaticBody2D"]
+[node name="Chie" type="StaticBody2D"]
 position = Vector2( 0, 129 )
 collision_layer = 4
 script = ExtResource( 2 )

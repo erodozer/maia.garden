@@ -4,6 +4,7 @@ const DataRecord = preload("res://ui/data_record/DataRecord.tscn")
 
 onready var list = get_node("VBoxContainer")
 onready var button_group = ButtonGroup.new()
+onready var cursor_sfx = get_node("Cursor")
 
 func _ready():
 	button_group.connect("pressed", self, "_on_item_activated")
@@ -15,6 +16,7 @@ func build():
 		list.add_child(button)
 		button.group = button_group
 		button.data = header
+		button.connect("focus_entered", cursor_sfx, "play")
 		
 	var exit_button = Button.new()
 	exit_button.text = "Exit to Title"
@@ -22,6 +24,7 @@ func build():
 	exit_button.size_flags_horizontal = SIZE_EXPAND_FILL
 	exit_button.size_flags_vertical = SIZE_FILL
 	exit_button.connect("pressed", self, "_on_exit_game")
+	exit_button.connect("focus_entered", cursor_sfx, "play")
 	list.add_child(exit_button)
 	
 func destroy():

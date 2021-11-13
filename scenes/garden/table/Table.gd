@@ -2,8 +2,10 @@ extends StaticBody2D
 
 onready var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 onready var shop = get_tree().get_nodes_in_group("shop").front()
+onready var eat_sfx = get_node("Eat")
 
 func on_exchange(_item, _value):
+	eat_sfx.play()
 	if GameState.player.stamina >= 100:
 		shop.emit_signal("end")
 

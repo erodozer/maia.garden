@@ -61,6 +61,7 @@ fishing = true
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+volume_db = -80.0
 
 [node name="Sprite" type="Node2D" parent="."]
 material = SubResource( 2 )
@@ -74,14 +75,14 @@ playing = true
 visible = false
 material = SubResource( 2 )
 frames = ExtResource( 2 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Fishing" type="AnimatedSprite" parent="Sprite"]
 visible = false
 position = Vector2( -9, 1 )
 frames = ExtResource( 3 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

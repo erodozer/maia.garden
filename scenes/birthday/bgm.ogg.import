@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bgm.ogg-f94b7f6ba41bee65eec7ddc8362aec9f.oggstr"
+
+[deps]
+
+source_file="res://scenes/birthday/bgm.ogg"
+dest_files=[ "res://.import/bgm.ogg-f94b7f6ba41bee65eec7ddc8362aec9f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

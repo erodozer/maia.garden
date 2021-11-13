@@ -81,20 +81,27 @@ func open(type):
 	set_process_input(false)
 	Input.stop_joy_vibration(0)
 	player.bubble.visible = false
-	sfx_controller.stop()
 	
 	if not hooked:
+		tween.interpolate_property(get_node("Sfx"), "volume_db", 0, -80, 1.5)
+		tween.start()
 		player.fishing = false
 		yield(dialogue.open([
 			"The fish got away",
 		]), "completed")
+		sfx_controller.play("RESET")
+		tween.remove_all()
 		return
 	# test if player has enough stamina to catch the fish
 	if not GameState.player.can_perform_action(fish.stamina):
+		tween.interpolate_property(get_node("Sfx"), "volume_db", 0, -80, 1.5)
+		tween.start()
 		player.fishing = false
 		yield(dialogue.open([
 			"The line broke!",
 		]), "completed")
+		sfx_controller.play("RESET")
+		tween.remove_all()
 		return
 		
 	health.max_value = fish.ref.health
@@ -104,6 +111,7 @@ func open(type):
 	health.visible = true
 	Input.start_joy_vibration(0, 0.1, 0.4)
 	set_process(true)
+	sfx_controller.play("reel")
 	var caught = yield(self, "end")
 	set_process(false)
 	Input.stop_joy_vibration(0)
@@ -111,7 +119,6 @@ func open(type):
 	joystick.visible = false
 	health.visible = false
 	player.fishing = false
-	sfx_controller.play("pull")
 	
 	if not caught:
 		yield(dialogue.open([
@@ -121,6 +128,7 @@ func open(type):
 	
 		return
 	
+	sfx_controller.play("pull")
 	var result = GameState.fishing.catch(fish)
 	
 	catch_record.visible = result.record
@@ -189,11 +197,9 @@ func _process(delta):
 	if success and not reeling:
 		reeling = true
 		Input.start_joy_vibration(0, 0.5, 0.9)
-		sfx_controller.play("reel")
 	elif not success and reeling:
 		reeling = false
 		Input.start_joy_vibration(0, 0.1, 0.4)
-		sfx_controller.play("RESET")
 		
 	if reeling:
 		health.value -= reel_rate * delta

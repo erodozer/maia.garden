@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mizu00.wav-5e5a86983f9ac262de25090e588e4071.sample"
+path="res://.import/buy.wav-434b5e3423df99ddf4c84ca150628701.sample"
 
 [deps]
 
-source_file="res://ui/fishing/mizu00.wav"
-dest_files=[ "res://.import/mizu00.wav-5e5a86983f9ac262de25090e588e4071.sample" ]
+source_file="res://ui/shop/buy.wav"
+dest_files=[ "res://.import/buy.wav-434b5e3423df99ddf4c84ca150628701.sample" ]
 
 [params]
 

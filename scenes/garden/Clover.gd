@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends "res://characters/npc/npc.gd"
 
 onready var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 
@@ -9,13 +9,17 @@ func _ready():
 func hint():
 	return "Talk to Chie"
 
+func can_talk():
+	talk_indicator.visible = false
+	return false
+
 func interact():
 	yield(
 		dialogue.open([
 			"Good morning, Maia!",
 			"I have something to show you",
 			"will you follow me?",
-		], ["Okay!", "Um...", "Why not"]),
+		], ["Okay!", "Of course~"]),
 		"completed"
 	)
 	yield(
@@ -23,12 +27,13 @@ func interact():
 			"Great!",
 			"It's something you'll love!",
 			"Right this way~",
-			"Oh, and also",
-			"Happy Birthday!",
 		]),
 		"completed"
 	)
 	
-	yield(Bgm.fadeout(0.5), "completed")
+	var anim = get_node("AnimationPlayer")
+	anim.play("fadeout")
+	Bgm.fadeout(3.0)
+	yield(anim, "animation_finished")
 	SceneManager.change_scene("birthday")
 	

@@ -11,16 +11,8 @@ signal closed
 signal end
 
 func _ready():
-	var tabs = get_node("Window/Tabs")
-	for t in tabs.get_children():
-		if not t.visible:
-			continue
-			
-		var button = t as BaseButton
-		if not button:  # calendar panel will cast to null
-			continue
-		button.connect("toggled", self, "_on_tab_toggled", [button.name])
-		
+	var tabs = preload("res://ui/journal/TabGroup.tres")
+	tabs.connect("pressed", self, "_on_tab_toggled")
 	set_process_input(false)
 
 func _input(event):
@@ -83,16 +75,15 @@ func open():
 	emit_signal("closed")
 	visible = false
 
-func _on_tab_toggled(button_pressed, view):
-	if not button_pressed:
-		return
-	
+func _on_tab_toggled(button_pressed):
 	for c in views.get_children():
 		c.visible = false
 		
-	active_view = views.get_node(view)
+	active_view = views.get_node(button_pressed.name)
 	active_view.visible = true
 	active_view.grab_focus()
 	active_view.grab_click_focus()
 
 	get_node("InventoryCounter").visible = active_view.name == "Inventory"
+	get_node("Cursor").play()
+	

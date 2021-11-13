@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mizu08.wav-ac9406c9f86bc913f20afe30eeb18800.sample"
+path="res://.import/water.wav-9442910af2d655523aa146cc9ee1553a.sample"
 
 [deps]
 
-source_file="res://ui/fishing/mizu08.wav"
-dest_files=[ "res://.import/mizu08.wav-ac9406c9f86bc913f20afe30eeb18800.sample" ]
+source_file="res://scenes/garden/soil/water.wav"
+dest_files=[ "res://.import/water.wav-9442910af2d655523aa146cc9ee1553a.sample" ]
 
 [params]
 

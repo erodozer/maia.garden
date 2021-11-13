@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://content/flower/plants.png" type="Texture" id=1]
 [ext_resource path="res://scenes/garden/soil/Plant.gd" type="Script" id=2]
 [ext_resource path="res://scenes/garden/soil/plant.wav" type="AudioStream" id=3]
 [ext_resource path="res://scenes/garden/soil/harvest.ogg" type="AudioStream" id=4]
+[ext_resource path="res://scenes/garden/soil/water.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -27,13 +28,12 @@ shape = SubResource( 1 )
 
 [node name="Watered" type="Sprite" parent="."]
 visible = false
-z_as_relative = false
 texture = SubResource( 2 )
 centered = false
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0, 16 )
-z_as_relative = false
+z_index = 1
 
 [node name="Sprite" type="Sprite" parent="Anchor"]
 scale = Vector2( 1, -1 )
@@ -42,6 +42,7 @@ flip_v = true
 
 [node name="Explosion" type="CPUParticles2D" parent="."]
 position = Vector2( 8, 8 )
+z_index = 2
 emitting = false
 amount = 10
 one_shot = true
@@ -59,8 +60,30 @@ scale_amount = 2.0
 scale_amount_curve = SubResource( 3 )
 color = Color( 0.956863, 0.705882, 0.105882, 1 )
 
+[node name="Watering" type="CPUParticles2D" parent="."]
+position = Vector2( 8, 8 )
+z_index = 2
+emitting = false
+amount = 10
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2( 0, -4 )
+gravity = Vector2( 0, 40 )
+initial_velocity = 20.0
+initial_velocity_random = 0.2
+angle_random = 1.0
+scale_amount = 2.0
+scale_amount_curve = SubResource( 3 )
+color = Color( 0.156863, 0.8, 0.87451, 1 )
+
 [node name="SeedSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
 [node name="HarvestSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+
+[node name="WaterSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )

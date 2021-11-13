@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ui/karaoke/Karaoke.gd" type="Script" id=1]
 [ext_resource path="res://ui/karaoke/Lane.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/karaoke/hit.wav" type="AudioStream" id=3]
 [ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://characters/maia/outfits/default/maia_1.png" type="Texture" id=8]
 [ext_resource path="res://characters/maia/outfits/default/maia_2.png" type="Texture" id=9]
@@ -431,6 +432,10 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HitSfx" type="AudioStreamPlayer" parent="Game"]
+stream = ExtResource( 3 )
+volume_db = -80.0
 
 [node name="Results" type="Control" parent="."]
 anchor_left = 0.5

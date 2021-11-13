@@ -87,12 +87,19 @@ func load_headers(slot):
 	var data = parse_json(f.get_as_text())
 	f.close()
 	
+	if not ("updatedAt" in data):
+		return {
+			"slot": slot,
+			"updated_at": null,
+		}
+	
 	return {
 		"slot": slot,
 		"updated_at": data.updatedAt,
 		"game_time": data.get("calendar", {}).get("date", 1634616000),
 		"time_played": data.get("timePlayed", 0),
 		"outfit": data.get("player", {}).get("outfit", "default"),
+		"completed": data.get("flags", {}).get("maia_birthday", false),
 	}
 
 func reset_game():
@@ -150,11 +157,12 @@ func load_game(slot):
 	
 	SceneManager.change_scene("loading", [data])
 	
-func delete_game():
-	var dir = Directory.new()
-	for d in godash.enumerate_dir("user://", "save"):
-		dir.remove(d)
-
+func delete_game(slot):
+	var save_game = File.new()
+	save_game.open("user://garden.%s.save" % slot, File.WRITE)
+	save_game.store_line(to_json({}))
+	save_game.close()
+	
 func _on_Calendar_advance(_day):
 	temp = {}
 

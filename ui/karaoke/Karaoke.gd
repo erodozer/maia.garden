@@ -13,6 +13,7 @@ onready var combo_label = get_node("Game/LaneView/Combo")
 onready var count_label = get_node("Game/ComboCounter/VBoxContainer/Count")
 onready var song_progress = get_node("Game/ProgressBar")
 onready var audio = get_node("AudioStreamPlayer")
+onready var hit_sfx = get_node("Game/HitSfx")
 
 onready var anim = get_node("AnimationPlayer")
 
@@ -150,6 +151,8 @@ func _on_hit():
 		combo_label.text = "%d Combo" % combo
 	else:
 		combo_label.text = ""
+		
+	hit_sfx.play()
 		
 func _on_miss():
 	combo = 0
