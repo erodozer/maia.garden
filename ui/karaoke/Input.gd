@@ -8,10 +8,10 @@ enum Direction {
 }
 
 const DirToInput = {
-	Direction.Left: "ui_left",
-	Direction.Up: "ui_up",
-	Direction.Down: "ui_down",
-	Direction.Right: "ui_right",
+	Direction.Left: "dance_left",
+	Direction.Up: "dance_up",
+	Direction.Down: "dance_down",
+	Direction.Right: "dance_right",
 }
 const DirToAngle = {
 	Direction.Left: 90,

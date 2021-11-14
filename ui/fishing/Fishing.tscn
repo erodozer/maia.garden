@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://ui/left.png" type="Texture" id=1]
 [ext_resource path="res://ui/up.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ui/right.png" type="Texture" id=8]
 [ext_resource path="res://ui/down.png" type="Texture" id=9]
 [ext_resource path="res://ui/fishing/splash.wav" type="AudioStream" id=10]
+[ext_resource path="res://ui/fishing/splash2.wav" type="AudioStream" id=11]
 [ext_resource path="res://content/fish/icon.png" type="Texture" id=12]
 [ext_resource path="res://content/fish/rare.png" type="Texture" id=13]
 [ext_resource path="res://ui/fishing/cast.wav" type="AudioStream" id=14]
@@ -72,9 +73,8 @@ tracks/2/keys = {
 "values": [ null ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "fight"
-length = 2.5
+[sub_resource type="Animation" id=8]
+resource_name = "fail"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sfx:stream")
 tracks/0/interp = 1
@@ -86,6 +86,34 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sfx:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fight"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sfx:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sfx:playing")
@@ -378,10 +406,12 @@ __meta__ = {
 
 [node name="Sfx" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
+stream = ExtResource( 11 )
 
 [node name="SfxController" type="AnimationPlayer" parent="."]
 pause_mode = 2
 anims/RESET = SubResource( 7 )
+anims/fail = SubResource( 8 )
 anims/fight = SubResource( 2 )
 anims/pull = SubResource( 3 )
 anims/reel = SubResource( 4 )

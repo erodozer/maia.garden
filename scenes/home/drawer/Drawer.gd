@@ -60,9 +60,12 @@ func _on_ItemList_item_activated(index):
 			if not GameState.flag("outfit.tiny"):
 				return
 			GameState.player.outfit = "tiny"
+	get_node("Select").play()
 	emit_signal("end")
 	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("end")
-	
+
+func _on_ItemList_item_selected(index):
+	get_node("Cursor").play()

@@ -3,7 +3,7 @@
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/title/LoadPanel.gd" type="Script" id=2]
 [ext_resource path="res://ui/cursor.wav" type="AudioStream" id=3]
-[ext_resource path="res://ui/data_record/select.wav" type="AudioStream" id=4]
+[ext_resource path="res://ui/select.wav" type="AudioStream" id=4]
 
 [node name="LoadPanel" type="Control"]
 anchor_right = 1.0

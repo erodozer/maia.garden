@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/select.wav-aa8d3a7afc95317ba3fd947ea94ad92b.sample"
+path="res://.import/splash2.wav-95a84a04c89a523e4393639eb0f04a5b.sample"
 
 [deps]
 
-source_file="res://ui/data_record/select.wav"
-dest_files=[ "res://.import/select.wav-aa8d3a7afc95317ba3fd947ea94ad92b.sample" ]
+source_file="res://ui/fishing/splash2.wav"
+dest_files=[ "res://.import/splash2.wav-95a84a04c89a523e4393639eb0f04a5b.sample" ]
 
 [params]
 

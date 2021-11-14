@@ -67,6 +67,7 @@ func play():
 		visible = false
 		emit_signal("end")
 		return -1
+	get_node("Difficulty/PanelContainer/Select").play()
 	anim.play_backwards("difficulty")
 	yield(anim, "animation_finished")
 	difficulty_selector.visible = false
@@ -157,3 +158,7 @@ func _on_hit():
 func _on_miss():
 	combo = 0
 	combo_label.text = "MISS"
+
+
+func _on_ItemList_item_selected(index):
+	get_node("Difficulty/PanelContainer/Cursor").play()

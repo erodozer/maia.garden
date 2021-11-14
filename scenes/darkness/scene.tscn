@@ -47,7 +47,4 @@ scale = Vector2( 2, 2 )
 [node name="Maia" parent="." index="4"]
 position = Vector2( 76.752, 47 )
 
-[node name="Fishing" parent="Maia/Sprite" index="2"]
-frame = 2
-
 [editable path="Maia"]

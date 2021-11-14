@@ -18,7 +18,7 @@ func interact():
 		text.append(
 			"Want to know about tomorrow?"
 		)
-		choices = ["Fortune"]
+		choices = ["Fortune", "No Thanks"]
 		
 	if can_talk():
 		choices.push_front("Talk")

@@ -83,25 +83,21 @@ func open(type):
 	player.bubble.visible = false
 	
 	if not hooked:
-		tween.interpolate_property(get_node("Sfx"), "volume_db", 0, -80, 1.5)
-		tween.start()
+		sfx_controller.play("fail")
 		player.fishing = false
 		yield(dialogue.open([
 			"The fish got away",
 		]), "completed")
 		sfx_controller.play("RESET")
-		tween.remove_all()
 		return
 	# test if player has enough stamina to catch the fish
 	if not GameState.player.can_perform_action(fish.stamina):
-		tween.interpolate_property(get_node("Sfx"), "volume_db", 0, -80, 1.5)
-		tween.start()
+		sfx_controller.play("fail")
 		player.fishing = false
 		yield(dialogue.open([
 			"The line broke!",
 		]), "completed")
 		sfx_controller.play("RESET")
-		tween.remove_all()
 		return
 		
 	health.max_value = fish.ref.health
@@ -121,10 +117,12 @@ func open(type):
 	player.fishing = false
 	
 	if not caught:
+		sfx_controller.play("fail")
 		yield(dialogue.open([
 			"The fish got away",
 		]), "completed")
 		GameState.player.perform_action(fish.stamina / 3)
+		sfx_controller.play("RESET")
 	
 		return
 	
