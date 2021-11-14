@@ -14,12 +14,12 @@ func get_requirements():
 		{
 			"hint": "Fish",
 			"type": "fish",
-			"amount": 3,
+			"amount": 10,
 		},
 		{
 			"hint": "Flowers",
 			"type": "flower",
-			"amount": 3,
+			"amount": 20,
 		}
 	]
 	

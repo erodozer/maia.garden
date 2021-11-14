@@ -11,12 +11,12 @@ func get_requirements():
 		{
 			"hint": "Clover",
 			"id": "clover",
-			"amount": 20,
+			"amount": 50,
 		},
 		{
 			"hint": "Clover Seeds",
 			"id": "seed_clover",
-			"amount": 20,
+			"amount": 50,
 		}
 	]
 
