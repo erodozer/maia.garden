@@ -45,4 +45,4 @@ func complete():
 		"Thanks a bunch, Maia",
 		"I'm sure you'll love it",
 	]), "completed")
-	GameState.toggle("garden.boost_1")
+	GameState.toggle_flag("garden.boost_1")

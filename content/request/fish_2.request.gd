@@ -28,15 +28,12 @@ func accept():
 		"I'm already out of fish.",
 		"So nothing to cook right now",
 		"However, on that note",
-		"The fish you caught last time",
-		"were plenty good, but...",
-		"Do you think a fish tastes better",
-		"when it's harder to catch?",
-		"Have you ever caught a rare fish?",
-		"When a fish is larger than average,",
-		"that is for its species,",
-		"I consider that rare.",
-		"Could you help me catch some"
+		"What do you think makes",
+		"a fish taste best?",
+		"I think I like rare fish the best",
+		"You can tell if a fish is rare",
+		"by their golden color",
+		"Could you help me catch some?",
 	]), "completed")
 
 func complete():

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "flower_1"
+sendAt = "quest:flower_1"
+sender = "Clover"
+message = "Hey Maia,
+
+The flower shop is in a bit of predicament.  Do you mind coming over and helping me out.  By the way, make sure you have room in your bag, I have something to give you."
+outro = ""
+onDelivery = ""
+onRead = ""

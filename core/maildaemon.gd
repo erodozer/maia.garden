@@ -3,8 +3,14 @@ extends Node
 var inbox = {}
 	
 func deliver_mail(day):
+	# queue flags for exeuction after iteration
+	# this prevents sending multiple mail for quests when introducing characters
+	var delivered_flags = []
+	
 	for m in Content.Mail:
 		if m.id in inbox:
+			if m.onDelivery:  # add just in case, to help with migrating save data
+				delivered_flags.append(m.onDeliver)
 			continue
 		
 		var delivered = false
@@ -33,7 +39,10 @@ func deliver_mail(day):
 				"ref": m
 			}
 			if m.onDelivery:
-				GameState.toggle_flag(m.onDelivery)
+				delivered_flags.append(m.onDeliver)
+	
+	for f in delivered_flags:
+		GameState.toggle_flag(f)
 
 func _on_calendar_advance(day):
 	deliver_mail(day)

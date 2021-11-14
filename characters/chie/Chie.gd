@@ -12,12 +12,13 @@ func interact():
 	var choices = []
 	var text = [
 		"Hello Maia!",
+		"Thanks for stopping by",
 	]
 	if GameState.player.balance > FORTUNE_FEE:
 		text.append(
 			"Want to know about tomorrow?"
 		)
-		choices = ["Fortune", "No Thanks"]
+		choices = ["Fortune"]
 		
 	if can_talk():
 		choices.push_front("Talk")

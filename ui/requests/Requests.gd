@@ -12,6 +12,8 @@ func _ready():
 	set_process_input(false)
 
 func open(request):
+	for b in buttons.get_children():
+		b.pressed = false
 	visible = true
 	# build the hint
 	prompt.text = request.prompt()
@@ -50,14 +52,10 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("end", false)
 
-func _on_Submit_toggled(button_pressed):
-	if not button_pressed:
-		return
-	
+
+func _on_Submit_pressed():
 	emit_signal("end", true)
 
-func _on_Cancel_toggled(button_pressed):
-	if not button_pressed:
-		return
-	
+
+func _on_Cancel_pressed():
 	emit_signal("end", false)

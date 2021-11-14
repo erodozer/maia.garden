@@ -36,7 +36,7 @@ func get_phrase():
 	if GameState.flag("ssubi.phrase_4"):
 		phrases.append("NOM")
 	if GameState.flag("ssubi.phrase_5"):
-		phrases.append("")
+		phrases.append("what doing?")
 	return phrases
 	
 func interact():

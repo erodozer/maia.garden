@@ -20,6 +20,9 @@ func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		emit_signal("next")
 
+	if event.is_action_pressed("ui_cancel"):
+		emit_signal("choice", null)
+
 func open(lines, choices = []):
 	visible = true
 	set_process_input(false)
@@ -61,7 +64,9 @@ func open(lines, choices = []):
 		var first_choice = choice_buttons.get_child(0)
 		first_choice.grab_focus()
 		yield(get_tree(), "idle_frame")
+		set_process_input(true)
 		selected = yield(self, "choice")
+		set_process_input(false)
 		
 		for c in choice_buttons.get_children():
 			c.group = null

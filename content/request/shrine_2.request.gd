@@ -22,9 +22,10 @@ func accept():
 	.accept()
 	var dialogue = get_tree().get_nodes_in_group("dialogue").front()
 	yield(dialogue.open([
-		"Maia...",
+		"Maia!",
+		"So about what's new,",
 		"I heard about Yuuki's Catfe",
-		"and how she bakes fresh bread.",
+		"and how she bakes fresh bread!",
 		"It sounds so good",
 		"I want to taste it so badly",
 		"Since I rarely leave the shrine",
@@ -64,18 +65,21 @@ func talk_to_yuuki():
 		return
 	
 	yield(dialogue.open([
-		"Chie asked you to get her bread?",
-		"Not many stop by her shrine lately",
-		"If she wants it fresh,",
-		"She could just get it herself",
-		"It's nice of you to help, though",
-		"And since this is Chie,",
-		"I'll bake something special.",
-		"Here's a couple loaves",
+		"Chie asked you to get bread?",
+		"Hmm, since this is Chie,",
+		"I'll bake something special!",
+		"Just wait a few seconds",
+	]), "completed")
+	
+	yield(get_tree().create_timer(3.0), "timeout")
+	
+	yield(dialogue.open([
+		"Here we are!",
 		"Tell me what you think",
 		"[Got 2 Chocolate Bread]",
 		"I'm sure she'll want more",
-		"But I can't give them for free"
+		"But I can't give them for free",
+		"Support my business too, okay?",
 	]), "completed")
 	
 	GameState.toggle_flag("unlock_chocobread")  # allow purchasing catgrass

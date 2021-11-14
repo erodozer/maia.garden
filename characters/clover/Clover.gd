@@ -54,10 +54,9 @@ func interact():
 	
 	if choice == "Talk":
 		yield(check_requests(), "completed")
-		return
 		
 	if choice == "Sell":
 		yield(sell(), "completed")
-		return
 	
-	yield(shop.open(GameState.shops.flowershop.stock), "completed")
+	if choice == "Shop":
+		yield(shop.open(GameState.shops.flowershop.stock), "completed")

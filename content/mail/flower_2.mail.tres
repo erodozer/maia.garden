@@ -4,12 +4,12 @@
 
 [resource]
 script = ExtResource( 1 )
-id = "fish_1"
-sendAt = "quest:fish_1"
-sender = "Tazzle"
-message = "Hey Maia,
+id = "flower_2"
+sendAt = "quest:flower_2"
+sender = "Clover"
+message = "Hi Maia,
 
-Could you come up to the campsite and help me out with something?  Be sure to bring your fishing rod!"
+Come on over to the flower shop! I want to show my appreciation for all you've done to help me out."
 outro = ""
 onDelivery = ""
 onRead = ""

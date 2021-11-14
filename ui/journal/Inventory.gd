@@ -28,7 +28,7 @@ func build():
 		var ref = i.ref
 		record.get_node("Details/Icon").texture = i.icon
 		record.get_node("Details/ItemName").text = ref.name
-		if i.amount > 1:
+		if i.ref.stack > 1:
 			record.get_node("Details/Count").text = "%d" % i.amount
 		else:
 			record.get_node("Details/Count").visible = false

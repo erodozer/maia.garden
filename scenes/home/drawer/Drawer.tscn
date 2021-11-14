@@ -58,3 +58,5 @@ auto_height = true
 fixed_icon_size = Vector2( 24, 24 )
 
 [node name="Tween" type="Tween" parent="CanvasLayer"]
+
+[connection signal="item_activated" from="CanvasLayer/Anchor/Control/ItemList" to="." method="_on_ItemList_item_activated"]

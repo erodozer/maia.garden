@@ -16,5 +16,5 @@ I'll gladly pay you for any flowers you pick from your garden.  I also have seed
 
 So please stop by, I'll be waiting for you~"
 outro = ""
-onDelivery = ""
+onDelivery = "introduce.clover.complete"
 onRead = ""

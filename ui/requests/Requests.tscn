@@ -82,7 +82,14 @@ alignment = 2
 margin_left = 60.0
 margin_right = 141.0
 margin_bottom = 21.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../Cancel")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath("../Cancel")
+focus_previous = NodePath(".")
 toggle_mode = true
+shortcut_in_tooltip = false
 keep_pressed_outside = true
 group = SubResource( 1 )
 text = "Hand Over Items"
@@ -91,10 +98,17 @@ text = "Hand Over Items"
 margin_left = 152.0
 margin_right = 180.0
 margin_bottom = 21.0
+focus_neighbour_left = NodePath("../Submit")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath("../Submit")
+focus_previous = NodePath(".")
 toggle_mode = true
+shortcut_in_tooltip = false
 keep_pressed_outside = true
 group = SubResource( 1 )
 text = "Keep"
 
-[connection signal="toggled" from="VBoxContainer/Buttons/Submit" to="." method="_on_Submit_toggled"]
-[connection signal="toggled" from="VBoxContainer/Buttons/Cancel" to="." method="_on_Cancel_toggled"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Submit" to="." method="_on_Submit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Cancel" to="." method="_on_Cancel_pressed"]

@@ -16,7 +16,7 @@ func get_requirements():
 	]
 	
 func can_accept():
-	return GameState.flag("introduce.clover") and GameState.flag("introduce.yuuki")
+	return GameState.flag("introduce.clover.complete") and GameState.flag("introduce.yuuki.complete")
 
 func accept():
 	.accept()
