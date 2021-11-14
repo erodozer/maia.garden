@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-id = "tazzle_introduction"
+id = "tazzle_garden"
 sendAt = "request:fish_2:complete"
 sender = "Tazzle"
 message = "Good Morning Maia!

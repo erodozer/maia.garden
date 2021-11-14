@@ -10,7 +10,7 @@ func deliver_mail(day):
 	for m in Content.Mail:
 		if m.id in inbox:
 			if m.onDelivery:  # add just in case, to help with migrating save data
-				delivered_flags.append(m.onDeliver)
+				delivered_flags.append(m.onDelivery)
 			continue
 		
 		var delivered = false
@@ -39,7 +39,7 @@ func deliver_mail(day):
 				"ref": m
 			}
 			if m.onDelivery:
-				delivered_flags.append(m.onDeliver)
+				delivered_flags.append(m.onDelivery)
 	
 	for f in delivered_flags:
 		GameState.toggle_flag(f)
