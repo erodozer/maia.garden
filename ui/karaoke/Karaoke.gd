@@ -57,6 +57,8 @@ func _ready():
 		play()
 
 func play():
+	var rand = RandomNumberGenerator.new()
+	rand.randomize()
 	visible = true
 	anim.play("difficulty")
 	yield(anim, "animation_finished")
@@ -86,10 +88,16 @@ func play():
 	var beats = song_length * bpm / 60.0
 	beat += 3.0
 	while beat < beats:
-		var step = godash.rand_choice(DIFFICULTY[difficulty].freq)
+		var step = godash.rand_choice(DIFFICULTY[difficulty].freq, rand)
 		beat += step
 		
-		var lane = godash.rand_choice([-1, 0, 1, 2, 3])
+		var lane = godash.rand_choice([
+			-1, 
+			0, 1, 2, 3,
+			0, 1, 2, 3,
+			0, 1, 2, 3,
+			0, 1, 2, 3,
+		], rand)
 		if lane < 0:
 			continue
 		
