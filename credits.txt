@@ -27,6 +27,7 @@ Moonmanclint
 Omega
 Ryeflekun
 Vogon
+Xerp
 
 ## Third Party Assets
 
@@ -44,6 +45,10 @@ https://peritune.com/freematerial_list/
 
 Emily Fitch Music
 https://www.youtube.com/c/RetroTV5000
+
+### Sound
+
+http://osabisi.sakura.ne.jp/
 
 ### Fonts
 
