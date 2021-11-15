@@ -39,7 +39,7 @@ func update_balance(amount):
 	var old = balance
 	balance = amount
 	emit_signal("balance_changed", amount, old)
-	GameState.emit_signal("stat", "konpeto", {
+	GameState.emit_signal("stat", "konpeito", {
 		"new_value": amount,
 		"old_value": old,
 	})

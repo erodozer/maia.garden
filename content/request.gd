@@ -45,31 +45,30 @@ func can_accept():
 func accept():
 	GameState.toggle_flag("%s:started" % key())
 	
-func complete():
+func build_transaction():
+	var transaction = []
 	for requirement in get_requirements():
 		var select = get_matching_items(requirement)
-		
 		var claim = requirement.amount
 		for s in select:
-			if s == "konpeito":
-				GameState.player.balance -= claim
-				claim = 0
-				break
-				
-			var records = GameState.inventory.get_item(s)
-			for record in records:
-				if record.amount > 0:
-					var amount = min(record.amount, claim)
-					GameState.inventory.insert_item({
-						"id": record.id,
-						"ref": record.ref,
-						"amount": -amount
-					})
-					claim -= amount
-					if claim <= 0:
-						break
-		assert(claim == 0)
-		
+			var record = GameState.inventory.get_item(s)
+			if record.amount > 0:
+				var amount = min(record.amount, claim)
+				claim = claim - amount
+				transaction.append({
+					"id": record.id,
+					"amount": -amount,
+				})
+				if claim == 0:
+					break
+		if claim > 0:
+			return false
+	return transaction
+
+func complete():
+	var transaction = build_transaction()
+	assert(GameState.inventory.can_insert(transaction))
+	GameState.inventory.insert_item(transaction)
 	GameState.toggle_flag("%s:completed" % key())
 	GameState.emit_signal("stat", "request.completed", {
 		"request": self,
@@ -108,19 +107,5 @@ func get_matching_items(requirement):
 	return select
 
 func requirements_met():
-	var has_items = true
-	for requirement in get_requirements():
-		var select = get_matching_items(requirement)
-		
-		var sum = 0
-		for i in select:
-			if i == "konpeito":
-				sum += GameState.player.balance
-				continue
-			var item = GameState.inventory.get_item(i)
-			for record in item:
-				sum += record.amount
-		if sum < requirement.amount:
-			has_items = false
-			break
-	return has_items
+	var transaction = build_transaction()
+	return transaction is Array

@@ -16,7 +16,7 @@ margin_right = 151.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
-text = "Konpeto Earned"
+text = "Konpeito Earned"
 
 [node name="Count" type="Label" parent="."]
 margin_left = 155.0

@@ -70,8 +70,13 @@ func can_insert(entries):
 	var total_stacks = len(data)
 	
 	for entry in entries:
-		var ref = entry.ref if "ref" in entry else Content.get_item_reference(entry.id)
 		var sell = entry.amount < 0
+		
+		if entry.id == "konpeito":
+			if sell and GameState.player.konpeito + entry.amount < 0:
+				return false
+
+		var ref = entry.ref if "ref" in entry else Content.get_item_reference(entry.id)
 		
 		var amount = entry.amount
 		var total = 0
@@ -160,10 +165,19 @@ func insert_item(entries):
 	return true
 
 func get_item(id):
-	var matching = []
+	if id == "konpeito":
+		return {
+			"id": "konpeito",
+			"amount": GameState.player.konpeito,
+		}
+
+	var matching = {
+		"id": id,
+		"amount": 0,
+	}
 	for i in data:
 		if i.id == id:
-			matching.append(i)
+			matching.amount += i.amount
 	return matching
 
 func sort_by_stack_size(a, b):

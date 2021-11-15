@@ -7,7 +7,7 @@ func get_id():
 
 func _ready():
 	for c in Content.Items:
-		if c.type == "cafe":
+		if c.type == "cafe" and c.stack == 0:
 			has_eaten[c.id] = false
 
 func _on_stat(id, params):
@@ -21,7 +21,7 @@ func _on_stat(id, params):
 	return false
 
 func get_title():
-	return "Sweet Treats"
+	return "Taste Tester"
 	
 func get_description():
 	return "Tried one of every cafe item"
@@ -44,5 +44,6 @@ func restore(data):
 	has_eaten = {}
 	var loaded = data.get("achievements", {}).get("cafe1", {})
 	for c in Content.Items:
-		if c.type == "cafe":
-			has_eaten[c] = false if not (c in loaded) else loaded[c]
+		if c.type == "cafe" and c.stack == 0:
+			var eaten = data.get("achievements", {}).get("cafe1", {}).get(c.id, false)
+			has_eaten[c.id] = eaten

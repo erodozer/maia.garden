@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_xerp"
+sendAt = "1637038800"
+sender = "Xerp"
+message = "Dear Maia,
+
+Happy birthday! I hope your day is filled with joy, bussin food, and friends with which to make fond memories.
+
+You bring so much joy to those around you every day, so please allow us to return the favor!
+
+With lots of love"
+outro = ""
+onDelivery = ""
+onRead = ""

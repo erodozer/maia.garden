@@ -18,40 +18,66 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -75.0
-margin_right = 100.0
-margin_bottom = 75.0
-rect_min_size = Vector2( 200, 150 )
+[node name="Tween" type="Tween" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+margin_left = 16.0
+margin_top = 4.0
+margin_right = 184.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 164.0
+margin_bottom = 16.0
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 4 )
+text = "You can stream up to once per day"
+align = 1
+valign = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 33.0
+margin_right = 200.0
+margin_bottom = 150.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
 custom_constants/separation = 8
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Game" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Game" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 6.0
 margin_right = 96.0
-margin_bottom = 150.0
+margin_bottom = 117.0
 custom_constants/separation = -7
-alignment = 1
 
-[node name="Panel" type="Panel" parent="HBoxContainer/Game"]
-margin_top = 27.0
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Game"]
 margin_right = 90.0
-margin_bottom = 107.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 90, 80 )
 size_flags_vertical = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Game/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Game/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 4
@@ -60,7 +86,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Game/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Game/Panel/MarginContainer"]
 margin_left = 4.0
 margin_right = 86.0
 margin_bottom = 80.0
@@ -69,7 +95,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
 margin_right = 82.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
@@ -79,7 +105,7 @@ custom_constants/shadow_offset_y = 0
 text = "Chat + Game"
 align = 1
 
-[node name="Icon" type="TextureRect" parent="HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
 margin_top = 11.0
 margin_right = 82.0
 margin_bottom = 43.0
@@ -88,7 +114,7 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
-[node name="Label2" type="Label" parent="HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
 margin_top = 45.0
 margin_right = 82.0
 margin_bottom = 60.0
@@ -98,54 +124,52 @@ custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = -3
 custom_constants/shadow_offset_y = 0
 custom_fonts/font = ExtResource( 4 )
-text = "A Stable Source of Konpeto"
+text = "A Stable Source of Konpeito"
 align = 1
 autowrap = true
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/Game"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Game"]
 margin_left = 26.0
-margin_top = 100.0
+margin_top = 73.0
 margin_right = 64.0
-margin_bottom = 122.0
+margin_bottom = 95.0
 size_flags_horizontal = 4
 
-[node name="Cost" type="HBoxContainer" parent="HBoxContainer/Game/PanelContainer"]
+[node name="Cost" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Game/PanelContainer"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 34.0
 margin_bottom = 18.0
 alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/Game/PanelContainer/Cost"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Game/PanelContainer/Cost"]
 margin_top = 2.0
 margin_right = 12.0
 margin_bottom = 11.0
 text = "25"
 
-[node name="Icon" type="TextureRect" parent="HBoxContainer/Game/PanelContainer/Cost"]
+[node name="Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Game/PanelContainer/Cost"]
 margin_left = 16.0
 margin_right = 30.0
 margin_bottom = 14.0
 texture = ExtResource( 6 )
 
-[node name="Karaoke" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Karaoke" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 104.0
 margin_right = 194.0
-margin_bottom = 150.0
+margin_bottom = 117.0
 custom_constants/separation = -7
-alignment = 1
 
-[node name="Panel" type="Panel" parent="HBoxContainer/Karaoke"]
-margin_top = 27.0
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Karaoke"]
 margin_right = 90.0
-margin_bottom = 107.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 90, 80 )
 size_flags_vertical = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Karaoke/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Karaoke/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 4
@@ -154,7 +178,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Karaoke/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Karaoke/Panel/MarginContainer"]
 margin_left = 4.0
 margin_right = 86.0
 margin_bottom = 80.0
@@ -163,7 +187,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
 margin_right = 82.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
@@ -173,7 +197,7 @@ custom_constants/shadow_offset_y = 0
 text = "Karaoke"
 align = 1
 
-[node name="Icon" type="TextureRect" parent="HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
 margin_top = 11.0
 margin_right = 82.0
 margin_bottom = 43.0
@@ -182,7 +206,7 @@ texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
-[node name="Label2" type="Label" parent="HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
 margin_top = 45.0
 margin_right = 82.0
 margin_bottom = 60.0
@@ -196,30 +220,28 @@ text = "Earnings based on skill"
 align = 1
 autowrap = true
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/Karaoke"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Karaoke"]
 margin_left = 25.0
-margin_top = 100.0
+margin_top = 73.0
 margin_right = 64.0
-margin_bottom = 122.0
+margin_bottom = 95.0
 size_flags_horizontal = 4
 
-[node name="Cost" type="HBoxContainer" parent="HBoxContainer/Karaoke/PanelContainer"]
+[node name="Cost" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Karaoke/PanelContainer"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 35.0
 margin_bottom = 18.0
 alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/Karaoke/PanelContainer/Cost"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Karaoke/PanelContainer/Cost"]
 margin_top = 2.0
 margin_right = 13.0
 margin_bottom = 11.0
 text = "40"
 
-[node name="Icon" type="TextureRect" parent="HBoxContainer/Karaoke/PanelContainer/Cost"]
+[node name="Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Karaoke/PanelContainer/Cost"]
 margin_left = 17.0
 margin_right = 31.0
 margin_bottom = 14.0
 texture = ExtResource( 6 )
-
-[node name="Tween" type="Tween" parent="."]
