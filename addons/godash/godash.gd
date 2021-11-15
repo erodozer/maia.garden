@@ -46,7 +46,7 @@ static func rand_chance(collection: Dictionary, rand = null):
 		var weight = collection[key]
 		total_weight += weight
 		keys.append(key)
-		values.append(total_weight)
+		values.append(weight)
 		
 	var chance = (randf() if not rand else rand.randf()) * total_weight
 	
