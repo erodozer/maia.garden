@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "proller_collection_2"
+sendAt = "quest:proller_collection_2"
+sender = "Proller"
+message = "Znvn
+
+Erghea gb gur qnexarff va gur sberfg
+lbhe nffvfgnapr vf erdhverq bapr zber
+zl pbyyrpgvba vf arneyl pbzcyrgr"
+outro = ""
+onDelivery = ""
+onRead = ""

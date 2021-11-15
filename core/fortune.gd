@@ -24,6 +24,9 @@ func get_new_fortune():
 		return next_fortune
 	
 	next_fortune = godash.rand_choice(Fortunes.values())
+	GameState.emit_signal("stat", "fortune.told", {
+		"fortune": next_fortune,
+	})
 	return next_fortune
 	
 func _on_calendar_advance(_day):

@@ -21,7 +21,7 @@ func get_requirements():
 	]
 
 func can_accept():
-	return GameState.flag("request:proller_collection_1:complete") and GameState.flag("request:flower_2:complete")
+	return GameState.flag("request:proller_collection_1:completed") and GameState.flag("request:flower_2:completed")
 
 func accept():
 	.accept()

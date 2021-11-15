@@ -168,5 +168,5 @@ func _on_miss():
 	combo_label.text = "MISS"
 
 
-func _on_ItemList_item_selected(index):
+func _on_ItemList_item_selected(_index):
 	get_node("Difficulty/PanelContainer/Cursor").play()
