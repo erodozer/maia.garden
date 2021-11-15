@@ -42,7 +42,6 @@ func persist(data):
 	
 func restore(data):
 	has_eaten = {}
-	var loaded = data.get("achievements", {}).get("cafe1", {})
 	for c in Content.Items:
 		if c.type == "cafe" and c.stack == 0:
 			var eaten = data.get("achievements", {}).get("cafe1", {}).get(c.id, false)

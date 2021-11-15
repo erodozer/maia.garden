@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://content/mail.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "birthday_kyle"
+sendAt = "1637038800"
+sender = "Kyle"
+message = "Happy Birthday Itchy Ka Mayo~!
+Wishing you have the best of birthdays and lets celebrate the birth of the 1337 G4M3R, xXM414Xx."
+outro = ""
+onDelivery = ""
+onRead = ""

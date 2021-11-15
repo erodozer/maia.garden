@@ -73,8 +73,9 @@ func can_insert(entries):
 		var sell = entry.amount < 0
 		
 		if entry.id == "konpeito":
-			if sell and GameState.player.konpeito + entry.amount < 0:
+			if sell and GameState.player.balance + entry.amount < 0:
 				return false
+			continue
 
 		var ref = entry.ref if "ref" in entry else Content.get_item_reference(entry.id)
 		
@@ -108,8 +109,13 @@ func insert_item(entries):
 		return false
 	
 	for entry in entries:
-		var ref = entry.ref if "ref" in entry else Content.get_item_reference(entry.id)
 		var sell = entry.amount < 0
+		
+		if entry.id == "konpeito":
+			GameState.player.balance += entry.amount
+			continue
+		
+		var ref = entry.ref if "ref" in entry else Content.get_item_reference(entry.id)
 		
 		var total = 0
 		var items = []
@@ -168,7 +174,7 @@ func get_item(id):
 	if id == "konpeito":
 		return {
 			"id": "konpeito",
-			"amount": GameState.player.konpeito,
+			"amount": GameState.player.balance,
 		}
 
 	var matching = {

@@ -16,48 +16,42 @@ func _ready():
 func exchange(btn):
 	var item = btn.item
 			
-	# purchase an item
-	if item.price > 0 and GameState.player.balance - item.price < 0:
-		return false
+	var transaction = []
 	
-	var exchanged = false
-
 	# if value is zero, it may cost an inventory item
 	if item.price == 0:
-		exchanged = GameState.inventory.insert_item({
+		transaction.append({
 			"id": item.id,
 			"ref": item.ref,
 			"amount": -1,
 		})
 	# handle putting items into your inventory
 	elif item.ref.stack > 0:
-		exchanged = GameState.inventory.insert_item({
+		transaction.append({
 			"id": item.id,
 			"ref": item.ref,
 			"amount": 1,
 		})
-	# handle cafe items that are instant consume
-	elif item.ref.stack == 0 and item.ref.get("stamina") and item.ref.stamina > 0:
-		exchanged = true
 	
-	if not exchanged:
+	if item.price > 0:
+		transaction.append({
+			"id": "konpeito",
+			"amount": -item.price,
+		})
+	
+	if not GameState.inventory.insert_item(transaction):
 		return false
 	
-	if item.ref.get("stamina") and item.ref.stamina > 0:
+	if "stamina" in item.ref and item.ref.stamina > 0:
 		if item.ref.stack == 0 or item.price == 0:
 			# most cafe items restore stamina directly 
 			# instead of going into the inventory
 			GameState.player.stamina += item.ref.stamina
 	
 	if item.price > 0:
-		GameState.player.balance -= item.price
 		GameState.emit_signal("stat", "shop.purchase", {
 			"item": item.ref,
 			"value": item.price,
-		})
-	else:
-		GameState.emit_signal("stat", "shop.spend", {
-			"item": item.ref,
 		})
 	
 	if item.stock > 0:

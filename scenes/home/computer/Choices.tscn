@@ -90,7 +90,7 @@ __meta__ = {
 margin_left = 4.0
 margin_right = 86.0
 margin_bottom = 80.0
-custom_constants/separation = 2
+custom_constants/separation = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -106,18 +106,18 @@ text = "Chat + Game"
 align = 1
 
 [node name="Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
-margin_top = 11.0
+margin_top = 16.0
 margin_right = 82.0
-margin_bottom = 43.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 0, 32 )
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/Game/Panel/MarginContainer/VBoxContainer"]
-margin_top = 45.0
+margin_top = 55.0
 margin_right = 82.0
-margin_bottom = 60.0
+margin_bottom = 70.0
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
 custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
 custom_constants/shadow_offset_x = 1
@@ -143,9 +143,9 @@ margin_bottom = 18.0
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Game/PanelContainer/Cost"]
-margin_top = 2.0
 margin_right = 12.0
-margin_bottom = 11.0
+margin_bottom = 14.0
+size_flags_vertical = 7
 text = "25"
 
 [node name="Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Game/PanelContainer/Cost"]
@@ -182,7 +182,7 @@ __meta__ = {
 margin_left = 4.0
 margin_right = 86.0
 margin_bottom = 80.0
-custom_constants/separation = 2
+custom_constants/separation = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -198,18 +198,18 @@ text = "Karaoke"
 align = 1
 
 [node name="Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
-margin_top = 11.0
+margin_top = 16.0
 margin_right = 82.0
-margin_bottom = 43.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 0, 32 )
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/Karaoke/Panel/MarginContainer/VBoxContainer"]
-margin_top = 45.0
+margin_top = 55.0
 margin_right = 82.0
-margin_bottom = 60.0
+margin_bottom = 70.0
 custom_colors/font_color = Color( 0.478431, 0.266667, 0.290196, 1 )
 custom_colors/font_color_shadow = Color( 0.74902, 0.47451, 0.345098, 1 )
 custom_constants/shadow_offset_x = 1
@@ -235,9 +235,9 @@ margin_bottom = 18.0
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Karaoke/PanelContainer/Cost"]
-margin_top = 2.0
 margin_right = 13.0
-margin_bottom = 11.0
+margin_bottom = 14.0
+size_flags_vertical = 7
 text = "40"
 
 [node name="Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Karaoke/PanelContainer/Cost"]
