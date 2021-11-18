@@ -9,7 +9,7 @@ sendAt = "quest:fish_2"
 sender = "Tazzle"
 message = "Hi Maia,
 
-I got a nice campfire burning, ready to cook some good over it!  How about you drop by and enjoy the warmth and some crispy fish."
+I got a nice campfire burning, ready to cook some good food over it!  How about you drop by and enjoy the warmth and some crispy fish."
 outro = ""
 onDelivery = ""
 onRead = ""

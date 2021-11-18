@@ -30,7 +30,7 @@ var world_seed = 0
 signal stat(id, params)
 
 func _ready():
-	reset_game()
+	randomize() # new world seed every time the game starts
 	
 	for r in godash.load_dir("res://content/request", ["gd", "gdc"], true).values():
 		var request = r.new()
@@ -72,7 +72,25 @@ func persist(data):
 	return data
 	
 func restore(data):
-	flags = data["flags"]
+	world_seed = data.get("seed", randi())
+	seed(world_seed)
+	
+	temp = {}
+	flags = data.get("flags", {
+		"outfit.default": true,
+		"outfit.hat": false,
+		"outfit.tiny": false,
+		# introductions
+		"introduce.chie": false,
+		"introduce.clover": false,
+		"introduce.yuuki": false,
+		"introduce.proller": false,
+		"introduce.tazzle": false,
+		"maia_birthday": false,
+		# debug
+		"unlock_bread": false
+	})
+	time_played = data.get("timePlayed", 0)
 	
 func load_headers(slot):
 	var path = "user://garden.%s.save" % slot
@@ -103,30 +121,7 @@ func load_headers(slot):
 	}
 
 func reset_game():
-	time_played = 0
-	temp = {}
-	flags = {
-		"outfit.default": true,
-		"outfit.hat": false,
-		"outfit.tiny": false,
-		# introductions
-		"introduce.chie": false,
-		"introduce.clover": false,
-		"introduce.yuuki": false,
-		"introduce.proller": false,
-		"introduce.tazzle": false,
-		"maia_birthday": false,
-		# debug
-		"unlock_bread": false
-	}
-	
-	randomize() # new world seed every time the game starts
-	world_seed = randi()
-	seed(world_seed)
-	
-	for v in get_tree().get_nodes_in_group("Persist"):
-		if v.has_method("reset"):
-			v.reset()
+	SceneManager.change_scene("loading", [{}])
 
 func save_game(slot):
 	var data = {
@@ -151,10 +146,6 @@ func load_game(slot):
 		return
 	f.open(path, File.READ)
 	var data = parse_json(f.get_as_text())
-	world_seed = data.get("seed", randi())
-	seed(world_seed)
-	time_played = data.get("timePlayed", 0)
-	
 	SceneManager.change_scene("loading", [data])
 	
 func delete_game(slot):

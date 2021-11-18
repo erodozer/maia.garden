@@ -20,17 +20,12 @@ func persist(data):
 	}
 
 func restore(data):
-	balance = data.player.balance
-	stamina = data.player.stamina
-	outfit = data.player.outfit
-	has_streamed = data.player.streamed
+	var player = data.get("player", {})
+	balance = player.get("balance", 100)
+	stamina = player.get("stamina", 100)
+	outfit = player.get("outfit", "default")
+	has_streamed = player.get("streamed", false)
 	
-func reset():
-	balance = 100
-	stamina = 100
-	has_streamed = false
-	outfit = "default"
-
 func set_outfit(v):
 	outfit = v
 	emit_signal("change_outfit", v)

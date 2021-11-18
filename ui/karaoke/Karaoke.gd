@@ -1,7 +1,7 @@
 extends Control
 
 const godash = preload("res://addons/godash/godash.gd")
-
+const Fortunes = preload("res://core/fortune.gd").Fortunes
 const Note = preload("./Note.tscn")
 
 onready var game = get_node("Game")
@@ -125,6 +125,8 @@ func play():
 	set_process(false)
 	
 	var payout = (notes_hit * DIFFICULTY[difficulty].scale) + highest_combo
+	if GameState.fortune.current_fortune == Fortunes.GOOD_LUCK_STREAM_BONUS:
+		payout *= 2
 	
 	results.get_node("PanelContainer/VBoxContainer/Accuracy/Value").text = "%2d%%" % ((float(notes_hit) / float(note_count) * 100))
 	results.get_node("PanelContainer/VBoxContainer/Combo/Value").text = "%d" % highest_combo

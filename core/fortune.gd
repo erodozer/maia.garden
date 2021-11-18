@@ -14,6 +14,25 @@ enum Fortunes {
 	BAD_LUCK_DEAD_PLANTS
 }
 
+const all_fortunes = [
+	Fortunes.NEUTRAL_LUCK,
+	Fortunes.GOOD_LUCK_BIG_FISH,
+	Fortunes.GOOD_LUCK_ENERGY,
+	Fortunes.GOOD_LUCK_PLANT,
+	Fortunes.GOOD_LUCK_STREAM_BONUS,
+	Fortunes.BAD_LUCK_EXCLUSIVE_FISH,
+	Fortunes.BAD_LUCK_TIRED,
+	Fortunes.BAD_LUCK_LESS_FISH,
+	Fortunes.BAD_LUCK_DEAD_PLANTS,
+]
+
+const good_fortunes = [
+	Fortunes.GOOD_LUCK_BIG_FISH,
+	Fortunes.GOOD_LUCK_ENERGY,
+	Fortunes.GOOD_LUCK_PLANT,
+	Fortunes.GOOD_LUCK_STREAM_BONUS,
+]
+
 var next_fortune = null
 var current_fortune = Fortunes.NEUTRAL_LUCK
 
@@ -23,7 +42,10 @@ func get_new_fortune():
 	if next_fortune != null:
 		return next_fortune
 	
-	next_fortune = godash.rand_choice(Fortunes.values())
+	if GameState.flag("request:shrine_2:completed"):
+		next_fortune = godash.rand_choice(good_fortunes)
+	else:
+		next_fortune = godash.rand_choice(all_fortunes)
 	GameState.emit_signal("stat", "fortune.told", {
 		"fortune": next_fortune,
 	})
@@ -42,5 +64,5 @@ func persist(data):
 	return data
 	
 func restore(data):
-	current_fortune = data.fortune.current
-	next_fortune = data.fortune.next
+	current_fortune = data.get("fortune", {}).get("current", Fortunes.NEUTRAL_LUCK)
+	next_fortune = data.get("fortune", {}).get("next", null)

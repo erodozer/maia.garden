@@ -24,7 +24,7 @@ func persist(data):
 func restore(data):
 	plots = {}
 	
-	for p in data.garden:
+	for p in data.get("garden", []):
 		var cell = Vector2(p.cell.x, p.cell.y)
 		plots[cell] = {
 			"ref": Content.get_item_reference(p.id),

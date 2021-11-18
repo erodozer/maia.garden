@@ -8,9 +8,6 @@ var records = {}
 var exclusive = null
 var empty = false
 
-func _ready():
-	reset()
-	
 func is_rare(fish, size):
 	var length = inverse_lerp(fish.min_size, fish.max_size, size)
 	return length >= 0.8
@@ -37,6 +34,8 @@ func get_fish(type):
 		fish = godash.rand_chance(selection)
 		
 	var size = randf()
+	if GameState.fortune.current_fortune == Fortunes.GOOD_LUCK_BIG_FISH:
+		size = min(size + .3, 1.0)
 	return {
 		"ref": fish,
 		"size": lerp(fish.min_size, fish.max_size, size),
@@ -94,28 +93,34 @@ func _on_Fortune_changed(fortune):
 		empty = true
 	
 func persist(data):
-	data["fishing"] = []
-	for r in records.values():
-		data.fishing.append({
-			"id": r.id,
-			"size": r.size,
+	var arr = []
+	
+	for f in Content.Items:
+		if f.type != "fish":
+			continue
+			
+		arr.append({
+			"id": f.id,
+			"size": records.get(f.id, {}).get("size", 0),
 		})
+		
+	data["fishing"] = arr
 	return data
 	
 func restore(data):
-	reset()
-	for r in data.fishing:
-		if r.id in records:
-			records[r.id] = {
-				"id": r.id,
-				"size": r.size,
-			}
-	
-func reset():
 	records = {}
 	for f in Content.Items:
-		if f.type == "fish":
-			records[f.id] = {
-				"id": f.id,
-				"size": 0,
-			}
+		if f.type != "fish":
+			continue
+		
+		var size = 0
+		for r in data.get("fishing", []):
+			if r.id == f.id:
+				size = r.size
+				break
+			
+		records[f.id] = {
+			"id": f.id,
+			"size": size,
+		}
+	

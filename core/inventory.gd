@@ -5,20 +5,6 @@ signal changed(item, record)
 var data = []
 var bag_size setget ,get_bag_size
 
-func _ready():
-	reset()
-			
-func reset():
-	data = []
-	for f in Content.Items:
-		if f.get("starting") and f.starting > 0:
-			insert_item({
-				"id": f.id,
-				"ref": f,
-				"icon": f.icon,
-				"amount": f.starting
-			})
-			
 func persist(d):
 	d["inventory"] = []
 	for i in data:
@@ -29,8 +15,19 @@ func persist(d):
 		
 	return d
 	
-func restore(d):
+func restore(d: Dictionary):
 	data = []
+	if d.empty():
+		for f in Content.Items:
+			if f.get("starting") and f.starting > 0:
+				insert_item({
+					"id": f.id,
+					"ref": f,
+					"icon": f.icon,
+					"amount": f.starting
+				})
+		return
+	
 	for i in d.inventory:
 		var ref = Content.get_item_reference(i.id)
 		var record = {

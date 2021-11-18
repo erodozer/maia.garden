@@ -12,10 +12,6 @@ func is_maia_day():
 	var dt = OS.get_datetime_from_unix_time(day)
 	return dt.day == MAIAS_BIRTHDAY.day and dt.month == MAIAS_BIRTHDAY.month
 
-func reset():
-	day = 1634616000
-	emit_signal("advance", day)
-	
 func advance_day():
 	day += 86400 # add a day in unix seconds
 
@@ -51,4 +47,4 @@ func persist(data):
 	}
 	
 func restore(data):
-	day = data["calendar"]["date"]
+	day = data.get("calendar", {}).get("date", 1634616000)

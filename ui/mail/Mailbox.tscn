@@ -33,7 +33,6 @@ expand_margin_bottom = 2.0
 anti_aliasing = false
 
 [node name="Mailbox" type="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -199.709
@@ -52,7 +51,7 @@ margin_left = 2.0
 margin_top = -70.0
 margin_right = 98.0
 margin_bottom = 70.0
-rect_min_size = Vector2( 96, 140 )
+rect_min_size = Vector2( 108, 140 )
 custom_styles/panel = SubResource( 1 )
 
 [node name="Label" type="Label" parent="Inbox"]
@@ -71,6 +70,8 @@ __meta__ = {
 [node name="Container" type="Control" parent="Inbox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -78,6 +79,8 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="Inbox/Container"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/margin_right = 4
 custom_constants/margin_top = 14
 custom_constants/margin_left = 3
@@ -89,7 +92,7 @@ __meta__ = {
 [node name="ScrollContainer" type="ScrollContainer" parent="Inbox/Container/MarginContainer"]
 margin_left = 3.0
 margin_top = 14.0
-margin_right = 92.0
+margin_right = 104.0
 margin_bottom = 136.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -98,7 +101,7 @@ follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="ItemList" type="ItemList" parent="Inbox/Container/MarginContainer/ScrollContainer"]
-margin_right = 89.0
+margin_right = 101.0
 margin_bottom = 122.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath(".")

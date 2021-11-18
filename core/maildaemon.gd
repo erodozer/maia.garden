@@ -59,7 +59,7 @@ func persist(data):
 func restore(data):
 	inbox = {}
 
-	for m in data.mail:
+	for m in data.get("mail", []):
 		inbox[m.id] = {
 			"id": m.id,
 			"delivered": m.delivered,

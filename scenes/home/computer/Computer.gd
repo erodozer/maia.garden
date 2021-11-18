@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+const Fortunes = preload("res://core/fortune.gd").Fortunes
+
 onready var choices = get_node("CanvasLayer/Choices")
 onready var karaoke = get_node("CanvasLayer/Karaoke")
 onready var dialogue = get_node("CanvasLayer/Dialogue")
@@ -21,7 +23,10 @@ func interact():
 			"type": "chat"
 		})
 		yield(get_tree().create_timer(0.3), "timeout")
-		GameState.player.balance += int(lerp(50, 80, randf()))
+		var payout = int(lerp(50, 80, randf()))
+		if GameState.fortune.current_fortune == Fortunes.GOOD_LUCK_STREAM_BONUS:
+			payout *= 1.5
+		GameState.player.balance += payout
 		GameState.player.perform_action(25)
 		return
 	

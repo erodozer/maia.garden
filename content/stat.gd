@@ -33,6 +33,3 @@ func restore(data):
 		return 
 	if get_id() in data.stats:
 		value = data.stats[get_id()]
-
-func reset():
-	value = 0

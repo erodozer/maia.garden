@@ -5,7 +5,7 @@ var fortune_told = false
 func get_id():
 	return "fortune1"
 
-func _on_stat(id, params):
+func _on_stat(id, _params):
 	if id != "fortune.told":
 		return false
 		

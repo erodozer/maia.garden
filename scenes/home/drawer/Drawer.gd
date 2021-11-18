@@ -67,5 +67,5 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("end")
 
-func _on_ItemList_item_selected(index):
+func _on_ItemList_item_selected(_index):
 	get_node("Cursor").play()
