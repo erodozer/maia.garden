@@ -12,6 +12,8 @@ func _on_stat(id, params):
 		
 	if params.new_value > params.old_value:
 		value += params.new_value - params.old_value
+		
+	value = int(value)
 
 func get_weight():
 	return -1

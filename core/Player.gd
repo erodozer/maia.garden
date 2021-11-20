@@ -31,6 +31,7 @@ func set_outfit(v):
 	emit_signal("change_outfit", v)
 
 func update_balance(amount):
+	amount = int(amount)
 	var old = balance
 	balance = amount
 	emit_signal("balance_changed", amount, old)

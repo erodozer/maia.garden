@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Baka Mitai.ogg-d79139951110f96df04f5b00b1ae2e3b.oggstr"
+
+[deps]
+
+source_file="res://ui/karaoke/songs/Baka Mitai.ogg"
+dest_files=[ "res://.import/Baka Mitai.ogg-d79139951110f96df04f5b00b1ae2e3b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

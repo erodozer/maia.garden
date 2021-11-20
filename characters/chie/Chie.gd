@@ -9,6 +9,7 @@ func hint():
 	return "Talk to Chie"
 	
 func interact():
+	GameState.toggle_flag("talked_to.chie")
 	var choices = []
 	var text = [
 		"Hello Maia!",

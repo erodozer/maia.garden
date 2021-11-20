@@ -1,12 +1,20 @@
 extends StaticBody2D
 
-const Outfits = [
-	"default",
-	"hat",
-	"tiny",
-]
+const Outfits = {
+	"default": {
+		"text": "Your favorite fairy dress",
+	},
+	"hat": {
+		"text": "Man I Love Fishing (makes fishing easier)",
+	},
+	"tiny": {
+		"text": "Tiny Redeem (+20% Stream Payout bonus)"
+	}
+}
 
 signal end
+
+onready var outfits = get_node("CanvasLayer/Anchor/Control/ItemList")
 
 func _ready():
 	set_process_input(false)
@@ -16,7 +24,6 @@ func hint():
 
 func interact():
 	var ui = get_node("CanvasLayer/Anchor")
-	var outfits = get_node("CanvasLayer/Anchor/Control/ItemList")
 	var tween = get_node("CanvasLayer/Tween")
 	
 	outfits.clear()
@@ -28,6 +35,7 @@ func interact():
 				outfit.capitalize(),
 				load("res://characters/maia/outfits/%s/icon.tres" % outfit)
 			)
+			outfits.set_item_metadata(outfits.get_item_count() - 1, Outfits[outfit])
 		else:
 			outfits.add_item(
 				"[Locked]",
@@ -67,5 +75,14 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		emit_signal("end")
 
-func _on_ItemList_item_selected(_index):
+func _on_ItemList_item_selected(index):
 	get_node("Cursor").play()
+	var panel = get_node("CanvasLayer/Anchor/Description")
+	var description = panel.get_node("Label")
+	var meta = outfits.get_item_metadata(index)
+	if meta:
+		description.text = meta.text
+		panel.visible = true
+	else:
+		panel.visible = false
+		

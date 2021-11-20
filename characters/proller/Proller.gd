@@ -14,6 +14,7 @@ func hint():
 	return "Talk to Proller"
 	
 func interact():
+	GameState.toggle_flag("talked_to.proller")
 	if not GameState.flag("introduce.proller.complete"):
 		yield(dialogue.open([
 			"[wave amp=20 freq=2]Maia...[/wave]",

@@ -52,6 +52,7 @@ func hint():
 	return "Talk to Tazzle"
 	
 func interact():
+	GameState.toggle_flag("talked_to.tazzle")
 	var choices = []
 	if can_sell():
 		choices.append("Sell")

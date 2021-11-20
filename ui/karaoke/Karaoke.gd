@@ -34,19 +34,25 @@ const DIFFICULTY = [
 		"bpm": 80.0,
 		"scale": 0.3,
 		"freq": [1.0, 1.0 / 2.0],
-		"song": preload("res://ui/karaoke/songs/easy/Baka Mitai.ogg")
+		"song": preload("res://ui/karaoke/songs/Baka Mitai.ogg")
+	},
+	{
+		"bpm": 100.0,
+		"scale": 0.5,
+		"freq": [1.0, 1.0 / 2.0],
+		"song": preload("res://ui/karaoke/songs/LONELY_ROLLING_STAR.ogg")
 	},
 	{
 		"bpm": 120.0,
-		"scale": 0.4,
+		"scale": 0.6,
 		"freq": [1.0, 1.0 / 2.0, 1.0 / 4.0],
-		"song": preload("res://ui/karaoke/songs/medium/Bad_Apple.ogg")
+		"song": preload("res://ui/karaoke/songs/Bad_Apple.ogg")
 	},
 	{
 		"bpm": 150.0,
-		"scale": 0.5,
+		"scale": 0.7,
 		"freq": [1.0, 1.0 / 2.0, 1.0 / 4.0],
-		"song": preload("res://ui/karaoke/songs/hard/Rolling Girl.ogg")
+		"song": preload("res://ui/karaoke/songs/Rolling Girl.ogg")
 	}
 ]
 const MEASURE_SCALE = 48.0

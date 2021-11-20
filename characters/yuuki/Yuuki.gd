@@ -18,6 +18,7 @@ func hint():
 	return "Talk to Yuuki"
 
 func interact():
+	GameState.toggle_flag("talked_to.yuuki")
 	var choices = ["Shop"]
 	if can_talk():
 		choices.push_front("Talk")

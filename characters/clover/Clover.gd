@@ -44,6 +44,7 @@ func sell():
 		]), "completed")
 
 func interact():
+	GameState.toggle_flag("talked_to.clover")
 	var choices = ["Shop", "Sell"]
 	if can_talk():
 		choices.push_front("Talk")

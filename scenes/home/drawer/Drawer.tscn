@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/home/drawer/Drawer.gd" type="Script" id=1]
 [ext_resource path="res://characters/maia/outfits/hat/locked.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://characters/maia/outfits/tiny/locked.png" type="Texture" id=5]
 [ext_resource path="res://ui/cursor.wav" type="AudioStream" id=6]
 [ext_resource path="res://ui/select.wav" type="AudioStream" id=7]
+[ext_resource path="res://ui/smaller_font.tres" type="DynamicFont" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 1.93114
@@ -27,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 150.0
 margin_bottom = 150.0
+theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -58,6 +60,25 @@ size_flags_horizontal = 7
 items = [ "Item 0", ExtResource( 4 ), false, "Item 1", ExtResource( 2 ), false, "Item 2", ExtResource( 5 ), false ]
 auto_height = true
 fixed_icon_size = Vector2( 24, 24 )
+
+[node name="Description" type="PanelContainer" parent="CanvasLayer/Anchor"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -17.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Anchor/Description"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 196.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 8 )
+text = "Your favorite fairy dress"
+align = 1
 
 [node name="Tween" type="Tween" parent="CanvasLayer"]
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LONELY_ROLLING_STAR.ogg-4fad316a3a8af38c0b159a123d4664c5.oggstr"
+
+[deps]
+
+source_file="res://ui/karaoke/songs/LONELY_ROLLING_STAR.ogg"
+dest_files=[ "res://.import/LONELY_ROLLING_STAR.ogg-4fad316a3a8af38c0b159a123d4664c5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
