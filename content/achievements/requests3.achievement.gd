@@ -6,6 +6,8 @@ const NPC_FLAGS = [
 	"talked_to.yuuki",
 	"talked_to.tazzle",
 	"talked_to.proller",
+	"talked_to.ssubi",
+	"talked_to.tora",
 ]
 
 func get_id():

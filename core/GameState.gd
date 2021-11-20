@@ -9,6 +9,8 @@ onready var calendar = get_node("Calendar")
 onready var fishing = get_node("Fishing")
 onready var fortune = get_node("Fortune")
 onready var player = get_node("Player")
+onready var automate = get_node("Automate")
+
 var shops = {}
 
 var requests = []

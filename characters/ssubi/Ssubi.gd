@@ -40,6 +40,7 @@ func get_phrase():
 	return phrases
 	
 func interact():
+	GameState.toggle_flag("talked_to.ssubi")
 	var text = [
 		godash.rand_choice(get_phrase())
 	]

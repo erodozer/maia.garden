@@ -53,12 +53,16 @@ func open(lines, choices = []):
 		for c in choices:
 			var b = Button.new()
 			b.toggle_mode = true
-			b.text = c
+			if c is Dictionary:
+				b.text = c.label
+			else:
+				b.text = c
 			b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			b.focus_mode = Control.FOCUS_ALL
 			b.action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
 			b.pressed = false
 			b.group = button_group
+			b.set_meta("choice", c)
 			b.connect("focus_entered", cursor_sfx, "play")
 			choice_buttons.add_child(b)
 		var first_choice = choice_buttons.get_child(0)
@@ -82,4 +86,4 @@ func open(lines, choices = []):
 	return selected
 	
 func on_choice_selected(choice):
-	emit_signal("choice", choice.text)
+	emit_signal("choice", choice.get_meta("choice"))

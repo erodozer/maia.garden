@@ -34,6 +34,9 @@ func sow(c):
 	if p:
 		GameState.player.perform_action(planting_stamina_cost)  # planting costs some stamina
 	
+	if p and GameState.automate.task == "Garden" and GameState.automate.is_hired:
+		p.watered = true
+	
 	return p
 	
 func harvest(p):
