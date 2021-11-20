@@ -29,6 +29,7 @@ func get_progress():
 func persist(data):
 	var save = data.get("achievements", {})
 	save["karaoke1"] = full_combo
+	data["achievements"] = save
 	
 func restore(data):
 	full_combo = data.get("achievements", {}).get("karaoke1", false)
