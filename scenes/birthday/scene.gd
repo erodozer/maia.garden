@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var tween = get_node("Tween")
+
 func _setup(_params):
 	Bgm.change_song(preload("res://scenes/birthday/bgm.ogg"), 0)
 
@@ -19,7 +21,6 @@ func _start():
 	get_node("CanvasLayer/Message/Lead").visible = false
 	anim.play("FadeText")
 	
-	var tween = get_node("Tween")
 	var letter = get_node("CanvasLayer/Message/MarginContainer")
 	tween.interpolate_property(
 		letter,
@@ -45,3 +46,6 @@ func _start():
 	
 	GameState.calendar.advance_day()
 	SceneManager.change_scene("title")
+
+func _process(delta):
+	tween.playback_speed = 1.0 if not Input.is_action_pressed("ui_accept") else 30.0
